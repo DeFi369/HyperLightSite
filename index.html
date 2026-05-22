@@ -3,272 +3,309 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="HyperLightTek - AI Agents, Blockchain Solutions, Secure Systems & Consulting">
-    <title>HyperLightTek | Illuminating Tomorrow</title>
+    <meta name="description" content="HyperLightTek - Professional AI Agents, Blockchain Solutions, and Secure Systems">
+    <title>HyperLightTek | AI Agents • Blockchain • Secure Systems</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap');
-        body { font-family: 'Inter', sans-serif; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600;700&display=swap');
+        body { font-family: 'Inter', system-ui, sans-serif; }
         .heading { font-family: 'Space Grotesk', sans-serif; }
         .hero-bg {
-            background: linear-gradient(135deg, #0a1428 0%, #1a2338 100%);
+            background: linear-gradient(135deg, #0a0f1c 0%, #1a2338 100%);
+        }
+        .section-header {
+            position: relative;
+        }
+        .section-header::after {
+            content: '';
+            position: absolute;
+            width: 64px;
+            height: 3px;
+            background: linear-gradient(to right, #22d3ee, #67e8f9);
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
         }
     </style>
 </head>
 <body class="bg-zinc-950 text-zinc-200">
     <!-- Navbar -->
-    <nav class="bg-zinc-900 border-b border-zinc-800 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <nav class="bg-zinc-900/80 backdrop-blur-md border-b border-zinc-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <div class="w-8 h-8 bg-cyan-500 rounded-full flex items-center justify-center text-black font-bold text-xl">HL</div>
-                <span class="heading text-2xl font-semibold tracking-tight">HyperLightTek</span>
+                <div class="w-9 h-9 bg-cyan-500 rounded-2xl flex items-center justify-center text-zinc-950 font-bold text-2xl shadow-inner">HL</div>
+                <span class="heading text-3xl font-semibold tracking-tighter">HyperLightTek</span>
             </div>
-            <div class="hidden md:flex gap-8 text-sm font-medium">
-                <a href="#services" class="hover:text-cyan-400 transition">Services</a>
-                <a href="#tiers" class="hover:text-cyan-400 transition">Offerings</a>
-                <a href="#resources" class="hover:text-cyan-400 transition">Resources</a>
-                <a href="#contact" class="hover:text-cyan-400 transition">Contact</a>
+            <div class="hidden md:flex items-center gap-10 text-sm font-medium">
+                <a href="#services" class="hover:text-cyan-400 transition-colors">Services</a>
+                <a href="#tiers" class="hover:text-cyan-400 transition-colors">Tiers</a>
+                <a href="#portfolio" class="hover:text-cyan-400 transition-colors">Work</a>
+                <a href="#contact" class="hover:text-cyan-400 transition-colors">Contact</a>
             </div>
             <button onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })" 
-                    class="bg-cyan-500 hover:bg-cyan-400 text-black px-6 py-2.5 rounded-xl font-medium text-sm transition">
-                Get Started
+                    class="bg-cyan-500 hover:bg-cyan-400 text-zinc-950 px-6 py-3 rounded-2xl font-semibold text-sm transition-all">
+                Start Project
             </button>
         </div>
     </nav>
 
     <!-- Hero -->
-    <section class="hero-bg py-24">
+    <section class="hero-bg pt-32 pb-24">
         <div class="max-w-5xl mx-auto px-6 text-center">
-            <div class="inline-flex items-center gap-2 bg-zinc-800 text-cyan-400 text-sm px-4 py-1.5 rounded-3xl mb-6 border border-cyan-900">
-                <i class="fa-solid fa-bolt"></i> AI • Blockchain • Security
+            <div class="inline-flex items-center gap-2 bg-zinc-900 border border-cyan-900 text-cyan-400 text-sm px-5 py-2 rounded-3xl mb-8">
+                <i class="fa-solid fa-bolt-lightning"></i>
+                HERMES-STYLE AI AGENTS • BLOCKCHAIN
             </div>
-            <h1 class="heading text-6xl md:text-7xl font-semibold tracking-tighter mb-6 leading-none">
-                Illuminating Tomorrow<br>with Unbreakable Technology
+            <h1 class="heading text-6xl md:text-7xl font-semibold tracking-tighter leading-none mb-8">
+                Autonomous intelligence.<br>
+                Unbreakable infrastructure.
             </h1>
-            <p class="text-xl text-zinc-400 max-w-2xl mx-auto mb-10">
-                Expert AI agents, blockchain infrastructure, secure systems, and strategic consulting to help your business thrive in the future.
+            <p class="text-xl text-zinc-400 max-w-2xl mx-auto mb-12">
+                We build production-grade AI agents and blockchain systems that deliver real results. 
+                Professional, reliable, and future-proof.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <button onclick="document.getElementById('tiers').scrollIntoView({ behavior: 'smooth' })" 
-                        class="bg-white text-zinc-900 px-8 py-4 rounded-2xl font-semibold hover:bg-zinc-100 transition text-lg">
-                    Explore Our Tiers
+                        class="bg-white text-zinc-950 px-10 py-5 rounded-3xl font-semibold text-lg hover:bg-zinc-100 transition-all flex items-center justify-center gap-3">
+                    <span>Choose Your Tier</span>
+                    <i class="fa-solid fa-arrow-right"></i>
                 </button>
                 <button onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })" 
-                        class="border border-zinc-700 hover:border-zinc-500 px-8 py-4 rounded-2xl font-medium transition">
-                    Book a Consultation
+                        class="border border-zinc-700 hover:border-zinc-500 px-10 py-5 rounded-3xl font-medium transition-all">
+                    Book Strategy Call
                 </button>
             </div>
         </div>
     </section>
 
-    <!-- Services -->
-    <section id="services" class="py-20 bg-zinc-900">
+    <!-- Core Services -->
+    <section id="services" class="py-24 bg-zinc-900">
         <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="heading text-4xl font-semibold mb-4">Core Capabilities</h2>
-                <p class="text-zinc-400 max-w-md mx-auto">Focused on what matters most right now: AI Agents, Crypto/Blockchain, and reliable infrastructure.</p>
+                <h2 class="heading text-5xl font-semibold mb-4 section-header">Core Services</h2>
+                <p class="text-zinc-400 max-w-lg mx-auto">Precision-built solutions in the domains that matter most today.</p>
             </div>
             
             <div class="grid md:grid-cols-3 gap-8">
-                <!-- AI -->
-                <div class="bg-zinc-950 border border-zinc-800 rounded-3xl p-8 hover:border-cyan-500/50 transition group">
-                    <div class="w-12 h-12 bg-cyan-500/10 rounded-2xl flex items-center justify-center mb-6 text-cyan-400">
-                        <i class="fa-solid fa-brain text-3xl"></i>
+                <!-- AI Agents -->
+                <div class="bg-zinc-950 border border-zinc-800 rounded-3xl p-10 hover:border-cyan-500/30 transition-all group">
+                    <div class="w-14 h-14 bg-cyan-500/10 rounded-2xl flex items-center justify-center mb-8 text-cyan-400 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-brain text-4xl"></i>
                     </div>
-                    <h3 class="text-2xl font-semibold mb-3">AI Agents & Automation</h3>
-                    <p class="text-zinc-400 mb-6">Custom AI agents like Hermes, intelligent automation, RAG systems, and AI infrastructure setup.</p>
+                    <h3 class="text-3xl font-semibold mb-4">AI Agents</h3>
+                    <p class="text-zinc-400 mb-8">Hermes-style autonomous agents, multi-agent systems, RAG pipelines, and intelligent automation that operate independently with high reliability.</p>
                     <ul class="space-y-3 text-sm">
-                        <li class="flex items-start gap-3"><span class="text-cyan-400 mt-1">•</span> Autonomous AI agents</li>
-                        <li class="flex items-start gap-3"><span class="text-cyan-400 mt-1">•</span> Custom model fine-tuning</li>
-                        <li class="flex items-start gap-3"><span class="text-cyan-400 mt-1">•</span> Workflow automation</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400"></i> Autonomous decision agents</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400"></i> Tool integration &amp; orchestration</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400"></i> Custom model deployment</li>
                     </ul>
                 </div>
 
                 <!-- Blockchain -->
-                <div class="bg-zinc-950 border border-zinc-800 rounded-3xl p-8 hover:border-cyan-500/50 transition group">
-                    <div class="w-12 h-12 bg-amber-500/10 rounded-2xl flex items-center justify-center mb-6 text-amber-400">
-                        <i class="fa-solid fa-link text-3xl"></i>
+                <div class="bg-zinc-950 border border-zinc-800 rounded-3xl p-10 hover:border-amber-500/30 transition-all group">
+                    <div class="w-14 h-14 bg-amber-500/10 rounded-2xl flex items-center justify-center mb-8 text-amber-400 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-chain text-4xl"></i>
                     </div>
-                    <h3 class="text-2xl font-semibold mb-3">Blockchain & Crypto</h3>
-                    <p class="text-zinc-400 mb-6">DeFi solutions, smart contracts, token infrastructure, wallet integrations, and on-chain strategy.</p>
+                    <h3 class="text-3xl font-semibold mb-4">Blockchain &amp; Crypto</h3>
+                    <p class="text-zinc-400 mb-8">End-to-end blockchain infrastructure, smart contracts, DeFi protocols, token launches, and secure Web3 integrations.</p>
                     <ul class="space-y-3 text-sm">
-                        <li class="flex items-start gap-3"><span class="text-cyan-400 mt-1">•</span> Smart contract development</li>
-                        <li class="flex items-start gap-3"><span class="text-cyan-400 mt-1">•</span> DeFi protocols</li>
-                        <li class="flex items-start gap-3"><span class="text-cyan-400 mt-1">•</span> Web3 integrations</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400"></i> Smart contract development</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400"></i> DeFi &amp; token engineering</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400"></i> On-chain strategy &amp; security</li>
                     </ul>
                 </div>
 
-                <!-- Systems -->
-                <div class="bg-zinc-950 border border-zinc-800 rounded-3xl p-8 hover:border-cyan-500/50 transition group">
-                    <div class="w-12 h-12 bg-emerald-500/10 rounded-2xl flex items-center justify-center mb-6 text-emerald-400">
-                        <i class="fa-solid fa-shield-halved text-3xl"></i>
+                <!-- Secure Systems -->
+                <div class="bg-zinc-950 border border-zinc-800 rounded-3xl p-10 hover:border-emerald-500/30 transition-all group">
+                    <div class="w-14 h-14 bg-emerald-500/10 rounded-2xl flex items-center justify-center mb-8 text-emerald-400 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-shield-halved text-4xl"></i>
                     </div>
-                    <h3 class="text-2xl font-semibold mb-3">Secure Systems & Consulting</h3>
-                    <p class="text-zinc-400 mb-6">High-performance computer setups, cybersecurity, general tech consulting, and strategic advice.</p>
+                    <h3 class="text-3xl font-semibold mb-4">Secure Systems &amp; Consulting</h3>
+                    <p class="text-zinc-400 mb-8">High-performance secure computer systems, cybersecurity hardening, and expert technology strategy consulting.</p>
                     <ul class="space-y-3 text-sm">
-                        <li class="flex items-start gap-3"><span class="text-cyan-400 mt-1">•</span> Custom PC/server builds</li>
-                        <li class="flex items-start gap-3"><span class="text-cyan-400 mt-1">•</span> Security audits</li>
-                        <li class="flex items-start gap-3"><span class="text-cyan-400 mt-1">•</span> Tech strategy consulting</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400"></i> Custom secure builds</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400"></i> Infrastructure security</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400"></i> Strategic tech advisory</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Tiers -->
-    <section id="tiers" class="py-20">
+    <!-- Service Tiers -->
+    <section id="tiers" class="py-24">
         <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="heading text-4xl font-semibold mb-4">Service Tiers</h2>
-                <p class="text-zinc-400">Choose the level that fits your needs</p>
+                <h2 class="heading text-5xl font-semibold mb-4 section-header">Service Tiers</h2>
+                <p class="text-zinc-400">Clear, transparent pricing for every stage of growth</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Free -->
+                <div class="bg-zinc-900 border border-zinc-700 rounded-3xl p-8 flex flex-col">
+                    <div class="mb-8">
+                        <span class="px-4 py-1.5 bg-zinc-800 text-xs font-mono tracking-widest rounded-full">STARTER</span>
+                        <div class="mt-8">
+                            <span class="text-6xl font-semibold">$0</span>
+                            <span class="text-zinc-400">/mo</span>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-6">Free Tier</h3>
+                    <ul class="space-y-4 flex-1">
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i> 45-minute strategy call</li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i> High-level roadmap</li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i> Access to knowledge base</li>
+                    </ul>
+                    <button onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })" 
+                            class="mt-12 w-full py-4 border border-zinc-600 hover:bg-zinc-800 rounded-2xl font-medium transition">
+                        Schedule Free Call
+                    </button>
+                </div>
+
+                <!-- Pro -->
+                <div class="bg-gradient-to-b from-zinc-800 to-zinc-900 border-2 border-cyan-500 rounded-3xl p-8 flex flex-col relative scale-105 shadow-2xl">
+                    <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-cyan-500 text-zinc-950 text-xs font-bold px-6 py-2 rounded-3xl">RECOMMENDED</div>
+                    <div class="mb-8 mt-4">
+                        <span class="px-4 py-1.5 bg-cyan-900 text-cyan-300 text-xs font-mono tracking-widest rounded-full">PROFESSIONAL</span>
+                        <div class="mt-8">
+                            <span class="text-6xl font-semibold">$2,500</span>
+                            <span class="text-zinc-400">/project</span>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-6">Pro Tier</h3>
+                    <ul class="space-y-4 flex-1">
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i> Custom AI Agent or Blockchain solution</li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i> Full development + testing</li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i> Deployment &amp; documentation</li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i> 30 days priority support</li>
+                    </ul>
+                    <button onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })" 
+                            class="mt-12 w-full py-4 bg-cyan-500 hover:bg-cyan-400 text-zinc-950 rounded-2xl font-semibold transition">
+                        Start Pro Project
+                    </button>
+                </div>
+
+                <!-- Max -->
+                <div class="bg-zinc-900 border border-zinc-700 rounded-3xl p-8 flex flex-col">
+                    <div class="mb-8">
+                        <span class="px-4 py-1.5 bg-zinc-800 text-xs font-mono tracking-widest rounded-full">ENTERPRISE</span>
+                        <div class="mt-8">
+                            <span class="text-6xl font-semibold">$8,000+</span>
+                            <span class="text-zinc-400">/project</span>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-6">Max Tier</h3>
+                    <ul class="space-y-4 flex-1">
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i> Everything in Pro</li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i> Multi-agent systems or complex DeFi</li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i> Ongoing maintenance &amp; optimization</li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i> Dedicated support channel</li>
+                    </ul>
+                    <button onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })" 
+                            class="mt-12 w-full py-4 border border-zinc-600 hover:bg-zinc-800 rounded-2xl font-medium transition">
+                        Discuss Max Project
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section id="portfolio" class="py-24 bg-zinc-900">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="heading text-5xl font-semibold mb-4 section-header">Recent Work</h2>
+                <p class="text-zinc-400">Selected projects demonstrating our capabilities</p>
             </div>
             
             <div class="grid md:grid-cols-3 gap-8">
-                <!-- Free Tier -->
-                <div class="bg-zinc-900 border border-zinc-700 rounded-3xl p-8 flex flex-col">
-                    <div class="mb-8">
-                        <span class="inline-block px-4 py-1 bg-zinc-800 text-xs tracking-widest rounded-full">STARTER</span>
-                        <div class="mt-6">
-                            <span class="text-5xl font-semibold">$0</span>
-                            <span class="text-zinc-400">/month</span>
-                        </div>
+                <div class="bg-zinc-950 rounded-3xl overflow-hidden border border-zinc-800 group">
+                    <div class="h-56 bg-gradient-to-br from-cyan-900/50 to-zinc-800 flex items-center justify-center">
+                        <span class="text-6xl text-cyan-400/30 group-hover:text-cyan-400/50 transition">AI</span>
                     </div>
-                    <h3 class="text-2xl font-semibold mb-6">Free Consultation</h3>
-                    <ul class="space-y-4 flex-1">
-                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-1"></i> Initial 30-min strategy call</li>
-                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-1"></i> Basic AI/crypto advice</li>
-                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-1"></i> Resource library access</li>
-                    </ul>
-                    <button onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })" 
-                            class="mt-10 w-full border border-zinc-700 hover:bg-zinc-800 py-4 rounded-2xl font-medium">Get Free Call</button>
-                </div>
-
-                <!-- Pro Tier -->
-                <div class="bg-gradient-to-b from-zinc-800 to-zinc-900 border border-cyan-500 rounded-3xl p-8 flex flex-col relative">
-                    <div class="absolute -top-4 right-6 bg-cyan-500 text-black text-xs font-bold px-5 py-1 rounded-3xl">MOST POPULAR</div>
-                    <div class="mb-8">
-                        <span class="inline-block px-4 py-1 bg-cyan-900 text-cyan-400 text-xs tracking-widest rounded-full">PROFESSIONAL</span>
-                        <div class="mt-6">
-                            <span class="text-5xl font-semibold">$2,500</span>
-                            <span class="text-zinc-400">/project</span>
-                        </div>
+                    <div class="p-8">
+                        <h4 class="font-semibold text-xl mb-2">Hermes Autonomous Trading Agent</h4>
+                        <p class="text-zinc-400 text-sm">Multi-agent system for market analysis and automated execution with risk controls.</p>
                     </div>
-                    <h3 class="text-2xl font-semibold mb-6">Pro Engagement</h3>
-                    <ul class="space-y-4 flex-1">
-                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-1"></i> Full AI agent development</li>
-                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-1"></i> Blockchain integration</li>
-                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-1"></i> Custom computer setup</li>
-                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-1"></i> 4 weeks of support</li>
-                    </ul>
-                    <button onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })" 
-                            class="mt-10 w-full bg-cyan-500 hover:bg-cyan-400 text-black py-4 rounded-2xl font-semibold">Choose Pro</button>
-                </div>
-
-                <!-- Max Tier -->
-                <div class="bg-zinc-900 border border-zinc-700 rounded-3xl p-8 flex flex-col">
-                    <div class="mb-8">
-                        <span class="inline-block px-4 py-1 bg-zinc-800 text-xs tracking-widest rounded-full">ENTERPRISE</span>
-                        <div class="mt-6">
-                            <span class="text-5xl font-semibold">$8,000+</span>
-                            <span class="text-zinc-400">/project</span>
-                        </div>
-                    </div>
-                    <h3 class="text-2xl font-semibold mb-6">Max Impact</h3>
-                    <ul class="space-y-4 flex-1">
-                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-1"></i> Everything in Pro</li>
-                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-1"></i> Ongoing AI agent fleet</li>
-                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-1"></i> Advanced DeFi infrastructure</li>
-                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-1"></i> Dedicated support & strategy</li>
-                    </ul>
-                    <button onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })" 
-                            class="mt-10 w-full border border-zinc-700 hover:bg-zinc-800 py-4 rounded-2xl font-medium">Contact for Max</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Resources -->
-    <section id="resources" class="py-20 bg-zinc-900">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="heading text-4xl font-semibold text-center mb-4">Marketing & Resources</h2>
-            <p class="text-center text-zinc-400 mb-12">Download professional materials or generate your own</p>
-            
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-zinc-950 border border-zinc-800 rounded-3xl p-8">
-                    <h3 class="text-xl font-medium mb-6 flex items-center gap-3"><i class="fa-solid fa-id-card"></i> Business Cards</h3>
-                    <div class="bg-zinc-900 border border-dashed border-zinc-700 h-48 rounded-2xl flex items-center justify-center mb-6 text-zinc-500">
-                        Professional HyperLightTek Card Preview
-                    </div>
-                    <button onclick="generateBusinessCard()" 
-                            class="w-full py-4 bg-white text-zinc-900 rounded-2xl font-medium hover:bg-zinc-100">Generate & Download PDF</button>
                 </div>
                 
-                <div class="bg-zinc-950 border border-zinc-800 rounded-3xl p-8">
-                    <h3 class="text-xl font-medium mb-6 flex items-center gap-3"><i class="fa-solid fa-file"></i> Flyers & Brochures</h3>
-                    <p class="text-zinc-400 mb-8">High-quality printable flyers highlighting our AI and blockchain expertise.</p>
-                    <a href="#" class="block w-full py-4 border border-zinc-700 hover:bg-zinc-800 text-center rounded-2xl mb-3">Download Flyer Template (PDF)</a>
-                    <a href="#" class="block w-full py-4 border border-zinc-700 hover:bg-zinc-800 text-center rounded-2xl">Download Service One-Pager</a>
+                <div class="bg-zinc-950 rounded-3xl overflow-hidden border border-zinc-800 group">
+                    <div class="h-56 bg-gradient-to-br from-amber-900/50 to-zinc-800 flex items-center justify-center">
+                        <span class="text-6xl text-amber-400/30 group-hover:text-amber-400/50 transition">DEFI</span>
+                    </div>
+                    <div class="p-8">
+                        <h4 class="font-semibold text-xl mb-2">Layer-2 DeFi Yield Protocol</h4>
+                        <p class="text-zinc-400 text-sm">Smart contract suite and frontend for automated yield optimization.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-zinc-950 rounded-3xl overflow-hidden border border-zinc-800 group">
+                    <div class="h-56 bg-gradient-to-br from-emerald-900/50 to-zinc-800 flex items-center justify-center">
+                        <span class="text-6xl text-emerald-400/30 group-hover:text-emerald-400/50 transition">SECURE</span>
+                    </div>
+                    <div class="p-8">
+                        <h4 class="font-semibold text-xl mb-2">Enterprise Secure AI Workstation</h4>
+                        <p class="text-zinc-400 text-sm">Hardened high-performance system with isolated AI compute environment.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="py-20">
+    <section id="contact" class="py-24">
         <div class="max-w-2xl mx-auto px-6">
             <div class="text-center mb-12">
-                <h2 class="heading text-4xl font-semibold mb-4">Let's Build the Future</h2>
-                <p class="text-zinc-400">Tell us about your project. We'll respond within 24 hours.</p>
+                <h2 class="heading text-5xl font-semibold mb-4">Let's Build the Future</h2>
+                <p class="text-zinc-400">Tell us about your project. We respond within 24 hours.</p>
             </div>
             
-            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="space-y-6">
-                <div class="grid grid-cols-2 gap-6">
-                    <input type="text" name="name" placeholder="Your Name" required class="bg-zinc-900 border border-zinc-700 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-500">
-                    <input type="email" name="email" placeholder="Email Address" required class="bg-zinc-900 border border-zinc-700 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-500">
+            <form action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST" class="space-y-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm text-zinc-400 mb-2">Name</label>
+                        <input type="text" name="name" required class="w-full bg-zinc-900 border border-zinc-700 focus:border-cyan-500 rounded-2xl px-6 py-4 outline-none transition">
+                    </div>
+                    <div>
+                        <label class="block text-sm text-zinc-400 mb-2">Email</label>
+                        <input type="email" name="email" required class="w-full bg-zinc-900 border border-zinc-700 focus:border-cyan-500 rounded-2xl px-6 py-4 outline-none transition">
+                    </div>
                 </div>
-                <input type="text" name="company" placeholder="Company / Project" class="w-full bg-zinc-900 border border-zinc-700 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-500">
-                <textarea name="message" rows="6" placeholder="Describe your needs (AI agents, blockchain, consulting, etc.)" required class="w-full bg-zinc-900 border border-zinc-700 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-500"></textarea>
-                <button type="submit" class="w-full bg-cyan-500 hover:bg-cyan-400 text-black py-5 rounded-2xl font-semibold text-lg">Send Message</button>
+                <div>
+                    <label class="block text-sm text-zinc-400 mb-2">Project Type</label>
+                    <select name="project_type" class="w-full bg-zinc-900 border border-zinc-700 focus:border-cyan-500 rounded-2xl px-6 py-4 outline-none transition">
+                        <option value="">Select one...</option>
+                        <option value="ai-agent">AI Agent Development</option>
+                        <option value="blockchain">Blockchain / Crypto</option>
+                        <option value="secure-system">Secure Systems</option>
+                        <option value="consulting">Consulting / Strategy</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm text-zinc-400 mb-2">Message / Project Brief</label>
+                    <textarea name="message" rows="6" required class="w-full bg-zinc-900 border border-zinc-700 focus:border-cyan-500 rounded-3xl px-6 py-5 outline-none transition resize-y"></textarea>
+                </div>
+                <button type="submit" 
+                        class="w-full bg-white text-zinc-950 py-5 rounded-3xl font-semibold text-lg hover:bg-zinc-100 transition flex items-center justify-center gap-3">
+                    Send Message
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
             </form>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer class="bg-black py-12 border-t border-zinc-900">
-        <div class="max-w-6xl mx-auto px-6 text-center text-zinc-500 text-sm">
-            © 2026 HyperLightTek • San Jose, CA • All Rights Reserved
+        <div class="max-w-7xl mx-auto px-6 text-center text-zinc-500 text-sm">
+            <p>&copy; 2026 HyperLightTek. Built for those who move fast and build securely.</p>
         </div>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
-        function generateBusinessCard() {
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF({
-                orientation: "landscape",
-                unit: "mm",
-                format: [90, 50]
-            });
-            
-            doc.setFillColor(10, 20, 40);
-            doc.rect(0, 0, 90, 50, "F");
-            
-            doc.setTextColor(0, 255, 255);
-            doc.setFontSize(18);
-            doc.text("HyperLightTek", 8, 18);
-            
-            doc.setFontSize(9);
-            doc.text("AI • Blockchain • Secure Systems", 8, 26);
-            
-            doc.setFontSize(8);
-            doc.text("San Jose, CA", 8, 35);
-            doc.text("defi369 @ HyperLight", 8, 40);
-            
-            doc.setTextColor(255, 255, 255);
-            doc.text("Illuminating Tomorrow", 45, 45);
-            
-            doc.save("HyperLightTek_Business_Card.pdf");
-        }
+        // Tailwind script already loaded via CDN
+        // Add any additional JS if needed later
     </script>
 </body>
 </html>
