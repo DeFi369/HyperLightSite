@@ -3,236 +3,272 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HyperLightTek - AI Agents, Blockchain Solutions, Secure Systems & Consulting">
     <title>HyperLightTek | Illuminating Tomorrow</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: #000; color: #0ff; font-family: 'Rajdhani', sans-serif; overflow-x: hidden; }
-        canvas#particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
-        h1, h2, h3 { font-family: 'Orbitron', sans-serif; text-transform: uppercase; }
-        .hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; }
-        .hero-content { z-index: 1; }
-        .logo-svg { width: 320px; height: 320px; margin-bottom: 2rem; animation: pulseGlow 4s ease-in-out infinite; }
-        @keyframes pulseGlow {
-            0% { filter: brightness(1) drop-shadow(0 0 20px #0ff); }
-            50% { filter: brightness(1.4) drop-shadow(0 0 60px #f0f); }
-            100% { filter: brightness(1) drop-shadow(0 0 20px #0ff); }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .heading { font-family: 'Space Grotesk', sans-serif; }
+        .hero-bg {
+            background: linear-gradient(135deg, #0a1428 0%, #1a2338 100%);
         }
-        h1 { font-size: 5rem; color: #f0f; text-shadow: 0 0 20px #f0f; }
-        .tagline { font-size: 2.5rem; margin: 1rem 0; text-shadow: 0 0 10px #0ff; }
-        .sub { font-size: 1.5rem; margin-bottom: 2rem; }
-        .btn { padding: 1rem 2rem; margin: 0.5rem; border: 2px solid; text-decoration: none; display: inline-block; transition: all 0.3s; }
-        .primary { background: #0ff; color: #000; border-color: #0ff; }
-        .primary:hover { background: transparent; color: #0ff; box-shadow: 0 0 20px #0ff; }
-        .secondary { border-color: #f0f; color: #f0f; }
-        .secondary:hover { background: #f0f; color: #000; box-shadow: 0 0 20px #f0f; }
-        .section { padding: 5rem 10%; text-align: center; }
-        .cards { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
-        .card { background: rgba(0,255,255,0.1); padding: 2rem; width: 300px; border: 1px solid #0ff; transition: 0.3s; }
-        .card:hover { transform: translateY(-20px); box-shadow: 0 0 30px #0ff; }
-        .dark { background: #111; }
-        .timeline { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
-        .item { width: 300px; padding: 2rem; border: 1px solid #f0f; }
-        .vision { font-size: 2rem; margin-top: 3rem; text-shadow: 0 0 15px #f0f; }
-        form { max-width: 600px; margin: 2rem auto; display: grid; gap: 1rem; }
-        input, textarea { padding: 1rem; background: #111; border: 1px solid #0ff; color: #0ff; border-radius: 4px; }
-        footer { text-align: center; padding: 2rem; background: #111; }
-        @media (max-width: 768px) { 
-            h1 { font-size: 3rem; } 
-            .tagline { font-size: 1.8rem; }
-            .logo-svg { width: 220px; height: 220px; }
-        }
-        
-        /* Honeypot */
-        .gotcha { position: absolute; left: -9999px; }
-        
-        /* Thank-you overlay */
-        #thankyou { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.92); z-index: 10; align-items: center; justify-content: center; flex-direction: column; text-align: center; }
-        #thankyou h2 { font-size: 4rem; color: #0ff; text-shadow: 0 0 30px #0ff; }
-        #thankyou p { font-size: 2rem; margin-top: 1rem; color: #f0f; }
-        #thankyou.active { display: flex; }
     </style>
 </head>
-<body>
-    <canvas id="particles"></canvas>
-    
-    <header class="hero">
-        <div class="hero-content">
-            <!-- PRIMAL HLT ORB LOGO -->
-            <svg class="logo-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <filter id="glow">
-                  <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
-                  <feMerge>
-                    <feMergeNode in="coloredBlur"/>
-                    <feMergeNode in="SourceGraphic"/>
-                  </feMerge>
-                </filter>
-                <radialGradient id="core">
-                  <stop offset="0%" stop-color="#0ff"/>
-                  <stop offset="40%" stop-color="#f0f"/>
-                  <stop offset="100%" stop-color="#000"/>
-                </radialGradient>
-              </defs>
-              
-              <!-- Core orb -->
-              <circle cx="200" cy="200" r="160" fill="url(#core)" opacity="0.9"/>
-              
-              <!-- Neon rings -->
-              <circle cx="200" cy="200" r="130" stroke="#0ff" stroke-width="12" fill="none" filter="url(#glow)"/>
-              <circle cx="200" cy="200" r="190" stroke="#f0f" stroke-width="18" fill="none" opacity="0.7" filter="url(#glow)"/>
-              
-              <!-- HLT text -->
-              <text x="200" y="220" font-family="Orbitron, sans-serif" font-size="100" fill="#0ff" text-anchor="middle" filter="url(#glow)">HLT</text>
-            </svg>
+<body class="bg-zinc-950 text-zinc-200">
+    <!-- Navbar -->
+    <nav class="bg-zinc-900 border-b border-zinc-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-cyan-500 rounded-full flex items-center justify-center text-black font-bold text-xl">HL</div>
+                <span class="heading text-2xl font-semibold tracking-tight">HyperLightTek</span>
+            </div>
+            <div class="hidden md:flex gap-8 text-sm font-medium">
+                <a href="#services" class="hover:text-cyan-400 transition">Services</a>
+                <a href="#tiers" class="hover:text-cyan-400 transition">Offerings</a>
+                <a href="#resources" class="hover:text-cyan-400 transition">Resources</a>
+                <a href="#contact" class="hover:text-cyan-400 transition">Contact</a>
+            </div>
+            <button onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })" 
+                    class="bg-cyan-500 hover:bg-cyan-400 text-black px-6 py-2.5 rounded-xl font-medium text-sm transition">
+                Get Started
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero-bg py-24">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <div class="inline-flex items-center gap-2 bg-zinc-800 text-cyan-400 text-sm px-4 py-1.5 rounded-3xl mb-6 border border-cyan-900">
+                <i class="fa-solid fa-bolt"></i> AI • Blockchain • Security
+            </div>
+            <h1 class="heading text-6xl md:text-7xl font-semibold tracking-tighter mb-6 leading-none">
+                Illuminating Tomorrow<br>with Unbreakable Technology
+            </h1>
+            <p class="text-xl text-zinc-400 max-w-2xl mx-auto mb-10">
+                Expert AI agents, blockchain infrastructure, secure systems, and strategic consulting to help your business thrive in the future.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="document.getElementById('tiers').scrollIntoView({ behavior: 'smooth' })" 
+                        class="bg-white text-zinc-900 px-8 py-4 rounded-2xl font-semibold hover:bg-zinc-100 transition text-lg">
+                    Explore Our Tiers
+                </button>
+                <button onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })" 
+                        class="border border-zinc-700 hover:border-zinc-500 px-8 py-4 rounded-2xl font-medium transition">
+                    Book a Consultation
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="py-20 bg-zinc-900">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="heading text-4xl font-semibold mb-4">Core Capabilities</h2>
+                <p class="text-zinc-400 max-w-md mx-auto">Focused on what matters most right now: AI Agents, Crypto/Blockchain, and reliable infrastructure.</p>
+            </div>
             
-            <h1>HyperLightTek</h1>
-            <p class="tagline">Forge the Future with Unbreakable Light</p>
-            <p class="sub">AI Mastery • Blockchain Revolution • Impenetrable Cyber Fortresses • Beyond Horizons</p>
-            <div class="cta-buttons">
-                <a href="#services" class="btn primary">Explore Services</a>
-                <a href="#contact" class="btn secondary">Contact the Vanguard</a>
-            </div>
-        </div>
-    </header>
-    
-    <section id="services" class="section">
-        <h2>Core Services – The Trinity</h2>
-        <div class="cards">
-            <div class="card">
-                <h3>A: Artificial Intelligence</h3>
-                <p>Neural empires, custom models, bio-cyber interfaces—unleashing sentient code.</p>
-            </div>
-            <div class="card">
-                <h3>B: Blockchain</h3>
-                <p>Unhackable chains, DeFi rebels, smart contract sorcery—rewriting wealth.</p>
-            </div>
-            <div class="card">
-                <h3>C: Secure Systems</h3>
-                <p>Flesh firewalls, zero-trust fortresses, quantum-resistant shields—eternal defense.</p>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- AI -->
+                <div class="bg-zinc-950 border border-zinc-800 rounded-3xl p-8 hover:border-cyan-500/50 transition group">
+                    <div class="w-12 h-12 bg-cyan-500/10 rounded-2xl flex items-center justify-center mb-6 text-cyan-400">
+                        <i class="fa-solid fa-brain text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-3">AI Agents & Automation</h3>
+                    <p class="text-zinc-400 mb-6">Custom AI agents like Hermes, intelligent automation, RAG systems, and AI infrastructure setup.</p>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start gap-3"><span class="text-cyan-400 mt-1">•</span> Autonomous AI agents</li>
+                        <li class="flex items-start gap-3"><span class="text-cyan-400 mt-1">•</span> Custom model fine-tuning</li>
+                        <li class="flex items-start gap-3"><span class="text-cyan-400 mt-1">•</span> Workflow automation</li>
+                    </ul>
+                </div>
+
+                <!-- Blockchain -->
+                <div class="bg-zinc-950 border border-zinc-800 rounded-3xl p-8 hover:border-cyan-500/50 transition group">
+                    <div class="w-12 h-12 bg-amber-500/10 rounded-2xl flex items-center justify-center mb-6 text-amber-400">
+                        <i class="fa-solid fa-link text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-3">Blockchain & Crypto</h3>
+                    <p class="text-zinc-400 mb-6">DeFi solutions, smart contracts, token infrastructure, wallet integrations, and on-chain strategy.</p>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start gap-3"><span class="text-cyan-400 mt-1">•</span> Smart contract development</li>
+                        <li class="flex items-start gap-3"><span class="text-cyan-400 mt-1">•</span> DeFi protocols</li>
+                        <li class="flex items-start gap-3"><span class="text-cyan-400 mt-1">•</span> Web3 integrations</li>
+                    </ul>
+                </div>
+
+                <!-- Systems -->
+                <div class="bg-zinc-950 border border-zinc-800 rounded-3xl p-8 hover:border-cyan-500/50 transition group">
+                    <div class="w-12 h-12 bg-emerald-500/10 rounded-2xl flex items-center justify-center mb-6 text-emerald-400">
+                        <i class="fa-solid fa-shield-halved text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-3">Secure Systems & Consulting</h3>
+                    <p class="text-zinc-400 mb-6">High-performance computer setups, cybersecurity, general tech consulting, and strategic advice.</p>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start gap-3"><span class="text-cyan-400 mt-1">•</span> Custom PC/server builds</li>
+                        <li class="flex items-start gap-3"><span class="text-cyan-400 mt-1">•</span> Security audits</li>
+                        <li class="flex items-start gap-3"><span class="text-cyan-400 mt-1">•</span> Tech strategy consulting</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
-    
-    <section id="future" class="section dark">
-        <h2>Future Operations – Visionary Horizon</h2>
-        <div class="timeline">
-            <div class="item">
-                <h3>Robotics</h3>
-                <p>Autonomous guardians, bio-integrated companions—machines with soulfire.</p>
+
+    <!-- Tiers -->
+    <section id="tiers" class="py-20">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="heading text-4xl font-semibold mb-4">Service Tiers</h2>
+                <p class="text-zinc-400">Choose the level that fits your needs</p>
             </div>
-            <div class="item">
-                <h3>Flying Yachts → Spaceships</h3>
-                <p>Aerial luxury evolving to starfire vessels—conquering skies to void.</p>
-            </div>
-            <div class="item">
-                <h3>Mountain-City Architectures</h3>
-                <p>Self-sustaining arcologies etched into peaks—humanity's eternal strongholds.</p>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Free Tier -->
+                <div class="bg-zinc-900 border border-zinc-700 rounded-3xl p-8 flex flex-col">
+                    <div class="mb-8">
+                        <span class="inline-block px-4 py-1 bg-zinc-800 text-xs tracking-widest rounded-full">STARTER</span>
+                        <div class="mt-6">
+                            <span class="text-5xl font-semibold">$0</span>
+                            <span class="text-zinc-400">/month</span>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-6">Free Consultation</h3>
+                    <ul class="space-y-4 flex-1">
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-1"></i> Initial 30-min strategy call</li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-1"></i> Basic AI/crypto advice</li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-1"></i> Resource library access</li>
+                    </ul>
+                    <button onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })" 
+                            class="mt-10 w-full border border-zinc-700 hover:bg-zinc-800 py-4 rounded-2xl font-medium">Get Free Call</button>
+                </div>
+
+                <!-- Pro Tier -->
+                <div class="bg-gradient-to-b from-zinc-800 to-zinc-900 border border-cyan-500 rounded-3xl p-8 flex flex-col relative">
+                    <div class="absolute -top-4 right-6 bg-cyan-500 text-black text-xs font-bold px-5 py-1 rounded-3xl">MOST POPULAR</div>
+                    <div class="mb-8">
+                        <span class="inline-block px-4 py-1 bg-cyan-900 text-cyan-400 text-xs tracking-widest rounded-full">PROFESSIONAL</span>
+                        <div class="mt-6">
+                            <span class="text-5xl font-semibold">$2,500</span>
+                            <span class="text-zinc-400">/project</span>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-6">Pro Engagement</h3>
+                    <ul class="space-y-4 flex-1">
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-1"></i> Full AI agent development</li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-1"></i> Blockchain integration</li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-1"></i> Custom computer setup</li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-1"></i> 4 weeks of support</li>
+                    </ul>
+                    <button onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })" 
+                            class="mt-10 w-full bg-cyan-500 hover:bg-cyan-400 text-black py-4 rounded-2xl font-semibold">Choose Pro</button>
+                </div>
+
+                <!-- Max Tier -->
+                <div class="bg-zinc-900 border border-zinc-700 rounded-3xl p-8 flex flex-col">
+                    <div class="mb-8">
+                        <span class="inline-block px-4 py-1 bg-zinc-800 text-xs tracking-widest rounded-full">ENTERPRISE</span>
+                        <div class="mt-6">
+                            <span class="text-5xl font-semibold">$8,000+</span>
+                            <span class="text-zinc-400">/project</span>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-6">Max Impact</h3>
+                    <ul class="space-y-4 flex-1">
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-1"></i> Everything in Pro</li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-1"></i> Ongoing AI agent fleet</li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-1"></i> Advanced DeFi infrastructure</li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-1"></i> Dedicated support & strategy</li>
+                    </ul>
+                    <button onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })" 
+                            class="mt-10 w-full border border-zinc-700 hover:bg-zinc-800 py-4 rounded-2xl font-medium">Contact for Max</button>
+                </div>
             </div>
         </div>
-        <p class="vision">We don’t predict the future—we architect it.</p>
     </section>
-    
-    <section id="contact" class="section">
-        <h2>Join the Light Rebellion</h2>
-        <form id="contact-form" action="https://formspree.io/f/mdkqbqkp" method="POST">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="_replyto" placeholder="Your Email" required>
-            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-            <input type="text" name="_gotcha" class="gotcha" tabindex="-1" autocomplete="off">
-            <button type="submit" class="btn primary">Send Signal</button>
-        </form>
+
+    <!-- Resources -->
+    <section id="resources" class="py-20 bg-zinc-900">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="heading text-4xl font-semibold text-center mb-4">Marketing & Resources</h2>
+            <p class="text-center text-zinc-400 mb-12">Download professional materials or generate your own</p>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-zinc-950 border border-zinc-800 rounded-3xl p-8">
+                    <h3 class="text-xl font-medium mb-6 flex items-center gap-3"><i class="fa-solid fa-id-card"></i> Business Cards</h3>
+                    <div class="bg-zinc-900 border border-dashed border-zinc-700 h-48 rounded-2xl flex items-center justify-center mb-6 text-zinc-500">
+                        Professional HyperLightTek Card Preview
+                    </div>
+                    <button onclick="generateBusinessCard()" 
+                            class="w-full py-4 bg-white text-zinc-900 rounded-2xl font-medium hover:bg-zinc-100">Generate & Download PDF</button>
+                </div>
+                
+                <div class="bg-zinc-950 border border-zinc-800 rounded-3xl p-8">
+                    <h3 class="text-xl font-medium mb-6 flex items-center gap-3"><i class="fa-solid fa-file"></i> Flyers & Brochures</h3>
+                    <p class="text-zinc-400 mb-8">High-quality printable flyers highlighting our AI and blockchain expertise.</p>
+                    <a href="#" class="block w-full py-4 border border-zinc-700 hover:bg-zinc-800 text-center rounded-2xl mb-3">Download Flyer Template (PDF)</a>
+                    <a href="#" class="block w-full py-4 border border-zinc-700 hover:bg-zinc-800 text-center rounded-2xl">Download Service One-Pager</a>
+                </div>
+            </div>
+        </div>
     </section>
-    
-    <div id="thankyou">
-        <h2>Signal Received</h2>
-        <p>Vanguard inbound.<br>Light eternal—we'll blaze back soon.</p>
-    </div>
-    
-    <footer>
-        <p>&copy; 2025 HyperLightTek, LLC • All Rights Reserved • Illuminating Tomorrow</p>
+
+    <!-- Contact -->
+    <section id="contact" class="py-20">
+        <div class="max-w-2xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="heading text-4xl font-semibold mb-4">Let's Build the Future</h2>
+                <p class="text-zinc-400">Tell us about your project. We'll respond within 24 hours.</p>
+            </div>
+            
+            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="space-y-6">
+                <div class="grid grid-cols-2 gap-6">
+                    <input type="text" name="name" placeholder="Your Name" required class="bg-zinc-900 border border-zinc-700 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-500">
+                    <input type="email" name="email" placeholder="Email Address" required class="bg-zinc-900 border border-zinc-700 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-500">
+                </div>
+                <input type="text" name="company" placeholder="Company / Project" class="w-full bg-zinc-900 border border-zinc-700 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-500">
+                <textarea name="message" rows="6" placeholder="Describe your needs (AI agents, blockchain, consulting, etc.)" required class="w-full bg-zinc-900 border border-zinc-700 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-500"></textarea>
+                <button type="submit" class="w-full bg-cyan-500 hover:bg-cyan-400 text-black py-5 rounded-2xl font-semibold text-lg">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="bg-black py-12 border-t border-zinc-900">
+        <div class="max-w-6xl mx-auto px-6 text-center text-zinc-500 text-sm">
+            © 2026 HyperLightTek • San Jose, CA • All Rights Reserved
+        </div>
     </footer>
-    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
-        // Particle background
-        const canvas = document.getElementById('particles');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        let particles = [];
-        const numParticles = 120;
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 3 + 1;
-                this.speedX = Math.random() * 1 - 0.5;
-                this.speedY = Math.random() * 1 - 0.5;
-            }
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
-                if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
-            }
-            draw() {
-                ctx.fillStyle = 'rgba(0, 255, 255, 0.8)';
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-
-        function init() {
-            particles = [];
-            for (let i = 0; i < numParticles; i++) {
-                particles.push(new Particle());
-            }
-        }
-
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => {
-                p.update();
-                p.draw();
+        function generateBusinessCard() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF({
+                orientation: "landscape",
+                unit: "mm",
+                format: [90, 50]
             });
-            requestAnimationFrame(animate);
-        }
-
-        init();
-        animate();
-
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            init();
-        });
-
-        // Form submit with thank-you
-        const form = document.getElementById('contact-form');
-        const thankyou = document.getElementById('thankyou');
-        
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
             
-            fetch(form.action, {
-                method: 'POST',
-                body: new FormData(form),
-                headers: { 'Accept': 'application/json' }
-            }).then(response => {
-                if (response.ok) {
-                    thankyou.classList.add('active');
-                    form.reset();
-                    setTimeout(() => thankyou.classList.remove('active'), 5000);
-                } else {
-                    alert('Shadow interference—signal disrupted. Try again.');
-                }
-            }).catch(() => {
-                alert('Quantum storm—retry the signal, vanguard.');
-            });
-        });
+            doc.setFillColor(10, 20, 40);
+            doc.rect(0, 0, 90, 50, "F");
+            
+            doc.setTextColor(0, 255, 255);
+            doc.setFontSize(18);
+            doc.text("HyperLightTek", 8, 18);
+            
+            doc.setFontSize(9);
+            doc.text("AI • Blockchain • Secure Systems", 8, 26);
+            
+            doc.setFontSize(8);
+            doc.text("San Jose, CA", 8, 35);
+            doc.text("defi369 @ HyperLight", 8, 40);
+            
+            doc.setTextColor(255, 255, 255);
+            doc.text("Illuminating Tomorrow", 45, 45);
+            
+            doc.save("HyperLightTek_Business_Card.pdf");
+        }
     </script>
 </body>
 </html>
