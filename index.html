@@ -1,311 +1,1943 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="HyperLightTek - Professional AI Agents, Blockchain Solutions, and Secure Systems">
-    <title>HyperLightTek | AI Agents • Blockchain • Secure Systems</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600;700&display=swap');
-        body { font-family: 'Inter', system-ui, sans-serif; }
-        .heading { font-family: 'Space Grotesk', sans-serif; }
-        .hero-bg {
-            background: linear-gradient(135deg, #0a0f1c 0%, #1a2338 100%);
-        }
-        .section-header {
-            position: relative;
-        }
-        .section-header::after {
-            content: '';
-            position: absolute;
-            width: 64px;
-            height: 3px;
-            background: linear-gradient(to right, #22d3ee, #67e8f9);
-            bottom: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="HyperLightTek — Production-grade AI Agents, Blockchain & Secure Systems. Start with a free strategy call.">
+  <title>HyperLightTek | AI Agents • Blockchain • Secure Systems</title>
+
+  <!-- Open Graph / Social Preview -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://hyperlighttek.com/">
+  <meta property="og:title"       content="HyperLightTek | AI Agents • Blockchain • Secure Systems">
+  <meta property="og:description" content="Production-grade AI agents, DeFi protocols, and secure infrastructure. Start with a free 45-minute strategy call and written roadmap.">
+  <meta property="og:image"       content="https://hyperlighttek.com/og-image.png">
+  <meta name="twitter:card"       content="summary_large_image">
+  <meta name="twitter:title"      content="HyperLightTek | AI Agents • Blockchain • Secure Systems">
+  <meta name="twitter:description" content="Production-grade AI agents, DeFi protocols, and secure infrastructure. Start free.">
+  <meta name="twitter:image"      content="https://hyperlighttek.com/og-image.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    /* ── RESET ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── TOKENS ── */
+    :root {
+      --bg:        #07090f;
+      --bg2:       #0d1120;
+      --bg3:       #111827;
+      --border:    rgba(255,255,255,0.07);
+      --border-hi: rgba(34,211,238,0.25);
+      --cyan:      #22d3ee;
+      --cyan-dim:  rgba(34,211,238,0.12);
+      --amber:     #f59e0b;
+      --emerald:   #34d399;
+      --muted:     #6b7280;
+      --text:      #e2e8f0;
+      --text-dim:  #94a3b8;
+      --white:     #f8fafc;
+      --font-head: 'Syne', sans-serif;
+      --font-body: 'Manrope', sans-serif;
+      --radius:    12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* ── REDUCED MOTION ── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+      html { scroll-behavior: auto; }
+    }
+
+    /* ─────────────────────────────────────────
+       URGENCY BAR
+    ───────────────────────────────────────── */
+    #urgency-bar {
+      background: linear-gradient(90deg, #0e4a52 0%, #0f3460 50%, #0e4a52 100%);
+      border-bottom: 1px solid var(--border-hi);
+      text-align: center;
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      position: relative;
+      z-index: 100;
+    }
+    .pulse {
+      display: inline-block;
+      width: 8px; height: 8px;
+      background: var(--cyan);
+      border-radius: 50%;
+      margin-right: 8px;
+      animation: pulse-ring 1.8s ease infinite;
+      vertical-align: middle;
+      flex-shrink: 0;
+    }
+    #urgency-bar a {
+      color: var(--cyan);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    @keyframes pulse-ring {
+      0%,100% { box-shadow: 0 0 0 0 rgba(34,211,238,0.6); }
+      50%      { box-shadow: 0 0 0 6px rgba(34,211,238,0); }
+    }
+
+    /* ─────────────────────────────────────────
+       NAVBAR
+    ───────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      background: rgba(7,9,15,0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+    .logo-mark {
+      width: 34px; height: 34px;
+      background: var(--cyan);
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 13px;
+      color: #07090f;
+      letter-spacing: -0.5px;
+    }
+    .logo-text {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 17px;
+      color: var(--white);
+      letter-spacing: -0.4px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta {
+      background: var(--cyan);
+      color: #07090f !important;
+      padding: 9px 18px;
+      border-radius: 8px;
+      font-weight: 700 !important;
+      font-size: 13px !important;
+      transition: background 0.2s, transform 0.15s !important;
+      white-space: nowrap;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav-cta:hover { background: #67e8f9 !important; transform: translateY(-1px); }
+
+    /* hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      z-index: 200;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px; height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* mobile drawer */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(7,9,15,0.97);
+      backdrop-filter: blur(16px);
+      z-index: 85;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      animation: fade-in 0.2s ease;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: var(--font-head);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+      transition: color 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--cyan); }
+    .mobile-menu .mobile-cta {
+      background: var(--cyan);
+      color: #07090f !important;
+      padding: 16px 32px;
+      border-radius: 10px;
+      font-size: 18px !important;
+    }
+
+    /* ─────────────────────────────────────────
+       HERO
+    ───────────────────────────────────────── */
+    #hero {
+      position: relative;
+      padding: 96px 24px 80px;
+      text-align: center;
+      overflow: hidden;
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(34,211,238,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(34,211,238,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, black 40%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, black 40%, transparent 100%);
+    }
+    .hero-glow {
+      position: absolute;
+      top: -200px; left: 50%;
+      transform: translateX(-50%);
+      width: 800px; height: 600px;
+      background: radial-gradient(ellipse, rgba(34,211,238,0.09) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 820px; margin: 0 auto; }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg3);
+      border: 1px solid var(--border-hi);
+      color: var(--cyan);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 28px;
+    }
+    h1 {
+      font-family: var(--font-head);
+      font-size: clamp(38px, 7vw, 76px);
+      font-weight: 800;
+      line-height: 1.0;
+      letter-spacing: -2px;
+      color: var(--white);
+      margin-bottom: 24px;
+    }
+    h1 .accent { color: var(--cyan); }
+    .hero-sub {
+      font-size: clamp(15px, 2.5vw, 18px);
+      color: var(--text-dim);
+      max-width: 540px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--cyan);
+      color: #07090f;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 15px;
+      padding: 15px 28px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      min-height: 48px;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+    .btn-primary:hover {
+      background: #67e8f9;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(34,211,238,0.28);
+    }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--text);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 15px;
+      padding: 15px 24px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      text-decoration: none;
+      min-height: 48px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-secondary:hover { border-color: rgba(255,255,255,0.25); color: var(--white); }
+    .hero-note { font-size: 13px; color: var(--muted); }
+    .hero-note span { color: var(--emerald); font-weight: 600; }
+
+    /* ─────────────────────────────────────────
+       STATS
+    ───────────────────────────────────────── */
+    #stats {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--bg2);
+      padding: 36px 24px;
+    }
+    .stats-grid {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      text-align: center;
+    }
+    .stat-num {
+      font-family: var(--font-head);
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -1px;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-suffix { color: var(--cyan); }
+    .stat-label { font-size: 13px; color: var(--muted); font-weight: 500; }
+
+    /* ─────────────────────────────────────────
+       SECTIONS COMMON
+    ───────────────────────────────────────── */
+    section { padding: 88px 24px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 14px;
+    }
+    h2 {
+      font-family: var(--font-head);
+      font-size: clamp(28px, 5vw, 52px);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+    .section-sub {
+      font-size: 16px;
+      color: var(--text-dim);
+      max-width: 520px;
+      margin-bottom: 52px;
+      line-height: 1.7;
+    }
+    .center { text-align: center; }
+    .center .section-sub { margin-left: auto; margin-right: auto; }
+
+    /* ─────────────────────────────────────────
+       HOW THE CALL WORKS
+    ───────────────────────────────────────── */
+    #how-it-works { background: var(--bg2); }
+    .call-steps {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2px;
+      background: var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .call-step { background: var(--bg); padding: 40px 32px; }
+    .step-num {
+      font-family: var(--font-head);
+      font-size: 44px;
+      font-weight: 800;
+      color: rgba(34,211,238,0.1);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .step-icon {
+      width: 42px; height: 42px;
+      background: var(--cyan-dim);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cyan);
+      font-size: 17px;
+      margin-bottom: 14px;
+    }
+    .step-title {
+      font-family: var(--font-head);
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .step-desc { font-size: 14px; color: var(--text-dim); line-height: 1.65; }
+    .call-guarantee {
+      margin-top: 24px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: rgba(52,211,153,0.07);
+      border: 1px solid rgba(52,211,153,0.2);
+      border-radius: 10px;
+      padding: 16px 20px;
+      font-size: 14px;
+      color: var(--emerald);
+      font-weight: 500;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .call-guarantee i { flex-shrink: 0; margin-top: 2px; }
+
+    /* ─────────────────────────────────────────
+       SERVICES
+    ───────────────────────────────────────── */
+    #services { background: var(--bg); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .service-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 28px;
+      transition: border-color 0.25s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--ac, var(--cyan)), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .service-card:hover { border-color: var(--border-hi); transform: translateY(-3px); }
+    .service-card:hover::before { opacity: 1; }
+    .service-card.amber { --ac: var(--amber); }
+    .service-card.emerald { --ac: var(--emerald); }
+    .service-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+    .si-cyan    { background: var(--cyan-dim); color: var(--cyan); }
+    .si-amber   { background: rgba(245,158,11,0.1); color: var(--amber); }
+    .si-emerald { background: rgba(52,211,153,0.1); color: var(--emerald); }
+    .service-name {
+      font-family: var(--font-head);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
+      letter-spacing: -0.3px;
+    }
+    .service-desc { font-size: 14px; color: var(--text-dim); margin-bottom: 20px; line-height: 1.65; }
+    .service-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .service-list li { display: flex; gap: 9px; font-size: 13px; color: var(--text-dim); }
+    .service-list li i { color: var(--emerald); font-size: 11px; margin-top: 4px; flex-shrink: 0; }
+
+    /* ─────────────────────────────────────────
+       QUIZ
+    ───────────────────────────────────────── */
+    #quiz-section {
+      background: linear-gradient(135deg, #0a1628 0%, #071020 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    #quiz-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 80% 50%, rgba(34,211,238,0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .quiz-wrap { max-width: 680px; margin: 0 auto; }
+    .quiz-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 44px 40px;
+    }
+    .quiz-progress { display: flex; gap: 6px; margin-bottom: 28px; }
+    .quiz-progress-bar {
+      height: 3px;
+      flex: 1;
+      background: var(--border);
+      border-radius: 99px;
+      transition: background 0.4s;
+    }
+    .quiz-progress-bar.active { background: var(--cyan); }
+    .quiz-q-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--cyan);
+      margin-bottom: 10px;
+    }
+    .quiz-question {
+      font-family: var(--font-head);
+      font-size: clamp(20px, 3.5vw, 26px);
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.5px;
+      margin-bottom: 24px;
+      line-height: 1.25;
+    }
+    .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .quiz-opt {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 16px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-dim);
+      text-align: left;
+      transition: all 0.2s;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      min-height: 60px;
+      font-family: var(--font-body);
+    }
+    .quiz-opt i { color: var(--muted); transition: color 0.2s; flex-shrink: 0; margin-top: 2px; }
+    .quiz-opt:hover { border-color: var(--border-hi); color: var(--white); background: rgba(34,211,238,0.05); }
+    .quiz-opt:hover i { color: var(--cyan); }
+    .quiz-opt.selected { border-color: var(--cyan); background: var(--cyan-dim); color: var(--white); }
+    .quiz-opt.selected i { color: var(--cyan); }
+    .quiz-result { display: none; text-align: center; animation: fade-in 0.4s ease; }
+    .quiz-result.show { display: block; }
+    .result-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: var(--cyan-dim);
+      color: var(--cyan);
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+    .result-headline {
+      font-family: var(--font-head);
+      font-size: clamp(22px, 4vw, 28px);
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+    .result-body { font-size: 15px; color: var(--text-dim); margin-bottom: 24px; line-height: 1.65; }
+    .quiz-restart {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 13px;
+      cursor: pointer;
+      margin-top: 12px;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      font-family: var(--font-body);
+    }
+    .quiz-restart:hover { color: var(--text-dim); }
+
+    /* ─────────────────────────────────────────
+       TIERS
+    ───────────────────────────────────────── */
+    #tiers { background: var(--bg2); }
+    .tiers-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+    .tier-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .tier-card.featured {
+      border-color: var(--cyan);
+      background: linear-gradient(160deg, rgba(34,211,238,0.04) 0%, var(--bg) 60%);
+    }
+    .tier-card.free-card {
+      border-color: rgba(52,211,153,0.35);
+      background: linear-gradient(160deg, rgba(52,211,153,0.05) 0%, var(--bg) 60%);
+    }
+    .tier-badge {
+      position: absolute;
+      top: -13px; left: 50%;
+      transform: translateX(-50%);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    .tb-green { background: var(--emerald); color: #07090f; }
+    .tb-blue  { background: var(--cyan); color: #07090f; }
+    .tier-label { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; }
+    .tier-price {
+      font-family: var(--font-head);
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -2px;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .tier-period { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
+    .tier-name { font-family: var(--font-head); font-size: 20px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+    .tier-tagline { font-size: 13px; color: var(--text-dim); margin-bottom: 20px; }
+    .tier-divider { height: 1px; background: var(--border); margin-bottom: 20px; }
+    .tier-features { list-style: none; display: flex; flex-direction: column; gap: 11px; flex: 1; margin-bottom: 24px; }
+    .tier-features li { display: flex; gap: 9px; font-size: 13px; color: var(--text-dim); line-height: 1.4; }
+    .tier-features li i { font-size: 11px; margin-top: 3px; flex-shrink: 0; color: var(--emerald); }
+    .scarcity-tag {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(245,158,11,0.08);
+      border: 1px solid rgba(245,158,11,0.2);
+      border-radius: 8px;
+      padding: 9px 13px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--amber);
+      margin-bottom: 14px;
+    }
+    .btn-tier {
+      display: block;
+      width: 100%;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 14px;
+      padding: 14px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s, border-color 0.2s;
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .btn-tier.green  { background: var(--emerald); color: #07090f; }
+    .btn-tier.green:hover  { background: #6ee7b7; transform: translateY(-1px); }
+    .btn-tier.blue   { background: var(--cyan); color: #07090f; }
+    .btn-tier.blue:hover   { background: #67e8f9; transform: translateY(-1px); }
+    .btn-tier.ghost  { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .btn-tier.ghost:hover  { border-color: rgba(255,255,255,0.25); background: rgba(255,255,255,0.04); }
+
+    /* ─────────────────────────────────────────
+       TESTIMONIALS
+    ───────────────────────────────────────── */
+    #testimonials { background: var(--bg); }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .testimonial-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      transition: border-color 0.2s;
+    }
+    .testimonial-card:hover { border-color: var(--border-hi); }
+    .stars { color: var(--amber); font-size: 13px; letter-spacing: 2px; margin-bottom: 4px; }
+    .quote-text { font-size: 14px; line-height: 1.75; color: var(--text-dim); font-style: italic; flex: 1; }
+    .quote-author { display: flex; align-items: center; gap: 12px; }
+    .quote-avatar {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--cyan);
+      flex-shrink: 0;
+    }
+    .author-name { font-size: 13px; font-weight: 600; color: var(--white); }
+    .author-role { font-size: 12px; color: var(--muted); }
+
+    /* ─────────────────────────────────────────
+       PORTFOLIO
+    ───────────────────────────────────────── */
+    #portfolio { background: var(--bg2); }
+    .portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .portfolio-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .portfolio-card:hover { border-color: var(--border-hi); transform: translateY(-3px); }
+    .portfolio-thumb {
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .portfolio-thumb span {
+      font-family: var(--font-head);
+      font-size: 44px;
+      font-weight: 800;
+      letter-spacing: -2px;
+      opacity: 0.18;
+      transition: opacity 0.25s;
+    }
+    .portfolio-card:hover .portfolio-thumb span { opacity: 0.32; }
+    .portfolio-body { padding: 22px 24px; }
+    .portfolio-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+    .portfolio-title { font-family: var(--font-head); font-size: 17px; font-weight: 700; color: var(--white); margin-bottom: 7px; letter-spacing: -0.3px; }
+    .portfolio-desc { font-size: 13px; color: var(--text-dim); line-height: 1.6; }
+
+    /* ─────────────────────────────────────────
+       FAQ
+    ───────────────────────────────────────── */
+    #faq { background: var(--bg); }
+    .faq-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 4px; }
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .faq-item.open { border-color: var(--border-hi); }
+    .faq-q {
+      width: 100%;
+      background: var(--bg2);
+      border: none;
+      padding: 18px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      cursor: pointer;
+      text-align: left;
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--white);
+      transition: background 0.2s;
+      min-height: 56px;
+    }
+    .faq-q:hover { background: var(--bg3); }
+    .faq-q i {
+      color: var(--cyan);
+      font-size: 12px;
+      flex-shrink: 0;
+      transition: transform 0.3s;
+    }
+    .faq-item.open .faq-q i { transform: rotate(180deg); }
+    .faq-a {
+      background: var(--bg2);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+    }
+    .faq-a-inner {
+      padding: 0 22px 18px;
+      font-size: 14px;
+      color: var(--text-dim);
+      line-height: 1.75;
+    }
+    .faq-item.open .faq-a { max-height: 300px; }
+
+    /* ─────────────────────────────────────────
+       BOOKING FORM
+    ───────────────────────────────────────── */
+    #book {
+      background: linear-gradient(135deg, #08101f 0%, #070b15 100%);
+      position: relative;
+    }
+    #book::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 400px;
+      background: radial-gradient(ellipse, rgba(34,211,238,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .book-wrap { max-width: 600px; margin: 0 auto; position: relative; z-index: 2; }
+    .book-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 48px 44px;
+    }
+    .form-group { margin-bottom: 18px; }
+    label { display: block; font-size: 13px; font-weight: 600; color: var(--text-dim); margin-bottom: 7px; }
+    input[type=text], input[type=email], select, textarea {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 13px 16px;
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+      appearance: none;
+      min-height: 48px;
+    }
+    input:focus, select:focus, textarea:focus { border-color: var(--border-hi); }
+    select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; }
+    option { background: var(--bg3); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .btn-submit {
+      width: 100%;
+      background: var(--cyan);
+      color: #07090f;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 16px;
+      padding: 17px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 54px;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      margin-top: 6px;
+    }
+    .btn-submit:hover {
+      background: #67e8f9;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(34,211,238,0.25);
+    }
+    .book-footnote { text-align: center; font-size: 12px; color: var(--muted); margin-top: 14px; }
+    .book-footnote i { color: var(--emerald); margin-right: 4px; }
+
+    /* form success state */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 20px 0;
+      animation: fade-in 0.4s ease;
+    }
+    .form-success.show { display: block; }
+    .success-icon {
+      width: 60px; height: 60px;
+      background: rgba(52,211,153,0.12);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 26px;
+      color: var(--emerald);
+    }
+    .success-title { font-family: var(--font-head); font-size: 26px; font-weight: 800; color: var(--white); margin-bottom: 10px; letter-spacing: -0.5px; }
+    .success-sub { font-size: 15px; color: var(--text-dim); line-height: 1.65; }
+
+    /* ─────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────── */
+    footer {
+      background: #040508;
+      border-top: 1px solid var(--border);
+      padding: 36px 24px;
+      text-align: center;
+    }
+    .footer-logo-text { font-family: var(--font-head); font-weight: 800; font-size: 17px; letter-spacing: -0.5px; color: var(--white); margin-bottom: 8px; }
+    .footer-copy { font-size: 13px; color: var(--muted); }
+
+    /* ─────────────────────────────────────────
+       FLOATING CTA
+    ───────────────────────────────────────── */
+    #floating-cta {
+      position: fixed;
+      bottom: 24px; right: 24px;
+      z-index: 80;
+      display: none;
+      animation: slide-up 0.3s ease;
+    }
+    #floating-cta.show { display: flex; }
+    #floating-cta button {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--cyan);
+      color: #07090f;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 14px;
+      padding: 13px 20px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 28px rgba(34,211,238,0.38);
+      min-height: 48px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    #floating-cta button:hover { background: #67e8f9; transform: translateY(-2px); }
+
+    /* ─────────────────────────────────────────
+       EXIT POPUP
+    ───────────────────────────────────────── */
+    #exit-popup {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(4,5,8,0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    #exit-popup.show { display: flex; }
+    .exit-card {
+      background: var(--bg2);
+      border: 1px solid var(--border-hi);
+      border-radius: 20px;
+      padding: 44px 36px;
+      max-width: 460px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      animation: scale-in 0.3s ease;
+    }
+    .exit-close {
+      position: absolute; top: 14px; right: 14px;
+      background: none; border: none;
+      color: var(--muted); font-size: 18px;
+      cursor: pointer;
+      width: 32px; height: 32px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 6px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .exit-close:hover { color: var(--white); background: var(--bg3); }
+    .exit-icon {
+      width: 52px; height: 52px;
+      background: var(--cyan-dim);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--cyan); font-size: 22px;
+      margin: 0 auto 18px;
+    }
+    .exit-title { font-family: var(--font-head); font-size: 26px; font-weight: 800; color: var(--white); letter-spacing: -0.5px; margin-bottom: 10px; }
+    .exit-sub { font-size: 14px; color: var(--text-dim); margin-bottom: 24px; line-height: 1.65; }
+    .exit-note { font-size: 12px; color: var(--muted); margin-top: 12px; }
+
+    /* ─────────────────────────────────────────
+       ANIMATIONS
+    ───────────────────────────────────────── */
+    @keyframes fade-in  { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
+    @keyframes scale-in { from { opacity:0; transform:scale(0.95); }       to { opacity:1; transform:scale(1); } }
+    @keyframes slide-up { from { opacity:0; transform:translateY(20px); }  to { opacity:1; transform:none; } }
+
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .fade-in-up.visible { opacity: 1; transform: none; }
+
+    /* ─────────────────────────────────────────
+       RESPONSIVE — TABLET
+    ───────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .services-grid       { grid-template-columns: 1fr 1fr; }
+      .testimonials-grid   { grid-template-columns: 1fr 1fr; }
+      .portfolio-grid      { grid-template-columns: 1fr 1fr; }
+      .tiers-grid          { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ─────────────────────────────────────────
+       RESPONSIVE — MOBILE
+    ───────────────────────────────────────── */
+    @media (max-width: 768px) {
+      /* nav */
+      .nav-links           { display: none; }
+      .hamburger           { display: flex; }
+
+      /* hide desktop CTA in nav on mobile — hamburger handles it */
+      .nav-inner > .nav-cta { display: none; }
+
+      /* sections */
+      section              { padding: 60px 20px; }
+      #hero                { padding: 72px 20px 60px; }
+
+      /* stats */
+      .stats-grid          { grid-template-columns: 1fr 1fr; gap: 20px; }
+      #stats               { padding: 28px 20px; }
+
+      /* grids collapse to 1 col */
+      .services-grid       { grid-template-columns: 1fr; }
+      .call-steps          { grid-template-columns: 1fr; }
+      .tiers-grid          { grid-template-columns: 1fr; }
+      .testimonials-grid   { grid-template-columns: 1fr; }
+      .portfolio-grid      { grid-template-columns: 1fr; }
+
+      /* form */
+      .form-row            { grid-template-columns: 1fr; }
+      .book-card           { padding: 32px 24px; }
+
+      /* quiz */
+      .quiz-card           { padding: 28px 22px; }
+      .quiz-options        { grid-template-columns: 1fr; }
+      .quiz-opt            { min-height: 52px; }
+
+      /* floating cta */
+      #floating-cta        { bottom: 16px; right: 16px; }
+      #floating-cta button { font-size: 13px; padding: 12px 16px; }
+
+      /* hero actions stack */
+      .hero-actions        { flex-direction: column; align-items: center; }
+      .btn-primary, .btn-secondary { width: 100%; max-width: 340px; justify-content: center; }
+
+      /* tiers */
+      .tier-card.featured  { order: -1; }
+
+      /* urgency bar */
+      #urgency-bar         { font-size: 12px; padding: 9px 12px; }
+    }
+
+    @media (max-width: 480px) {
+      h1                   { letter-spacing: -1.5px; }
+      .book-card           { padding: 28px 18px; }
+      .quiz-card           { padding: 24px 18px; }
+      .exit-card           { padding: 36px 24px; }
+      .stats-grid          { grid-template-columns: 1fr 1fr; gap: 16px; }
+    }
+  </style>
 </head>
-<body class="bg-zinc-950 text-zinc-200">
-    <!-- Navbar -->
-    <nav class="bg-zinc-900/80 backdrop-blur-md border-b border-zinc-800 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <div class="w-9 h-9 bg-cyan-500 rounded-2xl flex items-center justify-center text-zinc-950 font-bold text-2xl shadow-inner">HL</div>
-                <span class="heading text-3xl font-semibold tracking-tighter">HyperLightTek</span>
-            </div>
-            <div class="hidden md:flex items-center gap-10 text-sm font-medium">
-                <a href="#services" class="hover:text-cyan-400 transition-colors">Services</a>
-                <a href="#tiers" class="hover:text-cyan-400 transition-colors">Tiers</a>
-                <a href="#portfolio" class="hover:text-cyan-400 transition-colors">Work</a>
-                <a href="#contact" class="hover:text-cyan-400 transition-colors">Contact</a>
-            </div>
-            <button onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })" 
-                    class="bg-cyan-500 hover:bg-cyan-400 text-zinc-950 px-6 py-3 rounded-2xl font-semibold text-sm transition-all">
-                Start Project
+<body>
+
+<!-- ─── URGENCY BAR ─── -->
+<div id="urgency-bar">
+  <span class="pulse"></span>
+  <strong id="urgency-text"></strong>
+  <a onclick="document.getElementById('book').scrollIntoView({behavior:'smooth'})"> Claim your spot →</a>
+</div>
+
+<!-- ─── NAVBAR ─── -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-mark">HL</div>
+      <span class="logo-text">HyperLightTek</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#services"     onclick="closeMenu()">Services</a></li>
+      <li><a href="#how-it-works" onclick="closeMenu()">How It Works</a></li>
+      <li><a href="#tiers"        onclick="closeMenu()">Pricing</a></li>
+      <li><a href="#portfolio"    onclick="closeMenu()">Work</a></li>
+      <li><a href="#faq"          onclick="closeMenu()">FAQ</a></li>
+      <li>
+        <a href="#book" class="nav-cta" onclick="closeMenu()">
+          <i class="fa-solid fa-calendar-check"></i> Free Strategy Call
+        </a>
+      </li>
+    </ul>
+
+    <button class="hamburger" id="hamburger" aria-label="Open menu" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ─── MOBILE MENU ─── -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#services"     onclick="closeMenu()">Services</a>
+  <a href="#how-it-works" onclick="closeMenu()">How It Works</a>
+  <a href="#tiers"        onclick="closeMenu()">Pricing</a>
+  <a href="#portfolio"    onclick="closeMenu()">Work</a>
+  <a href="#faq"          onclick="closeMenu()">FAQ</a>
+  <a href="#book" class="mobile-cta nav-cta" onclick="closeMenu()">
+    <i class="fa-solid fa-calendar-check"></i> Free Strategy Call
+  </a>
+</div>
+
+<!-- ─── HERO ─── -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content fade-in-up">
+    <div class="hero-badge">
+      <i class="fa-solid fa-bolt-lightning"></i>
+      AI Agents · Blockchain · Secure Systems
+    </div>
+    <h1>We build things<br>that <span class="accent">actually work.</span></h1>
+    <p class="hero-sub">
+      Production-grade AI agents, DeFi protocols, and secure infrastructure — from a team that ships without excuses.
+    </p>
+    <div class="hero-actions">
+      <a href="#book" class="btn-primary">
+        <i class="fa-solid fa-calendar-check"></i>
+        Book Your Free Strategy Call
+      </a>
+      <a href="#portfolio" class="btn-secondary">
+        <i class="fa-solid fa-arrow-right"></i>
+        See Our Work
+      </a>
+    </div>
+    <p class="hero-note">
+      <span>Free · No obligation · Includes a written project roadmap</span>
+    </p>
+  </div>
+</section>
+
+<!-- ─── STATS ─── -->
+<div id="stats">
+  <div class="stats-grid">
+    <div class="fade-in-up">
+      <div class="stat-num"><span class="counter" data-target="18">0</span><span class="stat-suffix">+</span></div>
+      <div class="stat-label">AI Agents Deployed</div>
+    </div>
+    <div class="fade-in-up" style="transition-delay:0.1s">
+      <div class="stat-num"><span class="stat-suffix">$</span><span class="counter" data-target="6">0</span><span class="stat-suffix">M+</span></div>
+      <div class="stat-label">Smart Contract Volume</div>
+    </div>
+    <div class="fade-in-up" style="transition-delay:0.2s">
+      <div class="stat-num"><span class="counter" data-target="34">0</span><span class="stat-suffix">+</span></div>
+      <div class="stat-label">Clients Served</div>
+    </div>
+    <div class="fade-in-up" style="transition-delay:0.3s">
+      <div class="stat-num"><span class="counter" data-target="100">0</span><span class="stat-suffix">%</span></div>
+      <div class="stat-label">Projects Delivered On Spec</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── HOW THE CALL WORKS ─── -->
+<section id="how-it-works">
+  <div class="section-inner">
+    <div class="center fade-in-up">
+      <span class="section-tag">The Free Strategy Call</span>
+      <h2>What actually happens<br>on your free call</h2>
+      <p class="section-sub">Not a sales pitch. Not a vague chat. A focused 45 minutes where you leave with a real written roadmap — free.</p>
+    </div>
+    <div class="call-steps fade-in-up">
+      <div class="call-step">
+        <div class="step-num">01</div>
+        <div class="step-icon"><i class="fa-solid fa-microphone"></i></div>
+        <div class="step-title">You share your vision</div>
+        <p class="step-desc">We listen to what you're building — the problem, the constraints, the ambition. No prep needed on your end.</p>
+      </div>
+      <div class="call-step">
+        <div class="step-num">02</div>
+        <div class="step-icon"><i class="fa-solid fa-map"></i></div>
+        <div class="step-title">We map your solution</div>
+        <p class="step-desc">Our team outlines the technical approach — architecture, stack, timeline, and the realistic path to your goal.</p>
+      </div>
+      <div class="call-step">
+        <div class="step-num">03</div>
+        <div class="step-icon"><i class="fa-solid fa-file-lines"></i></div>
+        <div class="step-title">You get your roadmap</div>
+        <p class="step-desc">You leave with a written roadmap. Use it with us or take it elsewhere. No pressure — just genuine value.</p>
+      </div>
+    </div>
+    <div class="call-guarantee fade-in-up">
+      <i class="fa-solid fa-shield-halved fa-lg"></i>
+      <span>Zero hard sell. If we're not the right fit, we'll say so. Our goal is a project we can both be proud of.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SERVICES ─── -->
+<section id="services">
+  <div class="section-inner">
+    <span class="section-tag">What We Build</span>
+    <h2>Three domains.<br>One team.</h2>
+    <p class="section-sub">We go deep on the technology that's reshaping what's possible.</p>
+    <div class="services-grid">
+      <div class="service-card fade-in-up">
+        <div class="service-icon si-cyan"><i class="fa-solid fa-brain"></i></div>
+        <div class="service-name">AI Agents</div>
+        <p class="service-desc">Hermes-style autonomous agents, multi-agent orchestration, RAG pipelines, and intelligent automation that operates independently with high reliability.</p>
+        <ul class="service-list">
+          <li><i class="fa-solid fa-check"></i> Autonomous decision agents</li>
+          <li><i class="fa-solid fa-check"></i> Tool integration & orchestration</li>
+          <li><i class="fa-solid fa-check"></i> Custom model deployment & fine-tuning</li>
+          <li><i class="fa-solid fa-check"></i> Workflow automation pipelines</li>
+        </ul>
+      </div>
+      <div class="service-card amber fade-in-up" style="transition-delay:0.1s">
+        <div class="service-icon si-amber"><i class="fa-solid fa-cubes"></i></div>
+        <div class="service-name">Blockchain & Crypto</div>
+        <p class="service-desc">End-to-end blockchain infrastructure, smart contracts, DeFi protocols, token launches, and secure Web3 integrations built for production.</p>
+        <ul class="service-list">
+          <li><i class="fa-solid fa-check"></i> Smart contract development & audit</li>
+          <li><i class="fa-solid fa-check"></i> DeFi protocol & token engineering</li>
+          <li><i class="fa-solid fa-check"></i> On-chain strategy & security</li>
+          <li><i class="fa-solid fa-check"></i> Cross-chain & Layer-2 integrations</li>
+        </ul>
+      </div>
+      <div class="service-card emerald fade-in-up" style="transition-delay:0.2s">
+        <div class="service-icon si-emerald"><i class="fa-solid fa-shield-halved"></i></div>
+        <div class="service-name">Secure Systems</div>
+        <p class="service-desc">High-performance secure computer systems, cybersecurity hardening, and expert technology strategy for teams that can't afford a breach.</p>
+        <ul class="service-list">
+          <li><i class="fa-solid fa-check"></i> Custom secure hardware builds</li>
+          <li><i class="fa-solid fa-check"></i> Infrastructure hardening</li>
+          <li><i class="fa-solid fa-check"></i> Strategic tech advisory</li>
+          <li><i class="fa-solid fa-check"></i> Penetration testing & red team</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── QUIZ ─── -->
+<section id="quiz-section">
+  <div class="quiz-wrap">
+    <div class="center fade-in-up" style="margin-bottom:32px">
+      <span class="section-tag">Project Matcher</span>
+      <h2>Not sure where to start?</h2>
+      <p class="section-sub" style="margin:0 auto">Answer 3 quick questions and we'll point you in the right direction.</p>
+    </div>
+    <div class="quiz-card fade-in-up">
+      <div id="quiz-body">
+        <div class="quiz-progress">
+          <div class="quiz-progress-bar active" id="pb1"></div>
+          <div class="quiz-progress-bar" id="pb2"></div>
+          <div class="quiz-progress-bar" id="pb3"></div>
+        </div>
+
+        <div id="quiz-step-1">
+          <div class="quiz-q-label">Question 1 of 3</div>
+          <div class="quiz-question">What are you trying to build?</div>
+          <div class="quiz-options">
+            <button class="quiz-opt" data-q="1" data-v="ai" onclick="quizSelect(this)">
+              <i class="fa-solid fa-brain"></i>
+              <div><strong>AI agent or automation</strong><br><span style="color:var(--muted);font-size:12px">Autonomous systems, RAG, workflows</span></div>
             </button>
+            <button class="quiz-opt" data-q="1" data-v="blockchain" onclick="quizSelect(this)">
+              <i class="fa-solid fa-cubes"></i>
+              <div><strong>Blockchain / DeFi / Web3</strong><br><span style="color:var(--muted);font-size:12px">Smart contracts, tokens, protocols</span></div>
+            </button>
+            <button class="quiz-opt" data-q="1" data-v="secure" onclick="quizSelect(this)">
+              <i class="fa-solid fa-shield-halved"></i>
+              <div><strong>Secure system or infra</strong><br><span style="color:var(--muted);font-size:12px">Hardened hardware, security consulting</span></div>
+            </button>
+            <button class="quiz-opt" data-q="1" data-v="unsure" onclick="quizSelect(this)">
+              <i class="fa-solid fa-question"></i>
+              <div><strong>Not sure yet</strong><br><span style="color:var(--muted);font-size:12px">I have an idea but need guidance</span></div>
+            </button>
+          </div>
         </div>
-    </nav>
 
-    <!-- Hero -->
-    <section class="hero-bg pt-32 pb-24">
-        <div class="max-w-5xl mx-auto px-6 text-center">
-            <div class="inline-flex items-center gap-2 bg-zinc-900 border border-cyan-900 text-cyan-400 text-sm px-5 py-2 rounded-3xl mb-8">
-                <i class="fa-solid fa-bolt-lightning"></i>
-                HERMES-STYLE AI AGENTS • BLOCKCHAIN
-            </div>
-            <h1 class="heading text-6xl md:text-7xl font-semibold tracking-tighter leading-none mb-8">
-                Autonomous intelligence.<br>
-                Unbreakable infrastructure.
-            </h1>
-            <p class="text-xl text-zinc-400 max-w-2xl mx-auto mb-12">
-                We build production-grade AI agents and blockchain systems that deliver real results. 
-                Professional, reliable, and future-proof.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <button onclick="document.getElementById('tiers').scrollIntoView({ behavior: 'smooth' })" 
-                        class="bg-white text-zinc-950 px-10 py-5 rounded-3xl font-semibold text-lg hover:bg-zinc-100 transition-all flex items-center justify-center gap-3">
-                    <span>Choose Your Tier</span>
-                    <i class="fa-solid fa-arrow-right"></i>
-                </button>
-                <button onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })" 
-                        class="border border-zinc-700 hover:border-zinc-500 px-10 py-5 rounded-3xl font-medium transition-all">
-                    Book Strategy Call
-                </button>
-            </div>
+        <div id="quiz-step-2" style="display:none">
+          <div class="quiz-q-label">Question 2 of 3</div>
+          <div class="quiz-question">What's the scale of this project?</div>
+          <div class="quiz-options">
+            <button class="quiz-opt" data-q="2" data-v="small" onclick="quizSelect(this)">
+              <i class="fa-solid fa-seedling"></i>
+              <div><strong>Proof of concept</strong><br><span style="color:var(--muted);font-size:12px">Test the idea, see if it works</span></div>
+            </button>
+            <button class="quiz-opt" data-q="2" data-v="mid" onclick="quizSelect(this)">
+              <i class="fa-solid fa-rocket"></i>
+              <div><strong>Production MVP</strong><br><span style="color:var(--muted);font-size:12px">Full build, deployable and live</span></div>
+            </button>
+            <button class="quiz-opt" data-q="2" data-v="large" onclick="quizSelect(this)">
+              <i class="fa-solid fa-building"></i>
+              <div><strong>Enterprise / complex</strong><br><span style="color:var(--muted);font-size:12px">Multi-system, serious scale</span></div>
+            </button>
+            <button class="quiz-opt" data-q="2" data-v="unsure" onclick="quizSelect(this)">
+              <i class="fa-solid fa-circle-question"></i>
+              <div><strong>Need help scoping it</strong><br><span style="color:var(--muted);font-size:12px">Not sure what I need yet</span></div>
+            </button>
+          </div>
         </div>
-    </section>
 
-    <!-- Core Services -->
-    <section id="services" class="py-24 bg-zinc-900">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="heading text-5xl font-semibold mb-4 section-header">Core Services</h2>
-                <p class="text-zinc-400 max-w-lg mx-auto">Precision-built solutions in the domains that matter most today.</p>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- AI Agents -->
-                <div class="bg-zinc-950 border border-zinc-800 rounded-3xl p-10 hover:border-cyan-500/30 transition-all group">
-                    <div class="w-14 h-14 bg-cyan-500/10 rounded-2xl flex items-center justify-center mb-8 text-cyan-400 group-hover:scale-110 transition">
-                        <i class="fa-solid fa-brain text-4xl"></i>
-                    </div>
-                    <h3 class="text-3xl font-semibold mb-4">AI Agents</h3>
-                    <p class="text-zinc-400 mb-8">Hermes-style autonomous agents, multi-agent systems, RAG pipelines, and intelligent automation that operate independently with high reliability.</p>
-                    <ul class="space-y-3 text-sm">
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400"></i> Autonomous decision agents</li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400"></i> Tool integration &amp; orchestration</li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400"></i> Custom model deployment</li>
-                    </ul>
-                </div>
-
-                <!-- Blockchain -->
-                <div class="bg-zinc-950 border border-zinc-800 rounded-3xl p-10 hover:border-amber-500/30 transition-all group">
-                    <div class="w-14 h-14 bg-amber-500/10 rounded-2xl flex items-center justify-center mb-8 text-amber-400 group-hover:scale-110 transition">
-                        <i class="fa-solid fa-chain text-4xl"></i>
-                    </div>
-                    <h3 class="text-3xl font-semibold mb-4">Blockchain &amp; Crypto</h3>
-                    <p class="text-zinc-400 mb-8">End-to-end blockchain infrastructure, smart contracts, DeFi protocols, token launches, and secure Web3 integrations.</p>
-                    <ul class="space-y-3 text-sm">
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400"></i> Smart contract development</li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400"></i> DeFi &amp; token engineering</li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400"></i> On-chain strategy &amp; security</li>
-                    </ul>
-                </div>
-
-                <!-- Secure Systems -->
-                <div class="bg-zinc-950 border border-zinc-800 rounded-3xl p-10 hover:border-emerald-500/30 transition-all group">
-                    <div class="w-14 h-14 bg-emerald-500/10 rounded-2xl flex items-center justify-center mb-8 text-emerald-400 group-hover:scale-110 transition">
-                        <i class="fa-solid fa-shield-halved text-4xl"></i>
-                    </div>
-                    <h3 class="text-3xl font-semibold mb-4">Secure Systems &amp; Consulting</h3>
-                    <p class="text-zinc-400 mb-8">High-performance secure computer systems, cybersecurity hardening, and expert technology strategy consulting.</p>
-                    <ul class="space-y-3 text-sm">
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400"></i> Custom secure builds</li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400"></i> Infrastructure security</li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-emerald-400"></i> Strategic tech advisory</li>
-                    </ul>
-                </div>
-            </div>
+        <div id="quiz-step-3" style="display:none">
+          <div class="quiz-q-label">Question 3 of 3</div>
+          <div class="quiz-question">When do you want to get started?</div>
+          <div class="quiz-options">
+            <button class="quiz-opt" data-q="3" data-v="now" onclick="quizSelect(this)">
+              <i class="fa-solid fa-bolt"></i>
+              <div><strong>Right now</strong><br><span style="color:var(--muted);font-size:12px">Ready to move immediately</span></div>
+            </button>
+            <button class="quiz-opt" data-q="3" data-v="soon" onclick="quizSelect(this)">
+              <i class="fa-solid fa-calendar"></i>
+              <div><strong>Next 1–4 weeks</strong><br><span style="color:var(--muted);font-size:12px">Exploring options, deciding soon</span></div>
+            </button>
+            <button class="quiz-opt" data-q="3" data-v="later" onclick="quizSelect(this)">
+              <i class="fa-solid fa-clock"></i>
+              <div><strong>1–3 months out</strong><br><span style="color:var(--muted);font-size:12px">Planning for future work</span></div>
+            </button>
+            <button class="quiz-opt" data-q="3" data-v="explore" onclick="quizSelect(this)">
+              <i class="fa-regular fa-compass"></i>
+              <div><strong>Just exploring</strong><br><span style="color:var(--muted);font-size:12px">Early stage, no timeline yet</span></div>
+            </button>
+          </div>
         </div>
-    </section>
+      </div>
 
-    <!-- Service Tiers -->
-    <section id="tiers" class="py-24">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="heading text-5xl font-semibold mb-4 section-header">Service Tiers</h2>
-                <p class="text-zinc-400">Clear, transparent pricing for every stage of growth</p>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                <!-- Free -->
-                <div class="bg-zinc-900 border border-zinc-700 rounded-3xl p-8 flex flex-col">
-                    <div class="mb-8">
-                        <span class="px-4 py-1.5 bg-zinc-800 text-xs font-mono tracking-widest rounded-full">STARTER</span>
-                        <div class="mt-8">
-                            <span class="text-6xl font-semibold">$0</span>
-                            <span class="text-zinc-400">/mo</span>
-                        </div>
-                    </div>
-                    <h3 class="text-2xl font-semibold mb-6">Free Tier</h3>
-                    <ul class="space-y-4 flex-1">
-                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i> 45-minute strategy call</li>
-                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i> High-level roadmap</li>
-                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i> Access to knowledge base</li>
-                    </ul>
-                    <button onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })" 
-                            class="mt-12 w-full py-4 border border-zinc-600 hover:bg-zinc-800 rounded-2xl font-medium transition">
-                        Schedule Free Call
-                    </button>
-                </div>
+      <div class="quiz-result" id="quiz-result">
+        <div class="result-tag" id="result-tag">Your Match</div>
+        <div class="result-headline" id="result-headline"></div>
+        <p class="result-body" id="result-body"></p>
+        <a href="#book" class="btn-primary" style="display:inline-flex;margin:0 auto" onclick="closePopup()">
+          <i class="fa-solid fa-calendar-check"></i>
+          Book My Free Strategy Call
+        </a>
+        <br>
+        <button class="quiz-restart" onclick="quizRestart()">Start over</button>
+      </div>
+    </div>
+  </div>
+</section>
 
-                <!-- Pro -->
-                <div class="bg-gradient-to-b from-zinc-800 to-zinc-900 border-2 border-cyan-500 rounded-3xl p-8 flex flex-col relative scale-105 shadow-2xl">
-                    <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-cyan-500 text-zinc-950 text-xs font-bold px-6 py-2 rounded-3xl">RECOMMENDED</div>
-                    <div class="mb-8 mt-4">
-                        <span class="px-4 py-1.5 bg-cyan-900 text-cyan-300 text-xs font-mono tracking-widest rounded-full">PROFESSIONAL</span>
-                        <div class="mt-8">
-                            <span class="text-6xl font-semibold">$2,500</span>
-                            <span class="text-zinc-400">/project</span>
-                        </div>
-                    </div>
-                    <h3 class="text-2xl font-semibold mb-6">Pro Tier</h3>
-                    <ul class="space-y-4 flex-1">
-                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i> Custom AI Agent or Blockchain solution</li>
-                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i> Full development + testing</li>
-                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i> Deployment &amp; documentation</li>
-                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i> 30 days priority support</li>
-                    </ul>
-                    <button onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })" 
-                            class="mt-12 w-full py-4 bg-cyan-500 hover:bg-cyan-400 text-zinc-950 rounded-2xl font-semibold transition">
-                        Start Pro Project
-                    </button>
-                </div>
+<!-- ─── TIERS ─── -->
+<section id="tiers">
+  <div class="section-inner">
+    <div class="center fade-in-up" style="margin-bottom:52px">
+      <span class="section-tag">Pricing</span>
+      <h2>Every engagement<br>starts for free.</h2>
+      <p class="section-sub">No commitment, no credit card, no pitch. Just a conversation and a written roadmap.</p>
+    </div>
+    <div class="tiers-grid">
 
-                <!-- Max -->
-                <div class="bg-zinc-900 border border-zinc-700 rounded-3xl p-8 flex flex-col">
-                    <div class="mb-8">
-                        <span class="px-4 py-1.5 bg-zinc-800 text-xs font-mono tracking-widest rounded-full">ENTERPRISE</span>
-                        <div class="mt-8">
-                            <span class="text-6xl font-semibold">$8,000+</span>
-                            <span class="text-zinc-400">/project</span>
-                        </div>
-                    </div>
-                    <h3 class="text-2xl font-semibold mb-6">Max Tier</h3>
-                    <ul class="space-y-4 flex-1">
-                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i> Everything in Pro</li>
-                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i> Multi-agent systems or complex DeFi</li>
-                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i> Ongoing maintenance &amp; optimization</li>
-                        <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i> Dedicated support channel</li>
-                    </ul>
-                    <button onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })" 
-                            class="mt-12 w-full py-4 border border-zinc-600 hover:bg-zinc-800 rounded-2xl font-medium transition">
-                        Discuss Max Project
-                    </button>
-                </div>
-            </div>
+      <div class="tier-card free-card fade-in-up">
+        <div class="tier-badge tb-green">Start Here — Free</div>
+        <div style="margin-top:16px">
+          <div class="tier-label">Starter</div>
+          <div class="tier-price" style="color:var(--emerald)">$0</div>
+          <div class="tier-period">No cost, ever</div>
+          <div class="tier-name">Free Strategy Call</div>
+          <p class="tier-tagline">For anyone who wants expert eyes on their project.</p>
+          <div class="tier-divider"></div>
+          <ul class="tier-features">
+            <li><i class="fa-solid fa-check"></i> 45-minute focused strategy session</li>
+            <li><i class="fa-solid fa-check"></i> Full written project roadmap delivered</li>
+            <li><i class="fa-solid fa-check"></i> Technical architecture recommendations</li>
+            <li><i class="fa-solid fa-check"></i> Honest assessment — even if we're not the fit</li>
+            <li><i class="fa-solid fa-check"></i> Access to our private knowledge base</li>
+          </ul>
+          <div class="scarcity-tag" id="scarcity-tag">
+            <i class="fa-solid fa-fire"></i>
+            <span id="scarcity-text"></span>
+          </div>
+          <a href="#book" class="btn-tier green">Claim My Free Call →</a>
         </div>
-    </section>
+      </div>
 
-    <!-- Portfolio -->
-    <section id="portfolio" class="py-24 bg-zinc-900">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="heading text-5xl font-semibold mb-4 section-header">Recent Work</h2>
-                <p class="text-zinc-400">Selected projects demonstrating our capabilities</p>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-zinc-950 rounded-3xl overflow-hidden border border-zinc-800 group">
-                    <div class="h-56 bg-gradient-to-br from-cyan-900/50 to-zinc-800 flex items-center justify-center">
-                        <span class="text-6xl text-cyan-400/30 group-hover:text-cyan-400/50 transition">AI</span>
-                    </div>
-                    <div class="p-8">
-                        <h4 class="font-semibold text-xl mb-2">Hermes Autonomous Trading Agent</h4>
-                        <p class="text-zinc-400 text-sm">Multi-agent system for market analysis and automated execution with risk controls.</p>
-                    </div>
-                </div>
-                
-                <div class="bg-zinc-950 rounded-3xl overflow-hidden border border-zinc-800 group">
-                    <div class="h-56 bg-gradient-to-br from-amber-900/50 to-zinc-800 flex items-center justify-center">
-                        <span class="text-6xl text-amber-400/30 group-hover:text-amber-400/50 transition">DEFI</span>
-                    </div>
-                    <div class="p-8">
-                        <h4 class="font-semibold text-xl mb-2">Layer-2 DeFi Yield Protocol</h4>
-                        <p class="text-zinc-400 text-sm">Smart contract suite and frontend for automated yield optimization.</p>
-                    </div>
-                </div>
-                
-                <div class="bg-zinc-950 rounded-3xl overflow-hidden border border-zinc-800 group">
-                    <div class="h-56 bg-gradient-to-br from-emerald-900/50 to-zinc-800 flex items-center justify-center">
-                        <span class="text-6xl text-emerald-400/30 group-hover:text-emerald-400/50 transition">SECURE</span>
-                    </div>
-                    <div class="p-8">
-                        <h4 class="font-semibold text-xl mb-2">Enterprise Secure AI Workstation</h4>
-                        <p class="text-zinc-400 text-sm">Hardened high-performance system with isolated AI compute environment.</p>
-                    </div>
-                </div>
-            </div>
+      <div class="tier-card featured fade-in-up" style="transition-delay:0.1s">
+        <div class="tier-badge tb-blue">Most Popular</div>
+        <div style="margin-top:16px">
+          <div class="tier-label">Professional</div>
+          <div class="tier-price">$2,500</div>
+          <div class="tier-period">per project</div>
+          <div class="tier-name">Pro Tier</div>
+          <p class="tier-tagline">For founders and teams ready to ship something real.</p>
+          <div class="tier-divider"></div>
+          <ul class="tier-features">
+            <li><i class="fa-solid fa-check"></i> Custom AI agent or blockchain solution</li>
+            <li><i class="fa-solid fa-check"></i> Full development + QA testing</li>
+            <li><i class="fa-solid fa-check"></i> Deployment & full documentation</li>
+            <li><i class="fa-solid fa-check"></i> 30 days priority support post-launch</li>
+            <li><i class="fa-solid fa-check"></i> Free strategy call included</li>
+          </ul>
+          <a href="#book" class="btn-tier blue">Start Pro — Book Free Call First</a>
         </div>
-    </section>
+      </div>
 
-    <!-- Contact -->
-    <section id="contact" class="py-24">
-        <div class="max-w-2xl mx-auto px-6">
-            <div class="text-center mb-12">
-                <h2 class="heading text-5xl font-semibold mb-4">Let's Build the Future</h2>
-                <p class="text-zinc-400">Tell us about your project. We respond within 24 hours.</p>
-            </div>
-            
-            <form action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST" class="space-y-8">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label class="block text-sm text-zinc-400 mb-2">Name</label>
-                        <input type="text" name="name" required class="w-full bg-zinc-900 border border-zinc-700 focus:border-cyan-500 rounded-2xl px-6 py-4 outline-none transition">
-                    </div>
-                    <div>
-                        <label class="block text-sm text-zinc-400 mb-2">Email</label>
-                        <input type="email" name="email" required class="w-full bg-zinc-900 border border-zinc-700 focus:border-cyan-500 rounded-2xl px-6 py-4 outline-none transition">
-                    </div>
-                </div>
-                <div>
-                    <label class="block text-sm text-zinc-400 mb-2">Project Type</label>
-                    <select name="project_type" class="w-full bg-zinc-900 border border-zinc-700 focus:border-cyan-500 rounded-2xl px-6 py-4 outline-none transition">
-                        <option value="">Select one...</option>
-                        <option value="ai-agent">AI Agent Development</option>
-                        <option value="blockchain">Blockchain / Crypto</option>
-                        <option value="secure-system">Secure Systems</option>
-                        <option value="consulting">Consulting / Strategy</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block text-sm text-zinc-400 mb-2">Message / Project Brief</label>
-                    <textarea name="message" rows="6" required class="w-full bg-zinc-900 border border-zinc-700 focus:border-cyan-500 rounded-3xl px-6 py-5 outline-none transition resize-y"></textarea>
-                </div>
-                <button type="submit" 
-                        class="w-full bg-white text-zinc-950 py-5 rounded-3xl font-semibold text-lg hover:bg-zinc-100 transition flex items-center justify-center gap-3">
-                    Send Message
-                    <i class="fa-solid fa-paper-plane"></i>
-                </button>
-            </form>
+      <div class="tier-card fade-in-up" style="transition-delay:0.2s">
+        <div class="tier-label">Enterprise</div>
+        <div class="tier-price" style="font-size:38px">$8,000+</div>
+        <div class="tier-period">per project</div>
+        <div class="tier-name">Max Tier</div>
+        <p class="tier-tagline">For complex, high-stakes builds with ongoing needs.</p>
+        <div class="tier-divider"></div>
+        <ul class="tier-features">
+          <li><i class="fa-solid fa-check"></i> Everything in Pro</li>
+          <li><i class="fa-solid fa-check"></i> Multi-agent systems or complex DeFi</li>
+          <li><i class="fa-solid fa-check"></i> Ongoing maintenance & optimization</li>
+          <li><i class="fa-solid fa-check"></i> Dedicated Slack support channel</li>
+          <li><i class="fa-solid fa-check"></i> Monthly strategy reviews</li>
+        </ul>
+        <a href="#book" class="btn-tier ghost">Discuss Max → Book Free Call First</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── TESTIMONIALS ─── -->
+<section id="testimonials">
+  <div class="section-inner">
+    <span class="section-tag">Client Feedback</span>
+    <h2 style="margin-bottom:44px">What clients say</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card fade-in-up">
+        <div>
+          <div class="stars">★★★★★</div>
+          <p class="quote-text">"The free strategy call alone was worth more than some paid consultations I've had. They handed us a technical roadmap on day one — no fluff, just exactly what we needed."</p>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-black py-12 border-t border-zinc-900">
-        <div class="max-w-7xl mx-auto px-6 text-center text-zinc-500 text-sm">
-            <p>&copy; 2026 HyperLightTek. Built for those who move fast and build securely.</p>
+        <div class="quote-author">
+          <div class="quote-avatar">JR</div>
+          <div>
+            <div class="author-name">James R.</div>
+            <div class="author-role">Founder, DeFi startup</div>
+          </div>
         </div>
-    </footer>
+      </div>
+      <div class="testimonial-card fade-in-up" style="transition-delay:0.1s">
+        <div>
+          <div class="stars">★★★★★</div>
+          <p class="quote-text">"Our trading agent went live in 6 weeks and immediately outperformed manual operations. They understood the technical edge cases we didn't even know to ask about."</p>
+        </div>
+        <div class="quote-author">
+          <div class="quote-avatar">SK</div>
+          <div>
+            <div class="author-name">Sarah K.</div>
+            <div class="author-role">Head of Engineering, fintech</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-in-up" style="transition-delay:0.2s">
+        <div>
+          <div class="stars">★★★★★</div>
+          <p class="quote-text">"I came in skeptical of the 'free call.' Left with a 12-page technical brief and a clear plan. Signed with them the next week. Best decision we made in our pre-launch phase."</p>
+        </div>
+        <div class="quote-author">
+          <div class="quote-avatar">MT</div>
+          <div>
+            <div class="author-name">Marcus T.</div>
+            <div class="author-role">CTO, Web3 protocol</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script>
-        // Tailwind script already loaded via CDN
-        // Add any additional JS if needed later
-    </script>
+<!-- ─── PORTFOLIO ─── -->
+<section id="portfolio">
+  <div class="section-inner">
+    <span class="section-tag">Recent Work</span>
+    <h2 style="margin-bottom:44px">Selected projects</h2>
+    <div class="portfolio-grid">
+      <div class="portfolio-card fade-in-up">
+        <div class="portfolio-thumb" style="background:linear-gradient(135deg,#0e3d52,#0a1628)">
+          <span style="color:#22d3ee">AGENT</span>
+        </div>
+        <div class="portfolio-body">
+          <div class="portfolio-tag">AI · Pro Tier</div>
+          <div class="portfolio-title">Hermes Autonomous Trading Agent</div>
+          <p class="portfolio-desc">Multi-agent system for market analysis and automated execution with risk controls. Live in 5 weeks.</p>
+        </div>
+      </div>
+      <div class="portfolio-card fade-in-up" style="transition-delay:0.1s">
+        <div class="portfolio-thumb" style="background:linear-gradient(135deg,#3d2c0e,#1a1208)">
+          <span style="color:#f59e0b">DEFI</span>
+        </div>
+        <div class="portfolio-body">
+          <div class="portfolio-tag">Blockchain · Max Tier</div>
+          <div class="portfolio-title">Layer-2 DeFi Yield Protocol</div>
+          <p class="portfolio-desc">Smart contract suite and frontend for automated yield optimization across three chains.</p>
+        </div>
+      </div>
+      <div class="portfolio-card fade-in-up" style="transition-delay:0.2s">
+        <div class="portfolio-thumb" style="background:linear-gradient(135deg,#0e3d2a,#071a12)">
+          <span style="color:#34d399">SECURE</span>
+        </div>
+        <div class="portfolio-body">
+          <div class="portfolio-tag">Secure Systems · Pro Tier</div>
+          <div class="portfolio-title">Enterprise Secure AI Workstation</div>
+          <p class="portfolio-desc">Hardened high-performance system with isolated AI compute and zero-trust networking.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FAQ ─── -->
+<section id="faq">
+  <div class="section-inner">
+    <div class="center fade-in-up" style="margin-bottom:48px">
+      <span class="section-tag">FAQ</span>
+      <h2>Common questions</h2>
+      <p class="section-sub">Especially about the free call.</p>
+    </div>
+    <div class="faq-list fade-in-up">
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Is the free call actually free? What's the catch?
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">Yes, genuinely free — no credit card, no hidden commitment. We offer it because the best client relationships start with mutual fit. If we're right for your project, great. If not, you still walk away with a useful roadmap. We'd rather spend 45 minutes and part ways honestly than chase the wrong project for months.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Will I be pressured to buy a paid tier on the call?
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">No. We're builders, not salespeople. The call is focused on your project — we ask questions, outline a technical approach, and give you an honest assessment. If we think you're a fit for one of our paid tiers, we'll say so once, clearly. If you're not ready, that's fine too.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What do I actually get from the call?
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">A written project roadmap covering: recommended technical architecture, realistic timeline, key risks and how to handle them, and suggested next steps. Most people tell us it's more useful than a paid audit they've had elsewhere. You own it and can do whatever you like with it.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How long does a typical project take?
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">Pro tier projects typically run 4–8 weeks depending on complexity. Max tier (multi-agent systems, complex DeFi protocols) usually runs 8–16 weeks. We'll give you a specific estimate on the free call once we understand your requirements. We don't start projects we can't finish on time.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How do I reach you after I submit the form?
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">Submitting the form opens your email client with a pre-filled message — just hit send and we'll receive it directly. No third-party services involved. We respond within 4 hours on weekdays and will reply from our team email to schedule the call at a time that works for you.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Do you work with clients outside the US?
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">Yes — we work with clients globally. Calls happen over video and we accommodate time zones from Europe to Asia. Deliverables and communication are fully remote.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── BOOKING FORM ─── -->
+<section id="book">
+  <div class="book-wrap">
+    <div class="center fade-in-up" style="margin-bottom:36px">
+      <span class="section-tag">Book Your Free Call</span>
+      <h2>Let's talk about<br>what you're building.</h2>
+      <p class="section-sub" style="margin:0 auto">45 minutes. A written roadmap. No cost, no pitch, no pressure.</p>
+    </div>
+    <div class="book-card fade-in-up">
+
+      <!-- FORM -->
+      <form id="contact-form" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="f-name">Your Name</label>
+            <input type="text" id="f-name" name="name" placeholder="Alex Chen" required autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label for="f-email">Email Address</label>
+            <input type="email" id="f-email" name="email" placeholder="you@company.com" required autocomplete="email">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="f-type">What do you need built?</label>
+          <select id="f-type" name="project_type" required>
+            <option value="" disabled selected>Select a category...</option>
+            <option value="AI Agent or Automation">AI Agent or Automation</option>
+            <option value="Blockchain / DeFi / Crypto">Blockchain / DeFi / Crypto</option>
+            <option value="Secure System or Infrastructure">Secure System or Infrastructure</option>
+            <option value="Strategy / Consulting">Strategy / Consulting</option>
+            <option value="Not sure yet">Not sure yet — need guidance</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="f-msg">Brief description <span style="color:var(--muted);font-weight:400">(optional)</span></label>
+          <textarea id="f-msg" name="message" rows="3" placeholder="I'm building a DeFi protocol that does X and need help with Y..."></textarea>
+        </div>
+        <button type="submit" class="btn-submit" id="submit-btn">
+          <i class="fa-solid fa-calendar-check"></i>
+          Claim My Free Strategy Call
+        </button>
+      </form>
+
+      <!-- SUCCESS STATE -->
+      <div class="form-success" id="form-success">
+        <div class="success-icon"><i class="fa-solid fa-check"></i></div>
+        <div class="success-title">Your email client is opening!</div>
+        <p class="success-sub">
+          A pre-filled email is ready to send — just hit <strong>Send</strong> in your mail app and we'll be in touch within 4 hours on weekdays to schedule your call.
+        </p>
+      </div>
+
+      <p class="book-footnote">
+        <i class="fa-solid fa-lock"></i> No third parties. Your message goes directly to our inbox. No spam, ever.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div>
+    <div class="footer-logo-text">HyperLightTek</div>
+    <p class="footer-copy">© 2026 HyperLightTek. Built for those who move fast and build securely.</p>
+  </div>
+</footer>
+
+<!-- ─── FLOATING CTA ─── -->
+<div id="floating-cta">
+  <button onclick="document.getElementById('book').scrollIntoView({behavior:'smooth'})">
+    <i class="fa-solid fa-calendar-check"></i>
+    Free Strategy Call
+  </button>
+</div>
+
+<!-- ─── EXIT POPUP ─── -->
+<div id="exit-popup">
+  <div class="exit-card">
+    <button class="exit-close" onclick="closePopup()" aria-label="Close">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <div class="exit-icon"><i class="fa-solid fa-gift"></i></div>
+    <div class="exit-title">Before you go —</div>
+    <p class="exit-sub">
+      The free strategy call comes with a <strong>written project roadmap</strong>. No obligation, no pitch. Just 45 minutes and a real plan.
+    </p>
+    <a href="#book" class="btn-primary" style="width:100%;justify-content:center" onclick="closePopup()">
+      <i class="fa-solid fa-calendar-check"></i>
+      OK — Book My Free Call
+    </a>
+    <p class="exit-note" id="exit-scarcity"></p>
+  </div>
+</div>
+
+<script>
+  /* ════════════════════════════════════════
+     ★  CONFIGURATION — EDIT THESE VALUES  ★
+     ════════════════════════════════════════ */
+  const SPOTS_LEFT    = 3;           // update monthly
+  const CONTACT_EMAIL = 'hello@hyperlighttek.com'; // your email
+
+  /* ────────────────────────────────────────
+     POPULATE SPOTS COUNT
+  ──────────────────────────────────────── */
+  (function seedSpots() {
+    const spotsWord = SPOTS_LEFT === 1 ? 'Only 1 free strategy call spot left this month —'
+                    : `Only ${SPOTS_LEFT} free strategy call spots left this month —`;
+    const scarcityWord = SPOTS_LEFT === 1 ? 'Only 1 spot remaining this month'
+                       : `Only ${SPOTS_LEFT} spots remaining this month`;
+
+    document.getElementById('urgency-text').textContent   = spotsWord;
+    document.getElementById('scarcity-text').textContent  = scarcityWord;
+    document.getElementById('exit-scarcity').textContent  = scarcityWord;
+    document.getElementById('exit-popup').querySelector('.exit-note').textContent = scarcityWord;
+  })();
+
+  /* ────────────────────────────────────────
+     MOBILE HAMBURGER MENU
+  ──────────────────────────────────────── */
+  function toggleMenu() {
+    const hb   = document.getElementById('hamburger');
+    const menu = document.getElementById('mobile-menu');
+    const open = menu.classList.toggle('open');
+    hb.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  function closeMenu() {
+    document.getElementById('hamburger').classList.remove('open');
+    document.getElementById('mobile-menu').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  /* ────────────────────────────────────────
+     SCROLL ANIMATIONS
+  ──────────────────────────────────────── */
+  const ioReveal = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); ioReveal.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-in-up').forEach(el => ioReveal.observe(el));
+  // hero fires immediately
+  setTimeout(() => document.querySelector('#hero .fade-in-up')?.classList.add('visible'), 80);
+
+  /* ────────────────────────────────────────
+     ANIMATED COUNTERS
+  ──────────────────────────────────────── */
+  function runCounter(el) {
+    const target = parseInt(el.dataset.target, 10);
+    const duration = 1100;
+    const step = target / (duration / 16);
+    let cur = 0;
+    const t = setInterval(() => {
+      cur = Math.min(cur + step, target);
+      el.textContent = Math.floor(cur);
+      if (cur >= target) clearInterval(t);
+    }, 16);
+  }
+  new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.counter').forEach(runCounter);
+      }
+    });
+  }, { threshold: 0.5 }).observe(document.getElementById('stats'));
+
+  /* ────────────────────────────────────────
+     FLOATING CTA
+  ──────────────────────────────────────── */
+  const hero       = document.getElementById('hero');
+  const floatBtn   = document.getElementById('floating-cta');
+  window.addEventListener('scroll', () => {
+    floatBtn.classList.toggle('show', window.scrollY > hero.offsetTop + hero.offsetHeight - 80);
+  }, { passive: true });
+
+  /* ────────────────────────────────────────
+     EXIT INTENT — desktop mouseleave
+                 + mobile scroll-reverse
+  ──────────────────────────────────────── */
+  const POPUP_KEY = 'hl_exit_seen';
+  function showPopup() {
+    if (sessionStorage.getItem(POPUP_KEY)) return;
+    document.getElementById('exit-popup').classList.add('show');
+    sessionStorage.setItem(POPUP_KEY, '1');
+  }
+  function closePopup() {
+    document.getElementById('exit-popup').classList.remove('show');
+  }
+  // desktop: mouse leaves top of viewport
+  document.addEventListener('mouseleave', (e) => {
+    if (e.clientY < 20) showPopup();
+  });
+  // mobile: detect scroll reversal after scrolling down 50%
+  let lastScrollY = 0, maxScrollY = 0;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    maxScrollY = Math.max(maxScrollY, y);
+    const midPage = document.body.scrollHeight * 0.5;
+    if (maxScrollY > midPage && y < lastScrollY - 80) showPopup();
+    lastScrollY = y;
+  }, { passive: true });
+
+  /* ────────────────────────────────────────
+     FAQ ACCORDION
+  ──────────────────────────────────────── */
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    // close all
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  /* ────────────────────────────────────────
+     QUIZ
+  ──────────────────────────────────────── */
+  const quizAnswers = {};
+  function quizSelect(btn) {
+    quizAnswers[btn.dataset.q] = btn.dataset.v;
+    btn.closest('.quiz-options').querySelectorAll('.quiz-opt').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    setTimeout(() => {
+      const q = btn.dataset.q;
+      if (q === '1') {
+        document.getElementById('quiz-step-1').style.display = 'none';
+        document.getElementById('quiz-step-2').style.display = 'block';
+        document.getElementById('pb2').classList.add('active');
+      } else if (q === '2') {
+        document.getElementById('quiz-step-2').style.display = 'none';
+        document.getElementById('quiz-step-3').style.display = 'block';
+        document.getElementById('pb3').classList.add('active');
+      } else {
+        showQuizResult();
+      }
+    }, 260);
+  }
+  function showQuizResult() {
+    document.getElementById('quiz-body').style.display = 'none';
+    document.getElementById('quiz-result').classList.add('show');
+    const type = quizAnswers['1'], scale = quizAnswers['2'], timing = quizAnswers['3'];
+    let tag, headline, body;
+    if (scale === 'small' || type === 'unsure' || timing === 'explore') {
+      tag = '✦ Perfect for the Free Tier';
+      headline = 'Start with our free strategy call.';
+      body = "You're in the idea or exploration phase — exactly where the free call shines. You'll leave with a clear picture of what to build and how, at zero cost.";
+    } else if (scale === 'large') {
+      tag = '✦ Looks like a Max Tier project';
+      headline = "Let's scope it together — free.";
+      body = "Complex projects need a tailored approach. Book the free call so we can map the full scope, timeline, and architecture before committing to anything.";
+    } else if (timing === 'now' && scale !== 'small') {
+      tag = '✦ Pro Tier looks like your fit';
+      headline = "Ready to build? Let's talk first.";
+      body = "The Pro tier is built for exactly this — a single focused deliverable with full support. Book the free call to confirm the fit and lock in your spot this month.";
+    } else {
+      tag = "✦ Let's start with a free call";
+      headline = 'A roadmap first, a decision after.';
+      body = "Whether you end up on Pro or Max, every engagement starts the same way: a free 45-minute call and a written plan. Lock in your spot before the month fills.";
+    }
+    document.getElementById('result-tag').textContent     = tag;
+    document.getElementById('result-headline').textContent = headline;
+    document.getElementById('result-body').textContent    = body;
+  }
+  function quizRestart() {
+    Object.keys(quizAnswers).forEach(k => delete quizAnswers[k]);
+    document.getElementById('quiz-body').style.display = 'block';
+    document.getElementById('quiz-result').classList.remove('show');
+    document.getElementById('quiz-step-1').style.display = 'block';
+    document.getElementById('quiz-step-2').style.display = 'none';
+    document.getElementById('quiz-step-3').style.display = 'none';
+    document.querySelectorAll('.quiz-progress-bar').forEach((b, i) => b.classList.toggle('active', i === 0));
+    document.querySelectorAll('.quiz-opt').forEach(b => b.classList.remove('selected'));
+  }
+
+  /* ────────────────────────────────────────
+     CONTACT FORM — direct mailto (no 3rd party)
+  ──────────────────────────────────────── */
+  document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name    = document.getElementById('f-name').value.trim();
+    const email   = document.getElementById('f-email').value.trim();
+    const type    = document.getElementById('f-type').value;
+    const message = document.getElementById('f-msg').value.trim();
+
+    if (!name || !email || !type) {
+      // simple native validation fallback
+      this.reportValidity();
+      return;
+    }
+
+    const subject = encodeURIComponent(`HyperLightTek Inquiry — ${type}`);
+    const body    = encodeURIComponent(
+      `Hi HyperLightTek,\n\nName: ${name}\nEmail: ${email}\nProject Type: ${type}\n\n${message ? 'Details:\n' + message : '(No additional details provided.)'}\n\n—\nSent from hyperlighttek.com`
+    );
+
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+
+    // show success state
+    this.style.display = 'none';
+    document.getElementById('form-success').classList.add('show');
+  });
+</script>
 </body>
 </html>
