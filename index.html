@@ -57,6 +57,9 @@
       overflow-x: hidden;
     }
 
+    /* ── SCROLL OFFSET FOR STICKY NAV ── */
+    section[id], #stats { scroll-margin-top: 70px; }
+
     /* ── REDUCED MOTION ── */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
@@ -960,8 +963,37 @@
     .footer-logo-text { font-family: var(--font-head); font-weight: 800; font-size: 17px; letter-spacing: -0.5px; color: var(--white); margin-bottom: 8px; }
     .footer-copy { font-size: 13px; color: var(--muted); }
 
-    /* ─────────────────────────────────────────
-       FLOATING CTA
+    .nav-links a.active { color: var(--cyan); }
+
+    /* back to top */
+    #back-to-top {
+      position: fixed;
+      bottom: 24px; left: 24px;
+      z-index: 80;
+      display: none;
+      animation: slide-up 0.3s ease;
+    }
+    #back-to-top.show { display: flex; }
+    #back-to-top button {
+      width: 44px; height: 44px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-dim);
+      font-size: 14px;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    #back-to-top button:hover { border-color: var(--border-hi); color: var(--cyan); background: var(--bg2); }
+
+    /* footer links */
+    .footer-links { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-bottom: 16px; }
+    .footer-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--text-dim); }
+    .footer-email { font-size: 13px; margin-bottom: 16px; }
+    .footer-email a { color: var(--cyan); text-decoration: none; }
+    .footer-email a:hover { text-decoration: underline; }
     ───────────────────────────────────────── */
     #floating-cta {
       position: fixed;
@@ -1059,7 +1091,9 @@
       .services-grid       { grid-template-columns: 1fr 1fr; }
       .testimonials-grid   { grid-template-columns: 1fr 1fr; }
       .portfolio-grid      { grid-template-columns: 1fr 1fr; }
-      .tiers-grid          { grid-template-columns: 1fr 1fr; }
+      .tiers-grid          { grid-template-columns: 1fr; max-width: 520px; margin-left: auto; margin-right: auto; }
+      .tier-card.free-card { order: -2; }
+      .tier-card.featured  { order: -1; }
     }
 
     /* ─────────────────────────────────────────
@@ -1106,6 +1140,7 @@
       .btn-primary, .btn-secondary { width: 100%; max-width: 340px; justify-content: center; }
 
       /* tiers */
+      .tier-card.free-card { order: -2; }
       .tier-card.featured  { order: -1; }
 
       /* urgency bar */
@@ -1701,9 +1736,28 @@
 <footer>
   <div>
     <div class="footer-logo-text">HyperLightTek</div>
+    <div class="footer-email">
+      Questions? <a href="mailto:hello@hyperlighttek.com">hello@hyperlighttek.com</a>
+    </div>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="#services">Services</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#tiers">Pricing</a>
+      <a href="#portfolio">Work</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#faq">FAQ</a>
+      <a href="#book">Book Free Call</a>
+    </nav>
     <p class="footer-copy">© 2026 HyperLightTek. Built for those who move fast and build securely.</p>
   </div>
 </footer>
+
+<!-- ─── BACK TO TOP ─── -->
+<div id="back-to-top">
+  <button onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+</div>
 
 <!-- ─── FLOATING CTA ─── -->
 <div id="floating-cta">
@@ -1748,9 +1802,8 @@
     const scarcityWord = SPOTS_LEFT === 1 ? 'Only 1 spot remaining this month'
                        : `Only ${SPOTS_LEFT} spots remaining this month`;
 
-    document.getElementById('urgency-text').textContent   = spotsWord;
-    document.getElementById('scarcity-text').textContent  = scarcityWord;
-    document.getElementById('exit-scarcity').textContent  = scarcityWord;
+    document.getElementById('urgency-text').textContent  = spotsWord;
+    document.getElementById('scarcity-text').textContent = scarcityWord;
     document.getElementById('exit-popup').querySelector('.exit-note').textContent = scarcityWord;
   })();
 
@@ -1796,22 +1849,47 @@
       if (cur >= target) clearInterval(t);
     }, 16);
   }
-  new IntersectionObserver((entries) => {
+  const ioStats = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
         e.target.querySelectorAll('.counter').forEach(runCounter);
+        ioStats.unobserve(e.target);
       }
     });
-  }, { threshold: 0.5 }).observe(document.getElementById('stats'));
+  }, { threshold: 0.5 });
+  ioStats.observe(document.getElementById('stats'));
 
   /* ────────────────────────────────────────
-     FLOATING CTA
+     FLOATING CTA + BACK TO TOP
   ──────────────────────────────────────── */
   const hero       = document.getElementById('hero');
   const floatBtn   = document.getElementById('floating-cta');
+  const backToTop  = document.getElementById('back-to-top');
   window.addEventListener('scroll', () => {
-    floatBtn.classList.toggle('show', window.scrollY > hero.offsetTop + hero.offsetHeight - 80);
+    const pastHero = window.scrollY > hero.offsetTop + hero.offsetHeight - 80;
+    floatBtn.classList.toggle('show', pastHero);
+    backToTop.classList.toggle('show', window.scrollY > 400);
   }, { passive: true });
+
+  /* ────────────────────────────────────────
+     ACTIVE NAV HIGHLIGHTING
+  ──────────────────────────────────────── */
+  const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+  const sections = Array.from(navLinks)
+    .map(a => document.querySelector(a.getAttribute('href')))
+    .filter(Boolean);
+
+  const ioNav = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const id = e.target.id;
+        navLinks.forEach(a => {
+          a.classList.toggle('active', a.getAttribute('href') === `#${id}`);
+        });
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  sections.forEach(s => ioNav.observe(s));
 
   /* ────────────────────────────────────────
      EXIT INTENT — desktop mouseleave
@@ -1846,9 +1924,14 @@
   function toggleFaq(btn) {
     const item = btn.closest('.faq-item');
     const isOpen = item.classList.contains('open');
-    // close all
-    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
   }
 
   /* ────────────────────────────────────────
@@ -1932,11 +2015,14 @@
       `Hi HyperLightTek,\n\nName: ${name}\nEmail: ${email}\nProject Type: ${type}\n\n${message ? 'Details:\n' + message : '(No additional details provided.)'}\n\n—\nSent from hyperlighttek.com`
     );
 
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
-
-    // show success state
+    // show success state immediately so user sees feedback
     this.style.display = 'none';
     document.getElementById('form-success').classList.add('show');
+
+    // then open mail client after a brief delay
+    setTimeout(() => {
+      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+    }, 120);
   });
 </script>
 </body>
