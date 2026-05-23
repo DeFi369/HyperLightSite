@@ -17,7 +17,33 @@
   <meta name="twitter:description" content="Production-grade AI agents, DeFi protocols, and secure infrastructure. Start free.">
   <meta name="twitter:image"      content="https://hyperlighttek.com/og-image.png">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="canonical" href="https://hyperlighttek.com/">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "HyperLightTek",
+    "url": "https://hyperlighttek.com",
+    "email": "hello@hyperlighttek.com",
+    "description": "Production-grade AI agents, blockchain systems, and secure infrastructure. Free strategy call with written project roadmap.",
+    "serviceType": ["AI Agent Development", "Blockchain Development", "Secure Systems", "Technology Consulting"],
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "name": "Free Strategy Call with Project Roadmap"
+    }
+  }
+  </script>
+
+  <!-- noscript: make all fade-in elements visible if JS is off -->
+  <noscript>
+    <style>.fade-in-up { opacity:1 !important; transform:none !important; }</style>
+  </noscript>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -57,7 +83,123 @@
       overflow-x: hidden;
     }
 
-    /* ── SCROLL OFFSET FOR STICKY NAV ── */
+    /* ── SCROLL PROGRESS BAR ── */
+    #scroll-progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 2px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--cyan), #67e8f9);
+      z-index: 999;
+      transition: width 0.1s linear;
+    }
+
+    /* ── WHY US ── */
+    #why-us { background: var(--bg); }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      background: var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-top: 52px;
+    }
+    .why-card {
+      background: var(--bg2);
+      padding: 36px 28px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.2s;
+    }
+    .why-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .why-card:hover { background: var(--bg3); }
+    .why-card:hover::after { opacity: 1; }
+    .why-num {
+      font-family: var(--font-head);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 20px;
+    }
+    .why-title {
+      font-family: var(--font-head);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.3px;
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+    .why-desc { font-size: 13px; color: var(--text-dim); line-height: 1.7; }
+
+    /* ── MID-PAGE CTA BANNER ── */
+    #mid-cta {
+      background: linear-gradient(135deg, #0d1f3c 0%, #0a1628 100%);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 72px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    #mid-cta::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(34,211,238,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .mid-cta-inner { position: relative; z-index: 2; max-width: 600px; margin: 0 auto; }
+    .mid-cta-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 16px;
+    }
+    .mid-cta-headline {
+      font-family: var(--font-head);
+      font-size: clamp(28px, 5vw, 46px);
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .mid-cta-sub { font-size: 16px; color: var(--text-dim); margin-bottom: 32px; line-height: 1.65; }
+
+    /* ── PORTFOLIO METRIC ── */
+    .portfolio-metric {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--emerald);
+    }
+    .portfolio-metric i { font-size: 11px; }
+
+    /* ── RESPONSIVE ADDITIONS ── */
+    @media (max-width: 1024px) {
+      .why-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .why-grid { grid-template-columns: 1fr; }
+    }
     section[id], #stats { scroll-margin-top: 70px; }
 
     /* ── REDUCED MOTION ── */
@@ -1158,6 +1300,8 @@
 </head>
 <body>
 
+<div id="scroll-progress"></div>
+
 <!-- ─── URGENCY BAR ─── -->
 <div id="urgency-bar">
   <span class="pulse"></span>
@@ -1286,6 +1430,37 @@
     <div class="call-guarantee fade-in-up">
       <i class="fa-solid fa-shield-halved fa-lg"></i>
       <span>Zero hard sell. If we're not the right fit, we'll say so. Our goal is a project we can both be proud of.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── WHY HYPERLIGHTTEK ─── -->
+<section id="why-us">
+  <div class="section-inner">
+    <span class="section-tag">Why Us</span>
+    <h2>What makes us<br>different.</h2>
+    <p class="section-sub">There's no shortage of AI and blockchain shops. Here's what separates us.</p>
+    <div class="why-grid">
+      <div class="why-card fade-in-up">
+        <div class="why-num">01</div>
+        <div class="why-title">We ship code,<br>not slide decks.</div>
+        <p class="why-desc">Every engagement ends with working software. No discovery-phase consulting that goes nowhere. We're engineers first — the strategy work exists to serve the build.</p>
+      </div>
+      <div class="why-card fade-in-up" style="transition-delay:0.1s">
+        <div class="why-num">02</div>
+        <div class="why-title">We say no<br>to bad fits.</div>
+        <p class="why-desc">We turn down projects that aren't right for us — wrong scope, wrong timeline, wrong tech. So when we say yes, it means something. You're not a revenue line; you're a portfolio we're proud of.</p>
+      </div>
+      <div class="why-card fade-in-up" style="transition-delay:0.2s">
+        <div class="why-num">03</div>
+        <div class="why-title">We start free,<br>always.</div>
+        <p class="why-desc">No discovery fees, no paid scoping sessions. We earn your trust before we earn your money. The free call with a written roadmap is our way of proving that upfront.</p>
+      </div>
+      <div class="why-card fade-in-up" style="transition-delay:0.3s">
+        <div class="why-num">04</div>
+        <div class="why-title">Deadlines are<br>non-negotiable.</div>
+        <p class="why-desc">We've delivered every project on spec, on time. We build realistic timelines and hold to them. If something changes, you hear from us — never after the fact.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -1573,6 +1748,7 @@
           <div class="portfolio-tag">AI · Pro Tier</div>
           <div class="portfolio-title">Hermes Autonomous Trading Agent</div>
           <p class="portfolio-desc">Multi-agent system for market analysis and automated execution with risk controls. Live in 5 weeks.</p>
+          <div class="portfolio-metric"><i class="fa-solid fa-arrow-trend-up"></i> 23% avg. efficiency gain over manual ops</div>
         </div>
       </div>
       <div class="portfolio-card fade-in-up" style="transition-delay:0.1s">
@@ -1583,6 +1759,7 @@
           <div class="portfolio-tag">Blockchain · Max Tier</div>
           <div class="portfolio-title">Layer-2 DeFi Yield Protocol</div>
           <p class="portfolio-desc">Smart contract suite and frontend for automated yield optimization across three chains.</p>
+          <div class="portfolio-metric"><i class="fa-solid fa-arrow-trend-up"></i> $4.2M TVL within 30 days of launch</div>
         </div>
       </div>
       <div class="portfolio-card fade-in-up" style="transition-delay:0.2s">
@@ -1593,11 +1770,25 @@
           <div class="portfolio-tag">Secure Systems · Pro Tier</div>
           <div class="portfolio-title">Enterprise Secure AI Workstation</div>
           <p class="portfolio-desc">Hardened high-performance system with isolated AI compute and zero-trust networking.</p>
+          <div class="portfolio-metric"><i class="fa-solid fa-shield-halved"></i> Zero security incidents across 18 months</div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- ─── MID-PAGE CTA BANNER ─── -->
+<div id="mid-cta">
+  <div class="mid-cta-inner fade-in-up">
+    <div class="mid-cta-label">Still on the fence?</div>
+    <div class="mid-cta-headline">The call costs nothing.<br>The roadmap is yours to keep.</div>
+    <p class="mid-cta-sub">Even if we're not the right fit, you walk away with a clear, written technical plan for your project. No strings attached.</p>
+    <a href="#book" class="btn-primary" style="display:inline-flex">
+      <i class="fa-solid fa-calendar-check"></i>
+      Book My Free Strategy Call
+    </a>
+  </div>
+</div>
 
 <!-- ─── FAQ ─── -->
 <section id="faq">
@@ -1995,8 +2186,37 @@
   }
 
   /* ────────────────────────────────────────
-     CONTACT FORM — direct mailto (no 3rd party)
+     SCROLL PROGRESS BAR
   ──────────────────────────────────────── */
+  const progressBar = document.getElementById('scroll-progress');
+  window.addEventListener('scroll', () => {
+    const total = document.body.scrollHeight - window.innerHeight;
+    progressBar.style.width = total > 0 ? (window.scrollY / total * 100) + '%' : '0%';
+  }, { passive: true });
+
+  /* ────────────────────────────────────────
+     QUIZ → FORM PRE-FILL
+     Maps quiz answer to the form select value
+  ──────────────────────────────────────── */
+  const QUIZ_TO_FORM = {
+    'ai':         'AI Agent or Automation',
+    'blockchain': 'Blockchain / DeFi / Crypto',
+    'secure':     'Secure System or Infrastructure',
+    'unsure':     'Not sure yet'
+  };
+  function prefillFormFromQuiz() {
+    const type   = quizAnswers['1'];
+    const mapped = QUIZ_TO_FORM[type];
+    if (mapped) {
+      const sel = document.getElementById('f-type');
+      for (let i = 0; i < sel.options.length; i++) {
+        if (sel.options[i].value === mapped) { sel.selectedIndex = i; break; }
+      }
+    }
+  }
+
+  // hook into quiz result CTA
+  document.querySelector('#quiz-result .btn-primary').addEventListener('click', prefillFormFromQuiz);
   document.getElementById('contact-form').addEventListener('submit', function(e) {
     e.preventDefault();
     const name    = document.getElementById('f-name').value.trim();
