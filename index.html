@@ -46,7 +46,7 @@
   </noscript>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
@@ -352,7 +352,7 @@
       inset: 0;
       background: rgba(7,9,15,0.97);
       backdrop-filter: blur(16px);
-      z-index: 85;
+      z-index: 101;
       flex-direction: column;
       align-items: center;
       justify-content: center;
@@ -840,7 +840,6 @@
       margin-bottom: 14px;
     }
     .btn-tier {
-      display: block;
       width: 100%;
       font-family: var(--font-body);
       font-weight: 700;
@@ -1621,6 +1620,8 @@
   </a>
 </div>
 
+<main id="main-content">
+
 <!-- ─── HERO ─── -->
 <section id="hero">
   <div class="hero-grid"></div>
@@ -2331,6 +2332,8 @@
   </div>
 </section>
 
+</main>
+
 <!-- ─── FOOTER ─── -->
 <footer>
   <div>
@@ -2646,6 +2649,8 @@
     // show success state immediately so user sees feedback
     this.style.display = 'none';
     document.getElementById('form-success').classList.add('show');
+    const fn = document.querySelector('.book-footnote');
+    if (fn) fn.style.display = 'none';
 
     // then open mail client after a brief delay
     setTimeout(() => {
