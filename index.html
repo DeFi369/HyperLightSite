@@ -44,8 +44,10 @@
   <noscript>
     <style>.fade-in-up { opacity:1 !important; transform:none !important; }</style>
   </noscript>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <style>
@@ -69,7 +71,6 @@
       --white:     #f8fafc;
       --font-head: 'Syne', sans-serif;
       --font-body: 'Manrope', sans-serif;
-      --radius:    12px;
     }
 
     html { scroll-behavior: smooth; }
@@ -1248,36 +1249,27 @@
       flex-direction: column;
       transition: border-color 0.25s, transform 0.22s;
     }
-    .guide-card.g-cyan   { --gc: #22d3ee; --gc-dim: rgba(34,211,238,0.08); }
-    .guide-card.g-amber  { --gc: #f59e0b; --gc-dim: rgba(245,158,11,0.08); }
-    .guide-card.g-purple { --gc: #a78bfa; --gc-dim: rgba(167,139,250,0.08); }
+    .guide-card.g-cyan   { --gc: #22d3ee; }
+    .guide-card.g-amber  { --gc: #f59e0b; }
+    .guide-card.g-purple { --gc: #a78bfa; }
     .guide-card:hover { border-color: var(--gc); transform: translateY(-4px); }
 
     /* cover thumbnail */
     .guide-thumb {
-      height: 152px;
+      height: 180px;
       position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       overflow: hidden;
+      background: var(--bg);
     }
-    .guide-thumb-grid {
-      position: absolute; inset: 0;
-      background-image:
-        linear-gradient(var(--gc-dim, rgba(34,211,238,0.06)) 1px, transparent 1px),
-        linear-gradient(90deg, var(--gc-dim, rgba(34,211,238,0.06)) 1px, transparent 1px);
-      background-size: 28px 28px;
+    .guide-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: right center;
+      display: block;
+      transition: transform 0.45s ease;
     }
-    .guide-thumb-icon {
-      font-size: 72px;
-      color: var(--gc);
-      opacity: 0.12;
-      transition: opacity 0.25s;
-      position: relative;
-      z-index: 1;
-    }
-    .guide-card:hover .guide-thumb-icon { opacity: 0.22; }
+    .guide-card:hover .guide-thumb img { transform: scale(1.04); }
     .guide-num {
       position: absolute; top: 12px; left: 12px;
       width: 26px; height: 26px;
@@ -1585,7 +1577,7 @@
 <div id="urgency-bar">
   <span class="pulse"></span>
   <strong id="urgency-text"></strong>
-  <a onclick="document.getElementById('book').scrollIntoView({behavior:'smooth'})"> Claim your spot →</a>
+  <a href="#book"> Claim your spot →</a>
 </div>
 
 <!-- ─── NAVBAR ─── -->
@@ -1982,9 +1974,10 @@
 
       <!-- Guide 1: Linux -->
       <div class="guide-card g-cyan fade-in-up">
-        <div class="guide-thumb" style="background:linear-gradient(135deg,#061a1a,#080e1c)">
-          <div class="guide-thumb-grid"></div>
-          <i class="fa-solid fa-terminal guide-thumb-icon"></i>
+        <div class="guide-thumb">
+          <img src="/guide-01-linux.png"
+               alt="Build a Hardened Linux Workstation — HyperLightTek Guide 01"
+               loading="lazy" decoding="async">
           <div class="guide-num">01</div>
           <div class="guide-dl-badge"><i class="fa-solid fa-download"></i> PDF</div>
         </div>
@@ -2002,7 +1995,7 @@
           <div class="guide-footer">
             <div class="guide-price">$9 <span>one-time</span></div>
             <a href="https://hyperlighttek.gumroad.com/l/linux-guide"
-               target="_blank" rel="noopener" class="btn-guide">
+               target="_blank" rel="noopener noreferrer" class="btn-guide">
               Get the Guide <i class="fa-solid fa-arrow-right"></i>
             </a>
           </div>
@@ -2011,9 +2004,10 @@
 
       <!-- Guide 2: DeFi -->
       <div class="guide-card g-amber fade-in-up" style="transition-delay:0.1s">
-        <div class="guide-thumb" style="background:linear-gradient(135deg,#1a1100,#0e0d08)">
-          <div class="guide-thumb-grid"></div>
-          <i class="fa-brands fa-ethereum guide-thumb-icon"></i>
+        <div class="guide-thumb">
+          <img src="/guide-02-defi.png"
+               alt="DeFi From Scratch: Wallets, DEXes & Your First On-Chain Trade — HyperLightTek Guide 02"
+               loading="lazy" decoding="async">
           <div class="guide-num">02</div>
           <div class="guide-dl-badge"><i class="fa-solid fa-download"></i> PDF</div>
         </div>
@@ -2031,7 +2025,7 @@
           <div class="guide-footer">
             <div class="guide-price">$9 <span>one-time</span></div>
             <a href="https://hyperlighttek.gumroad.com/l/defi-guide"
-               target="_blank" rel="noopener" class="btn-guide">
+               target="_blank" rel="noopener noreferrer" class="btn-guide">
               Get the Guide <i class="fa-solid fa-arrow-right"></i>
             </a>
           </div>
@@ -2040,9 +2034,10 @@
 
       <!-- Guide 3: AI Agent -->
       <div class="guide-card g-purple fade-in-up" style="transition-delay:0.2s">
-        <div class="guide-thumb" style="background:linear-gradient(135deg,#0d0516,#080912)">
-          <div class="guide-thumb-grid"></div>
-          <i class="fa-solid fa-brain guide-thumb-icon"></i>
+        <div class="guide-thumb">
+          <img src="/guide-03-ai.png"
+               alt="Deploy Your First AI Agent: A Hands-On Guide — HyperLightTek Guide 03"
+               loading="lazy" decoding="async">
           <div class="guide-num">03</div>
           <div class="guide-dl-badge"><i class="fa-solid fa-download"></i> PDF</div>
         </div>
@@ -2060,7 +2055,7 @@
           <div class="guide-footer">
             <div class="guide-price">$9 <span>one-time</span></div>
             <a href="https://hyperlighttek.gumroad.com/l/ai-agent-guide"
-               target="_blank" rel="noopener" class="btn-guide">
+               target="_blank" rel="noopener noreferrer" class="btn-guide">
               Get the Guide <i class="fa-solid fa-arrow-right"></i>
             </a>
           </div>
@@ -2088,7 +2083,7 @@
           <div class="bundle-save">Save $8</div>
         </div>
         <a href="https://hyperlighttek.gumroad.com/l/guide-bundle"
-           target="_blank" rel="noopener" class="btn-bundle">
+           target="_blank" rel="noopener noreferrer" class="btn-bundle">
           <i class="fa-solid fa-layer-group"></i>
           Get the Bundle
         </a>
@@ -2409,7 +2404,7 @@
 
     document.getElementById('urgency-text').textContent  = spotsWord;
     document.getElementById('scarcity-text').textContent = scarcityWord;
-    document.getElementById('exit-popup').querySelector('.exit-note').textContent = scarcityWord;
+    document.getElementById('exit-scarcity').textContent = scarcityWord;
   })();
 
   /* ────────────────────────────────────────
@@ -2465,15 +2460,32 @@
   ioStats.observe(document.getElementById('stats'));
 
   /* ────────────────────────────────────────
-     FLOATING CTA + BACK TO TOP
+     SCROLL — progress bar, floating CTA,
+               back to top, exit intent
   ──────────────────────────────────────── */
-  const hero       = document.getElementById('hero');
-  const floatBtn   = document.getElementById('floating-cta');
-  const backToTop  = document.getElementById('back-to-top');
+  const progressBar = document.getElementById('scroll-progress');
+  const hero        = document.getElementById('hero');
+  const floatBtn    = document.getElementById('floating-cta');
+  const backToTop   = document.getElementById('back-to-top');
+  let lastScrollY = 0, maxScrollY = 0;
+
   window.addEventListener('scroll', () => {
-    const pastHero = window.scrollY > hero.offsetTop + hero.offsetHeight - 80;
+    const y        = window.scrollY;
+    const total    = document.body.scrollHeight - window.innerHeight;
+    const pastHero = y > hero.offsetTop + hero.offsetHeight - 80;
+
+    // progress bar
+    progressBar.style.width = total > 0 ? (y / total * 100) + '%' : '0%';
+
+    // floating CTA + back to top
     floatBtn.classList.toggle('show', pastHero);
-    backToTop.classList.toggle('show', window.scrollY > 400);
+    backToTop.classList.toggle('show', y > 400);
+
+    // mobile exit intent — scroll reversal after passing 50% of page
+    maxScrollY = Math.max(maxScrollY, y);
+    const midPage = document.body.scrollHeight * 0.5;
+    if (maxScrollY > midPage && y < lastScrollY - 80) showPopup();
+    lastScrollY = y;
   }, { passive: true });
 
   /* ────────────────────────────────────────
@@ -2513,15 +2525,6 @@
   document.addEventListener('mouseleave', (e) => {
     if (e.clientY < 20) showPopup();
   });
-  // mobile: detect scroll reversal after scrolling down 50%
-  let lastScrollY = 0, maxScrollY = 0;
-  window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    maxScrollY = Math.max(maxScrollY, y);
-    const midPage = document.body.scrollHeight * 0.5;
-    if (maxScrollY > midPage && y < lastScrollY - 80) showPopup();
-    lastScrollY = y;
-  }, { passive: true });
 
   /* ────────────────────────────────────────
      FAQ ACCORDION
@@ -2598,15 +2601,6 @@
     document.querySelectorAll('.quiz-progress-bar').forEach((b, i) => b.classList.toggle('active', i === 0));
     document.querySelectorAll('.quiz-opt').forEach(b => b.classList.remove('selected'));
   }
-
-  /* ────────────────────────────────────────
-     SCROLL PROGRESS BAR
-  ──────────────────────────────────────── */
-  const progressBar = document.getElementById('scroll-progress');
-  window.addEventListener('scroll', () => {
-    const total = document.body.scrollHeight - window.innerHeight;
-    progressBar.style.width = total > 0 ? (window.scrollY / total * 100) + '%' : '0%';
-  }, { passive: true });
 
   /* ────────────────────────────────────────
      QUIZ → FORM PRE-FILL
