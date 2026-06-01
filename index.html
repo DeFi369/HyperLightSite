@@ -203,6 +203,49 @@
     }
     section[id], #stats { scroll-margin-top: 70px; }
 
+    /* ── GUIDES PILL ── */
+    #guides-pill {
+      position: fixed;
+      top: 68px;
+      right: 16px;
+      z-index: 79;
+      display: none;
+      align-items: center;
+      filter: drop-shadow(0 4px 20px rgba(0,0,0,0.5));
+    }
+    #guides-pill.show    { display: flex; animation: pill-in  0.45s cubic-bezier(0.34,1.56,0.64,1) forwards; }
+    #guides-pill.dismiss { animation: pill-out 0.25s ease forwards; }
+    @keyframes pill-in  { from { opacity:0; transform:translateX(48px); } to { opacity:1; transform:translateX(0); } }
+    @keyframes pill-out { from { opacity:1; transform:translateX(0); }   to { opacity:0; transform:translateX(48px); } }
+    .pill-border {
+      display: flex; align-items: center;
+      border-radius: 999px; padding: 1.5px;
+      background: linear-gradient(90deg, #22d3ee 0%, #f59e0b 50%, #a78bfa 100%);
+    }
+    .pill-inner {
+      display: flex; align-items: center; gap: 8px;
+      background: var(--bg2); border-radius: 999px;
+      padding: 8px 10px 8px 12px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .pill-inner:hover { background: var(--bg3); }
+    .pill-dots  { display: flex; gap: 4px; align-items: center; }
+    .pill-dot   { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+    .pill-text  { font-family: var(--font-body); font-size: 13px; font-weight: 700; color: var(--white); white-space: nowrap; }
+    .pill-arrow { font-size: 13px; color: var(--cyan); font-weight: 700; }
+    .pill-close {
+      background: none; border: none; color: var(--muted);
+      font-size: 18px; line-height: 1; cursor: pointer;
+      padding: 6px 8px 6px 4px; margin-left: 2px;
+      transition: color 0.2s; flex-shrink: 0;
+    }
+    .pill-close:hover { color: var(--white); }
+    @media (max-width: 480px) {
+      #guides-pill { top: 60px; right: 8px; }
+      .pill-text   { font-size: 12px; }
+    }
+
     /* ── REDUCED MOTION ── */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
@@ -1264,7 +1307,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: right center;
+      object-position: center;
       display: block;
       transition: transform 0.45s ease;
     }
@@ -1976,7 +2019,7 @@
       <!-- Guide 1: Linux -->
       <div class="guide-card g-cyan fade-in-up">
         <div class="guide-thumb">
-          <img src="/guide-01-linux.png"
+          <img src="/guide-01-linux-card.png"
                alt="Build a Hardened Linux Workstation — HyperLightTek Guide 01"
                loading="lazy" decoding="async">
           <div class="guide-num">01</div>
@@ -2006,7 +2049,7 @@
       <!-- Guide 2: DeFi -->
       <div class="guide-card g-amber fade-in-up" style="transition-delay:0.1s">
         <div class="guide-thumb">
-          <img src="/guide-02-defi.png"
+          <img src="/guide-02-defi-card.png"
                alt="DeFi From Scratch: Wallets, DEXes & Your First On-Chain Trade — HyperLightTek Guide 02"
                loading="lazy" decoding="async">
           <div class="guide-num">02</div>
@@ -2036,7 +2079,7 @@
       <!-- Guide 3: AI Agent -->
       <div class="guide-card g-purple fade-in-up" style="transition-delay:0.2s">
         <div class="guide-thumb">
-          <img src="/guide-03-ai.png"
+          <img src="/guide-03-ai-card.png"
                alt="Deploy Your First AI Agent: A Hands-On Guide — HyperLightTek Guide 03"
                loading="lazy" decoding="async">
           <div class="guide-num">03</div>
@@ -2355,6 +2398,22 @@
   </div>
 </footer>
 
+<!-- ─── GUIDES PILL ─── -->
+<div id="guides-pill" role="complementary" aria-label="Guide shop">
+  <div class="pill-border">
+    <a href="#resources" class="pill-inner" onclick="dismissPill(false)">
+      <span class="pill-dots">
+        <span class="pill-dot" style="background:#22d3ee"></span>
+        <span class="pill-dot" style="background:#f59e0b"></span>
+        <span class="pill-dot" style="background:#a78bfa"></span>
+      </span>
+      <span class="pill-text">Guides — from $9</span>
+      <span class="pill-arrow">→</span>
+    </a>
+    <button class="pill-close" onclick="dismissPill(true)" aria-label="Dismiss guides pill">×</button>
+  </div>
+</div>
+
 <!-- ─── BACK TO TOP ─── -->
 <div id="back-to-top">
   <button onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">
@@ -2395,6 +2454,24 @@
      ════════════════════════════════════════ */
   const SPOTS_LEFT    = 3;           // update monthly
   const CONTACT_EMAIL = 'hello@hyperlighttek.com'; // your email
+
+  /* ────────────────────────────────────────
+     GUIDES PILL
+  ──────────────────────────────────────── */
+  const PILL_KEY = 'hl_pill_dismissed';
+  function dismissPill(permanent) {
+    const pill = document.getElementById('guides-pill');
+    if (!pill) return;
+    pill.classList.add('dismiss');
+    setTimeout(() => pill.remove(), 280);
+    if (permanent) sessionStorage.setItem(PILL_KEY, '1');
+  }
+  if (!sessionStorage.getItem(PILL_KEY)) {
+    setTimeout(() => {
+      const pill = document.getElementById('guides-pill');
+      if (pill) pill.classList.add('show');
+    }, 1500);
+  }
 
   /* ────────────────────────────────────────
      POPULATE SPOTS COUNT
