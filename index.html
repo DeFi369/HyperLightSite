@@ -206,7 +206,7 @@
     /* ── GUIDES PILL ── */
     #guides-pill {
       position: fixed;
-      top: 68px;
+      top: 120px;
       right: 16px;
       z-index: 79;
       display: none;
@@ -242,7 +242,7 @@
     }
     .pill-close:hover { color: var(--white); }
     @media (max-width: 480px) {
-      #guides-pill { top: 60px; right: 8px; }
+      #guides-pill { top: 140px; right: 8px; }
       .pill-text   { font-size: 12px; }
     }
 
@@ -1298,7 +1298,7 @@
 
     /* cover thumbnail */
     .guide-thumb {
-      height: 180px;
+      aspect-ratio: 1 / 1;
       position: relative;
       overflow: hidden;
       background: var(--bg);
@@ -2019,7 +2019,7 @@
       <!-- Guide 1: Linux -->
       <div class="guide-card g-cyan fade-in-up">
         <div class="guide-thumb">
-          <img src="/guide-01-linux-card.png"
+          <img src="/guide-01-card.png"
                alt="Build a Hardened Linux Workstation — HyperLightTek Guide 01"
                loading="lazy" decoding="async">
           <div class="guide-num">01</div>
@@ -2049,7 +2049,7 @@
       <!-- Guide 2: DeFi -->
       <div class="guide-card g-amber fade-in-up" style="transition-delay:0.1s">
         <div class="guide-thumb">
-          <img src="/guide-02-defi-card.png"
+          <img src="/guide-02-card.png"
                alt="DeFi From Scratch: Wallets, DEXes & Your First On-Chain Trade — HyperLightTek Guide 02"
                loading="lazy" decoding="async">
           <div class="guide-num">02</div>
@@ -2079,7 +2079,7 @@
       <!-- Guide 3: AI Agent -->
       <div class="guide-card g-purple fade-in-up" style="transition-delay:0.2s">
         <div class="guide-thumb">
-          <img src="/guide-03-ai-card.png"
+          <img src="/guide-03-card.png"
                alt="Deploy Your First AI Agent: A Hands-On Guide — HyperLightTek Guide 03"
                loading="lazy" decoding="async">
           <div class="guide-num">03</div>
@@ -2467,10 +2467,8 @@
     if (permanent) sessionStorage.setItem(PILL_KEY, '1');
   }
   if (!sessionStorage.getItem(PILL_KEY)) {
-    setTimeout(() => {
-      const pill = document.getElementById('guides-pill');
-      if (pill) pill.classList.add('show');
-    }, 1500);
+    const pill = document.getElementById('guides-pill');
+    if (pill) pill.classList.add('show');
   }
 
   /* ────────────────────────────────────────
