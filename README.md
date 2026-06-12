@@ -1,4 +1,4 @@
-# HyperLightTek
+# HyperLightTech
 
 **Building the future economy: Autonomous AI agents, secure blockchain systems, and production-grade DeFi on PulseChain.**
 
