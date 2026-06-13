@@ -1,48 +1,25 @@
 # HyperLightTech
 
-**Building the future economy: Autonomous AI agents, secure blockchain systems, and production-grade DeFi on PulseChain.**
+We build production-grade AI agents, blockchain systems, and secure technology infrastructure for clients who need things done right.
 
-Modern, minimalist single-page marketing site for HyperLightTek services. Live at [hyperlighttek.com](https://hyperlighttek.com).
+## What We Do
 
-## Vision
-HyperLightTek delivers cutting-edge solutions at the intersection of **AI autonomy**, **blockchain security**, and **real DeFi**. Inspired by Hermes-style agents and high-assurance systems, we help builders and organizations deploy reliable, intelligent technology that matters.
+**AI Agents** — Autonomous systems, multi-agent pipelines, RAG architectures, and intelligent automation built for real-world reliability.
 
-## Core Focus Areas
-- **AI Agents**: Hermes-inspired autonomous systems for intelligence, automation, and decision-making (see [WorldHermes](https://github.com/DeFi369/WorldHermes)).
-- **Blockchain & DeFi**: Secure, high-performance implementations on PulseChain and beyond. Real yield, permissionless infrastructure, and next-gen financial primitives.
-- **Secure Systems & Consulting**: Custom builds, defense-grade security, intelligence tooling, and full-lifecycle project support.
+**Blockchain & Crypto** — Smart contracts, DeFi protocols, token engineering, and secure Web3 integrations from end to end.
 
-## Services
-Three tiers designed for different needs:
-- **Free**: Initial strategy call + written project roadmap.
-- **Pro**: Production-grade development and implementation.
-- **Max**: End-to-end custom solutions with ongoing support.
+**Secure Systems & Consulting** — High-performance hardened workstations, infrastructure security, and technology strategy for individuals and organizations.
 
-Featured tools include an integrated business card PDF generator. All work emphasizes clean architecture, responsiveness, and SEO.
+## Service Tiers
 
-## Tech Stack
-- Static HTML + Tailwind CSS + vanilla JS
-- Deployed via GitHub Pages
-- Aligned with broader HyperLight portfolio: [WorldHermes](https://github.com/DeFi369/WorldHermes), [QBFF](https://github.com/DeFi369/QBFF), [PulseTrack](https://github.com/DeFi369/PulseTrack), etc.
+- **Free** — 45-minute strategy call, high-level roadmap, access to our knowledge base. No cost, no obligation.
+- **Pro** — Custom AI agent or blockchain solution, full development and testing, deployment, documentation, and 30 days priority support. Starting at $2,500/project.
+- **Max** — Everything in Pro plus multi-agent systems or complex DeFi, ongoing maintenance, and a dedicated support channel. Starting at $8,000/project.
 
-## Quick Start / Deployment
-1. Clone the repo.
-2. Customize `index.html` and assets as needed.
-3. Push to `main` — GitHub Pages handles the rest.
+## Digital Guides
 
-```bash
-git clone https://github.com/DeFi369/HyperLightSite.git
-```
-
-## Related Projects
-- [WorldHermes](https://github.com/DeFi369/WorldHermes): Modular AI agent framework
-- Other tools in the HyperLight ecosystem
+We publish in-depth technical guides covering Linux workstation security, DeFi and crypto strategy, and AI agent development. Available via Gumroad.
 
 ## Get In Touch
-Book a free strategy session for a tailored roadmap. Serious inquiries only.
 
-Built with focus on **Technology ~ Defense ~ Intelligence**.
-
----
-
-*HyperLight – Building on PulseChain. The Future Economy is real DeFi.*
+Visit [hyperlighttech.com](https://hyperlighttech.com) to book a free strategy call or send a project brief. We respond within 24 hours.
