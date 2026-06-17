@@ -1,2631 +1,1915 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="HyperLightTech — Production-grade AI Agents, Blockchain & Secure Systems. Start with a free strategy call.">
-  <title>HyperLightTech | AI Agents • Blockchain • Secure Systems</title>
-
-  <!-- Open Graph / Social Preview -->
-  <meta property="og:type"        content="website">
-  <meta property="og:url"         content="https://hyperlighttek.com/">
-  <meta property="og:title"       content="HyperLightTech | AI Agents • Blockchain • Secure Systems">
-  <meta property="og:description" content="Production-grade AI agents, DeFi protocols, and secure infrastructure. Start with a free 45-minute strategy call and written roadmap.">
-  <meta property="og:image"       content="https://hyperlighttek.com/og-image.png">
-  <meta name="twitter:card"       content="summary_large_image">
-  <meta name="twitter:title"      content="HyperLightTech | AI Agents • Blockchain • Secure Systems">
-  <meta name="twitter:description" content="Production-grade AI agents, DeFi protocols, and secure infrastructure. Start free.">
-  <meta name="twitter:image"      content="https://hyperlighttek.com/og-image.png">
-
-  <link rel="canonical" href="https://hyperlighttek.com/">
-  <link rel="icon" href="favicon.ico" sizes="any">
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-
-  <!-- Structured Data -->
+ <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="HyperLightTech &mdash; Production-grade AI Agents, Blockchain & Secure Systems. Start with a free strategy call." name="description">
+  <title>
+   HyperLightTech | AI Agents &bull; Blockchain &bull; Secure Systems
+  </title>
+  <meta content="website" property="og:type">
+  <meta content="https://hyperlighttech.com/" property="og:url">
+  <meta content="HyperLightTech | AI Agents &bull; Blockchain &bull; Secure Systems" property="og:title">
+  <meta content="Production-grade AI agents, DeFi protocols, and secure infrastructure. Start with a free 45-minute strategy call and written roadmap." property="og:description">
+  <meta content="https://hyperlighttech.com/og-image.png" property="og:image">
+  <meta content="summary_large_image" name="twitter:card">
+  <meta content="HyperLightTech | AI Agents &bull; Blockchain &bull; Secure Systems" name="twitter:title">
+  <meta content="Production-grade AI agents, DeFi protocols, and secure infrastructure. Start free." name="twitter:description">
+  <meta content="https://hyperlighttech.com/og-image.png" name="twitter:image">
+  <link href="https://hyperlighttech.com/" rel="canonical">
+  <link href="favicon.ico" rel="icon" sizes="any">
+  <link href="favicon.svg" rel="icon" type="image/svg+xml">
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "HyperLightTech",
-    "url": "https://hyperlighttek.com",
-    "email": "hello@hyperlighttek.com",
-    "description": "Production-grade AI agents, blockchain systems, and secure infrastructure. Free strategy call with written project roadmap.",
-    "serviceType": ["AI Agent Development", "Blockchain Development", "Secure Systems", "Technology Consulting"],
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD",
-      "name": "Free Strategy Call with Project Roadmap"
-    }
-  }
+   {"@context":"https://schema.org","@type":"Organization","name":"HyperLightTech","url":"https://hyperlighttech.com","email":"hello@hyperlighttech.com","description":"Production-grade AI agents, blockchain systems, and secure infrastructure. Free strategy call with written project roadmap.","serviceType":["AI Agent Development","Blockchain Development","Secure Systems","Technology Consulting"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD","name":"Free Strategy Call with Project Roadmap"}}
   </script>
-
-  <!-- noscript: make all fade-in elements visible if JS is off -->
   <noscript>
-    <style>.fade-in-up { opacity:1 !important; transform:none !important; }</style>
-  </noscript>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-  <style>
-    /* ── RESET ── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    /* ── TOKENS ── */
-    :root {
-      --bg:        #07090f;
-      --bg2:       #0d1120;
-      --bg3:       #111827;
-      --border:    rgba(255,255,255,0.07);
-      --border-hi: rgba(34,211,238,0.25);
-      --cyan:      #22d3ee;
-      --cyan-dim:  rgba(34,211,238,0.12);
-      --amber:     #f59e0b;
-      --emerald:   #34d399;
-      --muted:     #6b7280;
-      --text:      #e2e8f0;
-      --text-dim:  #94a3b8;
-      --white:     #f8fafc;
-      --font-head: 'Syne', sans-serif;
-      --font-body: 'Manrope', sans-serif;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font-body);
-      font-size: 16px;
-      line-height: 1.65;
-      overflow-x: hidden;
-    }
-
-    /* ── SCROLL PROGRESS BAR ── */
-    #scroll-progress {
-      position: fixed;
-      top: 0; left: 0;
-      height: 2px;
-      width: 0%;
-      background: linear-gradient(90deg, var(--cyan), #67e8f9);
-      z-index: 999;
-      transition: width 0.1s linear;
-    }
-
-    /* ── WHY US ── */
-    #why-us { background: var(--bg); }
-    .why-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2px;
-      background: var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-      margin-top: 52px;
-    }
-    .why-card {
-      background: var(--bg2);
-      padding: 36px 28px;
-      position: relative;
-      overflow: hidden;
-      transition: background 0.2s;
-    }
-    .why-card::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .why-card:hover { background: var(--bg3); }
-    .why-card:hover::after { opacity: 1; }
-    .why-num {
-      font-family: var(--font-head);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--cyan);
-      margin-bottom: 20px;
-    }
-    .why-title {
-      font-family: var(--font-head);
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--white);
-      letter-spacing: -0.3px;
-      margin-bottom: 10px;
-      line-height: 1.2;
-    }
-    .why-desc { font-size: 13px; color: var(--text-dim); line-height: 1.7; }
-
-    /* ── MID-PAGE CTA BANNER ── */
-    #mid-cta {
-      background: linear-gradient(135deg, #0d1f3c 0%, #0a1628 100%);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 72px 24px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    #mid-cta::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(34,211,238,0.07) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .mid-cta-inner { position: relative; z-index: 2; max-width: 600px; margin: 0 auto; }
-    .mid-cta-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--cyan);
-      margin-bottom: 16px;
-    }
-    .mid-cta-headline {
-      font-family: var(--font-head);
-      font-size: clamp(28px, 5vw, 46px);
-      font-weight: 800;
-      color: var(--white);
-      letter-spacing: -1.5px;
-      line-height: 1.1;
-      margin-bottom: 16px;
-    }
-    .mid-cta-sub { font-size: 16px; color: var(--text-dim); margin-bottom: 32px; line-height: 1.65; }
-
-    /* ── PORTFOLIO METRIC ── */
-    .portfolio-metric {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      margin-top: 12px;
-      padding-top: 12px;
-      border-top: 1px solid var(--border);
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--emerald);
-    }
-    .portfolio-metric i { font-size: 11px; }
-
-    /* ── RESPONSIVE ADDITIONS ── */
-    @media (max-width: 1024px) {
-      .why-grid { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 768px) {
-      .why-grid { grid-template-columns: 1fr; }
-    }
-    section[id], #stats { scroll-margin-top: 70px; }
-
-    /* ── GUIDES PILL ── */
-    #guides-pill {
-      position: fixed;
-      top: 120px;
-      right: 16px;
-      z-index: 79;
-      display: none;
-      align-items: center;
-      filter: drop-shadow(0 4px 20px rgba(0,0,0,0.5));
-    }
-    #guides-pill.show    { display: flex; animation: pill-in  0.45s cubic-bezier(0.34,1.56,0.64,1) forwards; }
-    #guides-pill.dismiss { animation: pill-out 0.25s ease forwards; }
-    @keyframes pill-in  { from { opacity:0; transform:translateX(48px); } to { opacity:1; transform:translateX(0); } }
-    @keyframes pill-out { from { opacity:1; transform:translateX(0); }   to { opacity:0; transform:translateX(48px); } }
-    .pill-border {
-      display: flex; align-items: center;
-      border-radius: 999px; padding: 1.5px;
-      background: linear-gradient(90deg, #22d3ee 0%, #f59e0b 50%, #a78bfa 100%);
-    }
-    .pill-inner {
-      display: flex; align-items: center; gap: 8px;
-      background: var(--bg2); border-radius: 999px;
-      padding: 8px 10px 8px 12px;
-      text-decoration: none;
-      transition: background 0.2s;
-    }
-    .pill-inner:hover { background: var(--bg3); }
-    .pill-dots  { display: flex; gap: 4px; align-items: center; }
-    .pill-dot   { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-    .pill-text  { font-family: var(--font-body); font-size: 13px; font-weight: 700; color: var(--white); white-space: nowrap; }
-    .pill-arrow { font-size: 13px; color: var(--cyan); font-weight: 700; }
-    .pill-close {
-      background: none; border: none; color: var(--muted);
-      font-size: 18px; line-height: 1; cursor: pointer;
-      padding: 6px 8px 6px 4px; margin-left: 2px;
-      transition: color 0.2s; flex-shrink: 0;
-    }
-    .pill-close:hover { color: var(--white); }
-    @media (max-width: 480px) {
-      #guides-pill { top: 140px; right: 8px; }
-      .pill-text   { font-size: 12px; }
-    }
-
-    /* ── REDUCED MOTION ── */
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-      html { scroll-behavior: auto; }
-    }
-
-    /* ─────────────────────────────────────────
-       URGENCY BAR
-    ───────────────────────────────────────── */
-    #urgency-bar {
-      background: linear-gradient(90deg, #0e4a52 0%, #0f3460 50%, #0e4a52 100%);
-      border-bottom: 1px solid var(--border-hi);
-      text-align: center;
-      padding: 10px 16px;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      position: relative;
-      z-index: 100;
-    }
-    .pulse {
-      display: inline-block;
-      width: 8px; height: 8px;
-      background: var(--cyan);
-      border-radius: 50%;
-      margin-right: 8px;
-      animation: pulse-ring 1.8s ease infinite;
-      vertical-align: middle;
-      flex-shrink: 0;
-    }
-    #urgency-bar a {
-      color: var(--cyan);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-      cursor: pointer;
-      white-space: nowrap;
-    }
-    @keyframes pulse-ring {
-      0%,100% { box-shadow: 0 0 0 0 rgba(34,211,238,0.6); }
-      50%      { box-shadow: 0 0 0 6px rgba(34,211,238,0); }
-    }
-
-    /* ─────────────────────────────────────────
-       NAVBAR
-    ───────────────────────────────────────── */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 90;
-      background: rgba(7,9,15,0.88);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 16px 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-    }
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      flex-shrink: 0;
-    }
-    .logo-mark {
-      width: 34px; height: 34px;
-      background: var(--cyan);
-      border-radius: 9px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-head);
-      font-weight: 800;
-      font-size: 13px;
-      color: #07090f;
-      letter-spacing: -0.5px;
-    }
-    .logo-text {
-      font-family: var(--font-head);
-      font-weight: 700;
-      font-size: 17px;
-      color: var(--white);
-      letter-spacing: -0.4px;
-    }
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-      list-style: none;
-    }
-    .nav-links a {
-      color: var(--text-dim);
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--white); }
-    .nav-cta {
-      background: var(--cyan);
-      color: #07090f !important;
-      padding: 9px 18px;
-      border-radius: 8px;
-      font-weight: 700 !important;
-      font-size: 13px !important;
-      transition: background 0.2s, transform 0.15s !important;
-      white-space: nowrap;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .nav-cta:hover { background: #67e8f9 !important; transform: translateY(-1px); }
-
-    /* hamburger */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 6px;
-      z-index: 200;
-    }
-    .hamburger span {
-      display: block;
-      width: 22px; height: 2px;
-      background: var(--text);
-      border-radius: 2px;
-      transition: transform 0.3s, opacity 0.3s;
-    }
-    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-    /* mobile drawer */
-    .mobile-menu {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(7,9,15,0.97);
-      backdrop-filter: blur(16px);
-      z-index: 101;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 32px;
-      animation: fade-in 0.2s ease;
-    }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu a {
-      font-family: var(--font-head);
-      font-size: 28px;
-      font-weight: 700;
-      color: var(--white);
-      text-decoration: none;
-      letter-spacing: -0.5px;
-      transition: color 0.2s;
-    }
-    .mobile-menu a:hover { color: var(--cyan); }
-    .mobile-menu .mobile-cta {
-      background: var(--cyan);
-      color: #07090f !important;
-      padding: 16px 32px;
-      border-radius: 10px;
-      font-size: 18px !important;
-    }
-
-    /* ─────────────────────────────────────────
-       HERO
-    ───────────────────────────────────────── */
-    #hero {
-      position: relative;
-      padding: 96px 24px 80px;
-      text-align: center;
-      overflow: hidden;
-    }
-    .hero-grid {
-      position: absolute; inset: 0;
-      background-image:
-        linear-gradient(rgba(34,211,238,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(34,211,238,0.04) 1px, transparent 1px);
-      background-size: 48px 48px;
-      mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, black 40%, transparent 100%);
-      -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, black 40%, transparent 100%);
-    }
-    .hero-glow {
-      position: absolute;
-      top: -200px; left: 50%;
-      transform: translateX(-50%);
-      width: 800px; height: 600px;
-      background: radial-gradient(ellipse, rgba(34,211,238,0.09) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .hero-content { position: relative; z-index: 2; max-width: 820px; margin: 0 auto; }
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--bg3);
-      border: 1px solid var(--border-hi);
-      color: var(--cyan);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 6px 14px;
-      border-radius: 999px;
-      margin-bottom: 28px;
-    }
-    h1 {
-      font-family: var(--font-head);
-      font-size: clamp(38px, 7vw, 76px);
-      font-weight: 800;
-      line-height: 1.0;
-      letter-spacing: -2px;
-      color: var(--white);
-      margin-bottom: 24px;
-    }
-    h1 .accent { color: var(--cyan); }
-    .hero-sub {
-      font-size: clamp(15px, 2.5vw, 18px);
-      color: var(--text-dim);
-      max-width: 540px;
-      margin: 0 auto 40px;
-      line-height: 1.7;
-    }
-    .hero-actions {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 16px;
-    }
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--cyan);
-      color: #07090f;
-      font-family: var(--font-body);
-      font-weight: 700;
-      font-size: 15px;
-      padding: 15px 28px;
-      border-radius: 10px;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      min-height: 48px;
-      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-    }
-    .btn-primary:hover {
-      background: #67e8f9;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(34,211,238,0.28);
-    }
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: transparent;
-      color: var(--text);
-      font-family: var(--font-body);
-      font-weight: 600;
-      font-size: 15px;
-      padding: 15px 24px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      cursor: pointer;
-      text-decoration: none;
-      min-height: 48px;
-      transition: border-color 0.2s, color 0.2s;
-    }
-    .btn-secondary:hover { border-color: rgba(255,255,255,0.25); color: var(--white); }
-    .hero-note { font-size: 13px; color: var(--muted); }
-    .hero-note span { color: var(--emerald); font-weight: 600; }
-
-    /* ── STATS ── */
-    #stats {
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      background: var(--bg2);
-      padding: 36px 24px;
-    }
-    .stats-grid {
-      max-width: 900px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-      text-align: center;
-    }
-    .stat-num {
-      font-family: var(--font-head);
-      font-size: clamp(28px, 4vw, 40px);
-      font-weight: 800;
-      color: var(--white);
-      letter-spacing: -1px;
-      line-height: 1;
-      margin-bottom: 6px;
-    }
-    .stat-suffix { color: var(--cyan); }
-    .stat-label { font-size: 13px; color: var(--muted); font-weight: 500; }
-
-    /* ── SECTIONS COMMON ── */
-    section { padding: 88px 24px; }
-    .section-inner { max-width: 1100px; margin: 0 auto; }
-    .section-tag {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--cyan);
-      margin-bottom: 14px;
-    }
-    h2 {
-      font-family: var(--font-head);
-      font-size: clamp(28px, 5vw, 52px);
-      font-weight: 800;
-      letter-spacing: -1.5px;
-      color: var(--white);
-      line-height: 1.1;
-      margin-bottom: 14px;
-    }
-    .section-sub {
-      font-size: 16px;
-      color: var(--text-dim);
-      max-width: 520px;
-      margin-bottom: 52px;
-      line-height: 1.7;
-    }
-    .center { text-align: center; }
-    .center .section-sub { margin-left: auto; margin-right: auto; }
-
-    /* ── HOW THE CALL WORKS ── */
-    #how-it-works { background: var(--bg2); }
-    .call-steps {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 2px;
-      background: var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-    }
-    .call-step { background: var(--bg); padding: 40px 32px; }
-    .step-num {
-      font-family: var(--font-head);
-      font-size: 44px;
-      font-weight: 800;
-      color: rgba(34,211,238,0.1);
-      line-height: 1;
-      margin-bottom: 16px;
-    }
-    .step-icon {
-      width: 42px; height: 42px;
-      background: var(--cyan-dim);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--cyan);
-      font-size: 17px;
-      margin-bottom: 14px;
-    }
-    .step-title {
-      font-family: var(--font-head);
-      font-size: 19px;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 10px;
-    }
-    .step-desc { font-size: 14px; color: var(--text-dim); line-height: 1.65; }
-    .call-guarantee {
-      margin-top: 24px;
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      background: rgba(52,211,153,0.07);
-      border: 1px solid rgba(52,211,153,0.2);
-      border-radius: 10px;
-      padding: 16px 20px;
-      font-size: 14px;
-      color: var(--emerald);
-      font-weight: 500;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .call-guarantee i { flex-shrink: 0; margin-top: 2px; }
-
-    /* ── SERVICES ── */
-    #services { background: var(--bg); }
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-    .service-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 32px 28px;
-      transition: border-color 0.25s, transform 0.2s;
-      position: relative;
-      overflow: hidden;
-    }
-    .service-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--ac, var(--cyan)), transparent);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .service-card:hover { border-color: var(--border-hi); transform: translateY(-3px); }
-    .service-card:hover::before { opacity: 1; }
-    .service-card.amber { --ac: var(--amber); }
-    .service-card.emerald { --ac: var(--emerald); }
-    .service-icon {
-      width: 44px; height: 44px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      margin-bottom: 20px;
-    }
-    .si-cyan    { background: var(--cyan-dim); color: var(--cyan); }
-    .si-amber   { background: rgba(245,158,11,0.1); color: var(--amber); }
-    .si-emerald { background: rgba(52,211,153,0.1); color: var(--emerald); }
-    .service-name {
-      font-family: var(--font-head);
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 10px;
-      letter-spacing: -0.3px;
-    }
-    .service-desc { font-size: 14px; color: var(--text-dim); margin-bottom: 20px; line-height: 1.65; }
-    .service-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
-    .service-list li { display: flex; gap: 9px; font-size: 13px; color: var(--text-dim); }
-    .service-list li i { color: var(--emerald); font-size: 11px; margin-top: 4px; flex-shrink: 0; }
-
-    /* ── QUIZ ── */
-    #quiz-section {
-      background: linear-gradient(135deg, #0a1628 0%, #071020 100%);
-      position: relative;
-      overflow: hidden;
-    }
-    #quiz-section::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(circle at 80% 50%, rgba(34,211,238,0.06) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    .quiz-wrap { max-width: 680px; margin: 0 auto; }
-    .quiz-card {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 44px 40px;
-    }
-    .quiz-progress { display: flex; gap: 6px; margin-bottom: 28px; }
-    .quiz-progress-bar {
-      height: 3px;
-      flex: 1;
-      background: var(--border);
-      border-radius: 99px;
-      transition: background 0.4s;
-    }
-    .quiz-progress-bar.active { background: var(--cyan); }
-    .quiz-q-label {
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--cyan);
-      margin-bottom: 10px;
-    }
-    .quiz-question {
-      font-family: var(--font-head);
-      font-size: clamp(20px, 3.5vw, 26px);
-      font-weight: 700;
-      color: var(--white);
-      letter-spacing: -0.5px;
-      margin-bottom: 24px;
-      line-height: 1.25;
-    }
-    .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .quiz-opt {
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 16px 16px;
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text-dim);
-      text-align: left;
-      transition: all 0.2s;
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      min-height: 60px;
-      font-family: var(--font-body);
-    }
-    .quiz-opt i { color: var(--muted); transition: color 0.2s; flex-shrink: 0; margin-top: 2px; }
-    .quiz-opt:hover { border-color: var(--border-hi); color: var(--white); background: rgba(34,211,238,0.05); }
-    .quiz-opt:hover i { color: var(--cyan); }
-    .quiz-opt.selected { border-color: var(--cyan); background: var(--cyan-dim); color: var(--white); }
-    .quiz-opt.selected i { color: var(--cyan); }
-    .quiz-result { display: none; text-align: center; animation: fade-in 0.4s ease; }
-    .quiz-result.show { display: block; }
-    .result-tag {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      background: var(--cyan-dim);
-      color: var(--cyan);
-      padding: 6px 14px;
-      border-radius: 999px;
-      margin-bottom: 14px;
-    }
-    .result-headline {
-      font-family: var(--font-head);
-      font-size: clamp(22px, 4vw, 28px);
-      font-weight: 800;
-      color: var(--white);
-      margin-bottom: 12px;
-      letter-spacing: -0.5px;
-    }
-    .result-body { font-size: 15px; color: var(--text-dim); margin-bottom: 24px; line-height: 1.65; }
-    .quiz-restart {
-      background: none;
-      border: none;
-      color: var(--muted);
-      font-size: 13px;
-      cursor: pointer;
-      margin-top: 12px;
-      text-decoration: underline;
-      text-underline-offset: 3px;
-      font-family: var(--font-body);
-    }
-    .quiz-restart:hover { color: var(--text-dim); }
-
-    /* ── TIERS ── */
-    #tiers { background: var(--bg2); }
-    .tiers-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 16px;
-    }
-    .tier-card {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 32px 28px;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-    }
-    .tier-card.featured {
-      border-color: var(--cyan);
-      background: linear-gradient(160deg, rgba(34,211,238,0.04) 0%, var(--bg) 60%);
-    }
-    .tier-card.free-card {
-      border-color: rgba(52,211,153,0.35);
-      background: linear-gradient(160deg, rgba(52,211,153,0.05) 0%, var(--bg) 60%);
-    }
-    .tier-badge {
-      position: absolute;
-      top: -13px; left: 50%;
-      transform: translateX(-50%);
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 5px 14px;
-      border-radius: 999px;
-      white-space: nowrap;
-    }
-    .tb-green { background: var(--emerald); color: #07090f; }
-    .tb-blue  { background: var(--cyan); color: #07090f; }
-    .tier-label { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; }
-    .tier-price {
-      font-family: var(--font-head);
-      font-size: 48px;
-      font-weight: 800;
-      color: var(--white);
-      letter-spacing: -2px;
-      line-height: 1;
-      margin-bottom: 4px;
-    }
-    .tier-period { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
-    .tier-name { font-family: var(--font-head); font-size: 20px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
-    .tier-tagline { font-size: 13px; color: var(--text-dim); margin-bottom: 20px; }
-    .tier-divider { height: 1px; background: var(--border); margin-bottom: 20px; }
-    .tier-features { list-style: none; display: flex; flex-direction: column; gap: 11px; flex: 1; margin-bottom: 24px; }
-    .tier-features li { display: flex; gap: 9px; font-size: 13px; color: var(--text-dim); line-height: 1.4; }
-    .tier-features li i { font-size: 11px; margin-top: 3px; flex-shrink: 0; color: var(--emerald); }
-    .scarcity-tag {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(245,158,11,0.08);
-      border: 1px solid rgba(245,158,11,0.2);
-      border-radius: 8px;
-      padding: 9px 13px;
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--amber);
-      margin-bottom: 14px;
-    }
-    .btn-tier {
-      width: 100%;
-      font-family: var(--font-body);
-      font-weight: 700;
-      font-size: 14px;
-      padding: 14px;
-      border-radius: 10px;
-      border: none;
-      cursor: pointer;
-      text-align: center;
-      text-decoration: none;
-      transition: background 0.2s, transform 0.15s, border-color 0.2s;
-      min-height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .btn-tier.green  { background: var(--emerald); color: #07090f; }
-    .btn-tier.green:hover  { background: #6ee7b7; transform: translateY(-1px); }
-    .btn-tier.blue   { background: var(--cyan); color: #07090f; }
-    .btn-tier.blue:hover   { background: #67e8f9; transform: translateY(-1px); }
-    .btn-tier.ghost  { background: transparent; color: var(--text); border: 1px solid var(--border); }
-    .btn-tier.ghost:hover  { border-color: rgba(255,255,255,0.25); background: rgba(255,255,255,0.04); }
-
-    /* ── TESTIMONIALS ── */
-    #testimonials { background: var(--bg); }
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-    .testimonial-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 28px 28px;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      transition: border-color 0.2s;
-    }
-    .testimonial-card:hover { border-color: var(--border-hi); }
-    .stars { color: var(--amber); font-size: 13px; letter-spacing: 2px; margin-bottom: 4px; }
-    .quote-text { font-size: 14px; line-height: 1.75; color: var(--text-dim); font-style: italic; flex: 1; }
-    .quote-author { display: flex; align-items: center; gap: 12px; }
-    .quote-avatar {
-      width: 38px; height: 38px;
-      border-radius: 50%;
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-head);
-      font-weight: 700;
-      font-size: 13px;
-      color: var(--cyan);
-      flex-shrink: 0;
-    }
-    .author-name { font-size: 13px; font-weight: 600; color: var(--white); }
-    .author-role { font-size: 12px; color: var(--muted); }
-
-    /* ── PORTFOLIO ── */
-    #portfolio { background: var(--bg2); }
-    .portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .portfolio-card {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .portfolio-card:hover { border-color: var(--border-hi); transform: translateY(-3px); }
-    .portfolio-thumb {
-      height: 160px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .portfolio-thumb span {
-      font-family: var(--font-head);
-      font-size: 44px;
-      font-weight: 800;
-      letter-spacing: -2px;
-      opacity: 0.18;
-      transition: opacity 0.25s;
-    }
-    .portfolio-card:hover .portfolio-thumb span { opacity: 0.32; }
-    .portfolio-body { padding: 22px 24px; }
-    .portfolio-tag {
-      display: inline-block;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      color: var(--muted);
-      padding: 4px 10px;
-      border-radius: 999px;
-      margin-bottom: 10px;
-    }
-    .portfolio-title { font-family: var(--font-head); font-size: 17px; font-weight: 700; color: var(--white); margin-bottom: 7px; letter-spacing: -0.3px; }
-    .portfolio-desc { font-size: 13px; color: var(--text-dim); line-height: 1.6; }
-
-    /* ── FAQ ── */
-    #faq { background: var(--bg); }
-    .faq-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 4px; }
-    .faq-item {
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-      transition: border-color 0.2s;
-    }
-    .faq-item.open { border-color: var(--border-hi); }
-    .faq-q {
-      width: 100%;
-      background: var(--bg2);
-      border: none;
-      padding: 18px 22px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      cursor: pointer;
-      text-align: left;
-      font-family: var(--font-body);
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--white);
-      transition: background 0.2s;
-      min-height: 56px;
-    }
-    .faq-q:hover { background: var(--bg3); }
-    .faq-q i {
-      color: var(--cyan);
-      font-size: 12px;
-      flex-shrink: 0;
-      transition: transform 0.3s;
-    }
-    .faq-item.open .faq-q i { transform: rotate(180deg); }
-    .faq-a {
-      background: var(--bg2);
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.35s ease, padding 0.35s ease;
-    }
-    .faq-a-inner {
-      padding: 0 22px 18px;
-      font-size: 14px;
-      color: var(--text-dim);
-      line-height: 1.75;
-    }
-    .faq-item.open .faq-a { max-height: 300px; }
-
-    /* ── BOOKING FORM ── */
-    #book {
-      background: linear-gradient(135deg, #08101f 0%, #070b15 100%);
-      position: relative;
-    }
-    #book::before {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 50%;
-      transform: translateX(-50%);
-      width: 600px; height: 400px;
-      background: radial-gradient(ellipse, rgba(34,211,238,0.07) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .book-wrap { max-width: 600px; margin: 0 auto; position: relative; z-index: 2; }
-    .book-card {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 48px 44px;
-    }
-    .form-group { margin-bottom: 18px; }
-    label { display: block; font-size: 13px; font-weight: 600; color: var(--text-dim); margin-bottom: 7px; }
-    input[type=text], input[type=email], select, textarea {
-      width: 100%;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 13px 16px;
-      color: var(--white);
-      font-family: var(--font-body);
-      font-size: 15px;
-      outline: none;
-      transition: border-color 0.2s;
-      -webkit-appearance: none;
-      appearance: none;
-      min-height: 48px;
-    }
-    input:focus, select:focus, textarea:focus { border-color: var(--border-hi); }
-    select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; }
-    option { background: var(--bg3); }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .btn-submit {
-      width: 100%;
-      background: var(--cyan);
-      color: #07090f;
-      font-family: var(--font-body);
-      font-weight: 700;
-      font-size: 16px;
-      padding: 17px;
-      border-radius: 10px;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      min-height: 54px;
-      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-      margin-top: 6px;
-    }
-    .btn-submit:hover {
-      background: #67e8f9;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(34,211,238,0.25);
-    }
-    .book-footnote { text-align: center; font-size: 12px; color: var(--muted); margin-top: 14px; }
-    .book-footnote i { color: var(--emerald); margin-right: 4px; }
-
-    /* form success state */
-    .form-success {
-      display: none;
-      text-align: center;
-      padding: 20px 0;
-      animation: fade-in 0.4s ease;
-    }
-    .form-success.show { display: block; }
-    .success-icon {
-      width: 60px; height: 60px;
-      background: rgba(52,211,153,0.12);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 20px;
-      font-size: 26px;
-      color: var(--emerald);
-    }
-    .success-title { font-family: var(--font-head); font-size: 26px; font-weight: 800; color: var(--white); margin-bottom: 10px; letter-spacing: -0.5px; }
-    .success-sub { font-size: 15px; color: var(--text-dim); line-height: 1.65; }
-
-    /* ── FOOTER ── */
-    footer {
-      background: #040508;
-      border-top: 1px solid var(--border);
-      padding: 36px 24px;
-      text-align: center;
-    }
-    .footer-logo-text { font-family: var(--font-head); font-weight: 800; font-size: 17px; letter-spacing: -0.5px; color: var(--white); margin-bottom: 8px; }
-    .footer-copy { font-size: 13px; color: var(--muted); }
-
-    .nav-links a.active { color: var(--cyan); }
-
-    /* back to top */
-    #back-to-top {
-      position: fixed;
-      bottom: 24px; left: 24px;
-      z-index: 80;
-      display: none;
-      animation: slide-up 0.3s ease;
-    }
-    #back-to-top.show { display: flex; }
-    #back-to-top button {
-      width: 44px; height: 44px;
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--text-dim);
-      font-size: 14px;
-      cursor: pointer;
-      transition: border-color 0.2s, color 0.2s, background 0.2s;
-    }
-    #back-to-top button:hover { border-color: var(--border-hi); color: var(--cyan); background: var(--bg2); }
-
-    /* footer links */
-    .footer-links { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-bottom: 16px; }
-    .footer-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--text-dim); }
-    .footer-email { font-size: 13px; margin-bottom: 16px; }
-    .footer-email a { color: var(--cyan); text-decoration: none; }
-    .footer-email a:hover { text-decoration: underline; }
-
-    /* ── ANIMATIONS ── */
-    @keyframes fade-in  { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
-    @keyframes scale-in { from { opacity:0; transform:scale(0.95); }       to { opacity:1; transform:scale(1); } }
-    @keyframes slide-up { from { opacity:0; transform:translateY(20px); }  to { opacity:1; transform:none; } }
-
+   <style>
     .fade-in-up {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
+        opacity:1!important;
+        transform:none!important;
     }
-    .fade-in-up.visible { opacity: 1; transform: none; }
-
-    /* ── RESOURCES / GUIDE SHOP ── */
-    #resources { background: var(--bg2); }
-
-    .guides-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-bottom: 20px;
-    }
-
-    .guide-card {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: border-color 0.25s, transform 0.22s;
-    }
-    .guide-card.g-cyan   { --gc: #22d3ee; }
-    .guide-card.g-amber  { --gc: #f59e0b; }
-    .guide-card.g-purple { --gc: #a78bfa; }
-    .guide-card:hover { border-color: var(--gc); transform: translateY(-4px); }
-
-    /* cover thumbnail */
-    .guide-thumb {
-      aspect-ratio: 1 / 1;
-      position: relative;
-      overflow: hidden;
-      background: var(--bg);
-    }
-    .guide-thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      display: block;
-      transition: transform 0.45s ease;
-    }
-    .guide-card:hover .guide-thumb img { transform: scale(1.04); }
-    .guide-num {
-      position: absolute; top: 12px; left: 12px;
-      width: 26px; height: 26px;
-      background: var(--gc);
-      border-radius: 7px;
-      display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-head);
-      font-weight: 800;
-      font-size: 11px;
-      color: #07090f;
-      z-index: 2;
-    }
-    .guide-dl-badge {
-      position: absolute; top: 12px; right: 12px;
-      background: rgba(7,9,15,0.75);
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      padding: 3px 9px;
-      font-size: 9px;
-      font-weight: 700;
-      color: var(--muted);
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-      z-index: 2;
-    }
-
-    /* card body */
-    .guide-body {
-      padding: 22px 22px 20px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-    .guide-label {
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--gc);
-      margin-bottom: 8px;
-    }
-    .guide-title {
-      font-family: var(--font-head);
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--white);
-      letter-spacing: -0.3px;
-      margin-bottom: 8px;
-      line-height: 1.3;
-    }
-    .guide-desc {
-      font-size: 12px;
-      color: var(--text-dim);
-      line-height: 1.65;
-      margin-bottom: 14px;
-    }
-    .guide-includes {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      margin-bottom: 18px;
-      flex: 1;
-    }
-    .guide-includes li {
-      display: flex;
-      gap: 7px;
-      font-size: 11px;
-      color: var(--muted);
-      line-height: 1.4;
-    }
-    .guide-includes li i { color: var(--gc); font-size: 9px; margin-top: 2px; flex-shrink: 0; }
-
-    /* card footer */
-    .guide-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-top: 14px;
-      border-top: 1px solid var(--border);
-      gap: 12px;
-    }
-    .guide-price {
-      font-family: var(--font-head);
-      font-size: 30px;
-      font-weight: 800;
-      color: var(--white);
-      letter-spacing: -1px;
-      line-height: 1;
-    }
-    .guide-price span {
-      font-size: 13px;
-      color: var(--muted);
-      font-weight: 400;
-      letter-spacing: 0;
-      display: block;
-    }
-    .btn-guide {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: var(--gc);
-      color: #07090f;
-      font-family: var(--font-body);
-      font-weight: 700;
-      font-size: 12px;
-      padding: 10px 16px;
-      border-radius: 8px;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      min-height: 40px;
-      white-space: nowrap;
-      transition: opacity 0.2s, transform 0.15s;
-      flex-shrink: 0;
-    }
-    .btn-guide:hover { opacity: 0.82; transform: translateY(-1px); }
-
-    /* bundle card */
-    .bundle-card {
-      background: var(--bg);
-      border: 1px solid var(--border-hi);
-      border-radius: 16px;
-      padding: 32px 36px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 32px;
-      position: relative;
-      overflow: hidden;
-      transition: border-color 0.25s, transform 0.2s;
-    }
-    .bundle-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, #22d3ee 0%, #f59e0b 50%, #a78bfa 100%);
-    }
-    .bundle-card:hover { border-color: rgba(255,255,255,0.18); transform: translateY(-2px); }
-    .bundle-info { flex: 1; min-width: 0; }
-    .bundle-label {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--cyan);
-      margin-bottom: 8px;
-    }
-    .bundle-title {
-      font-family: var(--font-head);
-      font-size: 22px;
-      font-weight: 800;
-      color: var(--white);
-      letter-spacing: -0.5px;
-      margin-bottom: 6px;
-    }
-    .bundle-desc { font-size: 13px; color: var(--text-dim); margin-bottom: 14px; }
-    .bundle-guides {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .bundle-tag {
-      font-size: 10px;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 999px;
-      letter-spacing: 0.05em;
-    }
-    .bundle-tag.t-cyan   { background: rgba(34,211,238,0.1);  color: #22d3ee; border: 1px solid rgba(34,211,238,0.2); }
-    .bundle-tag.t-amber  { background: rgba(245,158,11,0.1);  color: #f59e0b; border: 1px solid rgba(245,158,11,0.2); }
-    .bundle-tag.t-purple { background: rgba(167,139,250,0.1); color: #a78bfa; border: 1px solid rgba(167,139,250,0.2); }
-
-    .bundle-right { text-align: right; flex-shrink: 0; }
-    .bundle-was {
-      font-size: 12px;
-      color: var(--muted);
-      text-decoration: line-through;
-      margin-bottom: 2px;
-    }
-    .bundle-price {
-      font-family: var(--font-head);
-      font-size: 48px;
-      font-weight: 800;
-      color: var(--white);
-      letter-spacing: -2px;
-      line-height: 1;
-      margin-bottom: 6px;
-    }
-    .bundle-save {
-      display: inline-block;
-      background: rgba(52,211,153,0.1);
-      border: 1px solid rgba(52,211,153,0.25);
-      color: var(--emerald);
-      font-size: 10px;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 999px;
-      margin-bottom: 14px;
-      letter-spacing: 0.05em;
-    }
-    .btn-bundle {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--white);
-      color: #07090f;
-      font-family: var(--font-body);
-      font-weight: 700;
-      font-size: 14px;
-      padding: 13px 24px;
-      border-radius: 10px;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      min-height: 48px;
-      transition: background 0.2s, transform 0.15s;
-      white-space: nowrap;
-    }
-    .btn-bundle:hover { background: var(--text); transform: translateY(-1px); }
-
-    /* ── RESPONSIVE ADDITIONS ── */
-    @media (max-width: 1024px) {
-      .services-grid       { grid-template-columns: 1fr 1fr; }
-      .testimonials-grid   { grid-template-columns: 1fr 1fr; }
-      .portfolio-grid      { grid-template-columns: 1fr 1fr; }
-      .tiers-grid          { grid-template-columns: 1fr; max-width: 520px; margin-left: auto; margin-right: auto; }
-      .tier-card.free-card { order: -2; }
-      .tier-card.featured  { order: -1; }
-      .guides-grid         { grid-template-columns: 1fr 1fr; }
-      .bundle-card         { flex-direction: column; align-items: flex-start; }
-      .bundle-right        { text-align: left; width: 100%; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
-      .bundle-price        { font-size: 40px; }
-    }
-
-    /* ── RESPONSIVE — MOBILE ── */
-    @media (max-width: 768px) {
-      /* nav */
-      .nav-links           { display: none; }
-      .hamburger           { display: flex; }
-
-      /* hide desktop CTA in nav on mobile — hamburger handles it */
-      .nav-inner > .nav-cta { display: none; }
-
-      /* sections */
-      section              { padding: 60px 20px; }
-      #hero                { padding: 72px 20px 60px; }
-
-      /* stats */
-      .stats-grid          { grid-template-columns: 1fr 1fr; gap: 20px; }
-      #stats               { padding: 28px 20px; }
-
-      /* grids collapse to 1 col */
-      .services-grid       { grid-template-columns: 1fr; }
-      .call-steps          { grid-template-columns: 1fr; }
-      .tiers-grid          { grid-template-columns: 1fr; }
-      .testimonials-grid   { grid-template-columns: 1fr; }
-      .portfolio-grid      { grid-template-columns: 1fr; }
-      .guides-grid         { grid-template-columns: 1fr; }
-
-      /* form */
-      .form-row            { grid-template-columns: 1fr; }
-      .book-card           { padding: 32px 24px; }
-
-      /* quiz */
-      .quiz-card           { padding: 28px 22px; }
-      .quiz-options        { grid-template-columns: 1fr; }
-      .quiz-opt            { min-height: 52px; }
-
-      /* floating cta */
-      #floating-cta        { bottom: 16px; right: 16px; }
-      #floating-cta button { font-size: 13px; padding: 12px 16px; }
-
-      /* hero actions stack */
-      .hero-actions        { flex-direction: column; align-items: center; }
-      .btn-primary, .btn-secondary { width: 100%; max-width: 340px; justify-content: center; }
-
-      /* tiers */
-      .tier-card.free-card { order: -2; }
-      .tier-card.featured  { order: -1; }
-
-      /* urgency bar */
-      #urgency-bar         { font-size: 12px; padding: 9px 12px; }
-    }
-
-    @media (max-width: 480px) {
-      h1                   { letter-spacing: -1.5px; }
-      .book-card           { padding: 28px 18px; }
-      .quiz-card           { padding: 24px 18px; }
-      .exit-card           { padding: 36px 24px; }
-      .stats-grid          { grid-template-columns: 1fr 1fr; gap: 16px; }
-    }
+   </style>
+  </noscript>
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <style>
+   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#07090f;--bg2:#0d1120;--bg3:#111827;--border:rgba(255,255,255,0.07);--border-hi:rgba(34,211,238,0.25);--cyan:#22d3ee;--cyan-dim:rgba(34,211,238,0.12);--amber:#f59e0b;--emerald:#34d399;--muted:#6b7280;--text:#e2e8f0;--text-dim:#94a3b8;--white:#f8fafc;--font-head:'Syne',sans-serif;--font-body:'Manrope',sans-serif}
+html{scroll-behavior:smooth}body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:16px;line-height:1.65;overflow-x:hidden}
+#scroll-progress{position:fixed;top:0;left:0;height:2px;width:0%;background:linear-gradient(90deg,var(--cyan),#67e8f9);z-index:999;transition:width .1s linear}
+#urgency-bar{background:linear-gradient(90deg,#0e4a52,#0f3460 50%,#0e4a52);border-bottom:1px solid var(--border-hi);text-align:center;padding:10px 16px;font-size:13px;font-weight:600;letter-spacing:.02em;position:relative;z-index:100}
+.pulse{display:inline-block;width:8px;height:8px;background:var(--cyan);border-radius:50%;margin-right:8px;animation:pulse-ring 1.8s ease infinite;vertical-align:middle}
+#urgency-bar a{color:var(--cyan);text-decoration:underline;text-underline-offset:3px;cursor:pointer;white-space:nowrap}
+@keyframes pulse-ring{0%,100%{box-shadow:0 0 0 0 rgba(34,211,238,.6)}50%{box-shadow:0 0 0 6px rgba(34,211,238,0)}}
+nav{position:sticky;top:0;z-index:90;background:rgba(7,9,15,.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.logo-mark{width:34px;height:34px;background:var(--cyan);border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-weight:800;font-size:13px;color:#07090f;letter-spacing:-.5px}
+.logo-text{font-family:var(--font-head);font-weight:700;font-size:17px;color:var(--white);letter-spacing:-.4px}
+.nav-links{display:flex;align-items:center;gap:28px;list-style:none}
+.nav-links a{color:var(--text-dim);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--white)}.nav-links a.active{color:var(--cyan)}
+.nav-cta{background:var(--cyan);color:#07090f!important;padding:9px 18px;border-radius:8px;font-weight:700!important;font-size:13px!important;transition:background .2s,transform .15s!important;white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.nav-cta:hover{background:#67e8f9!important;transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;z-index:200}
+.hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:transform .3s,opacity .3s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}.hamburger.open span:nth-child(2){opacity:0}.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;inset:0;background:rgba(7,9,15,.97);backdrop-filter:blur(16px);z-index:101;flex-direction:column;align-items:center;justify-content:center;gap:32px}
+.mobile-menu.open{display:flex;animation:fade-in .2s ease}
+.mobile-menu a{font-family:var(--font-head);font-size:28px;font-weight:700;color:var(--white);text-decoration:none;letter-spacing:-.5px;transition:color .2s}
+.mobile-menu a:hover{color:var(--cyan)}.mobile-menu .mobile-cta{background:var(--cyan);color:#07090f!important;padding:16px 32px;border-radius:10px;font-size:18px!important}
+#hero{position:relative;padding:96px 24px 80px;text-align:center;overflow:hidden}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(34,211,238,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(34,211,238,.04) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(ellipse 80% 70% at 50% 0%,black 40%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 0%,black 40%,transparent 100%)}
+.hero-glow{position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:600px;background:radial-gradient(ellipse,rgba(34,211,238,.09) 0%,transparent 70%);pointer-events:none}
+.hero-content{position:relative;z-index:2;max-width:820px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--bg3);border:1px solid var(--border-hi);color:var(--cyan);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border-radius:999px;margin-bottom:28px}
+h1{font-family:var(--font-head);font-size:clamp(38px,7vw,76px);font-weight:800;line-height:1;letter-spacing:-2px;color:var(--white);margin-bottom:24px}
+h1 .accent{color:var(--cyan)}.hero-sub{font-size:clamp(15px,2.5vw,18px);color:var(--text-dim);max-width:540px;margin:0 auto 40px;line-height:1.7}
+.hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
+.hero-note{font-size:13px;color:var(--muted)}.hero-note span{color:var(--emerald);font-weight:600}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--cyan);color:#07090f;font-family:var(--font-body);font-weight:700;font-size:15px;padding:15px 28px;border-radius:10px;border:none;cursor:pointer;text-decoration:none;min-height:48px;transition:background .2s,transform .15s,box-shadow .2s}
+.btn-primary:hover{background:#67e8f9;transform:translateY(-2px);box-shadow:0 8px 28px rgba(34,211,238,.28)}
+.btn-secondary{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--text);font-family:var(--font-body);font-weight:600;font-size:15px;padding:15px 24px;border-radius:10px;border:1px solid var(--border);cursor:pointer;text-decoration:none;min-height:48px;transition:border-color .2s,color .2s}
+.btn-secondary:hover{border-color:rgba(255,255,255,.25);color:var(--white)}
+#stats{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg2);padding:36px 24px}
+.stats-grid{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
+.stat-num{font-family:var(--font-head);font-size:clamp(28px,4vw,40px);font-weight:800;color:var(--white);letter-spacing:-1px;line-height:1;margin-bottom:6px}
+.stat-suffix{color:var(--cyan)}.stat-label{font-size:13px;color:var(--muted);font-weight:500}
+section{padding:88px 24px}.section-inner{max-width:1100px;margin:0 auto}
+.section-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:14px}
+h2{font-family:var(--font-head);font-size:clamp(28px,5vw,52px);font-weight:800;letter-spacing:-1.5px;color:var(--white);line-height:1.1;margin-bottom:14px}
+.section-sub{font-size:16px;color:var(--text-dim);max-width:520px;margin-bottom:52px;line-height:1.7}
+.center{text-align:center}.center .section-sub{margin-left:auto;margin-right:auto}
+section[id],#stats{scroll-margin-top:70px}
+#how-it-works{background:var(--bg2)}
+.call-steps{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;background:var(--border);border-radius:16px;overflow:hidden}
+.call-step{background:var(--bg);padding:40px 32px}
+.step-num{font-family:var(--font-head);font-size:44px;font-weight:800;color:rgba(34,211,238,.1);line-height:1;margin-bottom:16px}
+.step-icon{width:42px;height:42px;background:var(--cyan-dim);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--cyan);font-size:17px;margin-bottom:14px}
+.step-title{font-family:var(--font-head);font-size:19px;font-weight:700;color:var(--white);margin-bottom:10px}
+.step-desc{font-size:14px;color:var(--text-dim);line-height:1.65}
+.call-guarantee{margin-top:24px;display:flex;align-items:flex-start;gap:12px;background:rgba(52,211,153,.07);border:1px solid rgba(52,211,153,.2);border-radius:10px;padding:16px 20px;font-size:14px;color:var(--emerald);font-weight:500;max-width:700px;margin-left:auto;margin-right:auto}
+.call-guarantee i{flex-shrink:0;margin-top:2px}
+#why-us{background:var(--bg)}
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);border-radius:16px;overflow:hidden;margin-top:52px}
+.why-card{background:var(--bg2);padding:36px 28px;position:relative;overflow:hidden;transition:background .2s}
+.why-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);opacity:0;transition:opacity .3s}
+.why-card:hover{background:var(--bg3)}.why-card:hover::after{opacity:1}
+.why-num{font-family:var(--font-head);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:20px}
+.why-title{font-family:var(--font-head);font-size:20px;font-weight:700;color:var(--white);letter-spacing:-.3px;margin-bottom:10px;line-height:1.2}
+.why-desc{font-size:13px;color:var(--text-dim);line-height:1.7}
+#services{background:var(--bg)}.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.service-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:32px 28px;transition:border-color .25s,transform .2s;position:relative;overflow:hidden}
+.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--ac,var(--cyan)),transparent);opacity:0;transition:opacity .3s}
+.service-card:hover{border-color:var(--border-hi);transform:translateY(-3px)}.service-card:hover::before{opacity:1}
+.service-card.amber{--ac:var(--amber)}.service-card.emerald{--ac:var(--emerald)}
+.service-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:20px}
+.si-cyan{background:var(--cyan-dim);color:var(--cyan)}.si-amber{background:rgba(245,158,11,.1);color:var(--amber)}.si-emerald{background:rgba(52,211,153,.1);color:var(--emerald)}
+.service-name{font-family:var(--font-head);font-size:20px;font-weight:700;color:var(--white);margin-bottom:10px;letter-spacing:-.3px}
+.service-desc{font-size:14px;color:var(--text-dim);margin-bottom:20px;line-height:1.65}
+.service-list{list-style:none;display:flex;flex-direction:column;gap:9px}
+.service-list li{display:flex;gap:9px;font-size:13px;color:var(--text-dim)}
+.service-list li i{color:var(--emerald);font-size:11px;margin-top:4px;flex-shrink:0}
+#quiz-section{background:linear-gradient(135deg,#0a1628,#071020);position:relative;overflow:hidden}
+#quiz-section::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 50%,rgba(34,211,238,.06),transparent 60%);pointer-events:none}
+.quiz-wrap{max-width:680px;margin:0 auto}
+.quiz-card{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:20px;padding:44px 40px}
+.quiz-progress{display:flex;gap:6px;margin-bottom:28px}
+.quiz-progress-bar{height:3px;flex:1;background:var(--border);border-radius:99px;transition:background .4s}
+.quiz-progress-bar.active{background:var(--cyan)}
+.quiz-q-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--cyan);margin-bottom:10px}
+.quiz-question{font-family:var(--font-head);font-size:clamp(20px,3.5vw,26px);font-weight:700;color:var(--white);letter-spacing:-.5px;margin-bottom:24px;line-height:1.25}
+.quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.quiz-opt{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px;cursor:pointer;font-size:14px;font-weight:500;color:var(--text-dim);text-align:left;transition:all .2s;display:flex;align-items:flex-start;gap:10px;min-height:60px;font-family:var(--font-body)}
+.quiz-opt i{color:var(--muted);transition:color .2s;flex-shrink:0;margin-top:2px}
+.quiz-opt:hover{border-color:var(--border-hi);color:var(--white);background:rgba(34,211,238,.05)}.quiz-opt:hover i{color:var(--cyan)}
+.quiz-opt.selected{border-color:var(--cyan);background:var(--cyan-dim);color:var(--white)}.quiz-opt.selected i{color:var(--cyan)}
+.quiz-result{display:none;text-align:center}.quiz-result.show{display:block;animation:fade-in .4s ease}
+.result-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;background:var(--cyan-dim);color:var(--cyan);padding:6px 14px;border-radius:999px;margin-bottom:14px}
+.result-headline{font-family:var(--font-head);font-size:clamp(22px,4vw,28px);font-weight:800;color:var(--white);margin-bottom:12px;letter-spacing:-.5px}
+.result-body{font-size:15px;color:var(--text-dim);margin-bottom:24px;line-height:1.65}
+.quiz-restart{background:none;border:none;color:var(--muted);font-size:13px;cursor:pointer;margin-top:12px;text-decoration:underline;text-underline-offset:3px;font-family:var(--font-body)}.quiz-restart:hover{color:var(--text-dim)}
+#tiers{background:var(--bg2)}.tiers-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.tier-card{background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:32px 28px;display:flex;flex-direction:column;position:relative}
+.tier-card.featured{border-color:var(--cyan);background:linear-gradient(160deg,rgba(34,211,238,.04),var(--bg) 60%)}
+.tier-card.free-card{border-color:rgba(52,211,153,.35);background:linear-gradient(160deg,rgba(52,211,153,.05),var(--bg) 60%)}
+.tier-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:5px 14px;border-radius:999px;white-space:nowrap}
+.tb-green{background:var(--emerald);color:#07090f}.tb-blue{background:var(--cyan);color:#07090f}
+.tier-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+.tier-price{font-family:var(--font-head);font-size:48px;font-weight:800;color:var(--white);letter-spacing:-2px;line-height:1;margin-bottom:4px}
+.tier-period{font-size:13px;color:var(--muted);margin-bottom:20px}
+.tier-name{font-family:var(--font-head);font-size:20px;font-weight:700;color:var(--white);margin-bottom:6px}
+.tier-tagline{font-size:13px;color:var(--text-dim);margin-bottom:20px}
+.tier-divider{height:1px;background:var(--border);margin-bottom:20px}
+.tier-features{list-style:none;display:flex;flex-direction:column;gap:11px;flex:1;margin-bottom:24px}
+.tier-features li{display:flex;gap:9px;font-size:13px;color:var(--text-dim);line-height:1.4}
+.tier-features li i{font-size:11px;margin-top:3px;flex-shrink:0;color:var(--emerald)}
+.scarcity-tag{display:flex;align-items:center;gap:8px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);border-radius:8px;padding:9px 13px;font-size:12px;font-weight:600;color:var(--amber);margin-bottom:14px}
+.btn-tier{width:100%;font-family:var(--font-body);font-weight:700;font-size:14px;padding:14px;border-radius:10px;border:none;cursor:pointer;text-align:center;text-decoration:none;transition:background .2s,transform .15s,border-color .2s;min-height:48px;display:flex;align-items:center;justify-content:center}
+.btn-tier.green{background:var(--emerald);color:#07090f}.btn-tier.green:hover{background:#6ee7b7;transform:translateY(-1px)}
+.btn-tier.blue{background:var(--cyan);color:#07090f}.btn-tier.blue:hover{background:#67e8f9;transform:translateY(-1px)}
+.btn-tier.ghost{background:transparent;color:var(--text);border:1px solid var(--border)}.btn-tier.ghost:hover{border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.04)}
+#resources{background:var(--bg2)}.guides-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px}
+.guide-card{background:var(--bg);border:1px solid var(--border);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .25s,transform .22s}
+.guide-card.g-cyan{--gc:#22d3ee}.guide-card.g-amber{--gc:#f59e0b}.guide-card.g-purple{--gc:#a78bfa}
+.guide-card:hover{border-color:var(--gc);transform:translateY(-4px)}
+.guide-thumb{aspect-ratio:1/1;position:relative;overflow:hidden;background:var(--bg)}
+.guide-thumb img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform .45s ease}
+.guide-card:hover .guide-thumb img{transform:scale(1.04)}
+.guide-num{position:absolute;top:12px;left:12px;width:26px;height:26px;background:var(--gc);border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-weight:800;font-size:11px;color:#07090f;z-index:2}
+.guide-dl-badge{position:absolute;top:12px;right:12px;background:rgba(7,9,15,.75);border:1px solid var(--border);border-radius:999px;padding:3px 9px;font-size:9px;font-weight:700;color:var(--muted);letter-spacing:.07em;text-transform:uppercase;z-index:2}
+.guide-body{padding:22px 22px 20px;flex:1;display:flex;flex-direction:column}
+.guide-label{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gc);margin-bottom:8px}
+.guide-title{font-family:var(--font-head);font-size:16px;font-weight:700;color:var(--white);letter-spacing:-.3px;margin-bottom:8px;line-height:1.3}
+.guide-desc{font-size:12px;color:var(--text-dim);line-height:1.65;margin-bottom:14px}
+.guide-includes{list-style:none;display:flex;flex-direction:column;gap:5px;margin-bottom:18px;flex:1}
+.guide-includes li{display:flex;gap:7px;font-size:11px;color:var(--muted);line-height:1.4}
+.guide-includes li i{color:var(--gc);font-size:9px;margin-top:2px;flex-shrink:0}
+.guide-footer{display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid var(--border);gap:12px}
+.guide-price{font-family:var(--font-head);font-size:30px;font-weight:800;color:var(--white);letter-spacing:-1px;line-height:1}
+.guide-price span{font-size:13px;color:var(--muted);font-weight:400;letter-spacing:0;display:block}
+.btn-guide{display:inline-flex;align-items:center;gap:6px;background:var(--gc);color:#07090f;font-family:var(--font-body);font-weight:700;font-size:12px;padding:10px 16px;border-radius:8px;border:none;cursor:pointer;text-decoration:none;min-height:40px;white-space:nowrap;transition:opacity .2s,transform .15s;flex-shrink:0}
+.btn-guide:hover{opacity:.82;transform:translateY(-1px)}
+.bundle-card{background:var(--bg);border:1px solid var(--border-hi);border-radius:16px;padding:32px 36px;display:flex;align-items:center;justify-content:space-between;gap:32px;position:relative;overflow:hidden;transition:border-color .25s,transform .2s}
+.bundle-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#22d3ee,#f59e0b 50%,#a78bfa)}
+.bundle-card:hover{border-color:rgba(255,255,255,.18);transform:translateY(-2px)}
+.bundle-info{flex:1;min-width:0}.bundle-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:8px}
+.bundle-title{font-family:var(--font-head);font-size:22px;font-weight:800;color:var(--white);letter-spacing:-.5px;margin-bottom:6px}
+.bundle-desc{font-size:13px;color:var(--text-dim);margin-bottom:14px}
+.bundle-guides{display:flex;gap:8px;flex-wrap:wrap}
+.bundle-tag{font-size:10px;font-weight:700;padding:4px 10px;border-radius:999px;letter-spacing:.05em}
+.bundle-tag.t-cyan{background:rgba(34,211,238,.1);color:#22d3ee;border:1px solid rgba(34,211,238,.2)}
+.bundle-tag.t-amber{background:rgba(245,158,11,.1);color:#f59e0b;border:1px solid rgba(245,158,11,.2)}
+.bundle-tag.t-purple{background:rgba(167,139,250,.1);color:#a78bfa;border:1px solid rgba(167,139,250,.2)}
+.bundle-right{text-align:right;flex-shrink:0}
+.bundle-was{font-size:12px;color:var(--muted);text-decoration:line-through;margin-bottom:2px}
+.bundle-price{font-family:var(--font-head);font-size:48px;font-weight:800;color:var(--white);letter-spacing:-2px;line-height:1;margin-bottom:6px}
+.bundle-save{display:inline-block;background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.25);color:var(--emerald);font-size:10px;font-weight:700;padding:4px 10px;border-radius:999px;margin-bottom:14px;letter-spacing:.05em}
+.btn-bundle{display:inline-flex;align-items:center;gap:8px;background:var(--white);color:#07090f;font-family:var(--font-body);font-weight:700;font-size:14px;padding:13px 24px;border-radius:10px;border:none;cursor:pointer;text-decoration:none;min-height:48px;transition:background .2s,transform .15s;white-space:nowrap}
+.btn-bundle:hover{background:var(--text);transform:translateY(-1px)}
+#testimonials{background:var(--bg)}.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.testimonial-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:18px;transition:border-color .2s}
+.testimonial-card:hover{border-color:var(--border-hi)}
+.stars{color:var(--amber);font-size:13px;letter-spacing:2px;margin-bottom:4px}
+.quote-text{font-size:14px;line-height:1.75;color:var(--text-dim);font-style:italic;flex:1}
+.quote-author{display:flex;align-items:center;gap:12px}
+.quote-avatar{width:38px;height:38px;border-radius:50%;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-weight:700;font-size:13px;color:var(--cyan);flex-shrink:0}
+.author-name{font-size:13px;font-weight:600;color:var(--white)}.author-role{font-size:12px;color:var(--muted)}
+#portfolio{background:var(--bg2)}.portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.portfolio-card{background:var(--bg);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:border-color .2s,transform .2s}
+.portfolio-card:hover{border-color:var(--border-hi);transform:translateY(-3px)}
+.portfolio-thumb{height:160px;display:flex;align-items:center;justify-content:center}
+.portfolio-thumb span{font-family:var(--font-head);font-size:44px;font-weight:800;letter-spacing:-2px;opacity:.18;transition:opacity .25s}
+.portfolio-card:hover .portfolio-thumb span{opacity:.32}
+.portfolio-body{padding:22px 24px}
+.portfolio-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--bg3);border:1px solid var(--border);color:var(--muted);padding:4px 10px;border-radius:999px;margin-bottom:10px}
+.portfolio-title{font-family:var(--font-head);font-size:17px;font-weight:700;color:var(--white);margin-bottom:7px;letter-spacing:-.3px}
+.portfolio-desc{font-size:13px;color:var(--text-dim);line-height:1.6}
+.portfolio-metric{display:flex;align-items:center;gap:7px;margin-top:12px;padding-top:12px;border-top:1px solid var(--border);font-size:12px;font-weight:600;color:var(--emerald)}
+.portfolio-metric i{font-size:11px}
+#mid-cta{background:linear-gradient(135deg,#0d1f3c,#0a1628);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:72px 24px;text-align:center;position:relative;overflow:hidden}
+#mid-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(34,211,238,.07),transparent 70%);pointer-events:none}
+.mid-cta-inner{position:relative;z-index:2;max-width:600px;margin:0 auto}
+.mid-cta-label{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:16px}
+.mid-cta-headline{font-family:var(--font-head);font-size:clamp(28px,5vw,46px);font-weight:800;color:var(--white);letter-spacing:-1.5px;line-height:1.1;margin-bottom:16px}
+.mid-cta-sub{font-size:16px;color:var(--text-dim);margin-bottom:32px;line-height:1.65}
+#faq{background:var(--bg)}.faq-list{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:4px}
+.faq-item{border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:border-color .2s}.faq-item.open{border-color:var(--border-hi)}
+.faq-q{width:100%;background:var(--bg2);border:none;padding:18px 22px;display:flex;justify-content:space-between;align-items:center;gap:16px;cursor:pointer;text-align:left;font-family:var(--font-body);font-size:15px;font-weight:600;color:var(--white);transition:background .2s;min-height:56px}
+.faq-q:hover{background:var(--bg3)}.faq-q i{color:var(--cyan);font-size:12px;flex-shrink:0;transition:transform .3s}.faq-item.open .faq-q i{transform:rotate(180deg)}
+.faq-a{background:var(--bg2);max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-a-inner{padding:0 22px 18px;font-size:14px;color:var(--text-dim);line-height:1.75}.faq-item.open .faq-a{max-height:300px}
+#book{background:linear-gradient(135deg,#08101f,#070b15);position:relative}
+#book::before{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(34,211,238,.07),transparent 70%);pointer-events:none}
+.book-wrap{max-width:600px;margin:0 auto;position:relative;z-index:2}
+.book-card{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:20px;padding:48px 44px}
+.form-group{margin-bottom:18px}label{display:block;font-size:13px;font-weight:600;color:var(--text-dim);margin-bottom:7px}
+input[type=text],input[type=email],select,textarea{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:13px 16px;color:var(--white);font-family:var(--font-body);font-size:15px;outline:none;transition:border-color .2s;-webkit-appearance:none;appearance:none;min-height:48px}
+input:focus,select:focus,textarea:focus{border-color:var(--border-hi)}
+select{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px}
+option{background:var(--bg3)}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.btn-submit{width:100%;background:var(--cyan);color:#07090f;font-family:var(--font-body);font-weight:700;font-size:16px;padding:17px;border-radius:10px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;min-height:54px;transition:background .2s,transform .15s,box-shadow .2s;margin-top:6px}
+.btn-submit:hover{background:#67e8f9;transform:translateY(-2px);box-shadow:0 8px 28px rgba(34,211,238,.25)}
+.book-footnote{text-align:center;font-size:12px;color:var(--muted);margin-top:14px}.book-footnote i{color:var(--emerald);margin-right:4px}
+.form-success{display:none;text-align:center;padding:20px 0}.form-success.show{display:block;animation:fade-in .4s ease}
+.success-icon{width:60px;height:60px;background:rgba(52,211,153,.12);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:26px;color:var(--emerald)}
+.success-title{font-family:var(--font-head);font-size:26px;font-weight:800;color:var(--white);margin-bottom:10px;letter-spacing:-.5px}
+.success-sub{font-size:15px;color:var(--text-dim);line-height:1.65}
+#floating-cta{position:fixed;bottom:24px;right:24px;z-index:80;display:none}
+#floating-cta.show{display:block;animation:slide-up .3s ease}
+#floating-cta button{display:inline-flex;align-items:center;gap:8px;background:var(--cyan);color:#07090f;font-family:var(--font-body);font-weight:700;font-size:14px;padding:13px 20px;border-radius:10px;border:none;cursor:pointer;box-shadow:0 8px 28px rgba(34,211,238,.35);transition:background .2s,transform .15s;min-height:48px;white-space:nowrap}
+#floating-cta button:hover{background:#67e8f9;transform:translateY(-2px)}
+#exit-popup{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(6px);z-index:200;align-items:center;justify-content:center;padding:24px}
+#exit-popup.show{display:flex;animation:fade-in .25s ease}
+.exit-card{background:var(--bg2);border:1px solid var(--border-hi);border-radius:20px;padding:48px 44px;max-width:480px;width:100%;text-align:center;position:relative;animation:scale-in .3s cubic-bezier(.34,1.56,.64,1)}
+.exit-close{position:absolute;top:16px;right:16px;background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:6px;transition:color .2s,background .2s}
+.exit-close:hover{color:var(--white);background:var(--bg3)}
+.exit-icon{width:56px;height:56px;background:var(--cyan-dim);border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:24px;color:var(--cyan)}
+.exit-title{font-family:var(--font-head);font-size:26px;font-weight:800;color:var(--white);letter-spacing:-.5px;margin-bottom:12px}
+.exit-sub{font-size:15px;color:var(--text-dim);line-height:1.65;margin-bottom:24px}
+.exit-note{font-size:12px;color:var(--amber);margin-top:14px;font-weight:600}
+#guides-pill{position:fixed;top:120px;right:16px;z-index:79;display:none;align-items:center;filter:drop-shadow(0 4px 20px rgba(0,0,0,.5))}
+#guides-pill.show{display:flex;animation:pill-in .45s cubic-bezier(.34,1.56,.64,1) forwards}
+#guides-pill.dismiss{animation:pill-out .25s ease forwards}
+@keyframes pill-in{from{opacity:0;transform:translateX(48px)}to{opacity:1;transform:translateX(0)}}
+@keyframes pill-out{from{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(48px)}}
+.pill-border{display:flex;align-items:center;border-radius:999px;padding:1.5px;background:linear-gradient(90deg,#22d3ee,#f59e0b 50%,#a78bfa)}
+.pill-inner{display:flex;align-items:center;gap:8px;background:var(--bg2);border-radius:999px;padding:8px 10px 8px 12px;text-decoration:none;transition:background .2s}
+.pill-inner:hover{background:var(--bg3)}.pill-dots{display:flex;gap:4px;align-items:center}
+.pill-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.pill-text{font-family:var(--font-body);font-size:13px;font-weight:700;color:var(--white);white-space:nowrap}
+.pill-arrow{font-size:13px;color:var(--cyan);font-weight:700}
+.pill-close{background:none;border:none;color:var(--muted);font-size:18px;line-height:1;cursor:pointer;padding:6px 8px 6px 4px;margin-left:2px;transition:color .2s;flex-shrink:0}.pill-close:hover{color:var(--white)}
+#back-to-top{position:fixed;bottom:24px;left:24px;z-index:80;display:none}
+#back-to-top.show{display:flex;animation:slide-up .3s ease}
+#back-to-top button{width:44px;height:44px;background:var(--bg3);border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--text-dim);font-size:14px;cursor:pointer;transition:border-color .2s,color .2s,background .2s}
+#back-to-top button:hover{border-color:var(--border-hi);color:var(--cyan);background:var(--bg2)}
+footer{background:#040508;border-top:1px solid var(--border);padding:36px 24px;text-align:center}
+.footer-logo-text{font-family:var(--font-head);font-weight:800;font-size:17px;letter-spacing:-.5px;color:var(--white);margin-bottom:8px}
+.footer-email{font-size:13px;margin-bottom:16px}.footer-email a{color:var(--cyan);text-decoration:none}.footer-email a:hover{text-decoration:underline}
+.footer-links{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-bottom:16px}
+.footer-links a{font-size:13px;color:var(--muted);text-decoration:none;transition:color .2s}.footer-links a:hover{color:var(--text-dim)}
+.footer-copy{font-size:13px;color:var(--muted)}
+@keyframes fade-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes scale-in{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+@keyframes slide-up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.fade-in-up{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
+.fade-in-up.visible{opacity:1;transform:none}
+@media(max-width:1024px){.why-grid,.testimonials-grid{grid-template-columns:1fr 1fr}.services-grid,.portfolio-grid{grid-template-columns:1fr 1fr}.tiers-grid{grid-template-columns:1fr;max-width:520px;margin-left:auto;margin-right:auto}.tier-card.free-card{order:-2}.tier-card.featured{order:-1}.guides-grid{grid-template-columns:1fr 1fr}.bundle-card{flex-direction:column;align-items:flex-start}.bundle-right{text-align:left;width:100%;display:flex;align-items:center;gap:24px;flex-wrap:wrap}.bundle-price{font-size:40px}}
+@media(max-width:768px){.nav-links{display:none}.hamburger{display:flex}.nav-inner>.nav-cta{display:none}section{padding:60px 20px}#hero{padding:72px 20px 60px}.stats-grid{grid-template-columns:1fr 1fr;gap:20px}#stats{padding:28px 20px}.why-grid,.services-grid,.call-steps,.tiers-grid,.testimonials-grid,.portfolio-grid,.guides-grid{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}.book-card{padding:32px 24px}.quiz-card{padding:28px 22px}.quiz-options{grid-template-columns:1fr}.quiz-opt{min-height:52px}.hero-actions{flex-direction:column;align-items:center}.btn-primary,.btn-secondary{width:100%;max-width:340px;justify-content:center}#floating-cta{bottom:16px;right:16px}#floating-cta button{font-size:13px;padding:12px 16px}#urgency-bar{font-size:12px;padding:9px 12px}#guides-pill{top:140px;right:8px}.pill-text{font-size:12px}.exit-card{padding:36px 24px}}
+@media(max-width:480px){h1{letter-spacing:-1.5px}.book-card{padding:28px 18px}.quiz-card{padding:24px 18px}.exit-card{padding:28px 18px}.stats-grid{grid-template-columns:1fr 1fr;gap:16px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}html{scroll-behavior:auto}}
   </style>
-</head>
-<body>
-
-<div id="scroll-progress"></div>
-
-<!-- ─── URGENCY BAR ─── -->
-<div id="urgency-bar">
-  <span class="pulse"></span>
-  <strong id="urgency-text"></strong>
-  <a href="#book"> Claim your spot →</a>
-</div>
-
-<!-- ─── NAVBAR ─── -->
-<nav>
-  <div class="nav-inner">
-    <a href="#" class="logo">
-      <div class="logo-mark">HL</div>
-      <span class="logo-text">HyperLightTech</span>
+ </head>
+ <body>
+  <div id="scroll-progress">
+  </div>
+  <div id="urgency-bar">
+   <span class="pulse">
+   </span>
+   <strong id="urgency-text">
+   </strong>
+   <a href="#book">
+    Claim your spot &rarr;
+   </a>
+  </div>
+  <nav>
+   <div class="nav-inner">
+    <a class="logo" href="#">
+     <div class="logo-mark">
+      HL
+     </div>
+     <span class="logo-text">
+      HyperLightTech
+     </span>
     </a>
-
     <ul class="nav-links">
-      <li><a href="#services"     onclick="closeMenu()">Services</a></li>
-      <li><a href="#how-it-works" onclick="closeMenu()">How It Works</a></li>
-      <li><a href="#tiers"        onclick="closeMenu()">Pricing</a></li>
-      <li><a href="#resources"    onclick="closeMenu()">Guides</a></li>
-      <li><a href="#portfolio"    onclick="closeMenu()">Work</a></li>
-      <li><a href="#faq"          onclick="closeMenu()">FAQ</a></li>
-      <li>
-        <a href="#book" class="nav-cta" onclick="closeMenu()">
-          <i class="fa-solid fa-calendar-check"></i> Free Strategy Call
-        </a>
-      </li>
+     <li>
+      <a href="#services" onclick="closeMenu()">
+       Services
+      </a>
+     </li>
+     <li>
+      <a href="#how-it-works" onclick="closeMenu()">
+       How It Works
+      </a>
+     </li>
+     <li>
+      <a href="#tiers" onclick="closeMenu()">
+       Pricing
+      </a>
+     </li>
+     <li>
+      <a href="#resources" onclick="closeMenu()">
+       Guides
+      </a>
+     </li>
+     <li>
+      <a href="#portfolio" onclick="closeMenu()">
+       Work
+      </a>
+     </li>
+     <li>
+      <a href="#faq" onclick="closeMenu()">
+       FAQ
+      </a>
+     </li>
+     <li>
+      <a class="nav-cta" href="#book" onclick="closeMenu()">
+       <i class="fa-solid fa-calendar-check">
+       </i>
+       Free Strategy Call
+      </a>
+     </li>
     </ul>
-
-    <button class="hamburger" id="hamburger" aria-label="Open menu" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
+    <button aria-label="Open menu" class="hamburger" id="hamburger" onclick="toggleMenu()">
+     <span>
+     </span>
+     <span>
+     </span>
+     <span>
+     </span>
     </button>
+   </div>
+  </nav>
+  <div class="mobile-menu" id="mobile-menu">
+   <a href="#services" onclick="closeMenu()">
+    Services
+   </a>
+   <a href="#how-it-works" onclick="closeMenu()">
+    How It Works
+   </a>
+   <a href="#tiers" onclick="closeMenu()">
+    Pricing
+   </a>
+   <a href="#resources" onclick="closeMenu()">
+    Guides
+   </a>
+   <a href="#portfolio" onclick="closeMenu()">
+    Work
+   </a>
+   <a href="#faq" onclick="closeMenu()">
+    FAQ
+   </a>
+   <a class="mobile-cta nav-cta" href="#book" onclick="closeMenu()">
+    <i class="fa-solid fa-calendar-check">
+    </i>
+    Free Strategy Call
+   </a>
   </div>
-</nav>
-
-<!-- ─── MOBILE MENU ─── -->
-<div class="mobile-menu" id="mobile-menu">
-  <a href="#services"     onclick="closeMenu()">Services</a>
-  <a href="#how-it-works" onclick="closeMenu()">How It Works</a>
-  <a href="#tiers"        onclick="closeMenu()">Pricing</a>
-  <a href="#resources"    onclick="closeMenu()">Guides</a>
-  <a href="#portfolio"    onclick="closeMenu()">Work</a>
-  <a href="#faq"          onclick="closeMenu()">FAQ</a>
-  <a href="#book" class="mobile-cta nav-cta" onclick="closeMenu()">
-    <i class="fa-solid fa-calendar-check"></i> Free Strategy Call
-  </a>
-</div>
-
-<main id="main-content">
-
-<!-- ─── HERO ─── -->
-<section id="hero">
-  <div class="hero-grid"></div>
-  <div class="hero-glow"></div>
-  <div class="hero-content fade-in-up">
-    <div class="hero-badge">
-      <i class="fa-solid fa-bolt-lightning"></i>
-      AI Agents · Blockchain · Secure Systems
+  <main id="main-content">
+   <section id="hero">
+    <div class="hero-grid">
     </div>
-    <h1>We build things<br>that <span class="accent">actually work.</span></h1>
-    <p class="hero-sub">
-      Production-grade AI agents, DeFi protocols, and secure infrastructure — from a team that ships without excuses.
-    </p>
-    <div class="hero-actions">
-      <a href="#book" class="btn-primary">
-        <i class="fa-solid fa-calendar-check"></i>
-        Book Your Free Strategy Call
+    <div class="hero-glow">
+    </div>
+    <div class="hero-content fade-in-up">
+     <div class="hero-badge">
+      <i class="fa-solid fa-bolt-lightning">
+      </i>
+      AI Agents &middot; Blockchain &middot; Secure Systems
+     </div>
+     <h1>
+      We build things
+      <br>
+      that
+      <span class="accent">
+       actually work.
+      </span>
+     </h1>
+     <p class="hero-sub">
+      Production-grade AI agents, DeFi protocols, and secure infrastructure &mdash; from a team that ships without excuses.
+     </p>
+     <div class="hero-actions">
+      <a class="btn-primary" href="#book">
+       <i class="fa-solid fa-calendar-check">
+       </i>
+       Book Your Free Strategy Call
       </a>
-      <a href="#portfolio" class="btn-secondary">
-        <i class="fa-solid fa-arrow-right"></i>
-        See Our Work
+      <a class="btn-secondary" href="#portfolio">
+       <i class="fa-solid fa-arrow-right">
+       </i>
+       See Our Work
       </a>
+     </div>
+     <p class="hero-note">
+      <span>
+       Free &middot; No obligation &middot; Includes a written project roadmap
+      </span>
+     </p>
     </div>
-    <p class="hero-note">
-      <span>Free · No obligation · Includes a written project roadmap</span>
-    </p>
-  </div>
-</section>
-
-<!-- ─── STATS ─── -->
-<div id="stats">
-  <div class="stats-grid">
-    <div class="fade-in-up">
-      <div class="stat-num"><span class="counter" data-target="18">0</span><span class="stat-suffix">+</span></div>
-      <div class="stat-label">AI Agents Deployed</div>
+   </section>
+   <div id="stats">
+    <div class="stats-grid">
+     <div class="fade-in-up">
+      <div class="stat-num">
+       <span class="counter" data-target="18">
+        0
+       </span>
+       <span class="stat-suffix">
+        +
+       </span>
+      </div>
+      <div class="stat-label">
+       AI Agents Deployed
+      </div>
+     </div>
+     <div class="fade-in-up" style="transition-delay:.1s">
+      <div class="stat-num">
+       <span class="stat-suffix">
+        $
+       </span>
+       <span class="counter" data-target="6">
+        0
+       </span>
+       <span class="stat-suffix">
+        M+
+       </span>
+      </div>
+      <div class="stat-label">
+       Smart Contract Volume
+      </div>
+     </div>
+     <div class="fade-in-up" style="transition-delay:.2s">
+      <div class="stat-num">
+       <span class="counter" data-target="34">
+        0
+       </span>
+       <span class="stat-suffix">
+        +
+       </span>
+      </div>
+      <div class="stat-label">
+       Clients Served
+      </div>
+     </div>
+     <div class="fade-in-up" style="transition-delay:.3s">
+      <div class="stat-num">
+       <span class="counter" data-target="100">
+        0
+       </span>
+       <span class="stat-suffix">
+        %
+       </span>
+      </div>
+      <div class="stat-label">
+       Projects Delivered On Spec
+      </div>
+     </div>
     </div>
-    <div class="fade-in-up" style="transition-delay:0.1s">
-      <div class="stat-num"><span class="stat-suffix">$</span><span class="counter" data-target="6">0</span><span class="stat-suffix">M+</span></div>
-      <div class="stat-label">Smart Contract Volume</div>
-    </div>
-    <div class="fade-in-up" style="transition-delay:0.2s">
-      <div class="stat-num"><span class="counter" data-target="34">0</span><span class="stat-suffix">+</span></div>
-      <div class="stat-label">Clients Served</div>
-    </div>
-    <div class="fade-in-up" style="transition-delay:0.3s">
-      <div class="stat-num"><span class="counter" data-target="100">0</span><span class="stat-suffix">%</span></div>
-      <div class="stat-label">Projects Delivered On Spec</div>
-    </div>
-  </div>
-</div>
-
-<!-- ─── HOW THE CALL WORKS ─── -->
-<section id="how-it-works">
-  <div class="section-inner">
-    <div class="center fade-in-up">
-      <span class="section-tag">The Free Strategy Call</span>
-      <h2>What actually happens<br>on your free call</h2>
-      <p class="section-sub">Not a sales pitch. Not a vague chat. A focused 45 minutes where you leave with a real written roadmap — free.</p>
-    </div>
-    <div class="call-steps fade-in-up">
-      <div class="call-step">
-        <div class="step-num">01</div>
-        <div class="step-icon"><i class="fa-solid fa-microphone"></i></div>
-        <div class="step-title">You share your vision</div>
-        <p class="step-desc">We listen to what you're building — the problem, the constraints, the ambition. No prep needed on your end.</p>
-      </div>
-      <div class="call-step">
-        <div class="step-num">02</div>
-        <div class="step-icon"><i class="fa-solid fa-map"></i></div>
-        <div class="step-title">We map your solution</div>
-        <p class="step-desc">Our team outlines the technical approach — architecture, stack, timeline, and the realistic path to your goal.</p>
-      </div>
-      <div class="call-step">
-        <div class="step-num">03</div>
-        <div class="step-icon"><i class="fa-solid fa-file-lines"></i></div>
-        <div class="step-title">You get your roadmap</div>
-        <p class="step-desc">You leave with a written roadmap. Use it with us or take it elsewhere. No pressure — just genuine value.</p>
-      </div>
-    </div>
-    <div class="call-guarantee fade-in-up">
-      <i class="fa-solid fa-shield-halved fa-lg"></i>
-      <span>Zero hard sell. If we're not the right fit, we'll say so. Our goal is a project we can both be proud of.</span>
-    </div>
-  </div>
-</section>
-
-<!-- ─── WHY HYPERLIGHTTECH ─── -->
-<section id="why-us">
-  <div class="section-inner">
-    <span class="section-tag">Why Us</span>
-    <h2>What makes us<br>different.</h2>
-    <p class="section-sub">There's no shortage of AI and blockchain shops. Here's what separates us.</p>
-    <div class="why-grid">
-      <div class="why-card fade-in-up">
-        <div class="why-num">01</div>
-        <div class="why-title">We ship code,<br>not slide decks.</div>
-        <p class="why-desc">Every engagement ends with working software. No discovery-phase consulting that goes nowhere. We're engineers first — the strategy work exists to serve the build.</p>
-      </div>
-      <div class="why-card fade-in-up" style="transition-delay:0.1s">
-        <div class="why-num">02</div>
-        <div class="why-title">We say no<br>to bad fits.</div>
-        <p class="why-desc">We turn down projects that aren't right for us — wrong scope, wrong timeline, wrong tech. So when we say yes, it means something. You're not a revenue line; you're a portfolio we're proud of.</p>
-      </div>
-      <div class="why-card fade-in-up" style="transition-delay:0.2s">
-        <div class="why-num">03</div>
-        <div class="why-title">We start free,<br>always.</div>
-        <p class="why-desc">No discovery fees, no paid scoping sessions. We earn your trust before we earn your money. The free call with a written roadmap is our way of proving that upfront.</p>
-      </div>
-      <div class="why-card fade-in-up" style="transition-delay:0.3s">
-        <div class="why-num">04</div>
-        <div class="why-title">Deadlines are<br>non-negotiable.</div>
-        <p class="why-desc">We've delivered every project on spec, on time. We build realistic timelines and hold to them. If something changes, you hear from us — never after the fact.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── SERVICES ─── -->
-<section id="services">
-  <div class="section-inner">
-    <span class="section-tag">What We Build</span>
-    <h2>Three domains.<br>One team.</h2>
-    <p class="section-sub">We go deep on the technology that's reshaping what's possible.</p>
-    <div class="services-grid">
-      <div class="service-card fade-in-up">
-        <div class="service-icon si-cyan"><i class="fa-solid fa-brain"></i></div>
-        <div class="service-name">AI Agents</div>
-        <p class="service-desc">Hermes-style autonomous agents, multi-agent orchestration, RAG pipelines, and intelligent automation that operates independently with high reliability.</p>
-        <ul class="service-list">
-          <li><i class="fa-solid fa-check"></i> Autonomous decision agents</li>
-          <li><i class="fa-solid fa-check"></i> Tool integration & orchestration</li>
-          <li><i class="fa-solid fa-check"></i> Custom model deployment & fine-tuning</li>
-          <li><i class="fa-solid fa-check"></i> Workflow automation pipelines</li>
-        </ul>
-      </div>
-      <div class="service-card amber fade-in-up" style="transition-delay:0.1s">
-        <div class="service-icon si-amber"><i class="fa-solid fa-cubes"></i></div>
-        <div class="service-name">Blockchain & Crypto</div>
-        <p class="service-desc">End-to-end blockchain infrastructure, smart contracts, DeFi protocols, token launches, and secure Web3 integrations built for production.</p>
-        <ul class="service-list">
-          <li><i class="fa-solid fa-check"></i> Smart contract development & audit</li>
-          <li><i class="fa-solid fa-check"></i> DeFi protocol & token engineering</li>
-          <li><i class="fa-solid fa-check"></i> On-chain strategy & security</li>
-          <li><i class="fa-solid fa-check"></i> Cross-chain & Layer-2 integrations</li>
-        </ul>
-      </div>
-      <div class="service-card emerald fade-in-up" style="transition-delay:0.2s">
-        <div class="service-icon si-emerald"><i class="fa-solid fa-shield-halved"></i></div>
-        <div class="service-name">Secure Systems</div>
-        <p class="service-desc">High-performance secure computer systems, cybersecurity hardening, and expert technology strategy for teams that can't afford a breach.</p>
-        <ul class="service-list">
-          <li><i class="fa-solid fa-check"></i> Custom secure hardware builds</li>
-          <li><i class="fa-solid fa-check"></i> Infrastructure hardening</li>
-          <li><i class="fa-solid fa-check"></i> Strategic tech advisory</li>
-          <li><i class="fa-solid fa-check"></i> Penetration testing & red team</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── QUIZ ─── -->
-<section id="quiz-section">
-  <div class="quiz-wrap">
-    <div class="center fade-in-up" style="margin-bottom:32px">
-      <span class="section-tag">Project Matcher</span>
-      <h2>Not sure where to start?</h2>
-      <p class="section-sub" style="margin:0 auto">Answer 3 quick questions and we'll point you in the right direction.</p>
-    </div>
-    <div class="quiz-card fade-in-up">
-      <div id="quiz-body">
-        <div class="quiz-progress">
-          <div class="quiz-progress-bar active" id="pb1"></div>
-          <div class="quiz-progress-bar" id="pb2"></div>
-          <div class="quiz-progress-bar" id="pb3"></div>
-        </div>
-
-        <div id="quiz-step-1">
-          <div class="quiz-q-label">Question 1 of 3</div>
-          <div class="quiz-question">What are you trying to build?</div>
-          <div class="quiz-options">
-            <button class="quiz-opt" data-q="1" data-v="ai" onclick="quizSelect(this)">
-              <i class="fa-solid fa-brain"></i>
-              <div><strong>AI agent or automation</strong><br><span style="color:var(--muted);font-size:12px">Autonomous systems, RAG, workflows</span></div>
-            </button>
-            <button class="quiz-opt" data-q="1" data-v="blockchain" onclick="quizSelect(this)">
-              <i class="fa-solid fa-cubes"></i>
-              <div><strong>Blockchain / DeFi / Web3</strong><br><span style="color:var(--muted);font-size:12px">Smart contracts, tokens, protocols</span></div>
-            </button>
-            <button class="quiz-opt" data-q="1" data-v="secure" onclick="quizSelect(this)">
-              <i class="fa-solid fa-shield-halved"></i>
-              <div><strong>Secure system or infra</strong><br><span style="color:var(--muted);font-size:12px">Hardened hardware, security consulting</span></div>
-            </button>
-            <button class="quiz-opt" data-q="1" data-v="unsure" onclick="quizSelect(this)">
-              <i class="fa-solid fa-question"></i>
-              <div><strong>Not sure yet</strong><br><span style="color:var(--muted);font-size:12px">I have an idea but need guidance</span></div>
-            </button>
-          </div>
-        </div>
-
-        <div id="quiz-step-2" style="display:none">
-          <div class="quiz-q-label">Question 2 of 3</div>
-          <div class="quiz-question">What's the scale of this project?</div>
-          <div class="quiz-options">
-            <button class="quiz-opt" data-q="2" data-v="small" onclick="quizSelect(this)">
-              <i class="fa-solid fa-seedling"></i>
-              <div><strong>Proof of concept</strong><br><span style="color:var(--muted);font-size:12px">Test the idea, see if it works</span></div>
-            </button>
-            <button class="quiz-opt" data-q="2" data-v="mid" onclick="quizSelect(this)">
-              <i class="fa-solid fa-rocket"></i>
-              <div><strong>Production MVP</strong><br><span style="color:var(--muted);font-size:12px">Full build, deployable and live</span></div>
-            </button>
-            <button class="quiz-opt" data-q="2" data-v="large" onclick="quizSelect(this)">
-              <i class="fa-solid fa-building"></i>
-              <div><strong>Enterprise / complex</strong><br><span style="color:var(--muted);font-size:12px">Multi-system, serious scale</span></div>
-            </button>
-            <button class="quiz-opt" data-q="2" data-v="unsure" onclick="quizSelect(this)">
-              <i class="fa-solid fa-circle-question"></i>
-              <div><strong>Need help scoping it</strong><br><span style="color:var(--muted);font-size:12px">Not sure what I need yet</span></div>
-            </button>
-          </div>
-        </div>
-
-        <div id="quiz-step-3" style="display:none">
-          <div class="quiz-q-label">Question 3 of 3</div>
-          <div class="quiz-question">When do you want to get started?</div>
-          <div class="quiz-options">
-            <button class="quiz-opt" data-q="3" data-v="now" onclick="quizSelect(this)">
-              <i class="fa-solid fa-bolt"></i>
-              <div><strong>Right now</strong><br><span style="color:var(--muted);font-size:12px">Ready to move immediately</span></div>
-            </button>
-            <button class="quiz-opt" data-q="3" data-v="soon" onclick="quizSelect(this)">
-              <i class="fa-solid fa-calendar"></i>
-              <div><strong>Next 1–4 weeks</strong><br><span style="color:var(--muted);font-size:12px">Exploring options, deciding soon</span></div>
-            </button>
-            <button class="quiz-opt" data-q="3" data-v="later" onclick="quizSelect(this)">
-              <i class="fa-solid fa-clock"></i>
-              <div><strong>1–3 months out</strong><br><span style="color:var(--muted);font-size:12px">Planning for future work</span></div>
-            </button>
-            <button class="quiz-opt" data-q="3" data-v="explore" onclick="quizSelect(this)">
-              <i class="fa-regular fa-compass"></i>
-              <div><strong>Just exploring</strong><br><span style="color:var(--muted);font-size:12px">Early stage, no timeline yet</span></div>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="quiz-result" id="quiz-result">
-        <div class="result-tag" id="result-tag">Your Match</div>
-        <div class="result-headline" id="result-headline"></div>
-        <p class="result-body" id="result-body"></p>
-        <a href="#book" class="btn-primary" style="display:inline-flex;margin:0 auto" onclick="closePopup()">
-          <i class="fa-solid fa-calendar-check"></i>
-          Book My Free Strategy Call
-        </a>
-        <br>
-        <button class="quiz-restart" onclick="quizRestart()">Start over</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── TIERS ─── -->
-<section id="tiers">
-  <div class="section-inner">
-    <div class="center fade-in-up" style="margin-bottom:52px">
-      <span class="section-tag">Pricing</span>
-      <h2>Every engagement<br>starts for free.</h2>
-      <p class="section-sub">No commitment, no credit card, no pitch. Just a conversation and a written roadmap.</p>
-    </div>
-    <div class="tiers-grid">
-
-      <div class="tier-card free-card fade-in-up">
-        <div class="tier-badge tb-green">Start Here — Free</div>
-        <div style="margin-top:16px">
-          <div class="tier-label">Starter</div>
-          <div class="tier-price" style="color:var(--emerald)">$0</div>
-          <div class="tier-period">No cost, ever</div>
-          <div class="tier-name">Free Strategy Call</div>
-          <p class="tier-tagline">For anyone who wants expert eyes on their project.</p>
-          <div class="tier-divider"></div>
-          <ul class="tier-features">
-            <li><i class="fa-solid fa-check"></i> 45-minute focused strategy session</li>
-            <li><i class="fa-solid fa-check"></i> Full written project roadmap delivered</li>
-            <li><i class="fa-solid fa-check"></i> Technical architecture recommendations</li>
-            <li><i class="fa-solid fa-check"></i> Honest assessment — even if we're not the fit</li>
-            <li><i class="fa-solid fa-check"></i> Access to our private knowledge base</li>
-          </ul>
-          <div class="scarcity-tag" id="scarcity-tag">
-            <i class="fa-solid fa-fire"></i>
-            <span id="scarcity-text"></span>
-          </div>
-          <a href="#book" class="btn-tier green">Claim My Free Call →</a>
-        </div>
-      </div>
-
-      <div class="tier-card featured fade-in-up" style="transition-delay:0.1s">
-        <div class="tier-badge tb-blue">Most Popular</div>
-        <div style="margin-top:16px">
-          <div class="tier-label">Professional</div>
-          <div class="tier-price">$2,500</div>
-          <div class="tier-period">per project</div>
-          <div class="tier-name">Pro Tier</div>
-          <p class="tier-tagline">For founders and teams ready to ship something real.</p>
-          <div class="tier-divider"></div>
-          <ul class="tier-features">
-            <li><i class="fa-solid fa-check"></i> Custom AI agent or blockchain solution</li>
-            <li><i class="fa-solid fa-check"></i> Full development + QA testing</li>
-            <li><i class="fa-solid fa-check"></i> Deployment & full documentation</li>
-            <li><i class="fa-solid fa-check"></i> 30 days priority support post-launch</li>
-            <li><i class="fa-solid fa-check"></i> Free strategy call included</li>
-          </ul>
-          <a href="#book" class="btn-tier blue">Start Pro — Book Free Call First</a>
-        </div>
-      </div>
-
-      <div class="tier-card fade-in-up" style="transition-delay:0.2s">
-        <div class="tier-label">Enterprise</div>
-        <div class="tier-price" style="font-size:38px">$8,000+</div>
-        <div class="tier-period">per project</div>
-        <div class="tier-name">Max Tier</div>
-        <p class="tier-tagline">For complex, high-stakes builds with ongoing needs.</p>
-        <div class="tier-divider"></div>
-        <ul class="tier-features">
-          <li><i class="fa-solid fa-check"></i> Everything in Pro</li>
-          <li><i class="fa-solid fa-check"></i> Multi-agent systems or complex DeFi</li>
-          <li><i class="fa-solid fa-check"></i> Ongoing maintenance & optimization</li>
-          <li><i class="fa-solid fa-check"></i> Dedicated Slack support channel</li>
-          <li><i class="fa-solid fa-check"></i> Monthly strategy reviews</li>
-        </ul>
-        <a href="#book" class="btn-tier ghost">Discuss Max → Book Free Call First</a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ─── RESOURCES / GUIDE SHOP ─── -->
-<section id="resources">
-  <div class="section-inner">
-    <div class="center fade-in-up" style="margin-bottom:52px">
-      <span class="section-tag">Learn From Us</span>
-      <h2>Practical guides.<br>Instant download.</h2>
+   </div>
+   <section id="how-it-works">
+    <div class="section-inner">
+     <div class="center fade-in-up">
+      <span class="section-tag">
+       The Free Strategy Call
+      </span>
+      <h2>
+       What actually happens
+       <br>
+       on your free call
+      </h2>
       <p class="section-sub">
-        Not ready to start a project yet? These guides teach you the foundations — written by the same team that builds the real thing. $9 each, yours to keep.
+       Not a sales pitch. Not a vague chat. A focused 45 minutes where you leave with a real written roadmap &mdash; free.
       </p>
+     </div>
+     <div class="call-steps fade-in-up">
+      <div class="call-step">
+       <div class="step-num">
+        01
+       </div>
+       <div class="step-icon">
+        <i class="fa-solid fa-microphone">
+        </i>
+       </div>
+       <div class="step-title">
+        You share your vision
+       </div>
+       <p class="step-desc">
+        We listen to what you're building &mdash; the problem, the constraints, the ambition. No prep needed on your end.
+       </p>
+      </div>
+      <div class="call-step">
+       <div class="step-num">
+        02
+       </div>
+       <div class="step-icon">
+        <i class="fa-solid fa-map">
+        </i>
+       </div>
+       <div class="step-title">
+        We map your solution
+       </div>
+       <p class="step-desc">
+        Our team outlines the technical approach &mdash; architecture, stack, timeline, and the realistic path to your goal.
+       </p>
+      </div>
+      <div class="call-step">
+       <div class="step-num">
+        03
+       </div>
+       <div class="step-icon">
+        <i class="fa-solid fa-file-lines">
+        </i>
+       </div>
+       <div class="step-title">
+        You get your roadmap
+       </div>
+       <p class="step-desc">
+        You leave with a written roadmap. Use it with us or take it elsewhere. No pressure &mdash; just genuine value.
+       </p>
+      </div>
+     </div>
+     <div class="call-guarantee fade-in-up">
+      <i class="fa-solid fa-shield-halved fa-lg">
+      </i>
+      <span>
+       Zero hard sell. If we're not the right fit, we'll say so. Our goal is a project we can both be proud of.
+      </span>
+     </div>
     </div>
-
-    <!-- 3 guide cards -->
-    <div class="guides-grid">
-
-      <!-- Guide 1: Linux -->
+   </section>
+   <section id="why-us">
+    <div class="section-inner">
+     <span class="section-tag">
+      Why Us
+     </span>
+     <h2>
+      What makes us
+      <br>
+      different.
+     </h2>
+     <p class="section-sub">
+      There's no shortage of AI and blockchain shops. Here's what separates us.
+     </p>
+     <div class="why-grid">
+      <div class="why-card fade-in-up">
+       <div class="why-num">
+        01
+       </div>
+       <div class="why-title">
+        We ship code,
+        <br>
+        not slide decks.
+       </div>
+       <p class="why-desc">
+        Every engagement ends with working software. No discovery-phase consulting that goes nowhere. We're engineers first &mdash; the strategy work exists to serve the build.
+       </p>
+      </div>
+      <div class="why-card fade-in-up" style="transition-delay:.1s">
+       <div class="why-num">
+        02
+       </div>
+       <div class="why-title">
+        We say no
+        <br>
+        to bad fits.
+       </div>
+       <p class="why-desc">
+        We turn down projects that aren't right for us &mdash; wrong scope, wrong timeline, wrong tech. So when we say yes, it means something. You're not a revenue line; you're a portfolio we're proud of.
+       </p>
+      </div>
+      <div class="why-card fade-in-up" style="transition-delay:.2s">
+       <div class="why-num">
+        03
+       </div>
+       <div class="why-title">
+        We start free,
+        <br>
+        always.
+       </div>
+       <p class="why-desc">
+        No discovery fees, no paid scoping sessions. We earn your trust before we earn your money. The free call with a written roadmap is our way of proving that upfront.
+       </p>
+      </div>
+      <div class="why-card fade-in-up" style="transition-delay:.3s">
+       <div class="why-num">
+        04
+       </div>
+       <div class="why-title">
+        Deadlines are
+        <br>
+        non-negotiable.
+       </div>
+       <p class="why-desc">
+        We've delivered every project on spec, on time. We build realistic timelines and hold to them. If something changes, you hear from us &mdash; never after the fact.
+       </p>
+      </div>
+     </div>
+    </div>
+   </section>
+   <section id="services">
+    <div class="section-inner">
+     <span class="section-tag">
+      What We Build
+     </span>
+     <h2>
+      Three domains.
+      <br>
+      One team.
+     </h2>
+     <p class="section-sub">
+      We go deep on the technology that's reshaping what's possible.
+     </p>
+     <div class="services-grid">
+      <div class="service-card fade-in-up">
+       <div class="service-icon si-cyan">
+        <i class="fa-solid fa-brain">
+        </i>
+       </div>
+       <div class="service-name">
+        AI Agents
+       </div>
+       <p class="service-desc">
+        Hermes-style autonomous agents, multi-agent orchestration, RAG pipelines, and intelligent automation that operates independently with high reliability.
+       </p>
+       <ul class="service-list">
+        <li>
+         <i class="fa-solid fa-check">
+         </i>
+         Autonomous decision agents
+        </li>
+        <li>
+         <i class="fa-solid fa-check">
+         </i>
+         Tool integration & orchestration
+        </li>
+        <li>
+         <i class="fa-solid fa-check">
+         </i>
+         Custom model deployment & fine-tuning
+        </li>
+        <li>
+         <i class="fa-solid fa-check">
+         </i>
+         Workflow automation pipelines
+        </li>
+       </ul>
+      </div>
+      <div class="service-card amber fade-in-up" style="transition-delay:.1s">
+       <div class="service-icon si-amber">
+        <i class="fa-solid fa-cubes">
+        </i>
+       </div>
+       <div class="service-name">
+        Blockchain & Crypto
+       </div>
+       <p class="service-desc">
+        End-to-end blockchain infrastructure, smart contracts, DeFi protocols, token launches, and secure Web3 integrations built for production.
+       </p>
+       <ul class="service-list">
+        <li>
+         <i class="fa-solid fa-check">
+         </i>
+         Smart contract development & audit
+        </li>
+        <li>
+         <i class="fa-solid fa-check">
+         </i>
+         DeFi protocol & token engineering
+        </li>
+        <li>
+         <i class="fa-solid fa-check">
+         </i>
+         On-chain strategy & security
+        </li>
+        <li>
+         <i class="fa-solid fa-check">
+         </i>
+         Cross-chain & Layer-2 integrations
+        </li>
+       </ul>
+      </div>
+      <div class="service-card emerald fade-in-up" style="transition-delay:.2s">
+       <div class="service-icon si-emerald">
+        <i class="fa-solid fa-shield-halved">
+        </i>
+       </div>
+       <div class="service-name">
+        Secure Systems
+       </div>
+       <p class="service-desc">
+        High-performance secure computer systems, cybersecurity hardening, and expert technology strategy for teams that can't afford a breach.
+       </p>
+       <ul class="service-list">
+        <li>
+         <i class="fa-solid fa-check">
+         </i>
+         Custom secure hardware builds
+        </li>
+        <li>
+         <i class="fa-solid fa-check">
+         </i>
+         Infrastructure hardening
+        </li>
+        <li>
+         <i class="fa-solid fa-check">
+         </i>
+         Strategic tech advisory
+        </li>
+        <li>
+         <i class="fa-solid fa-check">
+         </i>
+         Penetration testing & red team
+        </li>
+       </ul>
+      </div>
+     </div>
+    </div>
+   </section>
+   <section id="quiz-section">
+    <div class="quiz-wrap">
+     <div class="center fade-in-up" style="margin-bottom:32px">
+      <span class="section-tag">
+       Project Matcher
+      </span>
+      <h2>
+       Not sure where to start?
+      </h2>
+      <p class="section-sub" style="margin:0 auto">
+       Answer 3 quick questions and we'll point you in the right direction.
+      </p>
+     </div>
+     <div class="quiz-card fade-in-up">
+      <div id="quiz-body">
+       <div class="quiz-progress">
+        <div class="quiz-progress-bar active" id="pb1">
+        </div>
+        <div class="quiz-progress-bar" id="pb2">
+        </div>
+        <div class="quiz-progress-bar" id="pb3">
+        </div>
+       </div>
+       <div id="quiz-step-1">
+        <div class="quiz-q-label">
+         Question 1 of 3
+        </div>
+        <div class="quiz-question">
+         What are you trying to build?
+        </div>
+        <div class="quiz-options">
+         <button class="quiz-opt" data-q="1" data-v="ai" onclick="quizSelect(this)">
+          <i class="fa-solid fa-brain">
+          </i>
+          <div>
+           <strong>
+            AI agent or automation
+           </strong>
+           <br>
+           <span style="color:var(--muted);font-size:12px">
+            Autonomous systems, RAG, workflows
+           </span>
+          </div>
+         </button>
+         <button class="quiz-opt" data-q="1" data-v="blockchain" onclick="quizSelect(this)">
+          <i class="fa-solid fa-cubes">
+          </i>
+          <div>
+           <strong>
+            Blockchain / DeFi / Web3
+           </strong>
+           <br>
+           <span style="color:var(--muted);font-size:12px">
+            Smart contracts, tokens, protocols
+           </span>
+          </div>
+         </button>
+         <button class="quiz-opt" data-q="1" data-v="secure" onclick="quizSelect(this)">
+          <i class="fa-solid fa-shield-halved">
+          </i>
+          <div>
+           <strong>
+            Secure system or infra
+           </strong>
+           <br>
+           <span style="color:var(--muted);font-size:12px">
+            Hardened hardware, security consulting
+           </span>
+          </div>
+         </button>
+         <button class="quiz-opt" data-q="1" data-v="unsure" onclick="quizSelect(this)">
+          <i class="fa-solid fa-question">
+          </i>
+          <div>
+           <strong>
+            Not sure yet
+           </strong>
+           <br>
+           <span style="color:var(--muted);font-size:12px">
+            I have an idea but need guidance
+           </span>
+          </div>
+         </button>
+        </div>
+       </div>
+       <div id="quiz-step-2" style="display:none">
+        <div class="quiz-q-label">
+         Question 2 of 3
+        </div>
+        <div class="quiz-question">
+         What's the scale of this project?
+        </div>
+        <div class="quiz-options">
+         <button class="quiz-opt" data-q="2" data-v="small" onclick="quizSelect(this)">
+          <i class="fa-solid fa-seedling">
+          </i>
+          <div>
+           <strong>
+            Proof of concept
+           </strong>
+           <br>
+           <span style="color:var(--muted);font-size:12px">
+            Test the idea, see if it works
+           </span>
+          </div>
+         </button>
+         <button class="quiz-opt" data-q="2" data-v="mid" onclick="quizSelect(this)">
+          <i class="fa-solid fa-rocket">
+          </i>
+          <div>
+           <strong>
+            Production MVP
+           </strong>
+           <br>
+           <span style="color:var(--muted);font-size:12px">
+            Full build, deployable and live
+           </span>
+          </div>
+         </button>
+         <button class="quiz-opt" data-q="2" data-v="large" onclick="quizSelect(this)">
+          <i class="fa-solid fa-building">
+          </i>
+          <div>
+           <strong>
+            Enterprise / complex
+           </strong>
+           <br>
+           <span style="color:var(--muted);font-size:12px">
+            Multi-system, serious scale
+           </span>
+          </div>
+         </button>
+         <button class="quiz-opt" data-q="2" data-v="unsure" onclick="quizSelect(this)">
+          <i class="fa-solid fa-circle-question">
+          </i>
+          <div>
+           <strong>
+            Need help scoping it
+           </strong>
+           <br>
+           <span style="color:var(--muted);font-size:12px">
+            Not sure what I need yet
+           </span>
+          </div>
+         </button>
+        </div>
+       </div>
+       <div id="quiz-step-3" style="display:none">
+        <div class="quiz-q-label">
+         Question 3 of 3
+        </div>
+        <div class="quiz-question">
+         When do you want to get started?
+        </div>
+        <div class="quiz-options">
+         <button class="quiz-opt" data-q="3" data-v="now" onclick="quizSelect(this)">
+          <i class="fa-solid fa-bolt">
+          </i>
+          <div>
+           <strong>
+            Right now
+           </strong>
+           <br>
+           <span style="color:var(--muted);font-size:12px">
+            Ready to move immediately
+           </span>
+          </div>
+         </button>
+         <button class="quiz-opt" data-q="3" data-v="soon" onclick="quizSelect(this)">
+          <i class="fa-solid fa-calendar">
+          </i>
+          <div>
+           <strong>
+            Next 1&ndash;4 weeks
+           </strong>
+           <br>
+           <span style="color:var(--muted);font-size:12px">
+            Exploring options, deciding soon
+           </span>
+          </div>
+         </button>
+         <button class="quiz-opt" data-q="3" data-v="later" onclick="quizSelect(this)">
+          <i class="fa-solid fa-clock">
+          </i>
+          <div>
+           <strong>
+            1&ndash;3 months out
+           </strong>
+           <br>
+           <span style="color:var(--muted);font-size:12px">
+            Planning for future work
+           </span>
+          </div>
+         </button>
+         <button class="quiz-opt" data-q="3" data-v="explore" onclick="quizSelect(this)">
+          <i class="fa-regular fa-compass">
+          </i>
+          <div>
+           <strong>
+            Just exploring
+           </strong>
+           <br>
+           <span style="color:var(--muted);font-size:12px">
+            Early stage, no timeline yet
+           </span>
+          </div>
+         </button>
+        </div>
+       </div>
+      </div>
+      <div class="quiz-result" id="quiz-result">
+       <div class="result-tag" id="result-tag">
+        Your Match
+       </div>
+       <div class="result-headline" id="result-headline">
+       </div>
+       <p class="result-body" id="result-body">
+       </p>
+       <a class="btn-primary" href="#book" onclick="closePopup()" style="display:inline-flex;margin:0 auto">
+        <i class="fa-solid fa-calendar-check">
+        </i>
+        Book My Free Strategy Call
+       </a>
+       <br>
+       <button class="quiz-restart" onclick="quizRestart()">
+        Start over
+       </button>
+      </div>
+     </div>
+    </div>
+   </section>
+   <section id="tiers">
+    <div class="section-inner">
+     <div class="center fade-in-up" style="margin-bottom:52px">
+      <span class="section-tag">
+       Pricing
+      </span>
+      <h2>
+       Every engagement
+       <br>
+       starts for free.
+      </h2>
+      <p class="section-sub">
+       No commitment, no credit card, no pitch. Just a conversation and a written roadmap.
+      </p>
+     </div>
+     <div class="tiers-grid">
+      <div class="tier-card free-card fade-in-up">
+       <div class="tier-badge tb-green">
+        Start Here &mdash; Free
+       </div>
+       <div style="margin-top:16px">
+        <div class="tier-label">
+         Starter
+        </div>
+        <div class="tier-price" style="color:var(--emerald)">
+         $0
+        </div>
+        <div class="tier-period">
+         No cost, ever
+        </div>
+        <div class="tier-name">
+         Free Strategy Call
+        </div>
+        <p class="tier-tagline">
+         For anyone who wants expert eyes on their project.
+        </p>
+        <div class="tier-divider">
+        </div>
+        <ul class="tier-features">
+         <li>
+          <i class="fa-solid fa-check">
+          </i>
+          45-minute focused strategy session
+         </li>
+         <li>
+          <i class="fa-solid fa-check">
+          </i>
+          Full written project roadmap delivered
+         </li>
+         <li>
+          <i class="fa-solid fa-check">
+          </i>
+          Technical architecture recommendations
+         </li>
+         <li>
+          <i class="fa-solid fa-check">
+          </i>
+          Honest assessment &mdash; even if we're not the fit
+         </li>
+         <li>
+          <i class="fa-solid fa-check">
+          </i>
+          Access to our private knowledge base
+         </li>
+        </ul>
+        <div class="scarcity-tag" id="scarcity-tag">
+         <i class="fa-solid fa-fire">
+         </i>
+         <span id="scarcity-text">
+         </span>
+        </div>
+        <a class="btn-tier green" href="#book">
+         Claim My Free Call &rarr;
+        </a>
+       </div>
+      </div>
+      <div class="tier-card featured fade-in-up" style="transition-delay:.1s">
+       <div class="tier-badge tb-blue">
+        Most Popular
+       </div>
+       <div style="margin-top:16px">
+        <div class="tier-label">
+         Professional
+        </div>
+        <div class="tier-price">
+         $2,500
+        </div>
+        <div class="tier-period">
+         per project
+        </div>
+        <div class="tier-name">
+         Pro Tier
+        </div>
+        <p class="tier-tagline">
+         For founders and teams ready to ship something real.
+        </p>
+        <div class="tier-divider">
+        </div>
+        <ul class="tier-features">
+         <li>
+          <i class="fa-solid fa-check">
+          </i>
+          Custom AI agent or blockchain solution
+         </li>
+         <li>
+          <i class="fa-solid fa-check">
+          </i>
+          Full development + QA testing
+         </li>
+         <li>
+          <i class="fa-solid fa-check">
+          </i>
+          Deployment & full documentation
+         </li>
+         <li>
+          <i class="fa-solid fa-check">
+          </i>
+          30 days priority support post-launch
+         </li>
+         <li>
+          <i class="fa-solid fa-check">
+          </i>
+          Free strategy call included
+         </li>
+        </ul>
+        <a class="btn-tier blue" href="#book">
+         Start Pro &mdash; Book Free Call First
+        </a>
+       </div>
+      </div>
+      <div class="tier-card fade-in-up" style="transition-delay:.2s">
+       <div class="tier-label">
+        Enterprise
+       </div>
+       <div class="tier-price" style="font-size:38px">
+        $8,000+
+       </div>
+       <div class="tier-period">
+        per project
+       </div>
+       <div class="tier-name">
+        Max Tier
+       </div>
+       <p class="tier-tagline">
+        For complex, high-stakes builds with ongoing needs.
+       </p>
+       <div class="tier-divider">
+       </div>
+       <ul class="tier-features">
+        <li>
+         <i class="fa-solid fa-check">
+         </i>
+         Everything in Pro
+        </li>
+        <li>
+         <i class="fa-solid fa-check">
+         </i>
+         Multi-agent systems or complex DeFi
+        </li>
+        <li>
+         <i class="fa-solid fa-check">
+         </i>
+         Ongoing maintenance & optimization
+        </li>
+        <li>
+         <i class="fa-solid fa-check">
+         </i>
+         Dedicated Slack support channel
+        </li>
+        <li>
+         <i class="fa-solid fa-check">
+         </i>
+         Monthly strategy reviews
+        </li>
+       </ul>
+       <a class="btn-tier ghost" href="#book">
+        Discuss Max &rarr; Book Free Call First
+       </a>
+      </div>
+     </div>
+    </div>
+   </section>
+   <section id="resources">
+    <div class="section-inner">
+     <div class="center fade-in-up" style="margin-bottom:52px">
+      <span class="section-tag">
+       Learn From Us
+      </span>
+      <h2>
+       Practical guides.
+       <br>
+       Instant download.
+      </h2>
+      <p class="section-sub">
+       Not ready to start a project yet? These guides teach you the foundations &mdash; written by the same team that builds the real thing. $9 each, yours to keep.
+      </p>
+     </div>
+     <div class="guides-grid">
       <div class="guide-card g-cyan fade-in-up">
-        <div class="guide-thumb">
-          <img src="guide-01-card.png"
-               alt="Build a Hardened Linux Workstation — HyperLightTech Guide 01"
-               loading="lazy" decoding="async">
-          <div class="guide-num">01</div>
-          <div class="guide-dl-badge"><i class="fa-solid fa-download"></i> PDF</div>
+       <div class="guide-thumb">
+        <img alt="Build a Hardened Linux Workstation &mdash; HyperLightTech Guide 01" decoding="async" loading="lazy" src="guide-01-card.png">
+        <div class="guide-num">
+         01
         </div>
-        <div class="guide-body">
-          <div class="guide-label">Linux Security</div>
-          <div class="guide-title">Build a Hardened Linux Workstation</div>
-          <p class="guide-desc">Full-disk encryption, firewall, DNS-over-HTTPS, SSH hardening, AppArmor — every layer, step by step.</p>
-          <ul class="guide-includes">
-            <li><i class="fa-solid fa-check"></i> LUKS full-disk encryption setup</li>
-            <li><i class="fa-solid fa-check"></i> UFW firewall + fail2ban</li>
-            <li><i class="fa-solid fa-check"></i> DNS-over-HTTPS configuration</li>
-            <li><i class="fa-solid fa-check"></i> Browser hardening + AppArmor</li>
-            <li><i class="fa-solid fa-check"></i> Encrypted backups with Restic</li>
-          </ul>
-          <div class="guide-footer">
-            <div class="guide-price">$9 <span>one-time</span></div>
-            <a href="https://hyperlighttech.gumroad.com/l/linux-guide"
-               target="_blank" rel="noopener noreferrer" class="btn-guide">
-              Get the Guide <i class="fa-solid fa-arrow-right"></i>
-            </a>
-          </div>
+        <div class="guide-dl-badge">
+         <i class="fa-solid fa-download">
+         </i>
+         PDF
         </div>
+       </div>
+       <div class="guide-body">
+        <div class="guide-label">
+         Linux Security
+        </div>
+        <div class="guide-title">
+         Build a Hardened Linux Workstation
+        </div>
+        <p class="guide-desc">
+         Full-disk encryption, firewall, DNS-over-HTTPS, SSH hardening, AppArmor &mdash; every layer, step by step.
+        </p>
+        <ul class="guide-includes">
+         <li>
+          <i class="fa-solid fa-check">
+          </i>
+          LUKS full-disk encryption setup
+         </li>
+         <li>
+          <i class="fa-solid fa-check">
+          </i>
+          UFW firewall + fail2ban
+         </li>
+         <li>
+          <i class="fa-solid fa-check">
+          </i>
+          DNS-over-HTTPS configuration
+         </li>
+         <li>
+          <i class="fa-solid fa-check">
+          </i>
+          Browser hardening + AppArmor
+         </li>
+         <li>
+          <i class="fa-solid fa-check">
+          </i>
+          Encrypted backups with Restic
+         </li>
+        </ul>
+        <div class="guide-footer">
+         <div class="guide-price">
+          $9
+          <span>
+           one-time
+          </span>
+         </div>
+         <a class="btn-guide" href="https://hyperlighttech.gumroad.com/l/linux-guide" rel="noopener noreferrer" target="_blank">
+          Get the Guide
+          <i class="fa-solid fa-arrow-right">
+          </i>
+         </a>
+        </div>
+       </div>
       </div>
-
-      <!-- Guide 2: DeFi -->
-      <div class="guide-card g-amber fade-in-up" style="transition-delay:0.1s">
-        <div class="guide-thumb">
-          <img src="guide-02-card.png"
-               alt="DeFi From Scratch: Wallets, DEXes & Your First On-Chain Trade — HyperLightTech Guide 02"
-               loading="lazy" decoding="async">
-          <div class="guide-num">02</div>
-          <div class="guide-dl-badge"><i class="fa-solid fa-download"></i> PDF</div>
+      <div class="guide-card g-amber fade-in-up" style="transition-delay:.1s">
+       <div class="guide-thumb">
+        <img alt="DeFi From Scratch &mdash; HyperLightTech Guide 02" decoding="async" loading="lazy" src="guide-02-card.png">
+        <div class="guide-num">
+         02
         </div>
-        <div class="guide-body">
-          <div class="guide-label">DeFi & Crypto</div>
-          <div class="guide-title">DeFi From Scratch: Wallets, DEXes & Your First On-Chain Trade</div>
-          <p class="guide-desc">Skip the basics. Go straight to wallets, DEX trading, bridging, liquidity pools, and staying safe on-chain.</p>
-          <ul class="guide-includes">
-            <li><i class="fa-solid fa-check"></i> MetaMask setup + seed phrase security</li>
-            <li><i class="fa-solid fa-check"></i> Full Uniswap DEX walkthrough</li>
-            <li><i class="fa-solid fa-check"></i> Bridging between chains safely</li>
-            <li><i class="fa-solid fa-check"></i> Impermanent loss explained clearly</li>
-            <li><i class="fa-solid fa-check"></i> Common attacks and how to avoid them</li>
-          </ul>
-          <div class="guide-footer">
-            <div class="guide-price">$9 <span>one-time</span></div>
-            <a href="https://hyperlighttech.gumroad.com/l/defi-guide"
-               target="_blank" rel="noopener noreferrer" class="btn-guide">
-              Get the Guide <i class="fa-solid fa-arrow-right"></i>
-            </a>
-          </div>
+        <div class="guide-dl-badge">
+         <i class="fa-solid fa-download">
+         </i>
+         PDF
         </div>
+       </div>
+       <div class="guide-body">
+        <div class="guide-label">
+         DeFi & Crypto
+        </div>
+        <div class="guide-title">
+         DeFi From Scratch: Wallets, DEXes & Your First On-Chain Trade
+        </div>
+        <p class="guide-desc">
+         Skip the basics. Go straight to wallets, DEX trading, bridging, liquidity pools, and staying safe on-chain.
+        </p>
+        <ul class="guide-includes">
+         <li>
+          <i class="fa-solid fa-check">
+          </i>
+          MetaMask setup + seed phrase security
+         </li>
+         <li>
+          <i class="fa-solid fa-check">
+          </i>
+          Full Uniswap DEX walkthrough
+         </li>
+         <li>
+          <i class="fa-solid fa-check">
+          </i>
+          Bridging between chains safely
+         </li>
+         <li>
+          <i class="fa-solid fa-check">
+          </i>
+          Impermanent loss explained clearly
+         </li>
+         <li>
+          <i class="fa-solid fa-check">
+          </i>
+          Common attacks and how to avoid them
+         </li>
+        </ul>
+        <div class="guide-footer">
+         <div class="guide-price">
+          $9
+          <span>
+           one-time
+          </span>
+         </div>
+         <a class="btn-guide" href="https://hyperlighttech.gumroad.com/l/defi-guide" rel="noopener noreferrer" target="_blank">
+          Get the Guide
+          <i class="fa-solid fa-arrow-right">
+          </i>
+         </a>
+        </div>
+       </div>
       </div>
-
-      <!-- Guide 3: AI Agent -->
-      <div class="guide-card g-purple fade-in-up" style="transition-delay:0.2s">
-        <div class="guide-thumb">
-          <img src="guide-03-card.png"
-               alt="Deploy Your First AI Agent: A Hands-On Guide — HyperLightTech Guide 03"
-               loading="lazy" decoding="async">
-          <div class="guide-num">03</div>
-          <div class="guide-dl-badge"><i class="fa-solid fa-download"></i> PDF</div>
+      <div class="guide-card g-purple fade-in-up" style="transition-delay:.2s">
+       <div class="guide-thumb">
+        <img alt="Deploy Your First AI Agent &mdash; HyperLightTech Guide 03" decoding="async" loading="lazy" src="guide-03-card.png">
+        <div class="guide-num">
+         03
         </div>
-        <div class="guide-body">
-          <div class="guide-label">AI Agents</div>
-          <div class="guide-title">Deploy Your First AI Agent: A Hands-On Guide</div>
-          <p class="guide-desc">Stop reading about agents. Build one. From a blank file to a working autonomous research agent — real Python, real API, real output.</p>
-          <ul class="guide-includes">
-            <li><i class="fa-solid fa-check"></i> The agent loop in full working code</li>
-            <li><i class="fa-solid fa-check"></i> Tool calling with the Anthropic API</li>
-            <li><i class="fa-solid fa-check"></i> Memory and state management</li>
-            <li><i class="fa-solid fa-check"></i> Multi-agent / Hermes pattern</li>
-            <li><i class="fa-solid fa-check"></i> Three deployment paths</li>
-          </ul>
-          <div class="guide-footer">
-            <div class="guide-price">$9 <span>one-time</span></div>
-            <a href="https://hyperlighttech.gumroad.com/l/ai-agent-guide"
-               target="_blank" rel="noopener noreferrer" class="btn-guide">
-              Get the Guide <i class="fa-solid fa-arrow-right"></i>
-            </a>
-          </div>
+        <div class="guide-dl-badge">
+         <i class="fa-solid fa-download">
+         </i>
+         PDF
         </div>
+       </div>
+       <div class="guide-body">
+        <div class="guide-label">
+         AI Agents
+        </div>
+        <div class="guide-title">
+         Deploy Your First AI Agent: A Hands-On Guide
+        </div>
+        <p class="guide-desc">
+         Stop reading about agents. Build one. From a blank file to a working autonomous research agent &mdash; real Python, real API, real output.
+        </p>
+        <ul class="guide-includes">
+         <li>
+          <i class="fa-solid fa-check">
+          </i>
+          The agent loop in full working code
+         </li>
+         <li>
+          <i class="fa-solid fa-check">
+          </i>
+          Tool calling with the Anthropic API
+         </li>
+         <li>
+          <i class="fa-solid fa-check">
+          </i>
+          Memory and state management
+         </li>
+         <li>
+          <i class="fa-solid fa-check">
+          </i>
+          Multi-agent / Hermes pattern
+         </li>
+         <li>
+          <i class="fa-solid fa-check">
+          </i>
+          Three deployment paths
+         </li>
+        </ul>
+        <div class="guide-footer">
+         <div class="guide-price">
+          $9
+          <span>
+           one-time
+          </span>
+         </div>
+         <a class="btn-guide" href="https://hyperlighttech.gumroad.com/l/ai-agent-guide" rel="noopener noreferrer" target="_blank">
+          Get the Guide
+          <i class="fa-solid fa-arrow-right">
+          </i>
+         </a>
+        </div>
+       </div>
       </div>
-
-    </div>
-
-    <!-- Bundle card -->
-    <div class="bundle-card fade-in-up">
+     </div>
+     <div class="bundle-card fade-in-up">
       <div class="bundle-info">
-        <div class="bundle-label">Best Value — Complete Series</div>
-        <div class="bundle-title">All Three Guides — Bundle</div>
-        <p class="bundle-desc">Linux security, DeFi from scratch, and AI agent development. Everything you need to understand the technology we build with every day.</p>
-        <div class="bundle-guides">
-          <span class="bundle-tag t-cyan">01 Linux Workstation</span>
-          <span class="bundle-tag t-amber">02 DeFi From Scratch</span>
-          <span class="bundle-tag t-purple">03 AI Agent Guide</span>
-        </div>
+       <div class="bundle-label">
+        Best Value &mdash; Complete Series
+       </div>
+       <div class="bundle-title">
+        All Three Guides &mdash; Bundle
+       </div>
+       <p class="bundle-desc">
+        Linux security, DeFi from scratch, and AI agent development. Everything you need to understand the technology we build with every day.
+       </p>
+       <div class="bundle-guides">
+        <span class="bundle-tag t-cyan">
+         01 Linux Workstation
+        </span>
+        <span class="bundle-tag t-amber">
+         02 DeFi From Scratch
+        </span>
+        <span class="bundle-tag t-purple">
+         03 AI Agent Guide
+        </span>
+       </div>
       </div>
       <div class="bundle-right">
-        <div>
-          <div class="bundle-was">$27 separately</div>
-          <div class="bundle-price">$19</div>
-          <div class="bundle-save">Save $8</div>
+       <div>
+        <div class="bundle-was">
+         $27 separately
         </div>
-        <a href="https://hyperlighttech.gumroad.com/l/guide-bundle"
-           target="_blank" rel="noopener noreferrer" class="btn-bundle">
-          <i class="fa-solid fa-layer-group"></i>
-          Get the Bundle
-        </a>
+        <div class="bundle-price">
+         $19
+        </div>
+        <div class="bundle-save">
+         Save $8
+        </div>
+       </div>
+       <a class="btn-bundle" href="https://hyperlighttech.gumroad.com/l/guide-bundle" rel="noopener noreferrer" target="_blank">
+        <i class="fa-solid fa-layer-group">
+        </i>
+        Get the Bundle
+       </a>
       </div>
+     </div>
     </div>
-
-  </div>
-</section>
-
-<!-- ─── TESTIMONIALS ─── -->
-<section id="testimonials">
-  <div class="section-inner">
-    <span class="section-tag">Client Feedback</span>
-    <h2 style="margin-bottom:44px">What clients say</h2>
-    <div class="testimonials-grid">
+   </section>
+   <section id="testimonials">
+    <div class="section-inner">
+     <span class="section-tag">
+      Client Feedback
+     </span>
+     <h2 style="margin-bottom:44px">
+      What clients say
+     </h2>
+     <div class="testimonials-grid">
       <div class="testimonial-card fade-in-up">
-        <div>
-          <div class="stars">★★★★★</div>
-          <p class="quote-text">"The free strategy call alone was worth more than some paid consultations I've had. They handed us a technical roadmap on day one — no fluff, just exactly what we needed."</p>
+       <div>
+        <div class="stars">
+         &starf;&starf;&starf;&starf;&starf;
         </div>
-        <div class="quote-author">
-          <div class="quote-avatar">JR</div>
-          <div>
-            <div class="author-name">James R.</div>
-            <div class="author-role">Founder, DeFi startup</div>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial-card fade-in-up" style="transition-delay:0.1s">
-        <div>
-          <div class="stars">★★★★★</div>
-          <p class="quote-text">"Our trading agent went live in 6 weeks and immediately outperformed manual operations. They understood the technical edge cases we didn't even know to ask about."</p>
-        </div>
-        <div class="quote-author">
-          <div class="quote-avatar">SK</div>
-          <div>
-            <div class="author-name">Sarah K.</div>
-            <div class="author-role">Head of Engineering, fintech</div>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial-card fade-in-up" style="transition-delay:0.2s">
-        <div>
-          <div class="stars">★★★★★</div>
-          <p class="quote-text">"I came in skeptical of the 'free call.' Left with a 12-page technical brief and a clear plan. Signed with them the next week. Best decision we made in our pre-launch phase."</p>
-        </div>
-        <div class="quote-author">
-          <div class="quote-avatar">MT</div>
-          <div>
-            <div class="author-name">Marcus T.</div>
-            <div class="author-role">CTO, Web3 protocol</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── PORTFOLIO ─── -->
-<section id="portfolio">
-  <div class="section-inner">
-    <span class="section-tag">Recent Work</span>
-    <h2 style="margin-bottom:44px">Selected projects</h2>
-    <div class="portfolio-grid">
-      <div class="portfolio-card fade-in-up">
-        <div class="portfolio-thumb" style="background:linear-gradient(135deg,#0e3d52,#0a1628)">
-          <span style="color:#22d3ee">AGENT</span>
-        </div>
-        <div class="portfolio-body">
-          <div class="portfolio-tag">AI · Pro Tier</div>
-          <div class="portfolio-title">Hermes Autonomous Trading Agent</div>
-          <p class="portfolio-desc">Multi-agent system for market analysis and automated execution with risk controls. Live in 5 weeks.</p>
-          <div class="portfolio-metric"><i class="fa-solid fa-arrow-trend-up"></i> 23% avg. efficiency gain over manual ops</div>
-        </div>
-      </div>
-      <div class="portfolio-card fade-in-up" style="transition-delay:0.1s">
-        <div class="portfolio-thumb" style="background:linear-gradient(135deg,#3d2c0e,#1a1208)">
-          <span style="color:#f59e0b">DEFI</span>
-        </div>
-        <div class="portfolio-body">
-          <div class="portfolio-tag">Blockchain · Max Tier</div>
-          <div class="portfolio-title">Layer-2 DeFi Yield Protocol</div>
-          <p class="portfolio-desc">Smart contract suite and frontend for automated yield optimization across three chains.</p>
-          <div class="portfolio-metric"><i class="fa-solid fa-arrow-trend-up"></i> $4.2M TVL within 30 days of launch</div>
-        </div>
-      </div>
-      <div class="portfolio-card fade-in-up" style="transition-delay:0.2s">
-        <div class="portfolio-thumb" style="background:linear-gradient(135deg,#0e3d2a,#071a12)">
-          <span style="color:#34d399">SECURE</span>
-        </div>
-        <div class="portfolio-body">
-          <div class="portfolio-tag">Secure Systems · Pro Tier</div>
-          <div class="portfolio-title">Enterprise Secure AI Workstation</div>
-          <p class="portfolio-desc">Hardened high-performance system with isolated AI compute and zero-trust networking.</p>
-          <div class="portfolio-metric"><i class="fa-solid fa-shield-halved"></i> Zero security incidents across 18 months</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── MID-PAGE CTA BANNER ─── -->
-<div id="mid-cta">
-  <div class="mid-cta-inner fade-in-up">
-    <div class="mid-cta-label">Still on the fence?</div>
-    <div class="mid-cta-headline">The call costs nothing.<br>The roadmap is yours to keep.</div>
-    <p class="mid-cta-sub">Even if we're not the right fit, you walk away with a clear, written technical plan for your project. No strings attached.</p>
-    <a href="#book" class="btn-primary" style="display:inline-flex">
-      <i class="fa-solid fa-calendar-check"></i>
-      Book My Free Strategy Call
-    </a>
-  </div>
-</div>
-
-<!-- ─── FAQ ─── -->
-<section id="faq">
-  <div class="section-inner">
-    <div class="center fade-in-up" style="margin-bottom:48px">
-      <span class="section-tag">FAQ</span>
-      <h2>Common questions</h2>
-      <p class="section-sub">Especially about the free call.</p>
-    </div>
-    <div class="faq-list fade-in-up">
-
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          Is the free call actually free? What's the catch?
-          <i class="fa-solid fa-chevron-down"></i>
-        </button>
-        <div class="faq-a">
-          <div class="faq-a-inner">Yes, genuinely free — no credit card, no hidden commitment. We offer it because the best client relationships start with mutual fit. If we're right for your project, great. If not, you still walk away with a useful roadmap. We'd rather spend 45 minutes and part ways honestly than chase the wrong project for months.</div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          Will I be pressured to buy a paid tier on the call?
-          <i class="fa-solid fa-chevron-down"></i>
-        </button>
-        <div class="faq-a">
-          <div class="faq-a-inner">No. We're builders, not salespeople. The call is focused on your project — we ask questions, outline a technical approach, and give you an honest assessment. If we think you're a fit for one of our paid tiers, we'll say so once, clearly. If you're not ready, that's fine too.</div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          What do I actually get from the call?
-          <i class="fa-solid fa-chevron-down"></i>
-        </button>
-        <div class="faq-a">
-          <div class="faq-a-inner">A written project roadmap covering: recommended technical architecture, realistic timeline, key risks and how to handle them, and suggested next steps. Most people tell us it's more useful than a paid audit they've had elsewhere. You own it and can do whatever you like with it.</div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          How long does a typical project take?
-          <i class="fa-solid fa-chevron-down"></i>
-        </button>
-        <div class="faq-a">
-          <div class="faq-a-inner">Pro tier projects typically run 4–8 weeks depending on complexity. Max tier (multi-agent systems, complex DeFi protocols) usually runs 8–16 weeks. We'll give you a specific estimate on the free call once we understand your requirements. We don't start projects we can't finish on time.</div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          How do I reach you after I submit the form?
-          <i class="fa-solid fa-chevron-down"></i>
-        </button>
-        <div class="faq-a">
-          <div class="faq-a-inner">Submitting the form opens your email client with a pre-filled message — just hit send and we'll receive it directly. No third-party services involved. We respond within 4 hours on weekdays and will reply from our team email to schedule the call at a time that works for you.</div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          Do you work with clients outside the US?
-          <i class="fa-solid fa-chevron-down"></i>
-        </button>
-        <div class="faq-a">
-          <div class="faq-a-inner">Yes — we work with clients globally. Calls happen over video and we accommodate time zones from Europe to Asia. Deliverables and communication are fully remote.</div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ─── BOOKING FORM ─── -->
-<section id="book">
-  <div class="book-wrap">
-    <div class="center fade-in-up" style="margin-bottom:36px">
-      <span class="section-tag">Book Your Free Call</span>
-      <h2>Let's talk about<br>what you're building.</h2>
-      <p class="section-sub" style="margin:0 auto">45 minutes. A written roadmap. No cost, no pitch, no pressure.</p>
-    </div>
-    <div class="book-card fade-in-up">
-
-      <!-- FORM -->
-      <form id="contact-form" novalidate>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="f-name">Your Name</label>
-            <input type="text" id="f-name" name="name" placeholder="Alex Chen" required autocomplete="name">
-          </div>
-          <div class="form-group">
-            <label for="f-email">Email Address</label>
-            <input type="email" id="f-email" name="email" placeholder="you@company.com" required autocomplete="email">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="f-type">What do you need built?</label>
-          <select id="f-type" name="project_type" required>
-            <option value="" disabled selected>Select a category...</option>
-            <option value="AI Agent or Automation">AI Agent or Automation</option>
-            <option value="Blockchain / DeFi / Crypto">Blockchain / DeFi / Crypto</option>
-            <option value="Secure System or Infrastructure">Secure System or Infrastructure</option>
-            <option value="Strategy / Consulting">Strategy / Consulting</option>
-            <option value="Not sure yet">Not sure yet — need guidance</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="f-msg">Brief description <span style="color:var(--muted);font-weight:400">(optional)</span></label>
-          <textarea id="f-msg" name="message" rows="3" placeholder="I'm building a DeFi protocol that does X and need help with Y..."></textarea>
-        </div>
-        <button type="submit" class="btn-submit" id="submit-btn">
-          <i class="fa-solid fa-calendar-check"></i>
-          Claim My Free Strategy Call
-        </button>
-      </form>
-
-      <!-- SUCCESS STATE -->
-      <div class="form-success" id="form-success">
-        <div class="success-icon"><i class="fa-solid fa-check"></i></div>
-        <div class="success-title">Your email client is opening!</div>
-        <p class="success-sub">
-          A pre-filled email is ready to send — just hit <strong>Send</strong> in your mail app and we'll be in touch within 4 hours on weekdays to schedule your call.
+        <p class="quote-text">
+         &ldquo;The free strategy call alone was worth more than some paid consultations I&rsquo;ve had. They handed us a technical roadmap on day one &mdash; no fluff, just exactly what we needed.&rdquo;
         </p>
+       </div>
+       <div class="quote-author">
+        <div class="quote-avatar">
+         JR
+        </div>
+        <div>
+         <div class="author-name">
+          James R.
+         </div>
+         <div class="author-role">
+          Founder, DeFi startup
+         </div>
+        </div>
+       </div>
       </div>
-
-      <p class="book-footnote">
-        <i class="fa-solid fa-lock"></i> No third parties. Your message goes directly to our inbox. No spam, ever.
-      </p>
+      <div class="testimonial-card fade-in-up" style="transition-delay:.1s">
+       <div>
+        <div class="stars">
+         &starf;&starf;&starf;&starf;&starf;
+        </div>
+        <p class="quote-text">
+         &ldquo;Our trading agent went live in 6 weeks and immediately outperformed manual operations. They understood the technical edge cases we didn&rsquo;t even know to ask about.&rdquo;
+        </p>
+       </div>
+       <div class="quote-author">
+        <div class="quote-avatar">
+         SK
+        </div>
+        <div>
+         <div class="author-name">
+          Sarah K.
+         </div>
+         <div class="author-role">
+          Head of Engineering, fintech
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="testimonial-card fade-in-up" style="transition-delay:.2s">
+       <div>
+        <div class="stars">
+         &starf;&starf;&starf;&starf;&starf;
+        </div>
+        <p class="quote-text">
+         &ldquo;I came in skeptical of the &lsquo;free call.&rsquo; Left with a 12-page technical brief and a clear plan. Signed with them the next week. Best decision we made in our pre-launch phase.&rdquo;
+        </p>
+       </div>
+       <div class="quote-author">
+        <div class="quote-avatar">
+         MT
+        </div>
+        <div>
+         <div class="author-name">
+          Marcus T.
+         </div>
+         <div class="author-role">
+          CTO, Web3 protocol
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
     </div>
-  </div>
-</section>
-
-</main>
-
-<!-- ─── FOOTER ─── -->
-<footer>
-  <div>
-    <div class="footer-logo-text">HyperLightTech</div>
-    <div class="footer-email">
-      Questions? <a href="mailto:hello@hyperlighttek.com">hello@hyperlighttek.com</a>
+   </section>
+   <section id="portfolio">
+    <div class="section-inner">
+     <span class="section-tag">
+      Recent Work
+     </span>
+     <h2 style="margin-bottom:44px">
+      Selected projects
+     </h2>
+     <div class="portfolio-grid">
+      <div class="portfolio-card fade-in-up">
+       <div class="portfolio-thumb" style="background:linear-gradient(135deg,#0e3d52,#0a1628)">
+        <span style="color:#22d3ee">
+         AGENT
+        </span>
+       </div>
+       <div class="portfolio-body">
+        <div class="portfolio-tag">
+         AI &middot; Pro Tier
+        </div>
+        <div class="portfolio-title">
+         Hermes Autonomous Trading Agent
+        </div>
+        <p class="portfolio-desc">
+         Multi-agent system for market analysis and automated execution with risk controls. Live in 5 weeks.
+        </p>
+        <div class="portfolio-metric">
+         <i class="fa-solid fa-arrow-trend-up">
+         </i>
+         23% avg. efficiency gain over manual ops
+        </div>
+       </div>
+      </div>
+      <div class="portfolio-card fade-in-up" style="transition-delay:.1s">
+       <div class="portfolio-thumb" style="background:linear-gradient(135deg,#3d2c0e,#1a1208)">
+        <span style="color:#f59e0b">
+         DEFI
+        </span>
+       </div>
+       <div class="portfolio-body">
+        <div class="portfolio-tag">
+         Blockchain &middot; Max Tier
+        </div>
+        <div class="portfolio-title">
+         Layer-2 DeFi Yield Protocol
+        </div>
+        <p class="portfolio-desc">
+         Smart contract suite and frontend for automated yield optimization across three chains.
+        </p>
+        <div class="portfolio-metric">
+         <i class="fa-solid fa-arrow-trend-up">
+         </i>
+         $4.2M TVL within 30 days of launch
+        </div>
+       </div>
+      </div>
+      <div class="portfolio-card fade-in-up" style="transition-delay:.2s">
+       <div class="portfolio-thumb" style="background:linear-gradient(135deg,#0e3d2a,#071a12)">
+        <span style="color:#34d399">
+         SECURE
+        </span>
+       </div>
+       <div class="portfolio-body">
+        <div class="portfolio-tag">
+         Secure Systems &middot; Pro Tier
+        </div>
+        <div class="portfolio-title">
+         Enterprise Secure AI Workstation
+        </div>
+        <p class="portfolio-desc">
+         Hardened high-performance system with isolated AI compute and zero-trust networking.
+        </p>
+        <div class="portfolio-metric">
+         <i class="fa-solid fa-shield-halved">
+         </i>
+         Zero security incidents across 18 months
+        </div>
+       </div>
+      </div>
+     </div>
     </div>
-    <nav class="footer-links" aria-label="Footer navigation">
-      <a href="#services">Services</a>
-      <a href="#how-it-works">How It Works</a>
-      <a href="#tiers">Pricing</a>
-      <a href="#resources">Guides</a>
-      <a href="#portfolio">Work</a>
-      <a href="#testimonials">Testimonials</a>
-      <a href="#faq">FAQ</a>
-      <a href="#book">Book Free Call</a>
-    </nav>
-    <p class="footer-copy">© 2026 HyperLightTech. Built for those who move fast and build securely.</p>
-  </div>
-</footer>
-
-<!-- ─── GUIDES PILL ─── -->
-<div id="guides-pill" role="complementary" aria-label="Guide shop">
-  <div class="pill-border">
-    <a href="#resources" class="pill-inner" onclick="dismissPill(false)">
-      <span class="pill-dots">
-        <span class="pill-dot" style="background:#22d3ee"></span>
-        <span class="pill-dot" style="background:#f59e0b"></span>
-        <span class="pill-dot" style="background:#a78bfa"></span>
+   </section>
+   <div id="mid-cta">
+    <div class="mid-cta-inner fade-in-up">
+     <div class="mid-cta-label">
+      Still on the fence?
+     </div>
+     <div class="mid-cta-headline">
+      The call costs nothing.
+      <br>
+      The roadmap is yours to keep.
+     </div>
+     <p class="mid-cta-sub">
+      Even if we're not the right fit, you walk away with a clear, written technical plan for your project. No strings attached.
+     </p>
+     <a class="btn-primary" href="#book" style="display:inline-flex">
+      <i class="fa-solid fa-calendar-check">
+      </i>
+      Book My Free Strategy Call
+     </a>
+    </div>
+   </div>
+   <section id="faq">
+    <div class="section-inner">
+     <div class="center fade-in-up" style="margin-bottom:48px">
+      <span class="section-tag">
+       FAQ
       </span>
-      <span class="pill-text">Guides — from $9</span>
-      <span class="pill-arrow">→</span>
-    </a>
-    <button class="pill-close" onclick="dismissPill(true)" aria-label="Dismiss guides pill">×</button>
-  </div>
-</div>
-
-<!-- ─── BACK TO TOP ─── -->
-<div id="back-to-top">
-  <button onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">
-    <i class="fa-solid fa-arrow-up"></i>
-  </button>
-</div>
-
-<!-- ─── FLOATING CTA ─── -->
-<div id="floating-cta">
-  <button onclick="document.getElementById('book').scrollIntoView({behavior:'smooth'})">
-    <i class="fa-solid fa-calendar-check"></i>
-    Free Strategy Call
-  </button>
-</div>
-
-<!-- ─── EXIT POPUP ─── -->
-<div id="exit-popup">
-  <div class="exit-card">
-    <button class="exit-close" onclick="closePopup()" aria-label="Close">
-      <i class="fa-solid fa-xmark"></i>
-    </button>
-    <div class="exit-icon"><i class="fa-solid fa-gift"></i></div>
-    <div class="exit-title">Before you go —</div>
-    <p class="exit-sub">
-      The free strategy call comes with a <strong>written project roadmap</strong>. No obligation, no pitch. Just 45 minutes and a real plan.
+      <h2>
+       Common questions
+      </h2>
+      <p class="section-sub">
+       Especially about the free call.
+      </p>
+     </div>
+     <div class="faq-list fade-in-up">
+      <div class="faq-item">
+       <button class="faq-q" onclick="toggleFaq(this)">
+        Is the free call actually free? What&rsquo;s the catch?
+        <i class="fa-solid fa-chevron-down">
+        </i>
+       </button>
+       <div class="faq-a">
+        <div class="faq-a-inner">
+         Yes, genuinely free &mdash; no credit card, no hidden commitment. We offer it because the best client relationships start with mutual fit. If we're right for your project, great. If not, you still walk away with a useful roadmap. We'd rather spend 45 minutes and part ways honestly than chase the wrong project for months.
+        </div>
+       </div>
+      </div>
+      <div class="faq-item">
+       <button class="faq-q" onclick="toggleFaq(this)">
+        Will I be pressured to buy a paid tier on the call?
+        <i class="fa-solid fa-chevron-down">
+        </i>
+       </button>
+       <div class="faq-a">
+        <div class="faq-a-inner">
+         No. We're builders, not salespeople. The call is focused on your project &mdash; we ask questions, outline a technical approach, and give you an honest assessment. If we think you're a fit for one of our paid tiers, we'll say so once, clearly. If you're not ready, that's fine too.
+        </div>
+       </div>
+      </div>
+      <div class="faq-item">
+       <button class="faq-q" onclick="toggleFaq(this)">
+        What do I actually get from the call?
+        <i class="fa-solid fa-chevron-down">
+        </i>
+       </button>
+       <div class="faq-a">
+        <div class="faq-a-inner">
+         A written project roadmap covering: recommended technical architecture, realistic timeline, key risks and how to handle them, and suggested next steps. Most people tell us it's more useful than a paid audit they've had elsewhere. You own it and can do whatever you like with it.
+        </div>
+       </div>
+      </div>
+      <div class="faq-item">
+       <button class="faq-q" onclick="toggleFaq(this)">
+        How long does a typical project take?
+        <i class="fa-solid fa-chevron-down">
+        </i>
+       </button>
+       <div class="faq-a">
+        <div class="faq-a-inner">
+         Pro tier projects typically run 4&ndash;8 weeks depending on complexity. Max tier (multi-agent systems, complex DeFi protocols) usually runs 8&ndash;16 weeks. We'll give you a specific estimate on the free call once we understand your requirements. We don't start projects we can't finish on time.
+        </div>
+       </div>
+      </div>
+      <div class="faq-item">
+       <button class="faq-q" onclick="toggleFaq(this)">
+        How do I reach you after I submit the form?
+        <i class="fa-solid fa-chevron-down">
+        </i>
+       </button>
+       <div class="faq-a">
+        <div class="faq-a-inner">
+         Submitting the form opens your email client with a pre-filled message &mdash; just hit send and we'll receive it directly. No third-party services involved. We respond within 4 hours on weekdays and will reply from our team email to schedule the call at a time that works for you.
+        </div>
+       </div>
+      </div>
+      <div class="faq-item">
+       <button class="faq-q" onclick="toggleFaq(this)">
+        Do you work with clients outside the US?
+        <i class="fa-solid fa-chevron-down">
+        </i>
+       </button>
+       <div class="faq-a">
+        <div class="faq-a-inner">
+         Yes &mdash; we work with clients globally. Calls happen over video and we accommodate time zones from Europe to Asia. Deliverables and communication are fully remote.
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+   <section id="book">
+    <div class="book-wrap">
+     <div class="center fade-in-up" style="margin-bottom:36px">
+      <span class="section-tag">
+       Book Your Free Call
+      </span>
+      <h2>
+       Let&rsquo;s talk about
+       <br>
+       what you're building.
+      </h2>
+      <p class="section-sub" style="margin:0 auto">
+       45 minutes. A written roadmap. No cost, no pitch, no pressure.
+      </p>
+     </div>
+     <div class="book-card fade-in-up">
+      <form id="contact-form" novalidate>
+       <div class="form-row">
+        <div class="form-group">
+         <label for="f-name">
+          Your Name
+         </label>
+         <input autocomplete="name" id="f-name" name="name" placeholder="Alex Chen" required type="text">
+        </div>
+        <div class="form-group">
+         <label for="f-email">
+          Email Address
+         </label>
+         <input autocomplete="email" id="f-email" name="email" placeholder="you@company.com" required type="email">
+        </div>
+       </div>
+       <div class="form-group">
+        <label for="f-type">
+         What do you need built?
+        </label>
+        <select id="f-type" name="project_type" required>
+         <option disabled selected value>
+          Select a category...
+         </option>
+         <option value="AI Agent or Automation">
+          AI Agent or Automation
+         </option>
+         <option value="Blockchain / DeFi / Crypto">
+          Blockchain / DeFi / Crypto
+         </option>
+         <option value="Secure System or Infrastructure">
+          Secure System or Infrastructure
+         </option>
+         <option value="Strategy / Consulting">
+          Strategy / Consulting
+         </option>
+         <option value="Not sure yet">
+          Not sure yet &mdash; need guidance
+         </option>
+        </select>
+       </div>
+       <div class="form-group">
+        <label for="f-msg">
+         Brief description
+         <span style="color:var(--muted);font-weight:400">
+          (optional)
+         </span>
+        </label>
+        <textarea id="f-msg" name="message" placeholder="I'm building a DeFi protocol that does X and need help with Y..." rows="3"></textarea>
+       </div>
+       <button class="btn-submit" type="submit">
+        <i class="fa-solid fa-calendar-check">
+        </i>
+        Claim My Free Strategy Call
+       </button>
+      </form>
+      <div class="form-success" id="form-success">
+       <div class="success-icon">
+        <i class="fa-solid fa-check">
+        </i>
+       </div>
+       <div class="success-title">
+        Your email client is opening!
+       </div>
+       <p class="success-sub">
+        A pre-filled email is ready to send &mdash; just hit
+        <strong>
+         Send
+        </strong>
+        in your mail app and we'll be in touch within 4 hours on weekdays to schedule your call.
+       </p>
+      </div>
+      <p class="book-footnote">
+       <i class="fa-solid fa-lock">
+       </i>
+       No third parties. Your message goes directly to our inbox. No spam, ever.
+      </p>
+     </div>
+    </div>
+   </section>
+  </main>
+  <footer>
+   <div>
+    <div class="footer-logo-text">
+     HyperLightTech
+    </div>
+    <div class="footer-email">
+     Questions?
+     <a href="mailto:hello@hyperlighttech.com">
+      hello@hyperlighttech.com
+     </a>
+    </div>
+    <nav aria-label="Footer navigation" class="footer-links">
+     <a href="#services">
+      Services
+     </a>
+     <a href="#how-it-works">
+      How It Works
+     </a>
+     <a href="#tiers">
+      Pricing
+     </a>
+     <a href="#resources">
+      Guides
+     </a>
+     <a href="#portfolio">
+      Work
+     </a>
+     <a href="#testimonials">
+      Testimonials
+     </a>
+     <a href="#faq">
+      FAQ
+     </a>
+     <a href="#book">
+      Book Free Call
+     </a>
+    </nav>
+    <p class="footer-copy">
+     &copy; 2026 HyperLightTech. Built for those who move fast and build securely.
     </p>
-    <a href="#book" class="btn-primary" style="width:100%;justify-content:center" onclick="closePopup()">
-      <i class="fa-solid fa-calendar-check"></i>
-      OK — Book My Free Call
+   </div>
+  </footer>
+  <div aria-label="Guide shop" id="guides-pill" role="complementary">
+   <div class="pill-border">
+    <a class="pill-inner" href="#resources" onclick="dismissPill(false)">
+     <span class="pill-dots">
+      <span class="pill-dot" style="background:#22d3ee">
+      </span>
+      <span class="pill-dot" style="background:#f59e0b">
+      </span>
+      <span class="pill-dot" style="background:#a78bfa">
+      </span>
+     </span>
+     <span class="pill-text">
+      Guides &mdash; from $9
+     </span>
+     <span class="pill-arrow">
+      &rarr;
+     </span>
     </a>
-    <p class="exit-note" id="exit-scarcity"></p>
+    <button aria-label="Dismiss" class="pill-close" onclick="dismissPill(true)">
+     &times;
+    </button>
+   </div>
   </div>
-</div>
-
-<script>
-  /* ════════════════════════════════════════
-     ★  CONFIGURATION — EDIT THESE VALUES  ★
-     ════════════════════════════════════════ */
-  const SPOTS_LEFT    = 3;           // update monthly
-  const CONTACT_EMAIL = 'hello@hyperlighttek.com'; // your email
-
-  /* ────────────────────────────────────────
-     GUIDES PILL
-  ──────────────────────────────────────── */
-  const PILL_KEY = 'hl_pill_dismissed';
-  function dismissPill(permanent) {
-    const pill = document.getElementById('guides-pill');
-    if (!pill) return;
-    pill.classList.add('dismiss');
-    setTimeout(() => pill.remove(), 280);
-    if (permanent) sessionStorage.setItem(PILL_KEY, '1');
-  }
-  if (!sessionStorage.getItem(PILL_KEY)) {
-    const pill = document.getElementById('guides-pill');
-    if (pill) pill.classList.add('show');
-  }
-
-  /* ────────────────────────────────────────
-     POPULATE SPOTS COUNT
-  ──────────────────────────────────────── */
-  (function seedSpots() {
-    const spotsWord = SPOTS_LEFT === 1 ? 'Only 1 free strategy call spot left this month —'
-                    : `Only ${SPOTS_LEFT} free strategy call spots left this month —`;
-    const scarcityWord = SPOTS_LEFT === 1 ? 'Only 1 spot remaining this month'
-                       : `Only ${SPOTS_LEFT} spots remaining this month`;
-
-    document.getElementById('urgency-text').textContent  = spotsWord;
-    document.getElementById('scarcity-text').textContent = scarcityWord;
-    document.getElementById('exit-scarcity').textContent = scarcityWord;
-  })();
-
-  /* ────────────────────────────────────────
-     MOBILE HAMBURGER MENU
-  ──────────────────────────────────────── */
-  function toggleMenu() {
-    const hb   = document.getElementById('hamburger');
-    const menu = document.getElementById('mobile-menu');
-    const open = menu.classList.toggle('open');
-    hb.classList.toggle('open', open);
-    document.body.style.overflow = open ? 'hidden' : '';
-  }
-  function closeMenu() {
-    document.getElementById('hamburger').classList.remove('open');
-    document.getElementById('mobile-menu').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  /* ────────────────────────────────────────
-     SCROLL ANIMATIONS
-  ──────────────────────────────────────── */
-  const ioReveal = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); ioReveal.unobserve(e.target); }
-    });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.fade-in-up').forEach(el => ioReveal.observe(el));
-  // hero fires immediately
-  setTimeout(() => document.querySelector('#hero .fade-in-up')?.classList.add('visible'), 80);
-
-  /* ────────────────────────────────────────
-     ANIMATED COUNTERS
-  ──────────────────────────────────────── */
-  function runCounter(el) {
-    const target = parseInt(el.dataset.target, 10);
-    const duration = 1100;
-    const step = target / (duration / 16);
-    let cur = 0;
-    const t = setInterval(() => {
-      cur = Math.min(cur + step, target);
-      el.textContent = Math.floor(cur);
-      if (cur >= target) clearInterval(t);
-    }, 16);
-  }
-  const ioStats = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.querySelectorAll('.counter').forEach(runCounter);
-        ioStats.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.5 });
-  ioStats.observe(document.getElementById('stats'));
-
-  /* ────────────────────────────────────────
-     SCROLL — progress bar, floating CTA,
-               back to top, exit intent
-  ──────────────────────────────────────── */
-  const progressBar = document.getElementById('scroll-progress');
-  const hero        = document.getElementById('hero');
-  const floatBtn    = document.getElementById('floating-cta');
-  const backToTop   = document.getElementById('back-to-top');
-  let lastScrollY = 0, maxScrollY = 0;
-
-  window.addEventListener('scroll', () => {
-    const y        = window.scrollY;
-    const total    = document.body.scrollHeight - window.innerHeight;
-    const pastHero = y > hero.offsetTop + hero.offsetHeight - 80;
-
-    // progress bar
-    progressBar.style.width = total > 0 ? (y / total * 100) + '%' : '0%';
-
-    // floating CTA + back to top
-    floatBtn.classList.toggle('show', pastHero);
-    backToTop.classList.toggle('show', y > 400);
-
-    // mobile exit intent — scroll reversal after passing 50% of page
-    maxScrollY = Math.max(maxScrollY, y);
-    const midPage = document.body.scrollHeight * 0.5;
-    if (maxScrollY > midPage && y < lastScrollY - 80) showPopup();
-    lastScrollY = y;
-  }, { passive: true });
-
-  /* ────────────────────────────────────────
-     ACTIVE NAV HIGHLIGHTING
-  ──────────────────────────────────────── */
-  const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
-  const sections = Array.from(navLinks)
-    .map(a => document.querySelector(a.getAttribute('href')))
-    .filter(Boolean);
-
-  const ioNav = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        const id = e.target.id;
-        navLinks.forEach(a => {
-          a.classList.toggle('active', a.getAttribute('href') === `#${id}`);
-        });
-      }
-    });
-  }, { rootMargin: '-30% 0px -60% 0px' });
-  sections.forEach(s => ioNav.observe(s));
-
-  /* ────────────────────────────────────────
-     EXIT INTENT — desktop mouseleave
-                 + mobile scroll-reverse
-  ──────────────────────────────────────── */
-  const POPUP_KEY = 'hl_exit_seen';
-  function showPopup() {
-    if (sessionStorage.getItem(POPUP_KEY)) return;
-    document.getElementById('exit-popup').classList.add('show');
-    sessionStorage.setItem(POPUP_KEY, '1');
-  }
-  function closePopup() {
-    document.getElementById('exit-popup').classList.remove('show');
-  }
-  // desktop: mouse leaves top of viewport
-  document.addEventListener('mouseleave', (e) => {
-    if (e.clientY < 20) showPopup();
-  });
-
-  /* ────────────────────────────────────────
-     FAQ ACCORDION
-  ──────────────────────────────────────── */
-  function toggleFaq(btn) {
-    const item = btn.closest('.faq-item');
-    const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item.open').forEach(i => {
-      i.classList.remove('open');
-      i.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
-    });
-    if (!isOpen) {
-      item.classList.add('open');
-      btn.setAttribute('aria-expanded', 'true');
-    }
-  }
-
-  /* ────────────────────────────────────────
-     QUIZ
-  ──────────────────────────────────────── */
-  const quizAnswers = {};
-  function quizSelect(btn) {
-    quizAnswers[btn.dataset.q] = btn.dataset.v;
-    btn.closest('.quiz-options').querySelectorAll('.quiz-opt').forEach(b => b.classList.remove('selected'));
-    btn.classList.add('selected');
-    setTimeout(() => {
-      const q = btn.dataset.q;
-      if (q === '1') {
-        document.getElementById('quiz-step-1').style.display = 'none';
-        document.getElementById('quiz-step-2').style.display = 'block';
-        document.getElementById('pb2').classList.add('active');
-      } else if (q === '2') {
-        document.getElementById('quiz-step-2').style.display = 'none';
-        document.getElementById('quiz-step-3').style.display = 'block';
-        document.getElementById('pb3').classList.add('active');
-      } else {
-        showQuizResult();
-      }
-    }, 260);
-  }
-  function showQuizResult() {
-    document.getElementById('quiz-body').style.display = 'none';
-    document.getElementById('quiz-result').classList.add('show');
-    const type = quizAnswers['1'], scale = quizAnswers['2'], timing = quizAnswers['3'];
-    let tag, headline, body;
-    if (scale === 'small' || type === 'unsure' || timing === 'explore') {
-      tag = '✦ Perfect for the Free Tier';
-      headline = 'Start with our free strategy call.';
-      body = "You're in the idea or exploration phase — exactly where the free call shines. You'll leave with a clear picture of what to build and how, at zero cost.";
-    } else if (scale === 'large') {
-      tag = '✦ Looks like a Max Tier project';
-      headline = "Let's scope it together — free.";
-      body = "Complex projects need a tailored approach. Book the free call so we can map the full scope, timeline, and architecture before committing to anything.";
-    } else if (timing === 'now' && scale !== 'small') {
-      tag = '✦ Pro Tier looks like your fit';
-      headline = "Ready to build? Let's talk first.";
-      body = "The Pro tier is built for exactly this — a single focused deliverable with full support. Book the free call to confirm the fit and lock in your spot this month.";
-    } else {
-      tag = "✦ Let's start with a free call";
-      headline = 'A roadmap first, a decision after.';
-      body = "Whether you end up on Pro or Max, every engagement starts the same way: a free 45-minute call and a written plan. Lock in your spot before the month fills.";
-    }
-    document.getElementById('result-tag').textContent     = tag;
-    document.getElementById('result-headline').textContent = headline;
-    document.getElementById('result-body').textContent    = body;
-  }
-  function quizRestart() {
-    Object.keys(quizAnswers).forEach(k => delete quizAnswers[k]);
-    document.getElementById('quiz-body').style.display = 'block';
-    document.getElementById('quiz-result').classList.remove('show');
-    document.getElementById('quiz-step-1').style.display = 'block';
-    document.getElementById('quiz-step-2').style.display = 'none';
-    document.getElementById('quiz-step-3').style.display = 'none';
-    document.querySelectorAll('.quiz-progress-bar').forEach((b, i) => b.classList.toggle('active', i === 0));
-    document.querySelectorAll('.quiz-opt').forEach(b => b.classList.remove('selected'));
-  }
-
-  /* ────────────────────────────────────────
-     QUIZ → FORM PRE-FILL
-     Maps quiz answer to the form select value
-  ──────────────────────────────────────── */
-  const QUIZ_TO_FORM = {
-    'ai':         'AI Agent or Automation',
-    'blockchain': 'Blockchain / DeFi / Crypto',
-    'secure':     'Secure System or Infrastructure',
-    'unsure':     'Not sure yet'
-  };
-  function prefillFormFromQuiz() {
-    const type   = quizAnswers['1'];
-    const mapped = QUIZ_TO_FORM[type];
-    if (mapped) {
-      const sel = document.getElementById('f-type');
-      for (let i = 0; i < sel.options.length; i++) {
-        if (sel.options[i].value === mapped) { sel.selectedIndex = i; break; }
-      }
-    }
-  }
-
-  // hook into quiz result CTA
-  document.querySelector('#quiz-result .btn-primary').addEventListener('click', prefillFormFromQuiz);
-  document.getElementById('contact-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const name    = document.getElementById('f-name').value.trim();
-    const email   = document.getElementById('f-email').value.trim();
-    const type    = document.getElementById('f-type').value;
-    const message = document.getElementById('f-msg').value.trim();
-
-    if (!name || !email || !type) {
-      // simple native validation fallback
-      this.reportValidity();
-      return;
-    }
-
-    const subject = encodeURIComponent(`HyperLightTech Inquiry — ${type}`);
-    const body    = encodeURIComponent(
-      `Hi HyperLightTech,\n\nName: ${name}\nEmail: ${email}\nProject Type: ${type}\n\n${message ? 'Details:\n' + message : '(No additional details provided.)'}\n\n—\nSent from hyperlighttek.com`
-    );
-
-    // show success state immediately so user sees feedback
-    this.style.display = 'none';
-    document.getElementById('form-success').classList.add('show');
-    const fn = document.querySelector('.book-footnote');
-    if (fn) fn.style.display = 'none';
-
-    // then open mail client after a brief delay
-    setTimeout(() => {
-      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
-    }, 120);
-  });
-</script>
-</body>
+  <div id="back-to-top">
+   <button aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <i class="fa-solid fa-arrow-up">
+    </i>
+   </button>
+  </div>
+  <div id="floating-cta">
+   <button onclick="document.getElementById('book').scrollIntoView({behavior:'smooth'})">
+    <i class="fa-solid fa-calendar-check">
+    </i>
+    Free Strategy Call
+   </button>
+  </div>
+  <div id="exit-popup">
+   <div class="exit-card">
+    <button aria-label="Close" class="exit-close" onclick="closePopup()">
+     <i class="fa-solid fa-xmark">
+     </i>
+    </button>
+    <div class="exit-icon">
+     <i class="fa-solid fa-gift">
+     </i>
+    </div>
+    <div class="exit-title">
+     Before you go &mdash;
+    </div>
+    <p class="exit-sub">
+     The free strategy call comes with a
+     <strong>
+      written project roadmap
+     </strong>
+     . No obligation, no pitch. Just 45 minutes and a real plan.
+    </p>
+    <a class="btn-primary" href="#book" onclick="closePopup()" style="width:100%;justify-content:center">
+     <i class="fa-solid fa-calendar-check">
+     </i>
+     OK &mdash; Book My Free Call
+    </a>
+    <p class="exit-note" id="exit-scarcity">
+    </p>
+   </div>
+  </div>
+  <script>
+   const SPOTS_LEFT=3,CONTACT_EMAIL='hello@hyperlighttech.com';
+  const PILL_KEY='hl_pill_dismissed';
+  function dismissPill(p){const el=document.getElementById('guides-pill');if(!el)return;el.classList.add('dismiss');setTimeout(()=>el.remove(),280);if(p)sessionStorage.setItem(PILL_KEY,'1')}
+  if(!sessionStorage.getItem(PILL_KEY)){document.getElementById('guides-pill').classList.add('show')}
+  (function(){const s=SPOTS_LEFT===1;document.getElementById('urgency-text').textContent=s?'Only 1 free strategy call spot left this month —':`Only ${SPOTS_LEFT} free strategy call spots left this month —`;document.getElementById('scarcity-text').textContent=s?'Only 1 spot remaining this month':`Only ${SPOTS_LEFT} spots remaining this month`;document.getElementById('exit-scarcity').textContent=s?'Only 1 spot remaining this month':`Only ${SPOTS_LEFT} spots remaining this month`})();
+  function toggleMenu(){const h=document.getElementById('hamburger'),m=document.getElementById('mobile-menu'),o=m.classList.toggle('open');h.classList.toggle('open',o);document.body.style.overflow=o?'hidden':''}
+  function closeMenu(){document.getElementById('hamburger').classList.remove('open');document.getElementById('mobile-menu').classList.remove('open');document.body.style.overflow=''}
+  const ioReveal=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');ioReveal.unobserve(x.target)}})},{threshold:.08});
+  document.querySelectorAll('.fade-in-up').forEach(el=>ioReveal.observe(el));
+  setTimeout(()=>document.querySelector('#hero .fade-in-up')?.classList.add('visible'),80);
+  function runCounter(el){const t=parseInt(el.dataset.target,10),s=t/(1100/16);let c=0;const x=setInterval(()=>{c=Math.min(c+s,t);el.textContent=Math.floor(c);if(c>=t)clearInterval(x)},16)}
+  new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.querySelectorAll('.counter').forEach(runCounter)})},{threshold:.5}).observe(document.getElementById('stats'));
+  const pb=document.getElementById('scroll-progress'),heroEl=document.getElementById('hero'),fb=document.getElementById('floating-cta'),btt=document.getElementById('back-to-top');
+  let lastY=0,maxY=0;
+  window.addEventListener('scroll',()=>{const y=window.scrollY,tot=document.body.scrollHeight-window.innerHeight;pb.style.width=tot>0?(y/tot*100)+'%':'0%';fb.classList.toggle('show',y>heroEl.offsetTop+heroEl.offsetHeight-80);btt.classList.toggle('show',y>400);maxY=Math.max(maxY,y);if(maxY>document.body.scrollHeight*.5&&y<lastY-80)showPopup();lastY=y},{passive:true});
+  const navA=document.querySelectorAll('.nav-links a[href^="#"]');
+  Array.from(navA).map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean).forEach(s=>{new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)navA.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+x.target.id))})},{rootMargin:'-30% 0px -60% 0px'}).observe(s)});
+  const POPUP_KEY='hl_exit_seen';
+  function showPopup(){if(sessionStorage.getItem(POPUP_KEY))return;document.getElementById('exit-popup').classList.add('show');sessionStorage.setItem(POPUP_KEY,'1')}
+  function closePopup(){document.getElementById('exit-popup').classList.remove('show')}
+  document.addEventListener('mouseleave',e=>{if(e.clientY<20)showPopup()});
+  function toggleFaq(btn){const it=btn.closest('.faq-item'),op=it.classList.contains('open');document.querySelectorAll('.faq-item.open').forEach(i=>{i.classList.remove('open');i.querySelector('.faq-q').setAttribute('aria-expanded','false')});if(!op){it.classList.add('open');btn.setAttribute('aria-expanded','true')}}
+  const qa={};
+  function quizSelect(btn){qa[btn.dataset.q]=btn.dataset.v;btn.closest('.quiz-options').querySelectorAll('.quiz-opt').forEach(b=>b.classList.remove('selected'));btn.classList.add('selected');setTimeout(()=>{const q=btn.dataset.q;if(q==='1'){document.getElementById('quiz-step-1').style.display='none';document.getElementById('quiz-step-2').style.display='block';document.getElementById('pb2').classList.add('active')}else if(q==='2'){document.getElementById('quiz-step-2').style.display='none';document.getElementById('quiz-step-3').style.display='block';document.getElementById('pb3').classList.add('active')}else showQR()},260)}
+  function showQR(){document.getElementById('quiz-body').style.display='none';document.getElementById('quiz-result').classList.add('show');const tp=qa[1],sc=qa[2],ti=qa[3];let tag,hl,bd;if(sc==='small'||tp==='unsure'||ti==='explore'){tag='❆ Perfect for the Free Tier';hl='Start with our free strategy call.';bd="You're in the idea or exploration phase — exactly where the free call shines. You'll leave with a clear picture of what to build and how, at zero cost."}else if(sc==='large'){tag='❆ Looks like a Max Tier project';hl="Let's scope it together — free.";bd="Complex projects need a tailored approach. Book the free call so we can map the full scope, timeline, and architecture before committing to anything."}else if(ti==='now'&&sc!=='small'){tag='❆ Pro Tier looks like your fit';hl="Ready to build? Let's talk first.";bd="The Pro tier is built for exactly this — a single focused deliverable with full support. Book the free call to confirm the fit and lock in your spot this month."}else{tag="❆ Let's start with a free call";hl='A roadmap first, a decision after.';bd="Whether you end up on Pro or Max, every engagement starts the same way: a free 45-minute call and a written plan. Lock in your spot before the month fills."}document.getElementById('result-tag').textContent=tag;document.getElementById('result-headline').textContent=hl;document.getElementById('result-body').textContent=bd}
+  function quizRestart(){Object.keys(qa).forEach(k=>delete qa[k]);document.getElementById('quiz-body').style.display='block';document.getElementById('quiz-result').classList.remove('show');document.getElementById('quiz-step-1').style.display='block';document.getElementById('quiz-step-2').style.display='none';document.getElementById('quiz-step-3').style.display='none';document.querySelectorAll('.quiz-progress-bar').forEach((b,i)=>b.classList.toggle('active',i===0));document.querySelectorAll('.quiz-opt').forEach(b=>b.classList.remove('selected'))}
+  const Q2F={ai:'AI Agent or Automation',blockchain:'Blockchain / DeFi / Crypto',secure:'Secure System or Infrastructure',unsure:'Not sure yet'};
+  function prefill(){const m=Q2F[qa[1]];if(m){const s=document.getElementById('f-type');for(let i=0;i<s.options.length;i++){if(s.options[i].value===m){s.selectedIndex=i;break}}}}
+  document.querySelector('#quiz-result .btn-primary').addEventListener('click',prefill);
+  document.getElementById('contact-form').addEventListener('submit',function(e){e.preventDefault();const n=document.getElementById('f-name').value.trim(),em=document.getElementById('f-email').value.trim(),tp=document.getElementById('f-type').value,msg=document.getElementById('f-msg').value.trim();if(!n||!em||!tp){this.reportValidity();return}const sub=encodeURIComponent('HyperLightTech Inquiry — '+tp),bd=encodeURIComponent('Hi HyperLightTech,\n\nName: '+n+'\nEmail: '+em+'\nProject Type: '+tp+'\n\n'+(msg?'Details:\n'+msg:'(No additional details provided.)')+'\n\n—\nSent from hyperlighttech.com');this.style.display='none';document.getElementById('form-success').classList.add('show');const fn=document.querySelector('.book-footnote');if(fn)fn.style.display='none';setTimeout(()=>{window.location.href='mailto:'+CONTACT_EMAIL+'?subject='+sub+'&body='+bd},120)});
+  </script>
+ </body>
 </html>
