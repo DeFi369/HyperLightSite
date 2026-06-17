@@ -1,11 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="7" fill="#22d3ee"/>
-  <text
-    x="16" y="23"
-    font-family="'Arial Black', 'Helvetica Neue', Arial, sans-serif"
-    font-size="15"
-    font-weight="900"
-    text-anchor="middle"
-    letter-spacing="-0.5"
-    fill="#07090f">HL</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <rect width="32" height="32" rx="7" fill="#0a0f1c"/>
+  <polygon points="4,12 16,5 28,12 28,22 16,29 4,22" fill="none" stroke="#22d3ee" stroke-width="1.2"/>
+  <polygon points="4,12 16,5 28,12 28,22 16,29 4,22" fill="#22d3ee" fill-opacity="0.12"/>
+  <path d="M12,14 L16,14 L14,18 L18,18 L15,24 L22,16 L18,16 L20,12 L13,12 Z" fill="#22d3ee"/>
 </svg>
