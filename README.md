@@ -1,6 +1,6 @@
 # HyperLightTech
 
-We build production-grade AI agents, blockchain systems, and secure technology infrastructure for clients who need things done right.
+We build production-grade AI agents, blockchain systems, and secure technology infrastructure for clients who need things done right. 
 
 ## What We Do
 
