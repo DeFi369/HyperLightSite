@@ -181,6 +181,12 @@
     footer .flinks a:hover{color:#fff}
     footer .copy{color:#8C8175;font-size:13px}
 
+    /* stay in the loop */
+    .updates-card{background:var(--paper-2);border:1px solid var(--line);border-radius:24px;padding:48px 40px;text-align:center}
+    .updates-card h2{font-size:clamp(26px,3.4vw,36px);margin:12px 0 14px}
+    .updates-card p{color:var(--ink-2);max-width:52ch;margin:0 auto 26px;font-size:17px}
+    .updates-card .small{font-size:14px;color:var(--ink-3);margin-top:16px}
+
     /* load-in animation */
     .reveal{opacity:0;transform:translateY(16px);animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards}
     .reveal.d1{animation-delay:.08s}.reveal.d2{animation-delay:.16s}.reveal.d3{animation-delay:.24s}.reveal.d4{animation-delay:.32s}
@@ -404,6 +410,22 @@
               <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
             <div class="faq-a"><p>That's our custom builds. Email <a href="mailto:hello@hyperlighttech.com" style="color:var(--accent)">hello@hyperlighttech.com</a> and we'll set up a free strategy call with a written roadmap — whether or not we end up working together.</p></div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STAY IN THE LOOP — audience capture via Gumroad follow (swap for a dedicated email provider later if wanted) -->
+    <section id="updates">
+      <div class="wrap">
+        <div class="updates-card">
+          <div class="eyebrow">Stay in the loop</div>
+          <h2>Get the next guide first.</h2>
+          <p>New guides drop a few times a year. Follow on Gumroad and you'll get an email the moment the next one — including the Production AI Agents flagship — goes live.</p>
+          <a class="btn btn-primary" href="https://hyperlighttech.gumroad.com" target="_blank" rel="noopener noreferrer">
+            Follow on Gumroad
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </a>
+          <p class="small">No spam — just new guides. Or email <a href="mailto:hello@hyperlighttech.com" style="color:var(--accent)">hello@hyperlighttech.com</a> to be added.</p>
         </div>
       </div>
     </section>

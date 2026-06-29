@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>OG image — HyperLightTech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Manrope:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    html,body{width:1200px;height:630px;overflow:hidden}
+    body{
+      background:#211C18;
+      font-family:'Manrope',sans-serif;color:#F4EEE6;
+      position:relative;padding:84px 84px 72px;display:flex;flex-direction:column;justify-content:space-between;
+    }
+    /* warm glow + hairline accent */
+    .glow{position:absolute;top:-180px;right:-120px;width:680px;height:560px;
+      background:radial-gradient(ellipse,rgba(240,99,63,.22),transparent 70%);pointer-events:none}
+    .topline{position:absolute;top:0;left:0;right:0;height:6px;background:linear-gradient(90deg,#F0633F,#E0A640 60%,#F0633F)}
+    .row{position:relative;z-index:1}
+
+    .brand{display:flex;align-items:center;gap:16px}
+    .mark{width:54px;height:54px;border-radius:14px;background:#F4EEE6;display:grid;place-items:center;color:#211C18}
+    .mark svg{width:30px;height:30px}
+    .brand .name{font-family:'Syne',sans-serif;font-weight:800;font-size:34px;letter-spacing:-.02em}
+
+    h1{font-family:'Syne',sans-serif;font-weight:800;font-size:84px;line-height:1.02;letter-spacing:-.03em;max-width:18ch}
+    h1 em{font-style:normal;color:#F0633F}
+    .sub{font-size:27px;color:#C3B7A6;line-height:1.45;max-width:32ch;margin-top:24px}
+
+    .foot{display:flex;align-items:center;justify-content:space-between}
+    .url{font-family:'Syne',sans-serif;font-weight:700;font-size:30px;color:#F0633F}
+    .tags{font-size:22px;color:#8C8175;font-weight:600}
+  </style>
+</head>
+<body>
+  <div class="glow"></div>
+  <div class="topline"></div>
+
+  <div class="row brand">
+    <span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M13 3 4 14h7l-1 7 9-11h-7z" fill="currentColor" stroke="none"/></svg></span>
+    <span class="name">HyperLightTech</span>
+  </div>
+
+  <div class="row">
+    <h1>Production know-how, for <em>$9.</em></h1>
+    <p class="sub">Battle-tested guides on Linux hardening, DeFi &amp; AI agents — written by engineers who ship.</p>
+  </div>
+
+  <div class="row foot">
+    <span class="url">hyperlighttech.com</span>
+    <span class="tags">Buy once · keep forever</span>
+  </div>
+</body>
+</html>
