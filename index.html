@@ -16,6 +16,22 @@
   <script type="application/ld+json">
    {"@context":"https://schema.org","@type":"Organization","name":"HyperLightTech","url":"https://hyperlighttech.com","email":"hello@hyperlighttech.com","description":"Production-grade $9 DIY guides for Linux security, DeFi, and AI agents. Instant PDF download.","offers":[{"@type":"Offer","price":"9","priceCurrency":"USD","name":"Single DIY Guide"},{"@type":"Offer","price":"19","priceCurrency":"USD","name":"Core Guide Bundle (3 guides)"},{"@type":"Offer","price":"39","priceCurrency":"USD","name":"Production AI Agents Flagship Guide"},{"@type":"Offer","price":"49","priceCurrency":"USD","name":"Master Bundle — All 4 Guides + Code"}]}
   </script>
+  <script type="application/ld+json">
+   {"@context":"https://schema.org","@graph":[
+     {"@type":"Product","name":"Build a Hardened Linux Workstation","description":"Full-disk encryption, firewall, DNS-over-HTTPS, SSH hardening, and AppArmor — every layer, step by step.","brand":{"@type":"Brand","name":"HyperLightTech"},"offers":{"@type":"Offer","price":"9","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://hyperlighttech.gumroad.com/l/linux-guide"}},
+     {"@type":"Product","name":"DeFi From Scratch","description":"Wallets, DEX trading, bridging, liquidity pools, and staying safe on-chain — no prior crypto experience needed.","brand":{"@type":"Brand","name":"HyperLightTech"},"offers":{"@type":"Offer","price":"9","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://hyperlighttech.gumroad.com/l/defi-guide"}},
+     {"@type":"Product","name":"Deploy Your First AI Agent","description":"From a blank file to a working autonomous agent in real Python — the agent loop, tool calling, and memory.","brand":{"@type":"Brand","name":"HyperLightTech"},"offers":{"@type":"Offer","price":"9","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://hyperlighttech.gumroad.com/l/ai-agent-guide"}}
+   ]}
+  </script>
+  <script type="application/ld+json">
+   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+     {"@type":"Question","name":"What's in each $9 guide?","acceptedAnswer":{"@type":"Answer","text":"A complete, end-to-end PDF: step-by-step instructions, production commands, config files, and working code. No theory-only chapters — every guide gets you to a finished result."}},
+     {"@type":"Question","name":"How fast do I get it?","acceptedAnswer":{"@type":"Answer","text":"Instantly. Checkout is handled by Gumroad — the moment payment completes, the download link is in your inbox and on the confirmation page. No account setup."}},
+     {"@type":"Question","name":"How is the $39 Flagship different from the $9 AI guide?","acceptedAnswer":{"@type":"Answer","text":"The $9 guide gets you your first working agent. The Flagship is the production sequel — multi-agent orchestration, retrieval, evals, deployment — and ships with a downloadable code repo and lifetime updates."}},
+     {"@type":"Question","name":"Do I need to be an expert?","acceptedAnswer":{"@type":"Answer","text":"Basic comfort with a terminal helps for the Linux and AI guides. The DeFi guide assumes zero prior on-chain experience. They're written for people who want to do the work themselves, not watch hours of video."}},
+     {"@type":"Question","name":"What if I want you to build it instead?","acceptedAnswer":{"@type":"Answer","text":"That's our custom builds. Email hello@hyperlighttech.com and we'll set up a free strategy call with a written roadmap — whether or not we end up working together."}}
+   ]}
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -121,6 +137,11 @@
     .bundle-line{margin-top:24px;text-align:center;font-size:16px;color:var(--ink-2)}
     .bundle-line a{color:var(--accent);font-weight:700;text-decoration:none;border-bottom:2px solid var(--accent-soft)}
     .bundle-line a:hover{border-bottom-color:var(--accent)}
+    .guarantee{margin-top:18px;text-align:center;font-size:14px;color:var(--ink-3);display:flex;align-items:center;justify-content:center;gap:8px}
+    .guarantee svg{width:16px;height:16px;color:var(--accent);flex-shrink:0}
+    .sample-line{margin-top:10px;text-align:center;font-size:15px;color:var(--ink-2)}
+    .sample-line a{color:var(--accent);font-weight:700;text-decoration:none;border-bottom:2px solid var(--accent-soft)}
+    .sample-line a:hover{border-bottom-color:var(--accent)}
 
     /* flagship dark band */
     #flagship{position:relative;background:#17120E;color:var(--ink);overflow:hidden}
@@ -308,6 +329,11 @@
           </article>
         </div>
         <p class="bundle-line">Want all three? <a href="https://hyperlighttech.gumroad.com/l/guide-bundle" target="_blank" rel="noopener noreferrer">Grab the Core Bundle for $19 →</a> (save $8)</p>
+        <p class="guarantee">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          30-day money-back guarantee — if a guide isn't worth it, email us for a full refund, no questions.
+        </p>
+        <p class="sample-line" id="sample-line" style="display:none">Not sure yet? <a id="sample-link" href="#" target="_blank" rel="noopener noreferrer">Read a free sample →</a></p>
       </div>
     </section>
 
@@ -452,6 +478,9 @@
     /* Set these to the real Gumroad product URLs to make the Flagship + Master
        buttons live. While empty, they render a clean "Coming soon". */
     const FLAGSHIP_URL = '', MASTER_URL = '';
+    /* Free-sample link — a free Gumroad product or a sample PDF. Empty = the
+       "Read a free sample" line stays hidden. */
+    const SAMPLE_URL = '';
 
     function toggleMenu(){document.getElementById('mobile-menu').classList.toggle('open');document.getElementById('hamburger').classList.toggle('open');}
     function closeMenu(){document.getElementById('mobile-menu').classList.remove('open');document.getElementById('hamburger').classList.remove('open');}
@@ -469,7 +498,17 @@
         if(a.dataset.checkout === 'flagship') a.textContent = 'Coming soon';
         if(a.dataset.checkout === 'master') a.textContent = 'Master Bundle ($49) — coming soon';
       });
+
+      // Inline Gumroad checkout overlay for product links (gumroad.js binds to .gumroad-button).
+      document.querySelectorAll('a[href*="gumroad.com/l/"]').forEach(function(a){ a.classList.add('gumroad-button'); });
+
+      // Reveal the free-sample link only when SAMPLE_URL is set.
+      if(SAMPLE_URL){
+        var s = document.getElementById('sample-link'), w = document.getElementById('sample-line');
+        if(s && w){ s.href = SAMPLE_URL; s.classList.add('gumroad-button'); w.style.display = ''; }
+      }
     })();
   </script>
+  <script src="https://gumroad.com/js/gumroad.js" defer></script>
 </body>
 </html>
