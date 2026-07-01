@@ -21,7 +21,7 @@
   </script>
   <script type="application/ld+json">
    {"@context":"https://schema.org","@graph":[
-     {"@type":"Product","name":"Build a Hardened Linux Workstation","description":"Full-disk encryption, firewall, DNS-over-HTTPS, SSH hardening, and AppArmor — every layer, step by step.","brand":{"@type":"Brand","name":"HyperLightTech"},"offers":{"@type":"Offer","price":"9","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://hyperlighttech.gumroad.com/l/linux-guide"}},
+     {"@type":"Product","name":"Build a Hardened Linux Workstation","description":"Full-disk encryption, firewall, DNS-over-TLS, SSH hardening, and AppArmor — every layer, step by step.","brand":{"@type":"Brand","name":"HyperLightTech"},"offers":{"@type":"Offer","price":"9","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://hyperlighttech.gumroad.com/l/linux-guide"}},
      {"@type":"Product","name":"DeFi From Scratch","description":"Wallets, DEX trading, bridging, liquidity pools, and staying safe on-chain — no prior crypto experience needed.","brand":{"@type":"Brand","name":"HyperLightTech"},"offers":{"@type":"Offer","price":"9","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://hyperlighttech.gumroad.com/l/defi-guide"}},
      {"@type":"Product","name":"Deploy Your First AI Agent","description":"From a blank file to a working autonomous agent in real Python — the agent loop, tool calling, and memory.","brand":{"@type":"Brand","name":"HyperLightTech"},"offers":{"@type":"Offer","price":"9","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://hyperlighttech.gumroad.com/l/ai-agent-guide"}}
    ]}
@@ -32,12 +32,12 @@
      {"@type":"Question","name":"How fast do I get it?","acceptedAnswer":{"@type":"Answer","text":"Instantly. Checkout is handled by Gumroad — the moment payment completes, the download link is in your inbox and on the confirmation page. No account setup."}},
      {"@type":"Question","name":"How is the $39 Flagship different from the $9 AI guide?","acceptedAnswer":{"@type":"Answer","text":"The $9 guide gets you your first working agent. The Flagship is the production sequel — multi-agent orchestration, retrieval, evals, deployment — and ships with a downloadable code repo and lifetime updates."}},
      {"@type":"Question","name":"Do I need to be an expert?","acceptedAnswer":{"@type":"Answer","text":"Basic comfort with a terminal helps for the Linux and AI guides. The DeFi guide assumes zero prior on-chain experience. They're written for people who want to do the work themselves, not watch hours of video."}},
-     {"@type":"Question","name":"What if I want you to build it instead?","acceptedAnswer":{"@type":"Answer","text":"That's our custom builds. Email hello@hyperlighttech.com and we'll set up a free strategy call with a written roadmap — whether or not we end up working together."}}
+     {"@type":"Question","name":"What if I want you to build it instead?","acceptedAnswer":{"@type":"Answer","text":"That's our custom builds. Email hello@hyperlighttech.com and we'll set up a free strategy call with a written roadmap — whether or not we end up working together."}},
+     {"@type":"Question","name":"What's your refund policy?","acceptedAnswer":{"@type":"Answer","text":"Every guide comes with a 30-day money-back guarantee. If it isn't worth it, email hello@hyperlighttech.com within 30 days for a full refund — no questions asked."}},
+     {"@type":"Question","name":"What format is it — can I read it on my phone?","acceptedAnswer":{"@type":"Answer","text":"It's an instant-download PDF. It reads on any device — laptop, tablet, or phone — so you can keep it open on one screen while you work on another. Buy once, keep it forever."}}
    ]}
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="fonts/fonts.css">
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{
@@ -46,7 +46,7 @@
       --card:#2A231D;         /* elevated card surface (lighter than page) */
       --ink:#F4EEE6;          /* warm off-white — primary text */
       --ink-2:#C3B7A6;        /* warm light grey — secondary text */
-      --ink-3:#8C8175;        /* muted */
+      --ink-3:#A89C8C;        /* muted — bumped for WCAG AA on charcoal */
       --line:rgba(244,238,230,.11);  /* hairline on dark */
       --accent:#F0633F;       /* warm persimmon — pops on charcoal */
       --accent-deep:#E2553D;
@@ -69,7 +69,7 @@
       padding:14px 26px;border-radius:999px;border:1.5px solid transparent;cursor:pointer;text-decoration:none;
       transition:transform .15s ease,background .2s,box-shadow .2s,border-color .2s;white-space:nowrap}
     .btn svg{width:16px;height:16px}
-    .btn-primary{background:var(--accent);color:#fff;box-shadow:0 8px 20px -8px var(--accent)}
+    .btn-primary{background:var(--accent);color:var(--paper);box-shadow:0 8px 20px -8px var(--accent)}
     .btn-primary:hover{background:var(--accent-deep);transform:translateY(-2px)}
     .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
     .btn-ghost:hover{border-color:var(--ink);transform:translateY(-2px)}
@@ -236,7 +236,7 @@
   <header>
     <div class="wrap">
       <nav>
-        <a href="#" class="logo">
+        <a href="/" class="logo">
           <span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M13 3 4 14h7l-1 7 9-11h-7z" fill="currentColor" stroke="none"/></svg></span>
           HyperLightTech
         </a>
@@ -247,7 +247,7 @@
           <li><a href="#faq">FAQ</a></li>
         </ul>
         <a href="#guides" class="btn btn-primary nav-cta">Get the guides</a>
-        <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+        <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu" onclick="toggleMenu()"><span></span><span></span><span></span></button>
       </nav>
     </div>
     <div class="mobile-menu" id="mobile-menu">
@@ -289,7 +289,7 @@
             <div class="num">01</div>
             <div class="label">Linux security</div>
             <h3>Build a Hardened Linux Workstation</h3>
-            <p class="desc">Full-disk encryption, firewall, DNS-over-HTTPS, SSH hardening, AppArmor — every layer, step by step.</p>
+            <p class="desc">Full-disk encryption, firewall, DNS-over-TLS, SSH hardening, AppArmor — every layer, step by step.</p>
             <ul>
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>LUKS full-disk encryption</li>
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>UFW firewall + fail2ban</li>
@@ -297,7 +297,7 @@
             </ul>
             <div class="foot">
               <div class="price">$9<span>one-time</span></div>
-              <a class="btn btn-ghost" href="https://hyperlighttech.gumroad.com/l/linux-guide" target="_blank" rel="noopener noreferrer">Get it</a>
+              <a class="btn btn-primary" href="https://hyperlighttech.gumroad.com/l/linux-guide" target="_blank" rel="noopener noreferrer">Get the guide — $9</a>
             </div>
           </article>
           <article class="card">
@@ -312,7 +312,7 @@
             </ul>
             <div class="foot">
               <div class="price">$9<span>one-time</span></div>
-              <a class="btn btn-ghost" href="https://hyperlighttech.gumroad.com/l/defi-guide" target="_blank" rel="noopener noreferrer">Get it</a>
+              <a class="btn btn-primary" href="https://hyperlighttech.gumroad.com/l/defi-guide" target="_blank" rel="noopener noreferrer">Get the guide — $9</a>
             </div>
           </article>
           <article class="card">
@@ -327,7 +327,7 @@
             </ul>
             <div class="foot">
               <div class="price">$9<span>one-time</span></div>
-              <a class="btn btn-ghost" href="https://hyperlighttech.gumroad.com/l/ai-agent-guide" target="_blank" rel="noopener noreferrer">Get it</a>
+              <a class="btn btn-primary" href="https://hyperlighttech.gumroad.com/l/ai-agent-guide" target="_blank" rel="noopener noreferrer">Get the guide — $9</a>
             </div>
           </article>
         </div>
@@ -415,29 +415,39 @@
         </div>
         <div class="faq">
           <div class="faq-item">
-            <button class="faq-q" onclick="toggleFaq(this)">What's in each $9 guide?
+            <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-a-1">What's in each $9 guide?
               <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
-            <div class="faq-a"><p>A complete, end-to-end PDF: step-by-step instructions, production commands, config files, and working code. No theory-only chapters — every guide gets you to a finished result.</p></div>
+            <div class="faq-a" id="faq-a-1" hidden><p>A complete, end-to-end PDF: step-by-step instructions, production commands, config files, and working code. No theory-only chapters — every guide gets you to a finished result.</p></div>
           </div>
           <div class="faq-item">
-            <button class="faq-q" onclick="toggleFaq(this)">How fast do I get it?
+            <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-a-2">How fast do I get it?
               <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
-            <div class="faq-a"><p>Instantly. Checkout is handled by Gumroad — the moment payment completes, the download link is in your inbox and on the confirmation page. No account setup.</p></div>
+            <div class="faq-a" id="faq-a-2" hidden><p>Instantly. Checkout is handled by Gumroad — the moment payment completes, the download link is in your inbox and on the confirmation page. No account setup.</p></div>
           </div>
           <div class="faq-item">
-            <button class="faq-q" onclick="toggleFaq(this)">How is the $39 Flagship different from the $9 AI guide?
+            <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-a-3">How is the $39 Flagship different from the $9 AI guide?
               <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
-            <div class="faq-a"><p>The $9 guide gets you your first working agent. The Flagship is the production sequel — multi-agent orchestration, retrieval, evals, deployment — and ships with a downloadable code repo and lifetime updates.</p></div>
+            <div class="faq-a" id="faq-a-3" hidden><p>The $9 guide gets you your first working agent. The Flagship is the production sequel — multi-agent orchestration, retrieval, evals, deployment — and ships with a downloadable code repo and lifetime updates.</p></div>
           </div>
           <div class="faq-item">
-            <button class="faq-q" onclick="toggleFaq(this)">Do I need to be an expert?
+            <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-a-4">Do I need to be an expert?
               <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
-            <div class="faq-a"><p>Basic comfort with a terminal helps for the Linux and AI guides. The DeFi guide assumes zero prior on-chain experience. They're written for people who want to do the work themselves, not watch hours of video.</p></div>
+            <div class="faq-a" id="faq-a-4" hidden><p>Basic comfort with a terminal helps for the Linux and AI guides. The DeFi guide assumes zero prior on-chain experience. They're written for people who want to do the work themselves, not watch hours of video.</p></div>
           </div>
           <div class="faq-item">
-            <button class="faq-q" onclick="toggleFaq(this)">What if I want you to build it instead?
+            <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-a-5">What if I want you to build it instead?
               <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
-            <div class="faq-a"><p>That's our custom builds. Email <a href="mailto:hello@hyperlighttech.com" style="color:var(--accent)">hello@hyperlighttech.com</a> and we'll set up a free strategy call with a written roadmap — whether or not we end up working together.</p></div>
+            <div class="faq-a" id="faq-a-5" hidden><p>That's our custom builds. Email <a href="mailto:hello@hyperlighttech.com" style="color:var(--accent)">hello@hyperlighttech.com</a> and we'll set up a free strategy call with a written roadmap — whether or not we end up working together.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-a-6">What's your refund policy?
+              <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+            <div class="faq-a" id="faq-a-6" hidden><p>Every guide comes with a 30-day money-back guarantee. If it isn't worth it, email <a href="mailto:hello@hyperlighttech.com" style="color:var(--accent)">hello@hyperlighttech.com</a> within 30 days for a full refund — no questions asked.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-a-7">What format is it — can I read it on my phone?
+              <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+            <div class="faq-a" id="faq-a-7" hidden><p>It's an instant-download PDF. It reads on any device — laptop, tablet, or phone — so you can keep it open on one screen while you work on another. Buy once, keep it forever.</p></div>
           </div>
         </div>
       </div>
@@ -462,7 +472,7 @@
 
   <footer>
     <div class="wrap">
-      <a href="#" class="logo">
+      <a href="/" class="logo">
         <span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M13 3 4 14h7l-1 7 9-11h-7z" fill="currentColor" stroke="none"/></svg></span>
         HyperLightTech
       </a>
@@ -485,9 +495,36 @@
        "Read a free sample" line stays hidden. */
     const SAMPLE_URL = '';
 
-    function toggleMenu(){document.getElementById('mobile-menu').classList.toggle('open');document.getElementById('hamburger').classList.toggle('open');}
-    function closeMenu(){document.getElementById('mobile-menu').classList.remove('open');document.getElementById('hamburger').classList.remove('open');}
-    function toggleFaq(btn){btn.parentElement.classList.toggle('open');}
+    function toggleMenu(){
+      var open = document.getElementById('mobile-menu').classList.toggle('open');
+      var h = document.getElementById('hamburger');
+      h.classList.toggle('open');
+      h.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    function closeMenu(){
+      document.getElementById('mobile-menu').classList.remove('open');
+      var h = document.getElementById('hamburger');
+      h.classList.remove('open');
+      h.setAttribute('aria-expanded', 'false');
+    }
+    function toggleFaq(btn){
+      var item = btn.parentElement;
+      var panel = document.getElementById(btn.getAttribute('aria-controls'));
+      var opening = !item.classList.contains('open');
+      if(opening){
+        // reveal first so the max-height animation can run, then mark expanded
+        panel.hidden = false;
+        void panel.offsetHeight; // force reflow so 0 -> max-height animates
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      } else {
+        item.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+        // hide after the collapse animation so it leaves the a11y tree
+        var hide = function(e){ if(e.propertyName==='max-height'){ panel.hidden = true; panel.removeEventListener('transitionend', hide); } };
+        panel.addEventListener('transitionend', hide);
+      }
+    }
 
     (function(){
       var co = {flagship: FLAGSHIP_URL, master: MASTER_URL};
