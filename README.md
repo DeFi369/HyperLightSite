@@ -1,25 +1,32 @@
 # HyperLightTech
 
-We build production-grade AI agents, blockchain systems, and secure technology infrastructure for clients who need things done right. 
+**$9 DIY guides for builders — Linux hardening, DeFi, and AI agents.**
 
-## What We Do
+Battle-tested, end-to-end playbooks written by engineers who actually ship. Each guide is an instant-download PDF you own forever — no course, no subscription, no fluff. Reads on any device, laptop to phone. 30-day money-back guarantee.
 
-**AI Agents** — Autonomous systems, multi-agent pipelines, RAG architectures, and intelligent automation built for real-world reliability.
+## The guides
 
-**Blockchain & Crypto** — Smart contracts, DeFi protocols, token engineering, and secure Web3 integrations from end to end.
+Sold via [Gumroad](https://hyperlighttech.gumroad.com). Instant download, buy once, keep forever.
 
-**Secure Systems & Consulting** — High-performance hardened workstations, infrastructure security, and technology strategy for individuals and organizations.
+| Guide | What you build | Price |
+| --- | --- | --- |
+| **Build a Hardened Linux Workstation** | Full-disk encryption, firewall, DNS-over-TLS, SSH hardening, AppArmor | **$9** |
+| **DeFi From Scratch** | Wallets, DEX trading, bridging, liquidity pools, staying safe on-chain | **$9** |
+| **Deploy Your First AI Agent** | Blank file to a working autonomous agent in real Python — the agent loop, tool calling, memory | **$9** |
 
-## Service Tiers
+### Price ladder
 
-- **Free** — 45-minute strategy call, high-level roadmap, access to our knowledge base. No cost, no obligation.
-- **Pro** — Custom AI agent or blockchain solution, full development and testing, deployment, documentation, and 30 days priority support. Starting at $2,500/project.
-- **Max** — Everything in Pro plus multi-agent systems or complex DeFi, ongoing maintenance, and a dedicated support channel. Starting at $8,000/project.
+- **$9** — any single guide
+- **$19** — Core Bundle (all 3 guides above, save $8)
+- **$39** — **Production AI Agents Flagship** *(coming soon)* — the production sequel: multi-agent orchestration, retrieval, evals, deployment, plus a downloadable code repo and lifetime updates
+- **$49** — **Master Bundle** *(coming soon)* — all 4 guides + code
 
-## Digital Guides
+## Custom builds (secondary)
 
-We publish in-depth technical guides covering Linux workstation security, DeFi and crypto strategy, and AI agent development. Available via Gumroad.
+When you'd rather have it built for you, we take on a few custom engagements — an AI agent, a DeFi protocol, or a hardened system shipped to production. Every one starts with a free 45-minute strategy call and a written roadmap, no obligation. Email **hello@hyperlighttech.com** (Pro from $2,500 / Max from $8,000).
 
-## Get In Touch
+## About this repo
 
-Visit [hyperlighttech.com](https://hyperlighttech.com) to book a free strategy call or send a project brief. We respond within 24 hours.
+Plain static site, **no build step** — hand-written HTML with inline CSS/JS and self-hosted fonts. Deploy = serve the files. Live via GitHub Pages at **https://defi369.github.io/HyperLightSite/**.
+
+See [`AUDIT.md`](AUDIT.md) for the current file layout, section flow, and open work.
