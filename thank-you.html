@@ -26,9 +26,12 @@
     .logo{display:flex;align-items:center;gap:11px;text-decoration:none;font-family:var(--fh);font-weight:800;font-size:18px}
     .logo .mark{width:30px;height:30px;border-radius:8px;background:var(--ink);display:grid;place-items:center;color:var(--paper)}
     .logo .mark svg{width:16px;height:16px}
-    .nav-cta{background:var(--accent);color:#fff;padding:10px 20px;border-radius:999px;font-weight:700;font-size:14px;
-      text-decoration:none;transition:background .2s,transform .15s}
-    .nav-cta:hover{background:var(--accent-deep);transform:translateY(-1px)}
+    .nav-cta{display:inline-flex;align-items:center;background:var(--accent);color:var(--paper);padding:11px 18px;
+      border-radius:6px;border:1px solid #D14C2E;font-weight:700;font-size:12px;letter-spacing:.11em;text-transform:uppercase;
+      line-height:1;text-decoration:none;box-shadow:0 4px 0 0 #A23A1E;
+      transition:transform .12s ease,box-shadow .12s ease,background .2s}
+    .nav-cta:hover{background:var(--accent-deep);transform:translateY(-1px);box-shadow:0 5px 0 0 #A23A1E}
+    .nav-cta:active{transform:translateY(4px);box-shadow:0 0 0 0 #A23A1E}
 
     main{flex:1;padding:64px 24px 80px}
     .wrap{max-width:680px;margin:0 auto}
@@ -57,11 +60,15 @@
     .eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
     .next h2{font-family:var(--fh);font-size:26px;font-weight:800;letter-spacing:-.02em;color:var(--ink);margin-bottom:10px}
     .next p{font-size:15px;color:var(--ink-2);line-height:1.7;margin-bottom:24px}
-    .btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;font-family:var(--fb);
-      font-weight:700;font-size:15px;padding:13px 26px;border-radius:999px;text-decoration:none;
-      transition:background .2s,transform .15s;box-shadow:0 8px 20px -8px var(--accent)}
-    .btn:hover{background:var(--accent-deep);transform:translateY(-2px)}
-    .btn svg{width:16px;height:16px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--accent);color:var(--paper);
+      font-family:var(--fb);font-weight:700;font-size:13px;letter-spacing:.11em;text-transform:uppercase;line-height:1;
+      padding:16px 24px;border-radius:6px;border:1px solid #D14C2E;text-decoration:none;white-space:nowrap;
+      box-shadow:0 4px 0 0 #A23A1E,0 16px 26px -14px rgba(0,0,0,.5);
+      transition:transform .12s ease,box-shadow .12s ease,background .2s}
+    .btn:hover{background:var(--accent-deep);transform:translateY(-1px);box-shadow:0 5px 0 0 #A23A1E,0 20px 30px -14px rgba(0,0,0,.55)}
+    .btn:active{transform:translateY(4px);box-shadow:0 0 0 0 #A23A1E,0 2px 6px -2px rgba(0,0,0,.4)}
+    .btn:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+    .btn svg{width:15px;height:15px}
     .note{font-size:13px;color:var(--ink-3);margin-top:14px}
 
     .series h2{font-family:var(--fh);font-size:21px;font-weight:700;letter-spacing:-.01em;color:var(--ink);margin-bottom:18px}

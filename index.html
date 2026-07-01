@@ -64,19 +64,25 @@
     h1,h2,h3{font-family:var(--fh);letter-spacing:-.02em;line-height:1.08;font-weight:800}
     .eyebrow{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
 
-    /* buttons — friendly pills */
-    .btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--fb);font-weight:700;font-size:15px;
-      padding:14px 26px;border-radius:999px;border:1.5px solid transparent;cursor:pointer;text-decoration:none;
-      transition:transform .15s ease,background .2s,box-shadow .2s,border-color .2s;white-space:nowrap}
-    .btn svg{width:16px;height:16px}
-    .btn-primary{background:var(--accent);color:var(--paper);box-shadow:0 8px 20px -8px var(--accent)}
-    .btn-primary:hover{background:var(--accent-deep);transform:translateY(-2px)}
-    .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
-    .btn-ghost:hover{border-color:var(--ink);transform:translateY(-2px)}
-    .btn-light{background:var(--ink);color:#211C18}
-    .btn-light:hover{background:#fff;transform:translateY(-2px)}
-    .btn-ondark-ghost{background:transparent;color:var(--paper);border-color:rgba(247,243,238,.28)}
-    .btn-ondark-ghost:hover{border-color:var(--paper);transform:translateY(-2px)}
+    /* buttons — machined keys: squared caps, stamped labels, a solid rim, and a press you can feel.
+       Rest = raised 4px on the rim · hover = lifts 1px · active = sinks flush (rim collapses to 0). */
+    .btn{--rim:rgba(0,0,0,.5);display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      font-family:var(--fb);font-weight:700;font-size:13px;letter-spacing:.11em;text-transform:uppercase;line-height:1;
+      padding:16px 24px;border-radius:6px;border:1px solid transparent;cursor:pointer;text-decoration:none;white-space:nowrap;
+      box-shadow:0 4px 0 0 var(--rim),0 16px 26px -14px rgba(0,0,0,.5);
+      transition:transform .12s ease,box-shadow .12s ease,background .2s,border-color .2s,color .2s}
+    .btn svg{width:15px;height:15px;transition:transform .2s ease}
+    .btn:not(.soon):hover{transform:translateY(-1px);box-shadow:0 5px 0 0 var(--rim),0 20px 30px -14px rgba(0,0,0,.55)}
+    .btn:not(.soon):hover svg{transform:translateX(3px)}
+    .btn:not(.soon):active{transform:translateY(4px);box-shadow:0 0 0 0 var(--rim),0 2px 6px -2px rgba(0,0,0,.4)}
+    .btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+    .btn-primary{--rim:#A23A1E;background:var(--accent);border-color:#D14C2E;color:var(--paper)}
+    .btn-primary:hover{background:var(--accent-deep)}
+    .btn-primary:focus-visible{outline-color:var(--ink)}
+    .btn-ghost{--rim:rgba(0,0,0,.55);background:var(--card);border-color:rgba(244,238,230,.18);color:var(--ink)}
+    .btn-ghost:hover{border-color:rgba(240,99,63,.6)}
+    .btn-light{--rim:#B7AB99;background:var(--ink);border-color:rgba(23,18,14,.25);color:#17120E}
+    .btn-light:hover{background:#fff}
 
     /* nav */
     header{position:sticky;top:0;z-index:50;background:rgba(33,28,24,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
@@ -87,7 +93,7 @@
     .nav-links{display:flex;align-items:center;gap:30px;list-style:none}
     .nav-links a{font-size:15px;font-weight:600;color:var(--ink-2);text-decoration:none;transition:color .2s}
     .nav-links a:hover{color:var(--ink)}
-    .nav-cta{padding:10px 20px!important;font-size:14px!important}
+    .nav-cta{padding:11px 18px!important;font-size:12px!important}
     .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
     .hamburger span{width:22px;height:2px;background:var(--ink);border-radius:2px;transition:.3s}
     .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
@@ -97,9 +103,29 @@
     .mobile-menu.open{display:flex}
     .mobile-menu a{padding:12px 0;font-weight:600;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
 
-    /* "coming soon" state for checkout buttons whose Gumroad URL isn't set yet */
-    .btn.soon{background:rgba(244,238,230,.08);color:var(--ink-2);box-shadow:none;border-color:var(--line);cursor:default}
+    /* "coming soon" = a recessed empty socket (the slot exists; the key isn't installed yet) */
+    .btn.soon{background:rgba(0,0,0,.22);color:var(--ink-2);border:1px dashed rgba(244,238,230,.28);
+      box-shadow:inset 0 2px 8px rgba(0,0,0,.4);cursor:default}
     a.soon:not(.btn){color:var(--ink-3);cursor:default}
+
+    /* gumroad.js re-skins every a.gumroad-button (its stylesheet loads after this one) and injects a
+       .logo-full wordmark span. Keep its overlay checkout; out-specify its CSS so the links stay OURS.
+       NB: it redefines --accent on the element, so these rules must use literal colors, never var(--accent). */
+    a.btn.gumroad-button{gap:10px;padding:16px 24px;border-radius:6px;border-width:1px;border-style:solid;
+      font-family:var(--fb);font-size:13px;line-height:1;text-decoration:none;
+      transition:transform .12s ease,box-shadow .12s ease,background .2s,border-color .2s,color .2s}
+    a.btn.gumroad-button.btn-primary{background-color:#F0633F;color:var(--paper);border-color:#D14C2E}
+    a.btn.gumroad-button.btn-primary:hover{background-color:var(--accent-deep)}
+    a.btn.gumroad-button.btn-light{background-color:var(--ink);color:#17120E;border-color:rgba(23,18,14,.25)}
+    a.btn.gumroad-button.btn-light:hover{background-color:#fff}
+    .card a.btn.gumroad-button{padding:12px 14px;font-size:12px}
+    .bundle-line a.gumroad-button,.sample-line a.gumroad-button,.flag-master a.gumroad-button{display:inline;
+      padding:0;background:transparent;border:0;border-radius:0;font-family:inherit;font-size:inherit;line-height:inherit}
+    .bundle-line a.gumroad-button,.sample-line a.gumroad-button{color:#F0633F;border-bottom:2px solid var(--accent-soft);text-decoration:none}
+    .bundle-line a.gumroad-button:hover,.sample-line a.gumroad-button:hover{background:transparent;transform:none;box-shadow:none;color:#F0633F;border-bottom-color:#F0633F}
+    .flag-master a.gumroad-button{color:#fff;text-decoration:underline;text-underline-offset:3px}
+    .flag-master a.gumroad-button:hover{background:transparent;transform:none;box-shadow:none;color:#fff}
+    a.gumroad-button span.logo-full{display:none}
 
     /* hero */
     .hero{position:relative;text-align:center;padding:96px 0 84px;overflow:hidden}
@@ -136,7 +162,7 @@
     .card .foot{display:flex;align-items:center;justify-content:space-between;padding-top:18px;border-top:1px solid var(--line)}
     .price{font-family:var(--fh);font-weight:800;font-size:26px}
     .price span{display:block;font-family:var(--fb);font-size:12px;font-weight:500;color:var(--ink-3);letter-spacing:0}
-    .card .btn{padding:11px 20px;font-size:14px}
+    .card .btn{padding:12px 14px;font-size:12px;letter-spacing:.08em}
     .bundle-line{margin-top:24px;text-align:center;font-size:16px;color:var(--ink-2)}
     .bundle-line a{color:var(--accent);font-weight:700;text-decoration:none;border-bottom:2px solid var(--accent-soft)}
     .bundle-line a:hover{border-bottom-color:var(--accent)}
@@ -215,14 +241,14 @@
     .reveal{opacity:0;transform:translateY(16px);animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards}
     .reveal.d1{animation-delay:.08s}.reveal.d2{animation-delay:.16s}.reveal.d3{animation-delay:.24s}.reveal.d4{animation-delay:.32s}
     @keyframes rise{to{opacity:1;transform:none}}
-    @media(prefers-reduced-motion:reduce){.reveal{animation:none;opacity:1;transform:none}}
+    @media(prefers-reduced-motion:reduce){.reveal{animation:none;opacity:1;transform:none}.btn,.btn svg,a.btn.gumroad-button{transition:none}}
 
     @media(max-width:860px){
       .flag-grid{grid-template-columns:1fr;gap:32px}
       .flag-list{grid-template-columns:1fr}
     }
     @media(max-width:760px){
-      .nav-links{display:none}.nav>.nav-cta{display:none}.hamburger{display:flex}
+      .nav-links{display:none}nav>.nav-cta{display:none}.hamburger{display:flex}
       section{padding:64px 0}
       .cards,.steps{grid-template-columns:1fr}
       .hero{padding:72px 0 60px}

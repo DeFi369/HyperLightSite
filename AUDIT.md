@@ -29,7 +29,15 @@
 
 ## Status
 
-**2026-06-30 — `storefront-quickwins` branch (this pass).** Eight targeted quick-wins:
+**2026-07-01 — `buttons-machined-keys` branch (this pass, pushed, NOT merged — awaiting owner review).** Button-system redesign + two pre-existing bugs found & fixed:
+1. **New button language, all 3 pages ("machined keys"):** the friendly pills (`border-radius:999px`, persimmon glow) → squared 6px-radius keys with stamped uppercase Manrope-700 13px labels (`.11em` tracking), a solid hard rim (`box-shadow:0 4px 0`), hover lifts the key 1px, `:active` depresses it flush (rim collapses to 0 — a press you can feel). Variants: primary = persimmon key (charcoal text, keeps the 5.27:1 AA fix), ghost = charcoal key (card-bg + hairline border, warms to persimmon on hover), light = bone key (flagship band). Arrow SVGs nudge right on hover; `:focus-visible` outlines added; `prefers-reduced-motion` disables button transitions. Unused `.btn-ondark-ghost` removed.
+2. **`.soon` = recessed socket:** the Flagship/Master "Coming soon" state is now an inset, dash-bordered empty socket — the slot exists, the key isn't installed yet.
+3. **Gumroad re-skin bug (pre-existing, LIVE) fixed:** `gumroad.js` injects a runtime stylesheet that was re-skinning every `a.gumroad-button` — the 3 card buy buttons + bundle line rendered as BLACK Gumroad-branded buttons with an injected `.logo-full` wordmark, clipping the $9 price block. Added higher-specificity overrides (`a.btn.gumroad-button`, `.bundle-line a.gumroad-button`, …) that keep the overlay checkout but restore our styling; wordmark hidden via `a.gumroad-button span.logo-full{display:none}` (must out-specify their identical `a.gumroad-button .logo-full`). **Gotcha: gumroad.js redefines `--accent` on the element — overrides must use literal `#F0633F`, never `var(--accent)`.** Overrides also pre-cover the future flagship (`btn-light`) / master / sample gumroad links.
+4. **Mobile-nav bug (pre-existing) fixed:** `.nav>.nav-cta{display:none}` in the ≤760px media query never matched (`<nav>` has no `nav` class), so the header CTA overflowed the viewport and pushed the hamburger off-screen → now `nav>.nav-cta`.
+5. **thank-you/404 parity + contrast:** their `.nav-cta`/`.btn`/`.home` restyled to keys; leftover white-on-persimmon text (3.2:1 AA fail missed by the quick-wins pass) → `var(--paper)`.
+Verified via headless-chromium renders (desktop 1440px, mobile 390px, thank-you, 404) with gumroad.js live during render.
+
+**2026-06-30 — `storefront-quickwins` branch.** Eight targeted quick-wins:
 1. **Truth fix:** guide-01 card desc + Product JSON-LD now say **DNS-over-TLS** (the guide configures DoT, not DoH). Zero `DNS-over-HTTPS` left.
 2. **CTA hierarchy:** the 3 guide-card buy buttons `btn-ghost → btn-primary`, relabeled "Get it" → "Get the guide — $9" (the real buy buttons are now the loudest, not the quietest).
 3. **Contrast (WCAG AA):** `.btn-primary` text `#fff → var(--paper)` (dark charcoal on persimmon) = **5.27:1** (was 3.2:1, failed). `--ink-3` `#8C8175 → #A89C8C` = **6.27:1** on charcoal (was 4.43:1). `--accent` untouched.
