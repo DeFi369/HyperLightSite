@@ -155,10 +155,21 @@
       font-family:var(--fh);font-weight:800;display:grid;place-items:center;font-size:15px;margin-bottom:18px}
     .card .label{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:8px}
     .card h3{font-size:21px;font-weight:700;margin-bottom:10px;line-height:1.2}
-    .card .desc{color:var(--ink-2);font-size:15px;margin-bottom:18px}
+    .card .desc{color:var(--ink-2);font-size:15px;margin-bottom:10px}
+    .card .specs{font-size:13px;color:var(--ink-3);margin-bottom:18px;letter-spacing:.02em}
+    .card .specs b{color:var(--ink-2);font-weight:600}
     .card ul{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:22px;flex:1}
     .card li{display:flex;gap:9px;font-size:14px;color:var(--ink-2);line-height:1.45}
     .card li svg{width:15px;height:15px;color:var(--accent);flex-shrink:0;margin-top:3px}
+    .card .toc{margin-bottom:20px;border-top:1px solid var(--line);padding-top:14px}
+    .card .toc summary{cursor:pointer;font-size:13.5px;font-weight:700;color:var(--accent);list-style:none;display:flex;align-items:center;gap:8px}
+    .card .toc summary::-webkit-details-marker{display:none}
+    .card .toc summary::after{content:'';width:6px;height:6px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translateY(-1px);transition:transform .2s}
+    .card .toc[open] summary::after{transform:rotate(-135deg) translateY(-2px)}
+    .card .toc .tmeta{font-size:12.5px;color:var(--ink-3);margin:12px 0 10px}
+    .card .toc ol{margin:0 0 4px 20px;font-size:13.5px;color:var(--ink-2)}
+    .card .toc ol li{display:list-item;margin-bottom:6px;font-size:13.5px;line-height:1.5}
+    .card .toc ol li::marker{color:var(--accent);font-weight:700}
     .card .foot{display:flex;align-items:center;justify-content:space-between;padding-top:18px;border-top:1px solid var(--line)}
     .price{font-family:var(--fh);font-weight:800;font-size:26px}
     .price span{display:block;font-family:var(--fb);font-size:12px;font-weight:500;color:var(--ink-3);letter-spacing:0}
@@ -308,7 +319,7 @@
         <div class="sec-head center">
           <div class="eyebrow">The $9 guides</div>
           <h2>The exact playbooks the pros use.</h2>
-          <p>Focused, end-to-end, and honest about what works. Each one is a weekend project you'll actually finish.</p>
+          <p>72 pages of the exact commands, configs, and code we run in production. Focused, honest, and short enough that you'll actually finish.</p>
         </div>
         <div class="cards">
           <article class="card">
@@ -316,11 +327,29 @@
             <div class="label">Linux security</div>
             <h3>Build a Hardened Linux Workstation</h3>
             <p class="desc">Full-disk encryption, firewall, DNS-over-TLS, SSH hardening, AppArmor — every layer, step by step.</p>
+            <p class="specs"><b>25 pages</b> · <b>11 chapters</b> · 2026 edition</p>
             <ul>
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>LUKS full-disk encryption</li>
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>UFW firewall + fail2ban</li>
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Encrypted backups with Restic</li>
             </ul>
+            <details class="toc">
+              <summary>See what's inside</summary>
+              <p class="tmeta">Beginner to intermediate · 2–4 hours hands-on · no prior Linux experience needed</p>
+              <ol>
+                <li>Choosing Your Distribution</li>
+                <li>Installation</li>
+                <li>Full-Disk Encryption</li>
+                <li>User &amp; Sudo Security</li>
+                <li>Firewall with UFW</li>
+                <li>System Updates</li>
+                <li>DNS Hardening</li>
+                <li>Browser Hardening</li>
+                <li>SSH Hardening</li>
+                <li>AppArmor</li>
+                <li>Operational Security</li>
+              </ol>
+            </details>
             <div class="foot">
               <div class="price">$9<span>one-time</span></div>
               <a class="btn btn-primary" href="https://hyperlighttech.gumroad.com/l/linux-guide" target="_blank" rel="noopener noreferrer">Get the guide — $9</a>
@@ -331,11 +360,27 @@
             <div class="label">DeFi &amp; crypto</div>
             <h3>DeFi From Scratch</h3>
             <p class="desc">Skip the basics. Wallets, DEX trading, bridging, liquidity pools, and staying safe on-chain.</p>
+            <p class="specs"><b>22 pages</b> · <b>9 chapters</b> · 2026 edition</p>
             <ul>
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Wallet setup + seed safety</li>
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Full DEX walkthrough</li>
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Common attacks &amp; how to dodge them</li>
             </ul>
+            <details class="toc">
+              <summary>See what's inside</summary>
+              <p class="tmeta">Beginner-friendly · all you need is some crypto on an exchange · covers Ethereum, Arbitrum &amp; Base</p>
+              <ol>
+                <li>The DeFi Stack</li>
+                <li>Your First Wallet</li>
+                <li>Getting Funds On-Chain</li>
+                <li>Tokens and Token Standards</li>
+                <li>Your First DEX Trade</li>
+                <li>Bridging Between Chains</li>
+                <li>Yield and Liquidity Pools</li>
+                <li>Staying Safe in DeFi</li>
+                <li>Reading On-Chain Data</li>
+              </ol>
+            </details>
             <div class="foot">
               <div class="price">$9<span>one-time</span></div>
               <a class="btn btn-primary" href="https://hyperlighttech.gumroad.com/l/defi-guide" target="_blank" rel="noopener noreferrer">Get the guide — $9</a>
@@ -346,11 +391,28 @@
             <div class="label">AI agents</div>
             <h3>Deploy Your First AI Agent</h3>
             <p class="desc">Stop reading about agents — build one. Blank file to a working autonomous agent in real Python.</p>
+            <p class="specs"><b>25 pages</b> · <b>10 chapters</b> · 2026 edition</p>
             <ul>
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>The agent loop in working code</li>
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Tool calling with the Claude API</li>
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Memory + three deployment paths</li>
             </ul>
+            <details class="toc">
+              <summary>See what's inside</summary>
+              <p class="tmeta">Basic Python is all you need · you'll finish with a working research agent</p>
+              <ol>
+                <li>How AI Agents Work</li>
+                <li>Setting Up Your Environment</li>
+                <li>Your First API Call</li>
+                <li>Giving Your Agent Tools</li>
+                <li>The Agent Loop</li>
+                <li>A Real Working Agent</li>
+                <li>Memory and State</li>
+                <li>Multi-Agent Systems</li>
+                <li>Deployment</li>
+                <li>Best Practices</li>
+              </ol>
+            </details>
             <div class="foot">
               <div class="price">$9<span>one-time</span></div>
               <a class="btn btn-primary" href="https://hyperlighttech.gumroad.com/l/ai-agent-guide" target="_blank" rel="noopener noreferrer">Get the guide — $9</a>
