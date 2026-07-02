@@ -30,7 +30,8 @@
    {"@context":"https://schema.org","@graph":[
      {"@type":"Product","name":"Build a Hardened Linux Workstation","description":"Full-disk encryption, firewall, DNS-over-TLS, SSH hardening, and AppArmor — every layer, step by step.","brand":{"@type":"Brand","name":"HyperLightTech"},"offers":{"@type":"Offer","price":"9","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://hyperlighttech.gumroad.com/l/linux-guide"}},
      {"@type":"Product","name":"DeFi From Scratch","description":"Wallets, DEX trading, bridging, liquidity pools, and staying safe on-chain — no prior crypto experience needed.","brand":{"@type":"Brand","name":"HyperLightTech"},"offers":{"@type":"Offer","price":"9","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://hyperlighttech.gumroad.com/l/defi-guide"}},
-     {"@type":"Product","name":"Deploy Your First AI Agent","description":"From a blank file to a working autonomous agent in real Python — the agent loop, tool calling, and memory.","brand":{"@type":"Brand","name":"HyperLightTech"},"offers":{"@type":"Offer","price":"9","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://hyperlighttech.gumroad.com/l/ai-agent-guide"}}
+     {"@type":"Product","name":"Deploy Your First AI Agent","description":"From a blank file to a working autonomous agent in real Python — the agent loop, tool calling, and memory.","brand":{"@type":"Brand","name":"HyperLightTech"},"offers":{"@type":"Offer","price":"9","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://hyperlighttech.gumroad.com/l/ai-agent-guide"}},
+     {"@type":"Product","name":"Production AI Agents: The Multi-Agent Playbook","description":"The production sequel to Deploy Your First AI Agent — multi-agent orchestration, retrieval, evals, and deployment, with a downloadable code repo and lifetime updates.","brand":{"@type":"Brand","name":"HyperLightTech"},"offers":{"@type":"Offer","price":"39","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://hyperlighttech.gumroad.com/l/flagship"}}
    ]}
   </script>
   <script type="application/ld+json">
@@ -556,7 +557,7 @@
         <div class="updates-card">
           <div class="eyebrow">Stay in the loop</div>
           <h2>Get the next guide first.</h2>
-          <p>New guides drop a few times a year. Follow on Gumroad and you'll get an email the moment the next one — including the Production AI Agents flagship — goes live.</p>
+          <p>New guides drop a few times a year. Follow on Gumroad and you'll get an email the moment the next one goes live — and updates to the guides you own.</p>
           <a class="btn btn-primary" href="https://hyperlighttech.gumroad.com" target="_blank" rel="noopener noreferrer">
             Follow on Gumroad
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
@@ -586,12 +587,11 @@
   </footer>
 
   <script>
-    /* Set these to the real Gumroad product URLs to make the Flagship + Master
-       buttons live. While empty, they render a clean "Coming soon". */
-    const FLAGSHIP_URL = '', MASTER_URL = '';
-    /* Free-sample link — a free Gumroad product or a sample PDF. Empty = the
-       "Read a free sample" line stays hidden. */
-    const SAMPLE_URL = '';
+    /* Live Gumroad product URLs. Empty string = that button renders "Coming soon"
+       (flagship/master) or stays hidden (sample). */
+    const FLAGSHIP_URL = 'https://hyperlighttech.gumroad.com/l/flagship',
+          MASTER_URL   = 'https://hyperlighttech.gumroad.com/l/master';
+    const SAMPLE_URL   = 'https://hyperlighttech.gumroad.com/l/free-agent';
 
     function toggleMenu(){
       var open = document.getElementById('mobile-menu').classList.toggle('open');
