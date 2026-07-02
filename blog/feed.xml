@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>HyperLightTech Blog</title>
+  <subtitle>Production notes for builders — Linux hardening, DeFi safety, and AI agents.</subtitle>
+  <link href="https://defi369.github.io/HyperLightSite/blog/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://defi369.github.io/HyperLightSite/blog/" rel="alternate" type="text/html"/>
+  <id>https://defi369.github.io/HyperLightSite/blog/</id>
+  <updated>2026-07-01T12:00:00Z</updated>
+  <author><name>HyperLightTech</name><email>hello@hyperlighttech.com</email></author>
+
+  <entry>
+    <title>The agent loop: 40 lines of Python behind every AI agent</title>
+    <link href="https://defi369.github.io/HyperLightSite/blog/ai-agent-loop-python.html" rel="alternate" type="text/html"/>
+    <id>https://defi369.github.io/HyperLightSite/blog/ai-agent-loop-python.html</id>
+    <published>2026-07-01T12:00:00Z</published>
+    <updated>2026-07-01T12:00:00Z</updated>
+    <summary>Perceive, reason, act, observe. The complete loop that drives every AI agent — in runnable Python with the Claude API — plus the five design decisions that keep it from melting down.</summary>
+  </entry>
+
+  <entry>
+    <title>The five attacks that actually drain DeFi wallets</title>
+    <link href="https://defi369.github.io/HyperLightSite/blog/avoid-defi-wallet-drains.html" rel="alternate" type="text/html"/>
+    <id>https://defi369.github.io/HyperLightSite/blog/avoid-defi-wallet-drains.html</id>
+    <published>2026-07-01T12:00:00Z</published>
+    <updated>2026-07-01T12:00:00Z</updated>
+    <summary>There are no chargebacks on-chain. Phishing, malicious approvals, seed theft, rug pulls, fake airdrops — how each one works, and the 60-second checklist that blocks them all.</summary>
+  </entry>
+
+  <entry>
+    <title>Encrypt your DNS on Ubuntu in five minutes</title>
+    <link href="https://defi369.github.io/HyperLightSite/blog/dns-over-tls-ubuntu.html" rel="alternate" type="text/html"/>
+    <id>https://defi369.github.io/HyperLightSite/blog/dns-over-tls-ubuntu.html</id>
+    <published>2026-07-01T12:00:00Z</published>
+    <updated>2026-07-01T12:00:00Z</updated>
+    <summary>Every site you visit leaks in plain text before HTTPS even starts. Turn on DNS-over-TLS with the resolver Ubuntu already ships — the exact config, the verify steps, and the leak test.</summary>
+  </entry>
+</feed>

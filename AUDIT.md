@@ -14,7 +14,7 @@
 - `og-image.png` — social share card (on-brand, "$9", `.com`).
 - `favicon.svg` — bolt mark.
 - `sitemap.xml`, `robots.txt` — SEO/crawler basics.
-- `fonts/` — self-hosted webfonts: `fonts.css` + 7 `.woff2` (Manrope 400/500/600/700, Syne 600/700/800), latin subset only. Referenced by all 4 HTML files.
+- `fonts/` — self-hosted webfonts: `fonts.css` + 2 variable `.woff2` (`manrope.woff2` wght 200–800, `syne.woff2` wght 400–800; latin subset). One `@font-face` per family with a `font-weight` RANGE descriptor serves all weights (the old 7 per-weight files were byte-identical copies — deduped 2026-07-01, saves ~119KB + 5 requests on first load). Referenced by every HTML page.
 - `README.md` — guides-first project readme.
 - `AUDIT.md` — this file (canonical status).
 - Gumroad: `hyperlighttech.gumroad.com/l/{linux-guide,defi-guide,ai-agent-guide,guide-bundle}`.
@@ -29,6 +29,10 @@
 ---
 
 ## Status
+
+**2026-07-01 — `perf-feed` branch (stacked on `blog`, PR pending).** Two audit-pass-2 items:
+1. **Font dedupe:** the 7 per-weight `.woff2` were byte-identical within each family (md5-verified) because both are VARIABLE fonts (fontTools: Manrope wght 200–800, Syne 400–800). Collapsed to `manrope.woff2` + `syne.woff2` with `font-weight: 400 700` / `600 800` range descriptors in fonts.css → −119KB / −5 requests on first load, zero visual change (verified: weight-test render shows Syne 600/700/800 + Manrope 400/700 all distinct; index re-render identical).
+2. **Atom feed:** `blog/feed.xml` (hand-maintained, matches sitemap convention) + `rel=alternate` autodiscovery on all 4 blog pages + visible RSS link in the blog footer. Subscription channel with no email capture and no third party — fits privacy-first. **Remember: add an `<entry>` + sitemap `<url>` for every new article.**
 
 **2026-07-01 — `blog` branch (stacked on `pages-urls-interim`, PR pending).** Shipped the SEO blog — the biggest non-owner-gated growth lever (guide topics are searchable; the site had zero content surface). `blog/index.html` + 3 articles, every one carved from a real chapter of the corresponding guide in ~/hyperlighttech-guides (grounded, no fabrication):
 1. **"The agent loop: ~40 lines of Python behind every AI agent"** — AI guide ch. 1 + 5 (four-step loop, the complete runnable loop code, the 5 design decisions, infinite-loop warning) → CTA $9 AI guide + $39 flagship pointer.
