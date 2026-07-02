@@ -29,7 +29,14 @@
 
 ## Status
 
-**2026-07-01 — `guide-specs-toc` branch (pushed, awaiting owner review).** Competitor research (wizardzines, Refactoring UI, MAKE book, css-for-js.dev, Just JavaScript, No Starch, Leanpub — screenshots + copy/palette/type analysis) found ours missing: named author w/ face (every comp has one — owner-gated), concrete product specs, real TOC, free-chapter-as-primary-CTA (owner-gated: needs Gumroad sample product), numeric social proof (owner-gated: use real Gumroad stats once sales exist). Implemented the honest, no-owner-input items, all data pulled from the REAL guide sources in ~/hyperlighttech-guides (PDF page counts via pdfinfo; chapters from `::: chapter` directives; difficulty/time from GUIDE.md frontmatter):
+**2026-07-01 — `pages-urls-interim` branch (stacked on `guide-specs-toc`, PR pending).** The apex `hyperlighttech.com` still does not resolve (checked today; Pages `cname` null), yet every absolute URL pointed at it, and internal links assumed the site is served at the domain root — false on the live Pages subpath. Interim fix, one grep-able swap point (`defi369.github.io/HyperLightSite` → `hyperlighttech.com` when DNS lands, + add CNAME file):
+1. **index.html:** `canonical` / `og:url` / `og:image` / Organization JSON-LD `url` → the live Pages URL (kills the self-deindex risk + dead social-card image). Added `og:image:width/height/alt`. Head comment documents the swap.
+2. **Root-absolute → relative links:** index logo ×2 `href="/"`→`./`; thank-you logo/nav-CTA/footer `/`,`/#guides`→`./`,`./#guides`; thank-you favicon `/favicon.svg`→`favicon.svg`. (`/` on Pages = `defi369.github.io/` — the wrong site.)
+3. **404.html → ALL absolute:** Pages serves 404.html at ANY missing URL (any depth), so its relative `fonts/fonts.css` broke on deep paths and `/`-links left the site → fonts.css, favicon, and all 8 internal links now use the full live URL (head comment explains why).
+4. **sitemap.xml `loc` + robots.txt `Sitemap`** → live Pages URLs; lastmod bumped.
+Footer visible text "hyperlighttech.com" (dead) → "Home" on thank-you/404. og-image.png still shows the brand domain as display text — fine (branding), regen when domain is live.
+
+**2026-07-01 — `guide-specs-toc` branch (PR #3 open, awaiting owner merge).** Competitor research (wizardzines, Refactoring UI, MAKE book, css-for-js.dev, Just JavaScript, No Starch, Leanpub — screenshots + copy/palette/type analysis) found ours missing: named author w/ face (every comp has one — owner-gated), concrete product specs, real TOC, free-chapter-as-primary-CTA (owner-gated: needs Gumroad sample product), numeric social proof (owner-gated: use real Gumroad stats once sales exist). Implemented the honest, no-owner-input items, all data pulled from the REAL guide sources in ~/hyperlighttech-guides (PDF page counts via pdfinfo; chapters from `::: chapter` directives; difficulty/time from GUIDE.md frontmatter):
 1. **Spec strip per card** — "25 pages · 11 chapters · 2026 edition" (Linux), "22 · 9" (DeFi), "25 · 10" (AI). Verified real.
 2. **"See what's inside" `<details>` TOC per card** — real numbered chapter lists + a meta line (difficulty/time/prereqs from frontmatter). Native details/summary, no JS. Gotcha: `.card li{display:flex}` kills `display:list-item` → markers vanish; the TOC li rule must re-set `display:list-item`.
 3. **#guides subhead** now concrete: "72 pages of the exact commands, configs, and code we run in production." (25+22+9... = 72 ✓ real).
@@ -60,7 +67,7 @@ Verified via headless-chromium renders (desktop 1440px, mobile 390px, thank-you,
 ## Open (honest)
 
 ### Out of scope for this branch / other tracks
-- **Apex domain dead + canonical still points at it.** `hyperlighttech.com` does not resolve, yet `<link rel=canonical>` / `og:url` / `og:image` all use `https://hyperlighttech.com/`. **OUT OF SCOPE here (domain track)** — either wire the custom domain to Pages or repoint canonical/OG to the live `defi369.github.io/HyperLightSite/` URL.
+- **Apex domain still dead (DNS is the owner's).** Interim mitigation SHIPPED (`pages-urls-interim`): all absolute URLs now use the live Pages URL, so indexing/social cards work today. When the owner wires `hyperlighttech.com` DNS: grep `defi369.github.io/HyperLightSite` → replace with `hyperlighttech.com`, add a `CNAME` file, set Pages custom domain + HTTPS, regen og-image.png if desired.
 - **`FLAGSHIP_URL` / `MASTER_URL` / `SAMPLE_URL` are `''`** in index.html's script, so the $39 Flagship + $49 Master render "Coming soon" and the free-sample line stays hidden. Set them once the Gumroad products exist (other track — depends on the guides repo shipping the Flagship + its Gumroad listings).
 
 ### Still open (this storefront)

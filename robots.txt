@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://hyperlighttech.com/sitemap.xml
+Sitemap: https://defi369.github.io/HyperLightSite/sitemap.xml
