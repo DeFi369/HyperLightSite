@@ -7,6 +7,7 @@
 
 ## File layout
 - `index.html` — the whole landing page (inline `<style>` + inline `<script>`).
+- `blog/` — the SEO blog, same no-build convention (one inline `<style>` per page, zero third-party scripts — not even gumroad.js; CTAs are plain Gumroad product links): `index.html` (article list + Blog JSON-LD) + one page per article (`ai-agent-loop-python`, `avoid-defi-wallet-drains`, `dns-over-tls-ubuntu` — each with BlogPosting JSON-LD, canonical, OG tags, and a machined-key CTA to its matching $9 guide). Articles are carved from the REAL guide chapters in ~/hyperlighttech-guides (one chapter each, adapted for web — never fabricated).
 - `thank-you.html` — post-purchase page (`noindex`).
 - `404.html` — themed not-found page.
 - `og-image.html` — 1200×630 source that `og-image.png` is rendered from (headless chromium screenshot).
@@ -28,6 +29,12 @@
 ---
 
 ## Status
+
+**2026-07-01 — `blog` branch (stacked on `pages-urls-interim`, PR pending).** Shipped the SEO blog — the biggest non-owner-gated growth lever (guide topics are searchable; the site had zero content surface). `blog/index.html` + 3 articles, every one carved from a real chapter of the corresponding guide in ~/hyperlighttech-guides (grounded, no fabrication):
+1. **"The agent loop: ~40 lines of Python behind every AI agent"** — AI guide ch. 1 + 5 (four-step loop, the complete runnable loop code, the 5 design decisions, infinite-loop warning) → CTA $9 AI guide + $39 flagship pointer.
+2. **"The five attacks that actually drain DeFi wallets"** — DeFi guide ch. 8 (phishing/approvals/seed theft/rugs/fake airdrops, revoke.cash cadence, $1k hardware-wallet threshold, buy-direct warning, 60-sec checklist) → CTA $9 DeFi guide.
+3. **"Encrypt your DNS on Ubuntu in five minutes"** — Linux guide ch. 7 (DoT vs DoH, exact resolved.conf block, resolvectl verify, dnsleaktest, NextDNS) → CTA $9 Linux guide. (NB: used `example.com` in the verify command, not the guide's `hyperlighttech.com` — that domain is dead; flagged as a guides-repo fix.)
+Blog pages keep the repo rules: no build, one inline `<style>` per page, self-hosted fonts via `../fonts/fonts.css`, **zero third-party scripts** (no gumroad.js on blog pages — plain product links). Relative links throughout (`../`, `./`) so they work on the Pages subpath AND a future custom domain; canonicals/OG absolute to the live Pages host (same swap point as pages-urls-interim). Wired in: nav + mobile menu + footer "Blog" links on index.html; sitemap.xml now lists all 5 URLs. JSON-LD: Blog (index) + BlogPosting (each article).
 
 **2026-07-01 — `pages-urls-interim` branch (stacked on `guide-specs-toc`, PR pending).** The apex `hyperlighttech.com` still does not resolve (checked today; Pages `cname` null), yet every absolute URL pointed at it, and internal links assumed the site is served at the domain root — false on the live Pages subpath. Interim fix, one grep-able swap point (`defi369.github.io/HyperLightSite` → `hyperlighttech.com` when DNS lands, + add CNAME file):
 1. **index.html:** `canonical` / `og:url` / `og:image` / Organization JSON-LD `url` → the live Pages URL (kills the self-deindex risk + dead social-card image). Added `og:image:width/height/alt`. Head comment documents the swap.
@@ -75,4 +82,4 @@ Verified via headless-chromium renders (desktop 1440px, mobile 390px, thank-you,
 - **Product cover art not on the cards.** Branded guide covers exist in the guides repo (`~/hyperlighttech-guides`) but the storefront cards are text-only (numbered chips). Putting covers on the cards is a deliberate other track (do not do it here).
 - **No email capture beyond "Follow on Gumroad."** The `#updates` band routes to Gumroad follow / mailto; a dedicated list (privacy-respecting) is the main lever for turning one-time buyers into repeat revenue.
 - **No analytics** (deliberate — owner is privacy-first). If ever wanted, use Gumroad's built-in stats or a cookieless tool (GoatCounter/Plausible/Fathom), owner's OK required.
-- **SEO blog** for the guide topics is still the biggest untapped growth lever.
+- **SEO blog: v1 SHIPPED** (3 articles, one per guide). Next levers: more articles (each guide has 9–11 chapters; ~2 more strong candidates each — e.g. SSH hardening, token approvals deep-dive, agent memory), an RSS/Atom feed (subscription without email capture — fits privacy-first), and cross-links from articles to each other once there are enough.

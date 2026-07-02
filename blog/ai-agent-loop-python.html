@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Every AI agent — including the coding agents you use daily — runs the same four-step loop. Here it is in 40 lines of runnable Python, with the design decisions that keep it from melting down.">
+  <title>The Agent Loop: 40 Lines of Python Behind Every AI Agent — HyperLightTech</title>
+  <link rel="canonical" href="https://defi369.github.io/HyperLightSite/blog/ai-agent-loop-python.html">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://defi369.github.io/HyperLightSite/blog/ai-agent-loop-python.html">
+  <meta property="og:title" content="The Agent Loop: 40 Lines of Python Behind Every AI Agent">
+  <meta property="og:description" content="Perceive, reason, act, observe. The complete agent loop in runnable Python — and the five design decisions that keep it safe.">
+  <meta property="og:image" content="https://defi369.github.io/HyperLightSite/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#211C18">
+  <script type="application/ld+json">
+   {"@context":"https://schema.org","@type":"BlogPosting",
+    "headline":"The Agent Loop: 40 Lines of Python Behind Every AI Agent",
+    "description":"Every AI agent runs the same four-step loop: perceive, reason, act, observe. The complete loop in runnable Python, plus the design decisions that keep it safe.",
+    "datePublished":"2026-07-01","dateModified":"2026-07-01",
+    "author":{"@type":"Organization","name":"HyperLightTech"},
+    "publisher":{"@type":"Organization","name":"HyperLightTech"},
+    "image":"https://defi369.github.io/HyperLightSite/og-image.png",
+    "mainEntityOfPage":"https://defi369.github.io/HyperLightSite/blog/ai-agent-loop-python.html"}
+  </script>
+  <link rel="stylesheet" href="../fonts/fonts.css">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --paper:#211C18; --paper-2:#1A1511; --card:#2A231D;
+      --ink:#F4EEE6; --ink-2:#C3B7A6; --ink-3:#A89C8C;
+      --line:rgba(244,238,230,.11); --accent:#F0633F; --accent-deep:#E2553D;
+      --accent-soft:rgba(240,99,63,.14);
+      --fh:'Syne',sans-serif; --fb:'Manrope',sans-serif;
+    }
+    html{scroll-behavior:smooth}
+    body{background:var(--paper);color:var(--ink);font-family:var(--fb);font-size:17px;line-height:1.75;-webkit-font-smoothing:antialiased}
+    a{color:inherit}
+
+    header{position:sticky;top:0;z-index:50;background:rgba(33,28,24,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+    nav{max-width:1080px;margin:0 auto;padding:0 24px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .logo{display:flex;align-items:center;gap:11px;text-decoration:none;font-family:var(--fh);font-weight:800;font-size:18px}
+    .logo .mark{width:30px;height:30px;border-radius:8px;background:var(--ink);display:grid;place-items:center;color:var(--paper)}
+    .logo .mark svg{width:16px;height:16px}
+    .nav-right{display:flex;align-items:center;gap:22px}
+    .nav-right>a{font-size:15px;font-weight:600;color:var(--ink-2);text-decoration:none}
+    .nav-right>a:hover{color:var(--ink)}
+    .nav-cta{display:inline-flex;align-items:center;background:var(--accent);color:var(--paper)!important;padding:11px 18px;
+      border-radius:6px;border:1px solid #D14C2E;font-weight:700;font-size:12px!important;letter-spacing:.11em;text-transform:uppercase;
+      line-height:1;text-decoration:none;box-shadow:0 4px 0 0 #A23A1E;transition:transform .12s ease,box-shadow .12s ease,background .2s}
+    .nav-cta:hover{background:var(--accent-deep);transform:translateY(-1px);box-shadow:0 5px 0 0 #A23A1E}
+    .nav-cta:active{transform:translateY(4px);box-shadow:0 0 0 0 #A23A1E}
+
+    main{max-width:720px;margin:0 auto;padding:64px 24px 88px}
+    .crumb{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);text-decoration:none}
+    .crumb:hover{text-decoration:underline}
+    h1{font-family:var(--fh);font-weight:800;letter-spacing:-.02em;line-height:1.12;font-size:clamp(30px,5vw,44px);margin:16px 0 14px}
+    .meta{font-size:14px;color:var(--ink-3);margin-bottom:36px}
+    .meta b{color:var(--ink-2);font-weight:600}
+    article h2{font-family:var(--fh);font-weight:700;font-size:24px;letter-spacing:-.01em;line-height:1.25;margin:40px 0 14px}
+    article p{color:var(--ink-2);margin-bottom:18px}
+    article p strong,article li strong{color:var(--ink);font-weight:700}
+    article ul,article ol{margin:0 0 18px 22px;color:var(--ink-2)}
+    article li{margin-bottom:8px}
+    article li::marker{color:var(--accent)}
+    pre{background:#17120E;border:1px solid var(--line);border-radius:10px;padding:18px 20px;overflow-x:auto;margin:0 0 18px;line-height:1.6}
+    pre code{background:none;padding:0;font-size:13px}
+    code{font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:14px;background:rgba(244,238,230,.08);padding:2px 6px;border-radius:5px;color:var(--ink)}
+    .note{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:10px;padding:16px 20px;margin:0 0 18px;font-size:15px;color:var(--ink-2)}
+
+    .cta{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:30px 28px;margin-top:44px;position:relative;overflow:hidden}
+    .cta::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),transparent)}
+    .cta .eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+    .cta h3{font-family:var(--fh);font-weight:800;font-size:22px;letter-spacing:-.01em;margin-bottom:8px}
+    .cta p{font-size:15px;color:var(--ink-2);margin-bottom:20px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--accent);color:var(--paper);
+      font-family:var(--fb);font-weight:700;font-size:13px;letter-spacing:.11em;text-transform:uppercase;line-height:1;
+      padding:16px 24px;border-radius:6px;border:1px solid #D14C2E;text-decoration:none;white-space:nowrap;
+      box-shadow:0 4px 0 0 #A23A1E,0 16px 26px -14px rgba(0,0,0,.5);
+      transition:transform .12s ease,box-shadow .12s ease,background .2s}
+    .btn:hover{background:var(--accent-deep);transform:translateY(-1px);box-shadow:0 5px 0 0 #A23A1E,0 20px 30px -14px rgba(0,0,0,.55)}
+    .btn:active{transform:translateY(4px);box-shadow:0 0 0 0 #A23A1E,0 2px 6px -2px rgba(0,0,0,.4)}
+    .btn:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+    .cta .small{font-size:13px;color:var(--ink-3);margin:14px 0 0}
+    .cta .alt{font-size:14px;color:var(--ink-2);margin-top:16px}
+    .cta .alt a{color:var(--accent);text-decoration:none;font-weight:700}
+
+    footer{background:#17120E;border-top:1px solid var(--line);padding:28px 24px;text-align:center;font-size:14px;color:var(--ink-3)}
+    footer a{color:var(--accent);text-decoration:none}
+    @media(prefers-reduced-motion:reduce){.btn,.nav-cta{transition:none}}
+    @media(max-width:600px){.nav-right>a:not(.nav-cta){display:none}}
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="../" class="logo">
+      <span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M13 3 4 14h7l-1 7 9-11h-7z" fill="currentColor" stroke="none"/></svg></span>
+      HyperLightTech
+    </a>
+    <div class="nav-right">
+      <a href="./">Blog</a>
+      <a href="../#guides">Guides</a>
+      <a href="../#guides" class="nav-cta">Get the guides</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <a class="crumb" href="./">← All articles</a>
+  <h1>The agent loop: 40 lines of Python behind every AI agent</h1>
+  <p class="meta"><b>AI agents</b> · July 1, 2026 · 6 min read · from our <a href="../#guides" style="color:var(--accent);text-decoration:none">Deploy Your First AI Agent guide</a></p>
+
+  <article>
+    <p>Strip away the frameworks, the YAML, and the marketing, and every AI agent — including the coding agents you probably used today — runs the same four-step loop:</p>
+    <ul>
+      <li><strong>Perceive</strong> — read the inputs: the task, previous steps, memory, and the list of available tools.</li>
+      <li><strong>Reason</strong> — the LLM decides what to do next: call a tool, or produce a final answer.</li>
+      <li><strong>Act</strong> — execute the decision: run the tool, call the API, write the file.</li>
+      <li><strong>Observe</strong> — feed the result back into context. Repeat from the top.</li>
+    </ul>
+    <p>The loop runs until the task is complete or a stop condition is reached. That's the entire engine. Memory, multi-agent systems, deployment — all of it is scaffolding around this loop. Which means once you can write the loop yourself, agents stop being magic.</p>
+
+    <h2>The complete loop, runnable</h2>
+    <p>Here it is with the Claude API — complete, not pseudocode. <code>TOOLS</code> is your list of tool definitions and <code>execute_tool</code> is your dispatcher that actually runs them:</p>
+    <pre><code>def run_agent(task: str, max_iterations: int = 10) -> str:
+    messages = [{"role": "user", "content": task}]
+
+    for _ in range(max_iterations):
+        # 1. Ask Claude what to do next
+        response = client.messages.create(
+            model="claude-sonnet-4-6",
+            max_tokens=4096,
+            system=SYSTEM_PROMPT,
+            tools=TOOLS,
+            messages=messages,
+        )
+
+        # 2. Append Claude's response to history VERBATIM.
+        #    response.content carries the tool_use blocks the next
+        #    request needs — keep all of it, don't extract only text.
+        messages.append({"role": "assistant", "content": response.content})
+
+        # 3. If Claude didn't ask for a tool, it's done — return the answer.
+        if response.stop_reason != "tool_use":
+            return "".join(b.text for b in response.content if b.type == "text")
+
+        # 4. Execute every tool Claude requested.
+        tool_results = []
+        for block in response.content:
+            if block.type == "tool_use":
+                result = execute_tool(block.name, block.input)
+                tool_results.append({
+                    "type": "tool_result",
+                    "tool_use_id": block.id,
+                    "content": result,
+                })
+
+        # 5. Feed results back in ONE user message — loop repeats from step 1.
+        messages.append({"role": "user", "content": tool_results})
+
+    return "Reached max iterations without a final answer."</code></pre>
+
+    <h2>The five decisions that matter</h2>
+    <p>Every line above encodes a decision people usually learn the expensive way:</p>
+    <ul>
+      <li><strong>A hard iteration limit.</strong> An agent without a stop condition can loop indefinitely, consuming tokens and money. <code>max_iterations</code> is not optional.</li>
+      <li><strong>Append the response verbatim.</strong> <code>response.content</code> carries the <code>tool_use</code> blocks the next request needs. Extract only the text and the loop breaks in ways that look like model stupidity but are your bug.</li>
+      <li><strong>Full history every iteration.</strong> The model re-reads everything each turn — that context is what makes its next decision good.</li>
+      <li><strong>Tool results go back as a user message</strong>, each keyed to its <code>tool_use_id</code>, and parallel results belong in <em>one</em> message. This is the API convention; violate it and you get errors or silently confused agents.</li>
+      <li><strong>Check <code>stop_reason</code> explicitly.</strong> <code>tool_use</code> means "run a tool and come back"; anything else (<code>end_turn</code>, <code>max_tokens</code>) means this turn is over. Handle both paths deliberately.</li>
+    </ul>
+    <div class="note"><strong>Infinite-loop risk is real.</strong> A buggy tool or an ambiguous task can keep an agent spinning forever. Always set the limit, and log every iteration so you can watch what it's actually doing.</div>
+
+    <h2>Where this goes next</h2>
+    <p>This loop plus a couple of tools is a genuinely useful agent — a research assistant, a file organizer, a monitoring bot. What it isn't, yet, is <em>production</em>: it has no persistent memory, no guardrails around what tools may do, no evals telling you whether changes made it better or worse, and no cost control. Those are solvable problems too — the same loop, hardened.</p>
+  </article>
+
+  <div class="cta">
+    <div class="eyebrow">The full playbook · $9</div>
+    <h3>Deploy Your First AI Agent</h3>
+    <p>The guide takes this loop to a complete working agent in real Python — tool definitions and JSON schemas, a full research agent you can run immediately, memory and state, and three deployment paths. 25 pages; basic Python is all you need.</p>
+    <a class="btn" href="https://hyperlighttech.gumroad.com/l/ai-agent-guide" target="_blank" rel="noopener noreferrer">Get the guide — $9</a>
+    <p class="small">Instant PDF · 30-day money-back guarantee · buy once, keep forever</p>
+    <p class="alt">Already past the basics? The <a href="../#flagship">$39 Production AI Agents flagship</a> is the multi-agent sequel — orchestration, evals, observability, and a downloadable code repo.</p>
+  </div>
+</main>
+
+<footer>
+  © 2026 HyperLightTech — <a href="../">Home</a> · <a href="./">Blog</a> · <a href="mailto:hello@hyperlighttech.com">hello@hyperlighttech.com</a>
+</footer>
+
+</body>
+</html>
