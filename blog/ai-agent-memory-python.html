@@ -3,25 +3,25 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Every AI agent — including the coding agents you use daily — runs the same four-step loop. Here it is in 40 lines of runnable Python, with the design decisions that keep it from melting down.">
-  <title>The Agent Loop: 40 Lines of Python Behind Every AI Agent — HyperLightTech</title>
-  <link rel="canonical" href="https://defi369.github.io/HyperLightSite/blog/ai-agent-loop-python.html">
+  <meta name="description" content="Your agent forgets everything when the program exits. Here's the memory ladder: in-context history, a JSON file that persists between runs, and a save_memory tool so the agent decides what's worth keeping.">
+  <title>Give Your AI Agent a Memory: In-Context, JSON, and a save_memory Tool — HyperLightTech</title>
+  <link rel="canonical" href="https://defi369.github.io/HyperLightSite/blog/ai-agent-memory-python.html">
   <meta property="og:type" content="article">
-  <meta property="og:url" content="https://defi369.github.io/HyperLightSite/blog/ai-agent-loop-python.html">
-  <meta property="og:title" content="The Agent Loop: 40 Lines of Python Behind Every AI Agent">
-  <meta property="og:description" content="Perceive, reason, act, observe. The complete agent loop in runnable Python — and the five design decisions that keep it safe.">
+  <meta property="og:url" content="https://defi369.github.io/HyperLightSite/blog/ai-agent-memory-python.html">
+  <meta property="og:title" content="Give Your AI Agent a Memory">
+  <meta property="og:description" content="In-context history, a JSON file that persists between runs, and a save_memory tool so the agent decides what's worth keeping — in runnable Python.">
   <meta property="og:image" content="https://defi369.github.io/HyperLightSite/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#211C18">
   <script type="application/ld+json">
    {"@context":"https://schema.org","@type":"BlogPosting",
-    "headline":"The Agent Loop: 40 Lines of Python Behind Every AI Agent",
-    "description":"Every AI agent runs the same four-step loop: perceive, reason, act, observe. The complete loop in runnable Python, plus the design decisions that keep it safe.",
-    "datePublished":"2026-07-01","dateModified":"2026-07-01",
+    "headline":"Give Your AI Agent a Memory: In-Context, JSON, and a save_memory Tool",
+    "description":"Agents forget everything when the program exits. The memory ladder in runnable Python: in-context history, a persistent JSON file, and a save_memory tool.",
+    "datePublished":"2026-07-02","dateModified":"2026-07-02",
     "author":{"@type":"Organization","name":"HyperLightTech"},
     "publisher":{"@type":"Organization","name":"HyperLightTech"},
     "image":"https://defi369.github.io/HyperLightSite/og-image.png",
-    "mainEntityOfPage":"https://defi369.github.io/HyperLightSite/blog/ai-agent-loop-python.html"}
+    "mainEntityOfPage":"https://defi369.github.io/HyperLightSite/blog/ai-agent-memory-python.html"}
   </script>
   <link rel="alternate" type="application/atom+xml" title="HyperLightTech Blog" href="feed.xml">
   <link rel="stylesheet" href="../fonts/fonts.css">
@@ -62,6 +62,8 @@
     article h2{font-family:var(--fh);font-weight:700;font-size:24px;letter-spacing:-.01em;line-height:1.25;margin:40px 0 14px}
     article p{color:var(--ink-2);margin-bottom:18px}
     article p strong,article li strong{color:var(--ink);font-weight:700}
+    article a{color:var(--accent);text-decoration:none}
+    article a:hover{text-decoration:underline}
     article ul,article ol{margin:0 0 18px 22px;color:var(--ink-2)}
     article li{margin-bottom:8px}
     article li::marker{color:var(--accent)}
@@ -86,6 +88,9 @@
     .cta .small{font-size:13px;color:var(--ink-3);margin:14px 0 0}
     .cta .alt{font-size:14px;color:var(--ink-2);margin-top:16px}
     .cta .alt a{color:var(--accent);text-decoration:none;font-weight:700}
+    .related{margin-top:18px;font-size:14.5px;color:var(--ink-3)}
+    .related a{color:var(--accent);text-decoration:none;font-weight:700}
+    .related a:hover{text-decoration:underline}
 
     footer{background:#17120E;border-top:1px solid var(--line);padding:28px 24px;text-align:center;font-size:14px;color:var(--ink-3)}
     footer a{color:var(--accent);text-decoration:none}
@@ -114,82 +119,80 @@
 
 <main>
   <a class="crumb" href="./">← All articles</a>
-  <h1>The agent loop: 40 lines of Python behind every AI agent</h1>
-  <p class="meta"><b>AI agents</b> · July 1, 2026 · 6 min read · from our <a href="../#guides" style="color:var(--accent);text-decoration:none">Deploy Your First AI Agent guide</a></p>
+  <h1>Give your AI agent a memory</h1>
+  <p class="meta"><b>AI agents</b> · July 2, 2026 · 5 min read · from our <a href="../#guides" style="color:var(--accent);text-decoration:none">Deploy Your First AI Agent guide</a></p>
 
   <article>
-    <p>Strip away the frameworks, the YAML, and the marketing, and every AI agent — including the coding agents you probably used today — runs the same four-step loop:</p>
-    <ul>
-      <li><strong>Perceive</strong> — read the inputs: the task, previous steps, memory, and the list of available tools.</li>
-      <li><strong>Reason</strong> — the LLM decides what to do next: call a tool, or produce a final answer.</li>
-      <li><strong>Act</strong> — execute the decision: run the tool, call the API, write the file.</li>
-      <li><strong>Observe</strong> — feed the result back into context. Repeat from the top.</li>
-    </ul>
-    <p>The loop runs until the task is complete or a stop condition is reached. That's the entire engine. Memory, multi-agent systems, deployment — all of it is scaffolding around this loop. Which means once you can write the loop yourself, agents stop being magic.</p>
+    <p>An agent built on <a href="ai-agent-loop-python.html">the basic agent loop</a> forgets everything the moment the program exits. For one-shot tasks, that's fine. For an agent that should remember users, accumulate knowledge, or pick up where it left off, you need a memory strategy — and the right one is usually simpler than you think.</p>
 
-    <h2>The complete loop, runnable</h2>
-    <p>Here it is with the Claude API — complete, not pseudocode. <code>TOOLS</code> is your list of tool definitions and <code>execute_tool</code> is your dispatcher that actually runs them:</p>
-    <pre><code>def run_agent(task: str, max_iterations: int = 10) -> str:
-    messages = [{"role": "user", "content": task}]
+    <h2>Start with in-context memory (you already have it)</h2>
+    <p><strong>In-context memory</strong> is the <code>messages</code> list you pass with every API call — Claude re-reads the full history each time it's called. The ceiling is the model's context window: roughly <strong>200,000 tokens, about 150,000 words</strong>. That is a lot of memory. For most agent tasks, in-context memory is all you need.</p>
+    <p>The rule: only reach for external memory when tasks span multiple sessions, or the knowledge is too large to fit in context. Adding memory infrastructure an agent doesn't need is the most common way beginners overcomplicate their first build.</p>
 
-    for _ in range(max_iterations):
-        # 1. Ask Claude what to do next
-        response = client.messages.create(
-            model="claude-sonnet-4-6",
-            max_tokens=4096,
-            system=SYSTEM_PROMPT,
-            tools=TOOLS,
-            messages=messages,
-        )
+    <h2>External memory: a JSON file is a real memory system</h2>
+    <p>The simplest persistent memory is a JSON file — good for facts, preferences, or state that must survive between runs:</p>
+    <pre><code>import json
+from pathlib import Path
 
-        # 2. Append Claude's response to history VERBATIM.
-        #    response.content carries the tool_use blocks the next
-        #    request needs — keep all of it, don't extract only text.
-        messages.append({"role": "assistant", "content": response.content})
+MEMORY_FILE = Path("memory.json")
 
-        # 3. If Claude didn't ask for a tool, it's done — return the answer.
-        if response.stop_reason != "tool_use":
-            return "".join(b.text for b in response.content if b.type == "text")
+def load_memory() -> dict:
+    if MEMORY_FILE.exists():
+        return json.loads(MEMORY_FILE.read_text())
+    return {"facts": [], "context": ""}
 
-        # 4. Execute every tool Claude requested.
-        tool_results = []
-        for block in response.content:
-            if block.type == "tool_use":
-                result = execute_tool(block.name, block.input)
-                tool_results.append({
-                    "type": "tool_result",
-                    "tool_use_id": block.id,
-                    "content": result,
-                })
+def save_memory(memory: dict) -> None:
+    MEMORY_FILE.write_text(json.dumps(memory, indent=2))
 
-        # 5. Feed results back in ONE user message — loop repeats from step 1.
-        messages.append({"role": "user", "content": tool_results})
+def memory_to_context(memory: dict) -> str:
+    if not memory["facts"]:
+        return ""
+    facts = "\n".join(f"- {f}" for f in memory["facts"])
+    return f"\n\nWhat you already know:\n{facts}"
 
-    return "Reached max iterations without a final answer."</code></pre>
+# Inject into the system prompt at the start of each run:
+memory = load_memory()
+system = SYSTEM_PROMPT + memory_to_context(memory)</code></pre>
+    <p>That's the whole trick: load at startup, fold the facts into the system prompt, and the agent "remembers" across runs.</p>
 
-    <h2>The five decisions that matter</h2>
-    <p>Every line above encodes a decision people usually learn the expensive way:</p>
-    <ul>
-      <li><strong>A hard iteration limit.</strong> An agent without a stop condition can loop indefinitely, consuming tokens and money. <code>max_iterations</code> is not optional.</li>
-      <li><strong>Append the response verbatim.</strong> <code>response.content</code> carries the <code>tool_use</code> blocks the next request needs. Extract only the text and the loop breaks in ways that look like model stupidity but are your bug.</li>
-      <li><strong>Full history every iteration.</strong> The model re-reads everything each turn — that context is what makes its next decision good.</li>
-      <li><strong>Tool results go back as a user message</strong>, each keyed to its <code>tool_use_id</code>, and parallel results belong in <em>one</em> message. This is the API convention; violate it and you get errors or silently confused agents.</li>
-      <li><strong>Check <code>stop_reason</code> explicitly.</strong> <code>tool_use</code> means "run a tool and come back"; anything else (<code>end_turn</code>, <code>max_tokens</code>) means this turn is over. Handle both paths deliberately.</li>
-    </ul>
-    <div class="note"><strong>Infinite-loop risk is real.</strong> A buggy tool or an ambiguous task can keep an agent spinning forever. Always set the limit, and log every iteration so you can watch what it's actually doing.</div>
+    <h2>Let the agent decide what's worth remembering</h2>
+    <p>The step that makes it feel like real memory: give the agent a <code>save_memory</code> <em>tool</em>, so it chooses what to keep — you don't hand-curate:</p>
+    <pre><code># Tool definition
+{
+    "name": "save_memory",
+    "description": "Save an important fact to long-term memory. "
+                   "Use for information worth keeping across sessions.",
+    "input_schema": {
+        "type": "object",
+        "properties": {
+            "fact": {"type": "string",
+                     "description": "The fact to remember, stated clearly."}
+        },
+        "required": ["fact"]
+    }
+}
 
-    <h2>Where this goes next</h2>
-    <p>This loop plus a couple of tools is a genuinely useful agent — a research assistant, a file organizer, a monitoring bot. What it isn't, yet, is <em>production</em>: it has no persistent memory, no guardrails around what tools may do, no evals telling you whether changes made it better or worse, and no cost control. Those are solvable problems too — the same loop, hardened.</p>
-    <p>Next up: <a href="ai-agent-memory-python.html" style="color:var(--accent);text-decoration:none;font-weight:700">give your agent a memory</a> — the first thing this loop is missing.</p>
+# In execute_tool:
+elif name == "save_memory":
+    mem = load_memory()
+    mem["facts"].append(tool_input["fact"])
+    save_memory(mem)
+    return f"Saved: {tool_input['fact']}"</code></pre>
+    <p>Now "remember that I prefer summaries under 100 words" works exactly the way you'd hope: the model calls the tool, the fact lands in the file, and every future run starts already knowing it.</p>
+
+    <h2>When a JSON file stops being enough</h2>
+    <p>Thousands of facts, or recall that needs to be <em>semantic</em> ("what do I know about X?") rather than exact — that's when you graduate to a vector store and retrieval. It's a genuinely different tier of memory engineering: embedding, chunking, ranking, and knowing what to inject when.</p>
+    <div class="note"><strong>The ladder, in one line:</strong> messages list → JSON file + save_memory tool → vector store with retrieval. Climb it only when the previous rung actually fails you.</div>
+    <p class="related">New to agents? Start with <a href="ai-agent-loop-python.html">the agent loop: 40 lines of Python behind every AI agent</a>.</p>
   </article>
 
   <div class="cta">
     <div class="eyebrow">The full playbook · $9</div>
     <h3>Deploy Your First AI Agent</h3>
-    <p>The guide takes this loop to a complete working agent in real Python — tool definitions and JSON schemas, a full research agent you can run immediately, memory and state, and three deployment paths. 25 pages; basic Python is all you need.</p>
+    <p>The guide builds the whole thing end to end: the loop, tool definitions and JSON schemas, a complete research agent you can run immediately, memory and state, and three deployment paths. 25 pages; basic Python is all you need.</p>
     <a class="btn" href="https://hyperlighttech.gumroad.com/l/ai-agent-guide" target="_blank" rel="noopener noreferrer">Get the guide — $9</a>
     <p class="small">Instant PDF · 30-day money-back guarantee · buy once, keep forever</p>
-    <p class="alt">Already past the basics? The <a href="../#flagship">$39 Production AI Agents flagship</a> is the multi-agent sequel — orchestration, evals, observability, and a downloadable code repo.</p>
+    <p class="alt">The vector-store tier — retrieval, memory stores, evals — is core material in the <a href="../#flagship">$39 Production AI Agents flagship</a>.</p>
   </div>
 </main>
 

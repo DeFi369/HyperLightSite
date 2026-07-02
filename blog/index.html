@@ -20,9 +20,12 @@
     "description":"Production notes for builders — Linux hardening, DeFi safety, and AI agents.",
     "publisher":{"@type":"Organization","name":"HyperLightTech"},
     "blogPost":[
-      {"@type":"BlogPosting","headline":"Encrypt Your DNS on Ubuntu in Five Minutes (DNS-over-TLS with systemd-resolved)","url":"https://defi369.github.io/HyperLightSite/blog/dns-over-tls-ubuntu.html","datePublished":"2026-07-01"},
+      {"@type":"BlogPosting","headline":"Give Your AI Agent a Memory: In-Context, JSON, and a save_memory Tool","url":"https://defi369.github.io/HyperLightSite/blog/ai-agent-memory-python.html","datePublished":"2026-07-02"},
+      {"@type":"BlogPosting","headline":"Harden SSH on Ubuntu in Three Moves: Keys, Config, fail2ban","url":"https://defi369.github.io/HyperLightSite/blog/harden-ssh-ubuntu.html","datePublished":"2026-07-02"},
+      {"@type":"BlogPosting","headline":"Before You Sign: How to Verify Any DeFi Contract on Etherscan","url":"https://defi369.github.io/HyperLightSite/blog/verify-smart-contracts-etherscan.html","datePublished":"2026-07-02"},
+      {"@type":"BlogPosting","headline":"The Agent Loop: 40 Lines of Python Behind Every AI Agent","url":"https://defi369.github.io/HyperLightSite/blog/ai-agent-loop-python.html","datePublished":"2026-07-01"},
       {"@type":"BlogPosting","headline":"The Five Attacks That Actually Drain DeFi Wallets — and How to Block Every One","url":"https://defi369.github.io/HyperLightSite/blog/avoid-defi-wallet-drains.html","datePublished":"2026-07-01"},
-      {"@type":"BlogPosting","headline":"The Agent Loop: 40 Lines of Python Behind Every AI Agent","url":"https://defi369.github.io/HyperLightSite/blog/ai-agent-loop-python.html","datePublished":"2026-07-01"}
+      {"@type":"BlogPosting","headline":"Encrypt Your DNS on Ubuntu in Five Minutes (DNS-over-TLS with systemd-resolved)","url":"https://defi369.github.io/HyperLightSite/blog/dns-over-tls-ubuntu.html","datePublished":"2026-07-01"}
     ]}
   </script>
   <link rel="alternate" type="application/atom+xml" title="HyperLightTech Blog" href="feed.xml">
@@ -110,6 +113,13 @@
     <div class="pmeta"><b>July 1, 2026</b> · 6 min read</div>
   </a>
 
+  <a class="post" href="ai-agent-memory-python.html">
+    <div class="label">AI agents</div>
+    <h2>Give your AI agent a memory</h2>
+    <p>Your agent forgets everything when the program exits. The memory ladder in runnable Python: in-context history, a JSON file that persists between runs, and a save_memory tool so the agent decides what's worth keeping.</p>
+    <div class="pmeta"><b>July 2, 2026</b> · 5 min read</div>
+  </a>
+
   <a class="post" href="avoid-defi-wallet-drains.html">
     <div class="label">DeFi &amp; crypto</div>
     <h2>The five attacks that actually drain DeFi wallets</h2>
@@ -117,11 +127,25 @@
     <div class="pmeta"><b>July 1, 2026</b> · 5 min read</div>
   </a>
 
+  <a class="post" href="verify-smart-contracts-etherscan.html">
+    <div class="label">DeFi &amp; crypto</div>
+    <h2>Before you sign: verify any DeFi contract on Etherscan</h2>
+    <p>Every on-chain transaction is public — if you know how to read it. Decode the transaction fields, then run the five-step contract check before you interact with anything new.</p>
+    <div class="pmeta"><b>July 2, 2026</b> · 5 min read</div>
+  </a>
+
   <a class="post" href="dns-over-tls-ubuntu.html">
     <div class="label">Linux security</div>
     <h2>Encrypt your DNS on Ubuntu in five minutes</h2>
     <p>Every site you visit leaks in plain text before HTTPS even starts. Turn on DNS-over-TLS with the resolver Ubuntu already ships — the exact config, the verify steps, and the leak test.</p>
     <div class="pmeta"><b>July 1, 2026</b> · 4 min read</div>
+  </a>
+
+  <a class="post" href="harden-ssh-ubuntu.html">
+    <div class="label">Linux security</div>
+    <h2>Harden SSH on Ubuntu in three moves</h2>
+    <p>If SSH is open, it's being probed right now. Ed25519 keys, a hardened sshd_config, and fail2ban — the three changes that make brute-forcing pointless, with the exact commands.</p>
+    <div class="pmeta"><b>July 2, 2026</b> · 5 min read</div>
   </a>
 </main>
 

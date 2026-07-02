@@ -3,25 +3,25 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Every AI agent — including the coding agents you use daily — runs the same four-step loop. Here it is in 40 lines of runnable Python, with the design decisions that keep it from melting down.">
-  <title>The Agent Loop: 40 Lines of Python Behind Every AI Agent — HyperLightTech</title>
-  <link rel="canonical" href="https://defi369.github.io/HyperLightSite/blog/ai-agent-loop-python.html">
+  <meta name="description" content="Every on-chain transaction is public — if you know how to read it. How to decode a transaction on Etherscan and run the five-step contract check before you interact with any DeFi protocol.">
+  <title>Before You Sign: How to Verify Any DeFi Contract on Etherscan — HyperLightTech</title>
+  <link rel="canonical" href="https://defi369.github.io/HyperLightSite/blog/verify-smart-contracts-etherscan.html">
   <meta property="og:type" content="article">
-  <meta property="og:url" content="https://defi369.github.io/HyperLightSite/blog/ai-agent-loop-python.html">
-  <meta property="og:title" content="The Agent Loop: 40 Lines of Python Behind Every AI Agent">
-  <meta property="og:description" content="Perceive, reason, act, observe. The complete agent loop in runnable Python — and the five design decisions that keep it safe.">
+  <meta property="og:url" content="https://defi369.github.io/HyperLightSite/blog/verify-smart-contracts-etherscan.html">
+  <meta property="og:title" content="Before You Sign: How to Verify Any DeFi Contract on Etherscan">
+  <meta property="og:description" content="Block explorers make every transaction readable. Decode the fields, run the five-step contract check, and stop interacting with things you can't verify.">
   <meta property="og:image" content="https://defi369.github.io/HyperLightSite/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#211C18">
   <script type="application/ld+json">
    {"@context":"https://schema.org","@type":"BlogPosting",
-    "headline":"The Agent Loop: 40 Lines of Python Behind Every AI Agent",
-    "description":"Every AI agent runs the same four-step loop: perceive, reason, act, observe. The complete loop in runnable Python, plus the design decisions that keep it safe.",
-    "datePublished":"2026-07-01","dateModified":"2026-07-01",
+    "headline":"Before You Sign: How to Verify Any DeFi Contract on Etherscan",
+    "description":"How to decode a transaction on a block explorer and run the five-step contract verification check before interacting with any DeFi protocol.",
+    "datePublished":"2026-07-02","dateModified":"2026-07-02",
     "author":{"@type":"Organization","name":"HyperLightTech"},
     "publisher":{"@type":"Organization","name":"HyperLightTech"},
     "image":"https://defi369.github.io/HyperLightSite/og-image.png",
-    "mainEntityOfPage":"https://defi369.github.io/HyperLightSite/blog/ai-agent-loop-python.html"}
+    "mainEntityOfPage":"https://defi369.github.io/HyperLightSite/blog/verify-smart-contracts-etherscan.html"}
   </script>
   <link rel="alternate" type="application/atom+xml" title="HyperLightTech Blog" href="feed.xml">
   <link rel="stylesheet" href="../fonts/fonts.css">
@@ -62,13 +62,20 @@
     article h2{font-family:var(--fh);font-weight:700;font-size:24px;letter-spacing:-.01em;line-height:1.25;margin:40px 0 14px}
     article p{color:var(--ink-2);margin-bottom:18px}
     article p strong,article li strong{color:var(--ink);font-weight:700}
+    article a{color:var(--accent);text-decoration:none}
+    article a:hover{text-decoration:underline}
     article ul,article ol{margin:0 0 18px 22px;color:var(--ink-2)}
     article li{margin-bottom:8px}
     article li::marker{color:var(--accent)}
     pre{background:#17120E;border:1px solid var(--line);border-radius:10px;padding:18px 20px;overflow-x:auto;margin:0 0 18px;line-height:1.6}
-    pre code{background:none;padding:0;font-size:13px}
+    pre code{background:none;padding:0;font-size:13.5px}
     code{font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:14px;background:rgba(244,238,230,.08);padding:2px 6px;border-radius:5px;color:var(--ink)}
     .note{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:10px;padding:16px 20px;margin:0 0 18px;font-size:15px;color:var(--ink-2)}
+    .tablewrap{overflow-x:auto;margin:0 0 18px}
+    table{width:100%;border-collapse:collapse;font-size:14.5px}
+    th{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+    td{color:var(--ink-2);padding:10px 12px;border-bottom:1px solid var(--line)}
+    td b{color:var(--ink)}
 
     .cta{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:30px 28px;margin-top:44px;position:relative;overflow:hidden}
     .cta::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),transparent)}
@@ -84,8 +91,9 @@
     .btn:active{transform:translateY(4px);box-shadow:0 0 0 0 #A23A1E,0 2px 6px -2px rgba(0,0,0,.4)}
     .btn:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
     .cta .small{font-size:13px;color:var(--ink-3);margin:14px 0 0}
-    .cta .alt{font-size:14px;color:var(--ink-2);margin-top:16px}
-    .cta .alt a{color:var(--accent);text-decoration:none;font-weight:700}
+    .related{margin-top:18px;font-size:14.5px;color:var(--ink-3)}
+    .related a{color:var(--accent);text-decoration:none;font-weight:700}
+    .related a:hover{text-decoration:underline}
 
     footer{background:#17120E;border-top:1px solid var(--line);padding:28px 24px;text-align:center;font-size:14px;color:var(--ink-3)}
     footer a{color:var(--accent);text-decoration:none}
@@ -114,82 +122,63 @@
 
 <main>
   <a class="crumb" href="./">← All articles</a>
-  <h1>The agent loop: 40 lines of Python behind every AI agent</h1>
-  <p class="meta"><b>AI agents</b> · July 1, 2026 · 6 min read · from our <a href="../#guides" style="color:var(--accent);text-decoration:none">Deploy Your First AI Agent guide</a></p>
+  <h1>Before you sign: verify any DeFi contract on Etherscan</h1>
+  <p class="meta"><b>DeFi &amp; crypto</b> · July 2, 2026 · 5 min read · from our <a href="../#guides" style="color:var(--accent);text-decoration:none">DeFi From Scratch guide</a></p>
 
   <article>
-    <p>Strip away the frameworks, the YAML, and the marketing, and every AI agent — including the coding agents you probably used today — runs the same four-step loop:</p>
-    <ul>
-      <li><strong>Perceive</strong> — read the inputs: the task, previous steps, memory, and the list of available tools.</li>
-      <li><strong>Reason</strong> — the LLM decides what to do next: call a tool, or produce a final answer.</li>
-      <li><strong>Act</strong> — execute the decision: run the tool, call the API, write the file.</li>
-      <li><strong>Observe</strong> — feed the result back into context. Repeat from the top.</li>
-    </ul>
-    <p>The loop runs until the task is complete or a stop condition is reached. That's the entire engine. Memory, multi-agent systems, deployment — all of it is scaffolding around this loop. Which means once you can write the loop yourself, agents stop being magic.</p>
+    <p>Everything on a public blockchain is permanently recorded and publicly readable — including the contract you're about to trust with your tokens. Block explorers give you a readable window into that data. Learning to use one is the difference between <em>hoping</em> a protocol is what it claims and <em>checking</em>.</p>
 
-    <h2>The complete loop, runnable</h2>
-    <p>Here it is with the Claude API — complete, not pseudocode. <code>TOOLS</code> is your list of tool definitions and <code>execute_tool</code> is your dispatcher that actually runs them:</p>
-    <pre><code>def run_agent(task: str, max_iterations: int = 10) -> str:
-    messages = [{"role": "user", "content": task}]
+    <h2>Know your explorer</h2>
+    <p>Each chain has its own explorer; they all work the same way:</p>
+    <div class="tablewrap">
+      <table>
+        <tr><th>Explorer</th><th>Chain</th><th>URL</th></tr>
+        <tr><td><b>Etherscan</b></td><td>Ethereum mainnet</td><td>etherscan.io</td></tr>
+        <tr><td><b>Arbiscan</b></td><td>Arbitrum One</td><td>arbiscan.io</td></tr>
+        <tr><td><b>Basescan</b></td><td>Base</td><td>basescan.org</td></tr>
+        <tr><td><b>Optimistic Etherscan</b></td><td>Optimism</td><td>optimistic.etherscan.io</td></tr>
+        <tr><td><b>Polygonscan</b></td><td>Polygon</td><td>polygonscan.com</td></tr>
+      </table>
+    </div>
+    <div class="note">Type the explorer URL yourself or use a bookmark — fake explorer clones exist, and they're phishing sites like any other.</div>
 
-    for _ in range(max_iterations):
-        # 1. Ask Claude what to do next
-        response = client.messages.create(
-            model="claude-sonnet-4-6",
-            max_tokens=4096,
-            system=SYSTEM_PROMPT,
-            tools=TOOLS,
-            messages=messages,
-        )
+    <h2>Read a transaction like a statement</h2>
+    <p>Paste any transaction hash into the explorer and every field tells you something:</p>
+    <pre><code># Example transaction fields on Etherscan:
+Transaction Hash:   0xabc123...     (unique ID for this transaction)
+Status:             Success         (or Failed)
+Block:              19,234,567      (which block it was included in)
+From:               0x742d...       (the wallet that sent it)
+To:                 0xE592...       (the contract or wallet that received it)
+Value:              0.05 ETH        (ETH sent directly)
+Transaction Fee:    0.000023 ETH    (gas paid to the network)
 
-        # 2. Append Claude's response to history VERBATIM.
-        #    response.content carries the tool_use blocks the next
-        #    request needs — keep all of it, don't extract only text.
-        messages.append({"role": "assistant", "content": response.content})
+# For token swaps, look at the "ERC-20 Tokens Transferred" section
+# This shows exactly which tokens moved and in what amounts</code></pre>
+    <p>The habit that pays off: after any meaningful transaction, open it in the explorer and confirm the token flows match what you intended. When something goes wrong, this is also how you find out exactly what happened.</p>
 
-        # 3. If Claude didn't ask for a tool, it's done — return the answer.
-        if response.stop_reason != "tool_use":
-            return "".join(b.text for b in response.content if b.type == "text")
+    <h2>The five-step contract check</h2>
+    <p>Before interacting with a new protocol, verify its contract:</p>
+    <ol>
+      <li>Find the contract address <strong>from the protocol's official site</strong> — never from a DM, ad, or reply.</li>
+      <li>Paste it into Etherscan (or the chain's explorer).</li>
+      <li>Open the <strong>Contract</strong> tab.</li>
+      <li>Look for the green checkmark: <strong>"Contract Source Code Verified"</strong> — the published source matches the deployed bytecode. An unverified contract is a significant red flag.</li>
+      <li>Read the contract name — does it match what you expect to be interacting with?</li>
+    </ol>
+    <p>Two bonus checks while you're there: the <strong>Read Contract</strong> tab shows the protocol's live state, and the <strong>Security</strong> tab lists audit reports when available.</p>
 
-        # 4. Execute every tool Claude requested.
-        tool_results = []
-        for block in response.content:
-            if block.type == "tool_use":
-                result = execute_tool(block.name, block.input)
-                tool_results.append({
-                    "type": "tool_result",
-                    "tool_use_id": block.id,
-                    "content": result,
-                })
-
-        # 5. Feed results back in ONE user message — loop repeats from step 1.
-        messages.append({"role": "user", "content": tool_results})
-
-    return "Reached max iterations without a final answer."</code></pre>
-
-    <h2>The five decisions that matter</h2>
-    <p>Every line above encodes a decision people usually learn the expensive way:</p>
-    <ul>
-      <li><strong>A hard iteration limit.</strong> An agent without a stop condition can loop indefinitely, consuming tokens and money. <code>max_iterations</code> is not optional.</li>
-      <li><strong>Append the response verbatim.</strong> <code>response.content</code> carries the <code>tool_use</code> blocks the next request needs. Extract only the text and the loop breaks in ways that look like model stupidity but are your bug.</li>
-      <li><strong>Full history every iteration.</strong> The model re-reads everything each turn — that context is what makes its next decision good.</li>
-      <li><strong>Tool results go back as a user message</strong>, each keyed to its <code>tool_use_id</code>, and parallel results belong in <em>one</em> message. This is the API convention; violate it and you get errors or silently confused agents.</li>
-      <li><strong>Check <code>stop_reason</code> explicitly.</strong> <code>tool_use</code> means "run a tool and come back"; anything else (<code>end_turn</code>, <code>max_tokens</code>) means this turn is over. Handle both paths deliberately.</li>
-    </ul>
-    <div class="note"><strong>Infinite-loop risk is real.</strong> A buggy tool or an ambiguous task can keep an agent spinning forever. Always set the limit, and log every iteration so you can watch what it's actually doing.</div>
-
-    <h2>Where this goes next</h2>
-    <p>This loop plus a couple of tools is a genuinely useful agent — a research assistant, a file organizer, a monitoring bot. What it isn't, yet, is <em>production</em>: it has no persistent memory, no guardrails around what tools may do, no evals telling you whether changes made it better or worse, and no cost control. Those are solvable problems too — the same loop, hardened.</p>
-    <p>Next up: <a href="ai-agent-memory-python.html" style="color:var(--accent);text-decoration:none;font-weight:700">give your agent a memory</a> — the first thing this loop is missing.</p>
+    <h2>Trust is earned in years, not APY</h2>
+    <p>Major protocols — Uniswap, Aave, Compound, Curve — have been audited by multiple independent security firms and carry years of battle-tested history. New protocols and forks carry substantially higher risk <em>regardless of their claimed APY</em>. Verification tells you a contract is what it says it is; it can't tell you the economics are sound. For that, the track record is the data.</p>
+    <p class="related">Related: <a href="avoid-defi-wallet-drains.html">The five attacks that actually drain DeFi wallets</a> — what to do before an attacker ever gets the chance.</p>
   </article>
 
   <div class="cta">
     <div class="eyebrow">The full playbook · $9</div>
-    <h3>Deploy Your First AI Agent</h3>
-    <p>The guide takes this loop to a complete working agent in real Python — tool definitions and JSON schemas, a full research agent you can run immediately, memory and state, and three deployment paths. 25 pages; basic Python is all you need.</p>
-    <a class="btn" href="https://hyperlighttech.gumroad.com/l/ai-agent-guide" target="_blank" rel="noopener noreferrer">Get the guide — $9</a>
+    <h3>DeFi From Scratch</h3>
+    <p>This is one chapter of nine. The guide takes you from empty wallet to confident on-chain operator — wallet setup and seed safety, funding, your first DEX trade, bridging, liquidity pools, and staying safe at every step. 22 pages, beginner-friendly.</p>
+    <a class="btn" href="https://hyperlighttech.gumroad.com/l/defi-guide" target="_blank" rel="noopener noreferrer">Get the guide — $9</a>
     <p class="small">Instant PDF · 30-day money-back guarantee · buy once, keep forever</p>
-    <p class="alt">Already past the basics? The <a href="../#flagship">$39 Production AI Agents flagship</a> is the multi-agent sequel — orchestration, evals, observability, and a downloadable code repo.</p>
   </div>
 </main>
 

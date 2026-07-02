@@ -5,8 +5,35 @@
   <link href="https://defi369.github.io/HyperLightSite/blog/feed.xml" rel="self" type="application/atom+xml"/>
   <link href="https://defi369.github.io/HyperLightSite/blog/" rel="alternate" type="text/html"/>
   <id>https://defi369.github.io/HyperLightSite/blog/</id>
-  <updated>2026-07-01T12:00:00Z</updated>
+  <updated>2026-07-02T12:00:00Z</updated>
   <author><name>HyperLightTech</name><email>hello@hyperlighttech.com</email></author>
+
+  <entry>
+    <title>Give your AI agent a memory</title>
+    <link href="https://defi369.github.io/HyperLightSite/blog/ai-agent-memory-python.html" rel="alternate" type="text/html"/>
+    <id>https://defi369.github.io/HyperLightSite/blog/ai-agent-memory-python.html</id>
+    <published>2026-07-02T12:00:00Z</published>
+    <updated>2026-07-02T12:00:00Z</updated>
+    <summary>The memory ladder in runnable Python: in-context history, a JSON file that persists between runs, and a save_memory tool so the agent decides what's worth keeping.</summary>
+  </entry>
+
+  <entry>
+    <title>Harden SSH on Ubuntu in three moves</title>
+    <link href="https://defi369.github.io/HyperLightSite/blog/harden-ssh-ubuntu.html" rel="alternate" type="text/html"/>
+    <id>https://defi369.github.io/HyperLightSite/blog/harden-ssh-ubuntu.html</id>
+    <published>2026-07-02T12:00:00Z</published>
+    <updated>2026-07-02T12:00:00Z</updated>
+    <summary>If SSH is open, it's being probed right now. Ed25519 keys, a hardened sshd_config, and fail2ban — the three changes that make brute-forcing pointless, with the exact commands.</summary>
+  </entry>
+
+  <entry>
+    <title>Before you sign: verify any DeFi contract on Etherscan</title>
+    <link href="https://defi369.github.io/HyperLightSite/blog/verify-smart-contracts-etherscan.html" rel="alternate" type="text/html"/>
+    <id>https://defi369.github.io/HyperLightSite/blog/verify-smart-contracts-etherscan.html</id>
+    <published>2026-07-02T12:00:00Z</published>
+    <updated>2026-07-02T12:00:00Z</updated>
+    <summary>Every on-chain transaction is public — if you know how to read it. Decode the transaction fields, then run the five-step contract check before you interact with anything new.</summary>
+  </entry>
 
   <entry>
     <title>The agent loop: 40 lines of Python behind every AI agent</title>
