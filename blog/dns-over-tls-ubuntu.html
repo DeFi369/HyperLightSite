@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Your DNS queries travel in plain text — readable by your ISP and anyone on the network. Encrypt them with DNS-over-TLS on Ubuntu using systemd-resolved, in five minutes.">
+  <title>Encrypt Your DNS on Ubuntu in Five Minutes (DNS-over-TLS with systemd-resolved) — HyperLightTech</title>
+  <link rel="canonical" href="https://defi369.github.io/HyperLightSite/blog/dns-over-tls-ubuntu.html">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://defi369.github.io/HyperLightSite/blog/dns-over-tls-ubuntu.html">
+  <meta property="og:title" content="Encrypt Your DNS on Ubuntu in Five Minutes">
+  <meta property="og:description" content="Plain-text DNS leaks every site you visit. Set up DNS-over-TLS with systemd-resolved — the exact config, verify steps, and a leak test.">
+  <meta property="og:image" content="https://defi369.github.io/HyperLightSite/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#211C18">
+  <script type="application/ld+json">
+   {"@context":"https://schema.org","@type":"BlogPosting",
+    "headline":"Encrypt Your DNS on Ubuntu in Five Minutes (DNS-over-TLS with systemd-resolved)",
+    "description":"Plain-text DNS leaks every site you visit to your ISP and network. Configure DNS-over-TLS with systemd-resolved on Ubuntu — exact config, verification, and a leak test.",
+    "datePublished":"2026-07-01","dateModified":"2026-07-01",
+    "author":{"@type":"Organization","name":"HyperLightTech"},
+    "publisher":{"@type":"Organization","name":"HyperLightTech"},
+    "image":"https://defi369.github.io/HyperLightSite/og-image.png",
+    "mainEntityOfPage":"https://defi369.github.io/HyperLightSite/blog/dns-over-tls-ubuntu.html"}
+  </script>
+  <link rel="alternate" type="application/atom+xml" title="HyperLightTech Blog" href="feed.xml">
+  <link rel="stylesheet" href="../fonts/fonts.css">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --paper:#211C18; --paper-2:#1A1511; --card:#2A231D;
+      --ink:#F4EEE6; --ink-2:#C3B7A6; --ink-3:#A89C8C;
+      --line:rgba(244,238,230,.11); --accent:#F0633F; --accent-deep:#E2553D;
+      --accent-soft:rgba(240,99,63,.14);
+      --fh:'Syne',sans-serif; --fb:'Manrope',sans-serif;
+    }
+    html{scroll-behavior:smooth}
+    body{background:var(--paper);color:var(--ink);font-family:var(--fb);font-size:17px;line-height:1.75;-webkit-font-smoothing:antialiased}
+    a{color:inherit}
+
+    header{position:sticky;top:0;z-index:50;background:rgba(33,28,24,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+    nav{max-width:1080px;margin:0 auto;padding:0 24px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .logo{display:flex;align-items:center;gap:11px;text-decoration:none;font-family:var(--fh);font-weight:800;font-size:18px}
+    .logo .mark{width:30px;height:30px;border-radius:8px;background:var(--ink);display:grid;place-items:center;color:var(--paper)}
+    .logo .mark svg{width:16px;height:16px}
+    .nav-right{display:flex;align-items:center;gap:22px}
+    .nav-right>a{font-size:15px;font-weight:600;color:var(--ink-2);text-decoration:none}
+    .nav-right>a:hover{color:var(--ink)}
+    .nav-cta{display:inline-flex;align-items:center;background:var(--accent);color:var(--paper)!important;padding:11px 18px;
+      border-radius:6px;border:1px solid #D14C2E;font-weight:700;font-size:12px!important;letter-spacing:.11em;text-transform:uppercase;
+      line-height:1;text-decoration:none;white-space:nowrap;box-shadow:0 4px 0 0 #A23A1E;transition:transform .12s ease,box-shadow .12s ease,background .2s}
+    .nav-cta:hover{background:var(--accent-deep);transform:translateY(-1px);box-shadow:0 5px 0 0 #A23A1E}
+    .nav-cta:active{transform:translateY(4px);box-shadow:0 0 0 0 #A23A1E}
+
+    main{max-width:720px;margin:0 auto;padding:64px 24px 88px}
+    .crumb{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);text-decoration:none}
+    .crumb:hover{text-decoration:underline}
+    h1{font-family:var(--fh);font-weight:800;letter-spacing:-.02em;line-height:1.12;font-size:clamp(30px,5vw,44px);margin:16px 0 14px}
+    .meta{font-size:14px;color:var(--ink-3);margin-bottom:36px}
+    .meta b{color:var(--ink-2);font-weight:600}
+    article h2{font-family:var(--fh);font-weight:700;font-size:24px;letter-spacing:-.01em;line-height:1.25;margin:40px 0 14px}
+    article p{color:var(--ink-2);margin-bottom:18px}
+    article p strong,article li strong{color:var(--ink);font-weight:700}
+    article ul,article ol{margin:0 0 18px 22px;color:var(--ink-2)}
+    article li{margin-bottom:8px}
+    article li::marker{color:var(--accent)}
+    pre{background:#17120E;border:1px solid var(--line);border-radius:10px;padding:18px 20px;overflow-x:auto;margin:0 0 18px;line-height:1.6}
+    pre code{background:none;padding:0;font-size:13.5px}
+    code{font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:14px;background:rgba(244,238,230,.08);padding:2px 6px;border-radius:5px;color:var(--ink)}
+    .note{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:10px;padding:16px 20px;margin:0 0 18px;font-size:15px;color:var(--ink-2)}
+
+    .cta{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:30px 28px;margin-top:44px;
+      position:relative;overflow:hidden}
+    .cta::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),transparent)}
+    .cta .eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+    .cta h3{font-family:var(--fh);font-weight:800;font-size:22px;letter-spacing:-.01em;margin-bottom:8px}
+    .cta p{font-size:15px;color:var(--ink-2);margin-bottom:20px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--accent);color:var(--paper);
+      font-family:var(--fb);font-weight:700;font-size:13px;letter-spacing:.11em;text-transform:uppercase;line-height:1;
+      padding:16px 24px;border-radius:6px;border:1px solid #D14C2E;text-decoration:none;white-space:nowrap;
+      box-shadow:0 4px 0 0 #A23A1E,0 16px 26px -14px rgba(0,0,0,.5);
+      transition:transform .12s ease,box-shadow .12s ease,background .2s}
+    .btn:hover{background:var(--accent-deep);transform:translateY(-1px);box-shadow:0 5px 0 0 #A23A1E,0 20px 30px -14px rgba(0,0,0,.55)}
+    .btn:active{transform:translateY(4px);box-shadow:0 0 0 0 #A23A1E,0 2px 6px -2px rgba(0,0,0,.4)}
+    .btn:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+    .cta .small{font-size:13px;color:var(--ink-3);margin:14px 0 0}
+
+    footer{background:#17120E;border-top:1px solid var(--line);padding:28px 24px;text-align:center;font-size:14px;color:var(--ink-3)}
+    footer a{color:var(--accent);text-decoration:none}
+    @media(prefers-reduced-motion:reduce){.btn,.nav-cta{transition:none}}
+    @media(max-width:600px){.nav-right>a:not(.nav-cta){display:none}
+      .logo{font-size:15px;gap:8px}.logo .mark{width:26px;height:26px}.logo .mark svg{width:14px;height:14px}
+      .nav-right{gap:12px}.nav-right>a.nav-cta{padding:10px 12px;font-size:10.5px!important;letter-spacing:.08em}}
+    @media(max-width:420px){.logo .word{display:none}}
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="../" class="logo">
+      <span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M13 3 4 14h7l-1 7 9-11h-7z" fill="currentColor" stroke="none"/></svg></span>
+      <span class="word">HyperLightTech</span>
+    </a>
+    <div class="nav-right">
+      <a href="./">Blog</a>
+      <a href="../#guides">Guides</a>
+      <a href="../#guides" class="nav-cta">Get the guides</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <a class="crumb" href="./">← All articles</a>
+  <h1>Encrypt your DNS on Ubuntu in five minutes</h1>
+  <p class="meta"><b>Linux security</b> · July 1, 2026 · 4 min read · from our <a href="../#guides" style="color:var(--accent);text-decoration:none">Hardened Linux Workstation guide</a></p>
+
+  <article>
+    <p>Every website you visit starts with a DNS query — your computer asking "what is the IP address of this domain?" By default those queries travel in <strong>plain text</strong>. Your ISP can read them. Your network administrator can read them. Anyone monitoring the network can read them, log them, and sell them. Even when the site itself is HTTPS, the DNS lookup that got you there wasn't.</p>
+    <p>The fix is encrypted DNS, and on Ubuntu you don't need to install anything to get it: <code>systemd-resolved</code>, the resolver Ubuntu already ships, speaks <strong>DNS-over-TLS (DoT)</strong> natively. Five minutes of configuration and every lookup your machine makes is wrapped in TLS.</p>
+
+    <h2>DoT vs. DoH, in one paragraph</h2>
+    <p>There are two common forms of encrypted DNS. <strong>DNS-over-TLS (DoT)</strong> encrypts queries system-wide at the resolver level — every app benefits, no exceptions. <strong>DNS-over-HTTPS (DoH)</strong> tunnels queries inside HTTPS and is what browsers implement themselves. Browser DoH only protects the browser; DoT at the system resolver protects everything. Ubuntu's built-in resolver speaks DoT, so that's what we configure.</p>
+
+    <h2>Configure DNS-over-TLS with systemd-resolved</h2>
+    <p>Ubuntu 24.04 uses <code>systemd-resolved</code> for DNS. Point it at Cloudflare's privacy-respecting resolver, turn on TLS and DNSSEC, and restart:</p>
+    <pre><code># Edit the resolved configuration
+sudo nano /etc/systemd/resolved.conf
+
+# Set these values under [Resolve]:
+# DNS=1.1.1.1 1.0.0.1
+# FallbackDNS=9.9.9.9 149.112.112.112
+# DNSSEC=yes
+# DNSOverTLS=yes
+
+# Restart resolved
+sudo systemctl restart systemd-resolved
+
+# Verify the configuration
+resolvectl status</code></pre>
+    <p>That's the entire change. <code>DNS=</code> sets Cloudflare's two anycast resolvers, <code>FallbackDNS=</code> keeps Quad9 as a backup, <code>DNSSEC=yes</code> validates that answers haven't been tampered with, and <code>DNSOverTLS=yes</code> is the line that stops the plain-text leaking.</p>
+
+    <h2>Verify it's actually working</h2>
+    <p>Never trust a security change you haven't verified:</p>
+    <pre><code># Check DNS resolution and see which server answered
+resolvectl query example.com
+
+# Confirm DNSSEC validation is active
+resolvectl statistics | grep DNSSEC</code></pre>
+    <p>Then run the extended test at <strong>dnsleaktest.com</strong>. Every result should show Cloudflare (1.1.1.1) — and only Cloudflare. If your ISP's resolvers still appear, something on your network (usually the router's DHCP settings) is overriding you.</p>
+
+    <h2>Level up: NextDNS</h2>
+    <p>If you want more than privacy, <strong>NextDNS</strong> is an excellent alternative to Cloudflare. It offers both DoT and DoH, DNSSEC, ad and tracker blocking at the DNS level, and query logs that <em>you</em> control. The free tier covers 300,000 queries a month — enough for most people. Configuration is identical: replace the addresses above with your personal NextDNS endpoints.</p>
+    <div class="note">Blocking trackers, malware domains, and ads at the DNS level stops them <strong>before they reach any browser or app</strong> — more effective than browser-level blocking alone.</div>
+
+    <h2>One layer of eleven</h2>
+    <p>Encrypted DNS closes one leak. A hardened workstation closes them all: full-disk encryption, a default-deny firewall, SSH that can't be brute-forced, AppArmor confinement, encrypted backups, and the operational habits that keep it all working.</p>
+    <p>Next up: <a href="harden-ssh-ubuntu.html" style="color:var(--accent);text-decoration:none;font-weight:700">harden SSH in three moves</a> — the most-attacked door on any machine.</p>
+  </article>
+
+  <div class="cta">
+    <div class="eyebrow">The full playbook · $9</div>
+    <h3>Build a Hardened Linux Workstation</h3>
+    <p>This article is one chapter of eleven. The guide walks the whole stack — LUKS full-disk encryption, UFW + fail2ban, SSH hardening, AppArmor, encrypted Restic backups — every layer, step by step, in 25 pages you'll finish in a weekend.</p>
+    <a class="btn" href="https://hyperlighttech.gumroad.com/l/linux-guide" target="_blank" rel="noopener noreferrer">Get the guide — $9</a>
+    <p class="small">Instant PDF · 30-day money-back guarantee · buy once, keep forever</p>
+  </div>
+</main>
+
+<footer>
+  © 2026 HyperLightTech — <a href="../">Home</a> · <a href="./">Blog</a> · <a href="mailto:hello@hyperlighttech.com">hello@hyperlighttech.com</a>
+</footer>
+
+</body>
+</html>

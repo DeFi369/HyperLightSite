@@ -25,8 +25,12 @@ Sold via [Gumroad](https://hyperlighttech.gumroad.com). Instant download, buy on
 
 When you'd rather have it built for you, we take on a few custom engagements — an AI agent, a DeFi protocol, or a hardened system shipped to production. Every one starts with a free 45-minute strategy call and a written roadmap, no obligation. Email **hello@hyperlighttech.com** (Pro from $2,500 / Max from $8,000).
 
+## Blog
+
+`blog/` — production notes carved from the guides (one real chapter each), with an Atom feed at `blog/feed.xml`. Zero third-party scripts on blog pages.
+
 ## About this repo
 
-Plain static site, **no build step** — hand-written HTML with inline CSS/JS and self-hosted fonts. Deploy = serve the files. Live via GitHub Pages at **https://defi369.github.io/HyperLightSite/**.
+Plain static site, **no build step** — hand-written HTML with inline CSS/JS and self-hosted variable fonts (one `.woff2` per family). Deploy = serve the files. Live via GitHub Pages at **https://defi369.github.io/HyperLightSite/**.
 
 See [`AUDIT.md`](AUDIT.md) for the current file layout, section flow, and open work.

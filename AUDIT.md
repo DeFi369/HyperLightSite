@@ -7,13 +7,14 @@
 
 ## File layout
 - `index.html` — the whole landing page (inline `<style>` + inline `<script>`).
+- `blog/` — the SEO blog, same no-build convention (one inline `<style>` per page, zero third-party scripts — not even gumroad.js; CTAs are plain Gumroad product links): `index.html` (article list + Blog JSON-LD) + one page per article (`ai-agent-loop-python`, `avoid-defi-wallet-drains`, `dns-over-tls-ubuntu` — each with BlogPosting JSON-LD, canonical, OG tags, and a machined-key CTA to its matching $9 guide). Articles are carved from the REAL guide chapters in ~/hyperlighttech-guides (one chapter each, adapted for web — never fabricated).
 - `thank-you.html` — post-purchase page (`noindex`).
 - `404.html` — themed not-found page.
 - `og-image.html` — 1200×630 source that `og-image.png` is rendered from (headless chromium screenshot).
 - `og-image.png` — social share card (on-brand, "$9", `.com`).
 - `favicon.svg` — bolt mark.
 - `sitemap.xml`, `robots.txt` — SEO/crawler basics.
-- `fonts/` — self-hosted webfonts: `fonts.css` + 7 `.woff2` (Manrope 400/500/600/700, Syne 600/700/800), latin subset only. Referenced by all 4 HTML files.
+- `fonts/` — self-hosted webfonts: `fonts.css` + 2 variable `.woff2` (`manrope.woff2` wght 200–800, `syne.woff2` wght 400–800; latin subset). One `@font-face` per family with a `font-weight` RANGE descriptor serves all weights (the old 7 per-weight files were byte-identical copies — deduped 2026-07-01, saves ~119KB + 5 requests on first load). Referenced by every HTML page.
 - `README.md` — guides-first project readme.
 - `AUDIT.md` — this file (canonical status).
 - Gumroad: `hyperlighttech.gumroad.com/l/{linux-guide,defi-guide,ai-agent-guide,guide-bundle}`.
@@ -29,7 +30,33 @@
 
 ## Status
 
-**2026-07-01 — `guide-specs-toc` branch (pushed, awaiting owner review).** Competitor research (wizardzines, Refactoring UI, MAKE book, css-for-js.dev, Just JavaScript, No Starch, Leanpub — screenshots + copy/palette/type analysis) found ours missing: named author w/ face (every comp has one — owner-gated), concrete product specs, real TOC, free-chapter-as-primary-CTA (owner-gated: needs Gumroad sample product), numeric social proof (owner-gated: use real Gumroad stats once sales exist). Implemented the honest, no-owner-input items, all data pulled from the REAL guide sources in ~/hyperlighttech-guides (PDF page counts via pdfinfo; chapters from `::: chapter` directives; difficulty/time from GUIDE.md frontmatter):
+**2026-07-02 — `blog-round-2` branch (stacked on `mobile-nav-fix`, PR pending).** Blog doubled to 6 articles, one new per guide, same grounded-in-real-chapters rule (sources: Linux ch.9, AI ch.7, DeFi ch.9):
+1. **"Harden SSH on Ubuntu in three moves"** (`harden-ssh-ubuntu.html`) — Ed25519 keys, hardened sshd_config, fail2ban jail.local; added the "test key login BEFORE disabling passwords" guard and the "no SSH? don't run it" note.
+2. **"Give your AI agent a memory"** (`ai-agent-memory-python.html`) — in-context 200K framing, JSON-file memory code, save_memory tool, the memory ladder note; flagship cross-sell on the vector-store tier.
+3. **"Before you sign: verify any DeFi contract on Etherscan"** (`verify-smart-contracts-etherscan.html`) — explorer table (has `.tablewrap` overflow-x for mobile), transaction field decode, 5-step verify checklist, protocol-trust note.
+Wiring per the rule: feed `<entry>` ×3 (+`<updated>` bumped) + sitemap `<url>` ×3 (+ blog/ lastmod); blog index = 6 cards in topic pairs + Blog JSON-LD ×6; **cross-links added** — each old article now links its new topic sibling ("Next up: …") and new articles link back (`.related`). New pages use the POST-#7 template (nowrap CTA, ≤600 compact header, ≤420 wordmark hide, `.word` span). New-article dates = 2026-07-02.
+
+**2026-07-01 — `mobile-nav-fix` branch (stacked on `perf-feed`, PR pending).** Audit pass 3 found a **LIVE mobile bug on main**: on thank-you.html + 404.html (and inherited by the new blog pages) the header nav has no hamburger, and at phone widths the "Browse the guides" CTA overflowed the viewport — measured pre-fix `scrollWidth=391` at a 390/344px viewport (CTA painted past the right edge; horizontal scroll). Fix on all 6 subpages: `.nav-cta{white-space:nowrap}`; ≤600px compact header (logo 15px/26px mark, CTA 10.5px/10-12px padding — blog pages need `.nav-right>a.nav-cta` + `!important` to beat their base rule); ≤420px hide the wordmark (`.logo .word{display:none}`, text now wrapped in a span) leaving the bolt mark — CTA always fits. Verified NO overflow at 344/360/390/421 on all subpages, pre-fix overflow reproduced at 344+390 (bug real), visual at true 390px clean.
+**VERIFICATION GOTCHA (this machine):** headless chromium (new AND classic) IGNORES `--window-size` for the layout viewport — it pins ~500px and screenshots are CROPS, so sub-500px media queries never fire in plain `--screenshot` runs and earlier "mobile 390" renders were actually 500px layouts. True mobile checks need the iframe rig: instrumented copy in /tmp + `<base>` + a fixed-width `<iframe>` wrapper + `--allow-file-access-from-files`, measuring `scrollWidth > innerWidth` via console on stderr.
+
+**2026-07-01 — `perf-feed` branch (stacked on `blog`, PR pending).** Two audit-pass-2 items:
+1. **Font dedupe:** the 7 per-weight `.woff2` were byte-identical within each family (md5-verified) because both are VARIABLE fonts (fontTools: Manrope wght 200–800, Syne 400–800). Collapsed to `manrope.woff2` + `syne.woff2` with `font-weight: 400 700` / `600 800` range descriptors in fonts.css → −119KB / −5 requests on first load, zero visual change (verified: weight-test render shows Syne 600/700/800 + Manrope 400/700 all distinct; index re-render identical).
+2. **Atom feed:** `blog/feed.xml` (hand-maintained, matches sitemap convention) + `rel=alternate` autodiscovery on all 4 blog pages + visible RSS link in the blog footer. Subscription channel with no email capture and no third party — fits privacy-first. **Remember: add an `<entry>` + sitemap `<url>` for every new article.**
+
+**2026-07-01 — `blog` branch (stacked on `pages-urls-interim`, PR pending).** Shipped the SEO blog — the biggest non-owner-gated growth lever (guide topics are searchable; the site had zero content surface). `blog/index.html` + 3 articles, every one carved from a real chapter of the corresponding guide in ~/hyperlighttech-guides (grounded, no fabrication):
+1. **"The agent loop: ~40 lines of Python behind every AI agent"** — AI guide ch. 1 + 5 (four-step loop, the complete runnable loop code, the 5 design decisions, infinite-loop warning) → CTA $9 AI guide + $39 flagship pointer.
+2. **"The five attacks that actually drain DeFi wallets"** — DeFi guide ch. 8 (phishing/approvals/seed theft/rugs/fake airdrops, revoke.cash cadence, $1k hardware-wallet threshold, buy-direct warning, 60-sec checklist) → CTA $9 DeFi guide.
+3. **"Encrypt your DNS on Ubuntu in five minutes"** — Linux guide ch. 7 (DoT vs DoH, exact resolved.conf block, resolvectl verify, dnsleaktest, NextDNS) → CTA $9 Linux guide. (NB: used `example.com` in the verify command, not the guide's `hyperlighttech.com` — that domain is dead; flagged as a guides-repo fix.)
+Blog pages keep the repo rules: no build, one inline `<style>` per page, self-hosted fonts via `../fonts/fonts.css`, **zero third-party scripts** (no gumroad.js on blog pages — plain product links). Relative links throughout (`../`, `./`) so they work on the Pages subpath AND a future custom domain; canonicals/OG absolute to the live Pages host (same swap point as pages-urls-interim). Wired in: nav + mobile menu + footer "Blog" links on index.html; sitemap.xml now lists all 5 URLs. JSON-LD: Blog (index) + BlogPosting (each article).
+
+**2026-07-01 — `pages-urls-interim` branch (stacked on `guide-specs-toc`, PR pending).** The apex `hyperlighttech.com` still does not resolve (checked today; Pages `cname` null), yet every absolute URL pointed at it, and internal links assumed the site is served at the domain root — false on the live Pages subpath. Interim fix, one grep-able swap point (`defi369.github.io/HyperLightSite` → `hyperlighttech.com` when DNS lands, + add CNAME file):
+1. **index.html:** `canonical` / `og:url` / `og:image` / Organization JSON-LD `url` → the live Pages URL (kills the self-deindex risk + dead social-card image). Added `og:image:width/height/alt`. Head comment documents the swap.
+2. **Root-absolute → relative links:** index logo ×2 `href="/"`→`./`; thank-you logo/nav-CTA/footer `/`,`/#guides`→`./`,`./#guides`; thank-you favicon `/favicon.svg`→`favicon.svg`. (`/` on Pages = `defi369.github.io/` — the wrong site.)
+3. **404.html → ALL absolute:** Pages serves 404.html at ANY missing URL (any depth), so its relative `fonts/fonts.css` broke on deep paths and `/`-links left the site → fonts.css, favicon, and all 8 internal links now use the full live URL (head comment explains why).
+4. **sitemap.xml `loc` + robots.txt `Sitemap`** → live Pages URLs; lastmod bumped.
+Footer visible text "hyperlighttech.com" (dead) → "Home" on thank-you/404. og-image.png still shows the brand domain as display text — fine (branding), regen when domain is live.
+
+**2026-07-01 — `guide-specs-toc` branch (PR #3 open, awaiting owner merge).** Competitor research (wizardzines, Refactoring UI, MAKE book, css-for-js.dev, Just JavaScript, No Starch, Leanpub — screenshots + copy/palette/type analysis) found ours missing: named author w/ face (every comp has one — owner-gated), concrete product specs, real TOC, free-chapter-as-primary-CTA (owner-gated: needs Gumroad sample product), numeric social proof (owner-gated: use real Gumroad stats once sales exist). Implemented the honest, no-owner-input items, all data pulled from the REAL guide sources in ~/hyperlighttech-guides (PDF page counts via pdfinfo; chapters from `::: chapter` directives; difficulty/time from GUIDE.md frontmatter):
 1. **Spec strip per card** — "25 pages · 11 chapters · 2026 edition" (Linux), "22 · 9" (DeFi), "25 · 10" (AI). Verified real.
 2. **"See what's inside" `<details>` TOC per card** — real numbered chapter lists + a meta line (difficulty/time/prereqs from frontmatter). Native details/summary, no JS. Gotcha: `.card li{display:flex}` kills `display:list-item` → markers vanish; the TOC li rule must re-set `display:list-item`.
 3. **#guides subhead** now concrete: "72 pages of the exact commands, configs, and code we run in production." (25+22+9... = 72 ✓ real).
@@ -60,7 +87,7 @@ Verified via headless-chromium renders (desktop 1440px, mobile 390px, thank-you,
 ## Open (honest)
 
 ### Out of scope for this branch / other tracks
-- **Apex domain dead + canonical still points at it.** `hyperlighttech.com` does not resolve, yet `<link rel=canonical>` / `og:url` / `og:image` all use `https://hyperlighttech.com/`. **OUT OF SCOPE here (domain track)** — either wire the custom domain to Pages or repoint canonical/OG to the live `defi369.github.io/HyperLightSite/` URL.
+- **Apex domain still dead (DNS is the owner's).** Interim mitigation SHIPPED (`pages-urls-interim`): all absolute URLs now use the live Pages URL, so indexing/social cards work today. When the owner wires `hyperlighttech.com` DNS: grep `defi369.github.io/HyperLightSite` → replace with `hyperlighttech.com`, add a `CNAME` file, set Pages custom domain + HTTPS, regen og-image.png if desired.
 - **`FLAGSHIP_URL` / `MASTER_URL` / `SAMPLE_URL` are `''`** in index.html's script, so the $39 Flagship + $49 Master render "Coming soon" and the free-sample line stays hidden. Set them once the Gumroad products exist (other track — depends on the guides repo shipping the Flagship + its Gumroad listings).
 
 ### Still open (this storefront)
@@ -68,4 +95,4 @@ Verified via headless-chromium renders (desktop 1440px, mobile 390px, thank-you,
 - **Product cover art not on the cards.** Branded guide covers exist in the guides repo (`~/hyperlighttech-guides`) but the storefront cards are text-only (numbered chips). Putting covers on the cards is a deliberate other track (do not do it here).
 - **No email capture beyond "Follow on Gumroad."** The `#updates` band routes to Gumroad follow / mailto; a dedicated list (privacy-respecting) is the main lever for turning one-time buyers into repeat revenue.
 - **No analytics** (deliberate — owner is privacy-first). If ever wanted, use Gumroad's built-in stats or a cookieless tool (GoatCounter/Plausible/Fathom), owner's OK required.
-- **SEO blog** for the guide topics is still the biggest untapped growth lever.
+- **SEO blog: v1 SHIPPED** (3 articles, one per guide). Next levers: more articles (each guide has 9–11 chapters; ~2 more strong candidates each — e.g. SSH hardening, token approvals deep-dive, agent memory), an RSS/Atom feed (subscription without email capture — fits privacy-first), and cross-links from articles to each other once there are enough.

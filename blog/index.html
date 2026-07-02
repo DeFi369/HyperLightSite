@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Production notes from the HyperLightTech guides — Linux hardening, DeFi safety, and AI agents. Real commands, real code, no fluff.">
+  <title>Blog — production notes for builders | HyperLightTech</title>
+  <link rel="canonical" href="https://defi369.github.io/HyperLightSite/blog/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://defi369.github.io/HyperLightSite/blog/">
+  <meta property="og:title" content="HyperLightTech blog — production notes for builders">
+  <meta property="og:description" content="Linux hardening, DeFi safety, and AI agents — carved from our $9 guides. Real commands, real code, no fluff.">
+  <meta property="og:image" content="https://defi369.github.io/HyperLightSite/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#211C18">
+  <script type="application/ld+json">
+   {"@context":"https://schema.org","@type":"Blog",
+    "name":"HyperLightTech Blog",
+    "url":"https://defi369.github.io/HyperLightSite/blog/",
+    "description":"Production notes for builders — Linux hardening, DeFi safety, and AI agents.",
+    "publisher":{"@type":"Organization","name":"HyperLightTech"},
+    "blogPost":[
+      {"@type":"BlogPosting","headline":"Give Your AI Agent a Memory: In-Context, JSON, and a save_memory Tool","url":"https://defi369.github.io/HyperLightSite/blog/ai-agent-memory-python.html","datePublished":"2026-07-02"},
+      {"@type":"BlogPosting","headline":"Harden SSH on Ubuntu in Three Moves: Keys, Config, fail2ban","url":"https://defi369.github.io/HyperLightSite/blog/harden-ssh-ubuntu.html","datePublished":"2026-07-02"},
+      {"@type":"BlogPosting","headline":"Before You Sign: How to Verify Any DeFi Contract on Etherscan","url":"https://defi369.github.io/HyperLightSite/blog/verify-smart-contracts-etherscan.html","datePublished":"2026-07-02"},
+      {"@type":"BlogPosting","headline":"The Agent Loop: 40 Lines of Python Behind Every AI Agent","url":"https://defi369.github.io/HyperLightSite/blog/ai-agent-loop-python.html","datePublished":"2026-07-01"},
+      {"@type":"BlogPosting","headline":"The Five Attacks That Actually Drain DeFi Wallets — and How to Block Every One","url":"https://defi369.github.io/HyperLightSite/blog/avoid-defi-wallet-drains.html","datePublished":"2026-07-01"},
+      {"@type":"BlogPosting","headline":"Encrypt Your DNS on Ubuntu in Five Minutes (DNS-over-TLS with systemd-resolved)","url":"https://defi369.github.io/HyperLightSite/blog/dns-over-tls-ubuntu.html","datePublished":"2026-07-01"}
+    ]}
+  </script>
+  <link rel="alternate" type="application/atom+xml" title="HyperLightTech Blog" href="feed.xml">
+  <link rel="stylesheet" href="../fonts/fonts.css">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --paper:#211C18; --paper-2:#1A1511; --card:#2A231D;
+      --ink:#F4EEE6; --ink-2:#C3B7A6; --ink-3:#A89C8C;
+      --line:rgba(244,238,230,.11); --accent:#F0633F; --accent-deep:#E2553D;
+      --accent-soft:rgba(240,99,63,.14);
+      --fh:'Syne',sans-serif; --fb:'Manrope',sans-serif;
+    }
+    html{scroll-behavior:smooth}
+    body{background:var(--paper);color:var(--ink);font-family:var(--fb);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;
+      min-height:100vh;display:flex;flex-direction:column}
+    a{color:inherit}
+
+    header{position:sticky;top:0;z-index:50;background:rgba(33,28,24,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+    nav{max-width:1080px;margin:0 auto;padding:0 24px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .logo{display:flex;align-items:center;gap:11px;text-decoration:none;font-family:var(--fh);font-weight:800;font-size:18px}
+    .logo .mark{width:30px;height:30px;border-radius:8px;background:var(--ink);display:grid;place-items:center;color:var(--paper)}
+    .logo .mark svg{width:16px;height:16px}
+    .nav-right{display:flex;align-items:center;gap:22px}
+    .nav-right>a{font-size:15px;font-weight:600;color:var(--ink-2);text-decoration:none}
+    .nav-right>a:hover{color:var(--ink)}
+    .nav-cta{display:inline-flex;align-items:center;background:var(--accent);color:var(--paper)!important;padding:11px 18px;
+      border-radius:6px;border:1px solid #D14C2E;font-weight:700;font-size:12px!important;letter-spacing:.11em;text-transform:uppercase;
+      line-height:1;text-decoration:none;white-space:nowrap;box-shadow:0 4px 0 0 #A23A1E;transition:transform .12s ease,box-shadow .12s ease,background .2s}
+    .nav-cta:hover{background:var(--accent-deep);transform:translateY(-1px);box-shadow:0 5px 0 0 #A23A1E}
+    .nav-cta:active{transform:translateY(4px);box-shadow:0 0 0 0 #A23A1E}
+
+    main{flex:1;max-width:820px;margin:0 auto;width:100%;padding:72px 24px 96px}
+    .eyebrow{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+    h1{font-family:var(--fh);font-weight:800;letter-spacing:-.02em;line-height:1.1;font-size:clamp(32px,5.4vw,50px);margin:14px 0 14px}
+    .sub{font-size:18px;color:var(--ink-2);max-width:56ch;margin-bottom:52px}
+    .sub a{color:var(--accent);text-decoration:none;font-weight:700}
+    .sub a:hover{text-decoration:underline}
+
+    .post{display:block;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px 30px;margin-bottom:16px;
+      text-decoration:none;transition:transform .2s ease,border-color .2s;box-shadow:0 1px 2px rgba(0,0,0,.35),0 18px 40px -18px rgba(0,0,0,.6)}
+    .post:hover{transform:translateY(-3px);border-color:rgba(240,99,63,.38)}
+    .post .label{font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+    .post h2{font-family:var(--fh);font-weight:700;font-size:23px;letter-spacing:-.01em;line-height:1.22;color:var(--ink);margin-bottom:8px}
+    .post p{font-size:15px;color:var(--ink-2);margin-bottom:12px}
+    .post .pmeta{font-size:13px;color:var(--ink-3)}
+    .post .pmeta b{color:var(--ink-2);font-weight:600}
+
+    footer{background:#17120E;border-top:1px solid var(--line);padding:28px 24px;text-align:center;font-size:14px;color:var(--ink-3)}
+    footer a{color:var(--accent);text-decoration:none}
+    @media(prefers-reduced-motion:reduce){.nav-cta,.post{transition:none}}
+    @media(max-width:600px){.nav-right>a:not(.nav-cta){display:none}.post{padding:22px 20px}
+      .logo{font-size:15px;gap:8px}.logo .mark{width:26px;height:26px}.logo .mark svg{width:14px;height:14px}
+      .nav-right{gap:12px}.nav-right>a.nav-cta{padding:10px 12px;font-size:10.5px!important;letter-spacing:.08em}}
+    @media(max-width:420px){.logo .word{display:none}}
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="../" class="logo">
+      <span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M13 3 4 14h7l-1 7 9-11h-7z" fill="currentColor" stroke="none"/></svg></span>
+      <span class="word">HyperLightTech</span>
+    </a>
+    <div class="nav-right">
+      <a href="../#guides">Guides</a>
+      <a href="../#flagship">Flagship</a>
+      <a href="../#faq">FAQ</a>
+      <a href="../#guides" class="nav-cta">Get the guides</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <div class="eyebrow">Blog</div>
+  <h1>Production notes for builders.</h1>
+  <p class="sub">Real commands, real code, no fluff — carved straight from <a href="../#guides">the $9 guides</a>. If an article saves you an hour, the full playbook it came from costs less than lunch.</p>
+
+  <a class="post" href="ai-agent-loop-python.html">
+    <div class="label">AI agents</div>
+    <h2>The agent loop: 40 lines of Python behind every AI agent</h2>
+    <p>Perceive, reason, act, observe. The complete loop that drives every agent — in runnable Python with the Claude API — plus the five design decisions that keep it from melting down.</p>
+    <div class="pmeta"><b>July 1, 2026</b> · 6 min read</div>
+  </a>
+
+  <a class="post" href="ai-agent-memory-python.html">
+    <div class="label">AI agents</div>
+    <h2>Give your AI agent a memory</h2>
+    <p>Your agent forgets everything when the program exits. The memory ladder in runnable Python: in-context history, a JSON file that persists between runs, and a save_memory tool so the agent decides what's worth keeping.</p>
+    <div class="pmeta"><b>July 2, 2026</b> · 5 min read</div>
+  </a>
+
+  <a class="post" href="avoid-defi-wallet-drains.html">
+    <div class="label">DeFi &amp; crypto</div>
+    <h2>The five attacks that actually drain DeFi wallets</h2>
+    <p>There are no chargebacks on-chain. Phishing, malicious approvals, seed theft, rug pulls, fake airdrops — how each one works, and the 60-second checklist that blocks them all.</p>
+    <div class="pmeta"><b>July 1, 2026</b> · 5 min read</div>
+  </a>
+
+  <a class="post" href="verify-smart-contracts-etherscan.html">
+    <div class="label">DeFi &amp; crypto</div>
+    <h2>Before you sign: verify any DeFi contract on Etherscan</h2>
+    <p>Every on-chain transaction is public — if you know how to read it. Decode the transaction fields, then run the five-step contract check before you interact with anything new.</p>
+    <div class="pmeta"><b>July 2, 2026</b> · 5 min read</div>
+  </a>
+
+  <a class="post" href="dns-over-tls-ubuntu.html">
+    <div class="label">Linux security</div>
+    <h2>Encrypt your DNS on Ubuntu in five minutes</h2>
+    <p>Every site you visit leaks in plain text before HTTPS even starts. Turn on DNS-over-TLS with the resolver Ubuntu already ships — the exact config, the verify steps, and the leak test.</p>
+    <div class="pmeta"><b>July 1, 2026</b> · 4 min read</div>
+  </a>
+
+  <a class="post" href="harden-ssh-ubuntu.html">
+    <div class="label">Linux security</div>
+    <h2>Harden SSH on Ubuntu in three moves</h2>
+    <p>If SSH is open, it's being probed right now. Ed25519 keys, a hardened sshd_config, and fail2ban — the three changes that make brute-forcing pointless, with the exact commands.</p>
+    <div class="pmeta"><b>July 2, 2026</b> · 5 min read</div>
+  </a>
+</main>
+
+<footer>
+  © 2026 HyperLightTech — <a href="../">Home</a> · <a href="../#guides">Guides</a> · <a href="feed.xml">RSS</a> · <a href="mailto:hello@hyperlighttech.com">hello@hyperlighttech.com</a>
+</footer>
+
+</body>
+</html>

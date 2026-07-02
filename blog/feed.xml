@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>HyperLightTech Blog</title>
+  <subtitle>Production notes for builders — Linux hardening, DeFi safety, and AI agents.</subtitle>
+  <link href="https://defi369.github.io/HyperLightSite/blog/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://defi369.github.io/HyperLightSite/blog/" rel="alternate" type="text/html"/>
+  <id>https://defi369.github.io/HyperLightSite/blog/</id>
+  <updated>2026-07-02T12:00:00Z</updated>
+  <author><name>HyperLightTech</name><email>hello@hyperlighttech.com</email></author>
+
+  <entry>
+    <title>Give your AI agent a memory</title>
+    <link href="https://defi369.github.io/HyperLightSite/blog/ai-agent-memory-python.html" rel="alternate" type="text/html"/>
+    <id>https://defi369.github.io/HyperLightSite/blog/ai-agent-memory-python.html</id>
+    <published>2026-07-02T12:00:00Z</published>
+    <updated>2026-07-02T12:00:00Z</updated>
+    <summary>The memory ladder in runnable Python: in-context history, a JSON file that persists between runs, and a save_memory tool so the agent decides what's worth keeping.</summary>
+  </entry>
+
+  <entry>
+    <title>Harden SSH on Ubuntu in three moves</title>
+    <link href="https://defi369.github.io/HyperLightSite/blog/harden-ssh-ubuntu.html" rel="alternate" type="text/html"/>
+    <id>https://defi369.github.io/HyperLightSite/blog/harden-ssh-ubuntu.html</id>
+    <published>2026-07-02T12:00:00Z</published>
+    <updated>2026-07-02T12:00:00Z</updated>
+    <summary>If SSH is open, it's being probed right now. Ed25519 keys, a hardened sshd_config, and fail2ban — the three changes that make brute-forcing pointless, with the exact commands.</summary>
+  </entry>
+
+  <entry>
+    <title>Before you sign: verify any DeFi contract on Etherscan</title>
+    <link href="https://defi369.github.io/HyperLightSite/blog/verify-smart-contracts-etherscan.html" rel="alternate" type="text/html"/>
+    <id>https://defi369.github.io/HyperLightSite/blog/verify-smart-contracts-etherscan.html</id>
+    <published>2026-07-02T12:00:00Z</published>
+    <updated>2026-07-02T12:00:00Z</updated>
+    <summary>Every on-chain transaction is public — if you know how to read it. Decode the transaction fields, then run the five-step contract check before you interact with anything new.</summary>
+  </entry>
+
+  <entry>
+    <title>The agent loop: 40 lines of Python behind every AI agent</title>
+    <link href="https://defi369.github.io/HyperLightSite/blog/ai-agent-loop-python.html" rel="alternate" type="text/html"/>
+    <id>https://defi369.github.io/HyperLightSite/blog/ai-agent-loop-python.html</id>
+    <published>2026-07-01T12:00:00Z</published>
+    <updated>2026-07-01T12:00:00Z</updated>
+    <summary>Perceive, reason, act, observe. The complete loop that drives every AI agent — in runnable Python with the Claude API — plus the five design decisions that keep it from melting down.</summary>
+  </entry>
+
+  <entry>
+    <title>The five attacks that actually drain DeFi wallets</title>
+    <link href="https://defi369.github.io/HyperLightSite/blog/avoid-defi-wallet-drains.html" rel="alternate" type="text/html"/>
+    <id>https://defi369.github.io/HyperLightSite/blog/avoid-defi-wallet-drains.html</id>
+    <published>2026-07-01T12:00:00Z</published>
+    <updated>2026-07-01T12:00:00Z</updated>
+    <summary>There are no chargebacks on-chain. Phishing, malicious approvals, seed theft, rug pulls, fake airdrops — how each one works, and the 60-second checklist that blocks them all.</summary>
+  </entry>
+
+  <entry>
+    <title>Encrypt your DNS on Ubuntu in five minutes</title>
+    <link href="https://defi369.github.io/HyperLightSite/blog/dns-over-tls-ubuntu.html" rel="alternate" type="text/html"/>
+    <id>https://defi369.github.io/HyperLightSite/blog/dns-over-tls-ubuntu.html</id>
+    <published>2026-07-01T12:00:00Z</published>
+    <updated>2026-07-01T12:00:00Z</updated>
+    <summary>Every site you visit leaks in plain text before HTTPS even starts. Turn on DNS-over-TLS with the resolver Ubuntu already ships — the exact config, the verify steps, and the leak test.</summary>
+  </entry>
+</feed>
